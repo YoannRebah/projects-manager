@@ -1,4 +1,4 @@
-.loader-background,
+.loader,
 .program-tv {
     position: fixed;
     width: 100vw;
@@ -50,7 +50,7 @@
             }
         }
 
-        .loader {
+        .container-block {
             width: 100%;
             height: 3.5rem;
             border-radius: 10px;
