@@ -1,8 +1,8 @@
 export interface References {
-    references: Reference[]
+    references: ObjReference[]
 }
 
-interface Reference {
+interface ObjReference {
     html: string,
     href: string 
 }

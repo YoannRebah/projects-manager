@@ -1,15 +1,15 @@
 export interface Skills {
-    skills: Skill[]
+    skills: ObjSkill[]
 }
 
-interface Skill {
+interface ObjSkill {
     id: string,
     label: string,
     iconClassName: string,
-    details: Detail[]
+    details: ObjDetail[]
 }
 
-interface Detail {
+interface ObjDetail {
     label: string,
     percent: number
 }
