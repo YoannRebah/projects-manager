@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoaderComponent } from '../app/components/loader/loader.component';
+import { OverlayModule } from '../app/modules/overlay/overlay.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    LoaderComponent
+    OverlayModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
