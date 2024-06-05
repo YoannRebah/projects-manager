@@ -1,0 +1,101 @@
+DOC
+
+Composant : Partie de l'UI, gère la logique et la vue.
+Service : Encapsule la logique métier, utilisé pour des fonctionnalités partagées.
+Module : Conteneur organisant composants, directives, pipes et services.
+Directive : Modifie le comportement ou l'apparence des éléments DOM.
+Pipe : Transforme les données avant leur affichage dans la vue.
+
+================================
+
+Composant (Component)
+Un composant est l'élément de base d'une application Angular. Il encapsule la logique et la vue d'une partie de l'interface utilisateur (UI).
+
+Structure : Un composant est constitué de quatre parties principales : une classe TypeScript, un template HTML, une feuille de style CSS (ou SCSS), et des métadonnées (annotations).
+Usage : Un composant est utilisé pour créer et gérer une section spécifique de l'UI, comme un bouton, une liste, un formulaire, etc.
+
+================================
+
+Service
+Un service est une classe utilisée pour encapsuler la logique métier et les fonctionnalités qui ne sont pas directement liées à la présentation.
+
+Structure : Un service est généralement une classe simple annotée avec @Injectable.
+Usage : Les services sont utilisés pour gérer des tâches comme les appels HTTP, la manipulation de données, la logique d'authentification, etc.
+
+================================
+
+Module
+Un module est un conteneur qui regroupe des composants, des directives, des pipes et des services liés.
+
+Structure : Un module est une classe annotée avec @NgModule.
+Usage : Les modules organisent l'application en unités fonctionnelles, permettant une gestion et une maintenance plus faciles.
+
+================================
+
+Directive
+Une directive est une classe qui peut modifier le comportement ou l'apparence des éléments DOM.
+
+Structure : Une directive est une classe annotée avec @Directive.
+Usage : Les directives sont utilisées pour manipuler le DOM, appliquer des styles conditionnels, ou ajouter des fonctionnalités supplémentaires à des éléments existants.
+
+================================
+
+Pipe
+Un pipe est une classe utilisée pour transformer les données avant de les afficher dans la vue.
+
+Structure : Un pipe est une classe annotée avec @Pipe.
+Usage : Les pipes sont utilisés pour formater les dates, les devises, ou pour effectuer des transformations sur les chaînes de caractères, les nombres, etc.
+
+================================
+================================
+
+@Component({
+  selector: "app-example",
+  templateUrl: "./example.component.html",
+  styleUrls: ["./example.component.css"],
+})
+export class ExampleComponent {
+  // Logic here
+}
+
+//============================================
+
+@Injectable({
+  providedIn: "root",
+})
+export class ExampleService {
+  // Business logic here
+}
+
+//============================================
+
+@NgModule({
+  declarations: [ExampleComponent, ExampleDirective, ExamplePipe],
+  imports: [CommonModule],
+  providers: [ExampleService],
+  bootstrap: [AppComponent],
+})
+export class ExampleModule {}
+
+//============================================
+
+@Directive({
+  selector: "[appExample]",
+})
+export class ExampleDirective {
+  // DOM manipulation logic here
+}
+
+//============================================
+
+@Pipe({
+  name: "example",
+})
+export class ExamplePipe implements PipeTransform {
+  transform(value: any, ...args: any[]): any {
+    // Transformation logic here
+    return transformedValue;
+  }
+}
+
+//============================================
