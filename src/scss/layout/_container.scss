@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+    width: 100%;
+
+    &_medium {
+        padding: 0 8%;
+
+        @include screen('s') {
+            padding: 0 16%;
+        }
+    }
+}

@@ -1,0 +1,126 @@
+.neon-letters {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        position: relative;
+
+        &:nth-child(1) {
+            font-size: 2.2rem;
+            text-shadow: $shadow-cyan-3d;
+            font-style: italic;
+            margin-bottom: -1rem;
+            margin-left: 0.85rem;
+            animation: neon-glitch-anim 10s linear infinite;
+            @keyframes neon-glitch-anim {
+                0% {
+                    text-shadow: $shadow-cyan-3d;
+                }
+                90% {
+                    text-shadow: $shadow-cyan-3d;
+                }
+                94% {
+                    text-shadow: $shadow-black-3d;
+                }
+                97% {
+                    text-shadow: $shadow-cyan-3d;
+                }
+                100% {
+                    text-shadow: $shadow-black-3d;
+                }
+            }
+
+            @include screen('s') {
+                font-size: 3.2rem;
+                margin-bottom: -2.5rem;
+            }
+        }
+
+        &:nth-child(2) {
+            margin-bottom: -2rem;
+
+            @include screen('s') {
+                margin-bottom: -4rem;
+            }
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+            font-size: 5rem;
+            text-shadow: $shadow-pink;
+
+            @include screen('s') {
+                font-size: 8rem;
+            }
+        }
+
+        &:nth-child(3) {
+            margin-left: 1rem;
+            margin-bottom: -1rem;
+
+            @include screen('s') {
+                margin-bottom: -2rem;
+            }
+        }
+
+        &:nth-child(4) {
+            font-size: 1.75rem;
+            text-shadow: $shadow-cyan-3d;
+            font-style: italic;
+            text-align: right;
+            margin-right: 1rem;
+            animation: neon-glitch2-anim 20s linear infinite;
+            @keyframes neon-glitch2-anim {
+                0% {
+                    text-shadow: $shadow-cyan-3d;
+                }
+                90% {
+                    text-shadow: $shadow-cyan-3d;
+                }
+                92% {
+                    text-shadow: $shadow-black-3d;
+                }
+                100% {
+                    text-shadow: $shadow-black-3d;
+                }
+            }
+
+            @include screen('s') {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    &.small {
+        span {
+            &:nth-child(1) {
+                text-shadow: $shadow-cyan;
+                font-size: 0.75rem;
+                margin-bottom: -0.5rem;
+                margin-left: 0.5rem;
+                animation: none;
+            }
+    
+            &:nth-child(2) {
+                margin-bottom: -0.75rem;
+            }
+    
+            &:nth-child(2),
+            &:nth-child(3) {
+                font-size: 1.35rem;
+            }
+    
+            &:nth-child(3) {
+                margin-left: 0.5rem;
+                margin-bottom: -0.15rem;
+            }
+    
+            &:nth-child(4) {
+                text-shadow: $shadow-cyan;
+                font-size: 0.45rem;
+                margin-right: 0.33rem;
+                animation: none;
+            }
+        }
+    }
+}

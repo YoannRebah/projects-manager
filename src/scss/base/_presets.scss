@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { 
+        display: none;
+    }
+}
+
+body {
+    background: $body-bg;
+    color: $body-color;
+}
+
+body, a, h2, button {
+    cursor: url(../../assets/images/mouse-cursor.png), auto;
+}
+
+a, h2, button, .employee-card, .polaroid {
+    &:hover {
+        cursor: url(../../assets/images/mouse-cursor-hover.png), auto;
+    }
+}
+
+p, span, h1, h2, h3, li, a {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+main {
+    position: relative;
+    height: 100%;
+}
+
+h2 {
+    position: relative;
+    color: $cyan;
+    font-weight: 700 !important;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+
+    @include screen('s') {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    &::before {
+        content: "-";
+        display: flex;
+        width: 1.5rem;
+        height: 0.2rem;
+        background: $cyan;
+        color: $cyan;
+        margin-right: .75rem;
+
+        @include screen('s') {
+            width: 3rem;
+        }
+    }
+
+    &::after {
+        content: "";
+        display: flex;
+        width: 94%;
+        height: 0.2rem;
+        background: $pink;
+        position: absolute;
+        right: 0;
+        bottom: -0.2rem;
+
+        @include screen('s') {
+            width: 97%;
+        }
+    }
+
+    &.reduce {
+        color: $pink;
+
+        &::before {
+            content: "+";
+            background: $cyan;
+            color: $pink;
+        }
+
+        &::after {
+            background: $cyan;
+        }
+    }
+}
+
+a {
+    color: $white;
+    transition: color 0.1s ease-in-out;
+
+    &:hover {
+        &:not(.link-h1) {
+            color: $pink;
+        }
+    }
+
+    &>* {
+        pointer-events: none;
+    }
+}
+
+hr {
+    border: 1px solid;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    @include screen('s') {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    &.pink {
+        border-color: $pink;
+    }
+
+    &.cyan {
+        border-color: $cyan;
+    }
+}
