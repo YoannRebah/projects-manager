@@ -5,23 +5,24 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.scss'
 })
+
 export class LoaderComponent implements OnInit {
   isLoading: boolean = false;
   timeoutDelay: number = 5000;
 
   ngOnInit(): void {
-    this.Show();
+    this.show();
     let timeout = setTimeout(()=>{
-      this.Hide();
+      this.hide();
       clearTimeout(timeout);
     }, this.timeoutDelay);
   }
 
-  Show() {
+  show() {
     this.isLoading = true;
   }
 
-  Hide() {
+  hide() {
     this.isLoading = false;
   }
 
