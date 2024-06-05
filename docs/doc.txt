@@ -1,4 +1,40 @@
-DOC
+=> install
+npm install
+npm install -g @angular/cli
+ng new nom-du-projet
+
+--------------------------------------
+
+=> Serveur
+ng serve
+
+--------------------------------------
+
+=> Generations
+ng generate component nom-du-composant
+ng generate service nom-du-service
+ng generate module nom-du-module
+ng generate directive nom-de-la-directive
+ng generate pipe nom-du-pipe
+
+--------------------------------------
+
+=> Tests et Build
+tests unitaires : ng test
+tests end-to-end : ng e2e
+Compiler le projet pour la production : ng build --prod
+
+--------------------------------------
+
+=> Update
+ng update @angular/cli @angular/core
+
+--------------------------------------
+
+=> Autres
+ng help
+
+--------------------------------------
 
 Composant : Partie de l'UI, gère la logique et la vue.
 Service : Encapsule la logique métier, utilisé pour des fonctionnalités partagées.
