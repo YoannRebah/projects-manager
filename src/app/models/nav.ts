@@ -1,15 +1,9 @@
 export interface Nav {
-    nav: ObjNav[]
-}
-
-interface ObjNav {
     href: string,
+    html: string,
     target: string,
     ariaLabel: string,
-    label: string,
     classNames: string,
     dataTitlePopin: string,
-    iconClassNames: string,
-    isForNav: boolean,
-    isForFooter: boolean
+    iconClassNames: string
 }
