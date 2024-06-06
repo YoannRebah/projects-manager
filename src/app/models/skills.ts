@@ -1,15 +1,11 @@
 export interface Skills {
-    skills: ObjSkill[]
-}
-
-interface ObjSkill {
     id: string,
-    label: string,
+    language: string,
     iconClassName: string,
-    details: ObjDetail[]
+    details: Details[]
 }
 
-interface ObjDetail {
-    label: string,
+interface Details {
+    text: string,
     percent: number
 }
