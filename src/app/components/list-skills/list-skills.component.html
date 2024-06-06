@@ -1,0 +1,16 @@
+<ul class="list-skills">
+    <li *for="let skill of skills" [id]="skill.id" class="row-skill">
+        <div class="container-icon-text">
+            <p>{{ skill.language }}</p>
+            <i [class]="skill.iconClassName" aria-hidden="true"></i>
+        </div>
+        <ul class="list-details-skills">
+            <li *for="let detail of skill.details" [id]="skill.id" class="detail-skills">
+                <p>{{ detail.text }}&nbsp;:</p>
+                <div class="container-progress-bar">
+                    <div class="progress-bar" [style.width]="detail.percent + '%'"></div>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>

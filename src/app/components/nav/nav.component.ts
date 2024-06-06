@@ -6,6 +6,7 @@ import { Navigation } from '../../models/navigation';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
+
 export class NavComponent {
   
   navLinks: Navigation[] = [
