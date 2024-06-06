@@ -83,6 +83,18 @@ Structure : Un pipe est une classe annotée avec @Pipe.
 Usage : Les pipes sont utilisés pour formater les dates, les devises, ou pour effectuer des transformations sur les chaînes de caractères, les nombres, etc.
 
 ================================
+
+@Input() 
+Est utilisé pour déclarer des propriétés d'entrée dans un composant, permettant aux composants 
+parents de fournir des valeurs à ces propriétés.
+
+@HostBinding()
+Est utilisé pour lier des propriétés du composant à des propriétés de l'élément DOM hôte du composant, 
+permettant de modifier dynamiquement les attributs de l'élément DOM en fonction de l'état ou des propriétés du composant. 
+
+Ces deux sont très utiles dans le développement Angular pour créer des composants flexibles et dynamiques.
+
+================================
 ================================
 
 @Component({
