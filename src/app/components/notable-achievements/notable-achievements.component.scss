@@ -6,12 +6,12 @@ $gap-polaroid: 3rem;
 
 .notable-achievements {
     margin: 0 auto;
+    padding-top: 1.5rem;
     max-width: 700px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: $gap-polaroid;
-    margin-top: 3.5rem;
 
     @include screen('s') {
         justify-content: inherit;
@@ -40,7 +40,7 @@ $gap-polaroid: 3rem;
         }
 
         &:nth-child(2) {
-            transform: rotate(-6deg);
+            transform: rotate(-4deg);
         }
 
         &:nth-child(3) {
