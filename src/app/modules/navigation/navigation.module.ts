@@ -14,4 +14,4 @@ import { NavComponent } from '../../components/nav/nav.component';
   ]
 })
 
-export class MenuModule { }
+export class NavigationModule { }

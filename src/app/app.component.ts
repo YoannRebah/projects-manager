@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OverlayModule } from '../app/modules/overlay/overlay.module';
-import { MenuModule } from '../app/modules/menu/menu.module';
+import { NavigationModule } from './modules/navigation/navigation.module';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { MenuModule } from '../app/modules/menu/menu.module';
   imports: [
     RouterOutlet,
     OverlayModule,
-    MenuModule
+    NavigationModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

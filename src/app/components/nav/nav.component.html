@@ -1,18 +1,22 @@
 <nav class="nav">
     <ul class="list-nav">
       <li>
-        <a href="#" aria-label="Accueil" data-title-popin="Accueil">
-          <h1 class="neon-letters small">
-            <span class="satisfy-regular">Portfolio</span>
-            <span class="neonderthaw-regular">Yoann</span>
-            <span class="neonderthaw-regular">Rebah</span>
-            <span class="satisfy-regular">2024</span>
-          </h1>
+        <a href="#" class="neon-letters small" aria-label="Accueil" data-title-popin="Accueil">
+          <span class="satisfy-regular">Portfolio</span>
+          <span class="neonderthaw-regular">Yoann</span>
+          <span class="neonderthaw-regular">Rebah</span>
+          <span class="satisfy-regular">2024</span>
         </a>
       </li>
       <li *ngFor="let link of navLinks">
-        <a [href]="link.href" [ariaLabel]="link.ariaLabel" [class]="link.classNames !== '' ? link.classNames : null">
-          {{ link.html }}
+        <a 
+          [href]="link.href" 
+          [attr.aria-label]="link.ariaLabel" 
+          [class]="link.classNames || null"
+          [attr.target]="link.target || null"
+        >
+          <i [class]="link.iconClassNames" aria-label="hidden"></i>
+          <span>{{ link.html }}</span>
         </a>
       </li>
     </ul>
