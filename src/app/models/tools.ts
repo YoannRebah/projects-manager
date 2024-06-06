@@ -1,8 +1,5 @@
 export interface Tools {
-    tools: ObjTool[]
-}
-
-interface ObjTool {
-    label: string,
+    id: string,
+    toolName: string,
     animationDelay: string
 }

@@ -1,0 +1,7 @@
+<div class="container tools-overview">
+    <div *ngFor="let tool of tools" class="tool">
+        <div [id]="tool.id" class="container screen" [style.animation-delay]="tool.animationDelay">
+            <p class="tool-name">{{ tool.toolName }}</p>
+        </div>
+    </div>
+</div>

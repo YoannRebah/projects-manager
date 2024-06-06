@@ -1,0 +1,121 @@
+@import '../../styles/base/variables';
+@import '../../styles/base/mixins';
+@import '../../styles/layout/container';
+
+$gap-tool: 0.8rem;
+
+.tools-overview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap-tool;
+
+    .tool {
+        position: relative;
+        flex: calc(50% - $gap-tool);
+        height: 140px;
+        padding: 1rem;
+        border: 16px solid $black;
+        outline: 3px solid $black-light;
+
+        @include screen('s') {
+            flex: calc(33% - $gap-tool);
+            height: 185px;
+        }
+
+        @include screen('xl') {
+            flex: 1;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: brightness(120%);
+            background-color: #c7c7c7;
+            -webkit-box-shadow: inset 0px 0px 32px 8px rgba(0,0,0,0.75);
+            -moz-box-shadow: inset 0px 0px 32px 8px rgba(0,0,0,0.75);
+            box-shadow: inset 0px 0px 32px 8px rgba(0,0,0,0.75);
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent 7px,
+                rgba(0, 0, 0, 0.1) 9px,
+                rgba(0, 0, 0, 0.1) 13px,
+                transparent 13px
+            );
+        }
+
+        .screen {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: tool-anim 20s linear infinite;
+            @keyframes tool-anim {
+                0% {
+                    filter: grayscale(10%) hue-rotate(0deg) blur(0px);
+                }
+                6% {
+                    filter: grayscale(100%) hue-rotate(90deg) blur(1px);
+                }
+                8% {
+                    filter: grayscale(10%) hue-rotate(0deg) blur(0px);
+                }
+                95% {
+                    filter: grayscale(10%) hue-rotate(0deg) blur(0px);
+                }
+                97% {
+                    filter: grayscale(100%) hue-rotate(90deg) blur(1px);
+                }
+                100% {
+                    filter: grayscale(0%) hue-rotate(0deg) blur(1px);
+                }
+            }
+
+            &#vs-code {
+                background-image: url(../../assets/images/logo-vs-code.png);
+            }
+
+            &#vs {
+                background-image: url(../../assets/images/logo-vs.png);
+            }
+
+            &#figma {
+                background-image: url(../../assets/images/logo-figma.png);
+            }
+
+            &#git {
+                background-image: url(../../assets/images/logo-git.png);
+            }
+
+            &#aem {
+                background-image: url(../../assets/images/logo-aem.png);
+            }
+
+            &#wordpress {
+                background-image: url(../../assets/images/logo-wordpress.png);
+            }
+
+            p {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                color: $white;
+                font-size: 0.9rem;
+                font-weight: 700;
+                font-family: "Reddit Mono", monospace;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-style: normal;
+                text-shadow: 2px 3px 2px $black, 5px -3px 2px rgba(255, 52, 52, 0.6), 6px -5px 2px rgba(52, 255, 120, 0.6);
+
+                @include screen('s') {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
