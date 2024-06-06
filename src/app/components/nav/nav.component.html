@@ -1,13 +1,5 @@
-<nav class="nav">
+<nav class="container container_small nav">
     <ul class="list-nav">
-      <li>
-        <a href="#" class="neon-letters small" aria-label="Accueil" data-title-popin="Accueil">
-          <span class="satisfy-regular">Portfolio</span>
-          <span class="neonderthaw-regular">Yoann</span>
-          <span class="neonderthaw-regular">Rebah</span>
-          <span class="satisfy-regular">2024</span>
-        </a>
-      </li>
       <li *ngFor="let link of navLinks">
         <a 
           [href]="link.href" 
@@ -16,7 +8,7 @@
           [attr.target]="link.target || null"
         >
           <i *ngIf="link.iconClassNames" [class]="link.iconClassNames" aria-label="hidden"></i>
-          <span *ngIf="link.html">{{ link.html }}</span>
+          <span *ngIf="link.html" class="hidden-flex-s">{{ link.html }}</span>
         </a>
       </li>
     </ul>

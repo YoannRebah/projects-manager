@@ -39,3 +39,19 @@
         display: block;
     }
 }
+
+.display-flex-s {
+    display: flex;
+                    
+    @include screen('s') {
+        display: none;
+    }
+}
+
+.hidden-flex-s {
+    display: none;
+                    
+    @include screen('s') {
+        display: flex;
+    }
+}

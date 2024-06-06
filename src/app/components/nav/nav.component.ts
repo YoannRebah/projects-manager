@@ -10,6 +10,15 @@ export class NavComponent {
   
   navLinks: Navigation[] = [
     {
+      href: '#',
+      iconClassNames: 'fa-solid fa-home',
+      html: null,
+      target: null,
+      ariaLabel: 'Accueil',
+      classNames: 'link-large',
+      dataTitlePopin: null,
+    },
+    {
       href: '#skills',
       iconClassNames: 'fa-solid fa-briefcase',
       html: 'Compétences',
@@ -42,7 +51,7 @@ export class NavComponent {
       html: null,
       target: '_blank',
       ariaLabel: 'Code source du portfolio',
-      classNames: 'large',
+      classNames: 'link-large',
       dataTitlePopin: 'Code source du portfolio',
     },
   ];
