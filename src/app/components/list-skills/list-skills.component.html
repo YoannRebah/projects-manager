@@ -1,16 +1,19 @@
-<ul class="list-skills">
-    <li *for="let skill of skills" [id]="skill.id" class="row-skill">
-        <div class="container-icon-text">
-            <p>{{ skill.language }}</p>
-            <i [class]="skill.iconClassName" aria-hidden="true"></i>
+<ul class="container list-skills">
+    <li *ngFor="let skill of skills; let last = last" [id]="skill.id" class="container li-skill">
+        <div class="container flex-center-column-s">
+            <div class="container-icon-text">
+                <p>{{ skill.language }}</p>
+                <i [class]="skill.iconClassName" aria-hidden="true"></i>
+            </div>
+            <ul class="container list-details-skill">
+                <li *ngFor="let detail of skill.details" [id]="skill.id" class="container li-detail-skill">
+                    <p>{{ detail.text }}&nbsp;:</p>
+                    <div class="container-progress-bar">
+                        <div class="progress-bar" [style.width]="detail.percent + '%'"></div>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <ul class="list-details-skills">
-            <li *for="let detail of skill.details" [id]="skill.id" class="detail-skills">
-                <p>{{ detail.text }}&nbsp;:</p>
-                <div class="container-progress-bar">
-                    <div class="progress-bar" [style.width]="detail.percent + '%'"></div>
-                </div>
-            </li>
-        </ul>
+        <hr *ngIf="!last" class="hr-cyan">
     </li>
 </ul>

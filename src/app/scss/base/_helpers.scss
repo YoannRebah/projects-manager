@@ -15,6 +15,24 @@
     text-shadow: 2px 3px 2px $black, 4px -3px 2px rgba(255, 52, 52, 0.3), 5px -5px 2px rgba(52, 255, 120, 0.3);
 }
 
+.flex-center-column-s {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include screen('s') {
+        flex-direction: row;
+    }
+}
+
+.hr-pink {
+    border-color: $pink;
+}
+
+.hr-cyan {
+    border-color: $cyan;
+}
+
 .display-none {
     display: none !important;
 }
