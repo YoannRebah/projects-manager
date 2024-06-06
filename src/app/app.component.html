@@ -11,14 +11,13 @@
 
   <!-- hero-banner (layout) -->
   <app-hero-banner>
-    <app-h1></app-h1> <!-- h1 (text) -->
+    <app-h1></app-h1>
   </app-hero-banner>  
 
   <div class="container container_medium">
 
-    <!-- section (layout) -->
+    <!-- intro -->
     <app-section id="intro">
-      <!-- h2 (text) -->
       <app-h2>Introduction</app-h2>
       <p>
         Bienvenue sur mon portfolio&nbsp;!
@@ -33,11 +32,9 @@
       </p>
     </app-section>
 
-    <!-- section (layout) -->
+    <!-- skills -->
     <app-section id="skills">
-      <!-- h2 (text) -->
       <app-h2>Compétences</app-h2>
-      <!-- list-skills (content) -->
       <app-list-skills></app-list-skills>
     </app-section>
 
@@ -53,56 +50,17 @@
       <a href="#arcade" aria-label="Salle d'Arcade" data-title-popin="Vers la section Salle d'Arcade"></a>
     </div> -->
 
-    <!-- section (layout) -->
-    <section id="tools" class="container main-section">
-      <!-- h2 (text) -->
+    <!-- tools -->
+    <app-section id="tools">
       <app-h2>Logiciels & Outils</app-h2>
-      <!-- tools-overview (content) -->
       <app-tools-overview></app-tools-overview>
-    </section>
+    </app-section>
 
     <!-- notable-achievements -->
-    <section id="notable-achievements" class="container main-section">
-      <h2 class="btn megrim-regular text-shadow-glitch-2" data-h2="notable-achievements"
-        data-title-popin="Afficher / Masquer la section">Réalisations Notables</h2>
-      <div class="content" data-content="notable-achievements">
-        <div class="container-polaroid">
-          <div class="polaroid">
-            <img src="../.../assets/images/scotch-band-2.png" class="scotch-band scotch-band_top-left" alt="Scotch">
-            <img src="../../assets/images/scotch-band-2.png" class="scotch-band scotch-band_bottom-right"
-              alt="Scotch">
-            <div class="photo" data-photo="hb"></div>
-            <div class="note">
-              <p class="permanent-marker-regular">Intégration de la homepage du site Hello bank!</p>
-            </div>
-          </div>
-          <div class="polaroid">
-            <img src="../../assets/images/scotch-band-1.png" class="scotch-band scotch-band_top-right"
-              alt="Scotch">
-            <div class="photo" data-photo="hb-pro"></div>
-            <div class="note">
-              <p class="permanent-marker-regular">Intégration de la homepage du site Hello bank! pro</p>
-            </div>
-          </div>
-          <div class="polaroid">
-            <img src="../../assets/images/scotch-band-1.png" class="scotch-band scotch-band_top-middle"
-              alt="Scotch">
-            <div class="photo" data-photo="open-street-map"></div>
-            <div class="note">
-              <p class="permanent-marker-regular">Développement d'un système de cartographie en temps réel</p>
-            </div>
-          </div>
-          <div class="polaroid">
-            <img src="../../assets/images/scotch-band-3.png" class="scotch-band scotch-band_top-middle-horizontal"
-              alt="Scotch">
-            <div class="photo" data-photo="bnp"></div>
-            <div class="note">
-              <p class="permanent-marker-regular">Intégration de diverses page du site BNP Paribas</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <app-section id="notable-achievements">
+      <app-h2>Réalisations Notables</app-h2>
+      <app-notable-achievements></app-notable-achievements>
+    </app-section>
 
     <!-- current-job -->
     <section id="current-job" class="container main-section">

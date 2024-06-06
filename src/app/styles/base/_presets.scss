@@ -21,12 +21,12 @@ body {
 }
 
 body, a, h2, button {
-    cursor: url(../../assets/images/mouse-cursor.png), auto;
+    cursor: url(../../../../public/assets/images/mouse-cursor.png), auto;
 }
 
 a, button, .btn {
     &:hover {
-        cursor: url(../../assets/images/mouse-cursor-hover.png), auto;
+        cursor: url(../../../../public/assets/images/mouse-cursor-hover.png), auto;
     }
 }
 
