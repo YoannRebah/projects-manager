@@ -11,105 +11,13 @@
 
   <!-- hero-banner (layout) -->
   <app-hero-banner>
-
-    <!-- h1 (text) -->
-    <app-h1></app-h1>
-    
+    <app-h1></app-h1> <!-- h1 (text) -->
   </app-hero-banner>  
-
-  <!-- video-game-menu -->
-  <div class="video-game-menu">
-    <div class="content">
-      <div class="content-main-menu">
-        <div class="container-title">
-          <p class="dancing-script-regular">Freedom Games presents</p>
-          <h3 class="jersey-15-regular">LAUNCHER 2000</h3>
-        </div>
-        <div class="container-btn">
-          <button class="btn" data-btn-action="new-game" data-title-popin="Lancer une nouvelle partie"
-            aria-label="Lancer une nouvelle partie">
-            <span class="jersey-15-regular">Nouvelle partie</span>
-          </button>
-          <button class="btn" data-btn-action="quit-arcade-menu" data-title-popin="Quitter le mode arcade"
-            aria-label="Quitter le mode arcade">
-            <span class="jersey-15-regular">Quitter</span>
-          </button>
-        </div>
-        <div class="container-footer">
-          <p class="jersey-15-regular">COPYRIGHT <i class="fa-regular fa-copyright"></i> 1980</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- video-game -->
-  <div class="video-game">
-    <div class="content">
-      <div class="content-header">
-        <button class="btn" data-btn-action="back-to-arcade-menu" data-title-popin="Retour au menu principal"
-          aria-label="Retour au menu principal">
-          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-          <span class="jersey-15-regular">Menu principal</span>
-        </button>
-        <div class="container-health-bar">
-          <p class="jersey-15-regular">PV</p>
-          <div class="health-bar"></div>
-        </div>
-        <div class="container-score">
-          <p class="jersey-15-regular">Score&nbsp;: <span class="score">0</span></p>
-          <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">0</span></p>
-        </div>
-      </div>
-      <div class="content-game">
-        <div class="game"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- game-over -->
-  <div class="game-over">
-    <div class="game-over-background-image"></div>
-    <h3 class="jersey-15-regular">GAME OVER</h3>
-    <p class="jersey-15-regular">Score&nbsp;: <span class="game-over-score"></span></p>
-    <div class="container-btn">
-      <button class="btn" data-btn-action="new-game" data-title-popin="Recommencer une partie"
-        aria-label="Recommencer une partie">
-        <span class="jersey-15-regular">Recommencer</span>
-      </button>
-      <button class="btn" data-btn-action="back-to-arcade-menu" data-title-popin="Retour au menu principal"
-        aria-label="Retour au menu principal">
-        <span class="jersey-15-regular">Menu principal</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- main-nav -->
-  <!-- <div class="container" data-container="main-nav">
-    <nav class="main-nav">
-      <ul class="list-main-nav">
-        <li>
-          <a href="#" class="link-main-nav link-h1" aria-label="Accueil" data-title-popin="Accueil">
-            <h1 class="neon-letters small">
-              <span class="satisfy-regular">Portfolio</span>
-              <span class="neonderthaw-regular">Yoann</span>
-              <span class="neonderthaw-regular">Rebah</span>
-              <span class="satisfy-regular">2024</span>
-            </h1>
-          </a>
-        </li>
-      </ul>
-      <button class="btn" data-btn-action="reduce-main-nav" data-title-popin="Masquer le menu"
-        aria-label="Masquer le menu">
-        <i class="fa-solid fa-chevron-up fa-icon" aria-hidden="true"></i>
-      </button>
-    </nav>
-  </div> -->
 
   <!-- main-content -->
   <div class="container container_medium" data-container="main-content">
 
-    <!-- intro -->
-    <section id="intro" class="container main-section">
+    <app-section id="intro">
       <app-h2>Introduction</app-h2>
       <div class="content" data-content="intro">
         <p>
@@ -124,21 +32,28 @@
           Soyez curieux&nbsp;;) Survolez, cliquez... Bonne visite&nbsp;!
         </p>
       </div>
-    </section>
+    </app-section>
+
+    <app-section id="skills">
+      <app-h2>Compétences</app-h2>
+      <div class="content">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sint aut ullam dolore inventore itaque, aperiam
+          aspernatur, perferendis distinctio eaque sapiente! Suscipit necessitatibus natus corrupti veritatis quasi aliquid
+          quidem perspiciatis!</p>
+      </div>
+    </app-section>
 
     <!-- skills -->
-    <section id="skills" class="container main-section">
+    <!-- <section id="skills" class="container main-section">
       <h2 class="btn megrim-regular text-shadow-glitch-2" data-h2="skills"
         data-title-popin="Afficher / Masquer la section">Compétences</h2>
-      <div class="content" data-content="skills">
-        <!-- js load => controllers/Section.js -->
-      </div>
-    </section>
+      <div class="content" data-content="skills"></div>
+    </section> -->
 
     <!-- arcade-promotion -->
-    <div class="container-arcade-promotion">
+    <!-- <div class="container-arcade-promotion">
       <a href="#arcade" aria-label="Salle d'Arcade" data-title-popin="Vers la section Salle d'Arcade"></a>
-    </div>
+    </div> -->
 
     <!-- tools -->
     <section id="tools" class="container main-section">
@@ -366,5 +281,72 @@
   </footer>
 
 </main>
+
+  <!-- video-game-menu -->
+  <div class="video-game-menu">
+    <div class="content">
+      <div class="content-main-menu">
+        <div class="container-title">
+          <p class="dancing-script-regular">Freedom Games presents</p>
+          <h3 class="jersey-15-regular">LAUNCHER 2000</h3>
+        </div>
+        <div class="container-btn">
+          <button class="btn" data-btn-action="new-game" data-title-popin="Lancer une nouvelle partie"
+            aria-label="Lancer une nouvelle partie">
+            <span class="jersey-15-regular">Nouvelle partie</span>
+          </button>
+          <button class="btn" data-btn-action="quit-arcade-menu" data-title-popin="Quitter le mode arcade"
+            aria-label="Quitter le mode arcade">
+            <span class="jersey-15-regular">Quitter</span>
+          </button>
+        </div>
+        <div class="container-footer">
+          <p class="jersey-15-regular">COPYRIGHT <i class="fa-regular fa-copyright"></i> 1980</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- video-game -->
+  <div class="video-game">
+    <div class="content">
+      <div class="content-header">
+        <button class="btn" data-btn-action="back-to-arcade-menu" data-title-popin="Retour au menu principal"
+          aria-label="Retour au menu principal">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          <span class="jersey-15-regular">Menu principal</span>
+        </button>
+        <div class="container-health-bar">
+          <p class="jersey-15-regular">PV</p>
+          <div class="health-bar"></div>
+        </div>
+        <div class="container-score">
+          <p class="jersey-15-regular">Score&nbsp;: <span class="score">0</span></p>
+          <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">0</span></p>
+        </div>
+      </div>
+      <div class="content-game">
+        <div class="game"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- game-over -->
+  <div class="game-over">
+    <div class="game-over-background-image"></div>
+    <h3 class="jersey-15-regular">GAME OVER</h3>
+    <p class="jersey-15-regular">Score&nbsp;: <span class="game-over-score"></span></p>
+    <div class="container-btn">
+      <button class="btn" data-btn-action="new-game" data-title-popin="Recommencer une partie"
+        aria-label="Recommencer une partie">
+        <span class="jersey-15-regular">Recommencer</span>
+      </button>
+      <button class="btn" data-btn-action="back-to-arcade-menu" data-title-popin="Retour au menu principal"
+        aria-label="Retour au menu principal">
+        <span class="jersey-15-regular">Menu principal</span>
+      </button>
+    </div>
+  </div>
+
 
 <router-outlet />
