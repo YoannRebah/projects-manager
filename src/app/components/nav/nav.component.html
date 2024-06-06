@@ -15,8 +15,8 @@
           [class]="link.classNames || null"
           [attr.target]="link.target || null"
         >
-          <i [class]="link.iconClassNames" aria-label="hidden"></i>
-          <span>{{ link.html }}</span>
+          <i *ngIf="link.iconClassNames" [class]="link.iconClassNames" aria-label="hidden"></i>
+          <span *ngIf="link.html">{{ link.html }}</span>
         </a>
       </li>
     </ul>
