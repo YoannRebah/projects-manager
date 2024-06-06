@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { OverlayModule } from '../app/modules/overlay/overlay.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
 import { TextModule } from './modules/text/text.module';
+import { LayoutModule } from './modules/layout/layout.module';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { TextModule } from './modules/text/text.module';
     RouterOutlet,
     OverlayModule,
     NavigationModule,
-    TextModule
+    TextModule,
+    LayoutModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
