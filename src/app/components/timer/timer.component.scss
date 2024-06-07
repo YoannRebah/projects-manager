@@ -1,3 +1,7 @@
+@import '../../styles/base/variables';
+@import '../../styles/base/mixins';
+@import '../../styles/layout/container';
+
 .timer {
     color: $white;
     font-size: 1.3rem;

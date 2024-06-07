@@ -1,29 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timer',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
 
-export class TimerComponent implements OnInit {
-  timerTime: number = 0;
+export class TimerComponent implements OnInit, OnDestroy {
   time: string = '00:00:00';
+  private subscription?: Subscription;
 
   ngOnInit(): void {
-    this.updateTimer();
+    this.startTimer();
   }
 
-  formatTime(number: number): string {
-    return String(number).padStart(2, '0');
+  ngOnDestroy(): void {
+    this.stopTimer();
   }
 
-  updateTimer(): void {
-    const hours = Math.floor(this.timerTime / 3600);
-    const minutes = Math.floor((this.timerTime % 3600) / 60);
-    const seconds = this.timerTime % 60;
+  private startTimer(): void {
+    const timerObservable = new Observable<number>(observer => {
+      let count = 0;
+      const intervalId = setInterval(() => {
+        observer.next(count++);
+      }, 1000);
 
-    this.time = `${this.formatTime(hours)}:${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
-    this.timerTime++;
+      return () => clearInterval(intervalId);
+    });
+
+    this.subscription = timerObservable.subscribe(() => {
+      this.updateTimer();
+    });
+  }
+
+  private stopTimer(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  private updateTimer(): void {
+    const now = new Date();
+    const hours = this.formatTime(now.getHours());
+    const minutes = this.formatTime(now.getMinutes());
+    const seconds = this.formatTime(now.getSeconds());
+    this.time = `${hours}:${minutes}:${seconds}`;
+  }
+
+  private formatTime(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
   }
 }
