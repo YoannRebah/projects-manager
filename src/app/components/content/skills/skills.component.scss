@@ -54,6 +54,19 @@
                     }
                 }
             }
+
+            &#angular {
+                .container-icon-text {
+                    color: $red;
+                }
+                .container-progress-bar {
+                    background: $red2;
+    
+                    .progress-bar {
+                        background: $red;
+                    }
+                }
+            }
     
             .container-icon-text {
                 display: flex;

@@ -93,5 +93,32 @@ export class SkillsComponent {
         },
       ],
     },
+    {
+      id: 'angular',
+      language: 'Angular',
+      iconClassName: 'fa-brands fa-angular',
+      details: [
+        {
+          text: 'Syntaxe de base',
+          percent: 80,
+        },
+        {
+          text: 'Fonctions',
+          percent: 78,
+        },
+        {
+          text: 'POO',
+          percent: 88,
+        },
+        {
+          text: 'Asynchronicité',
+          percent: 71,
+        },
+        {
+          text: 'Bonnes pratiques',
+          percent: 84,
+        },
+      ],
+    },
   ];
 }
