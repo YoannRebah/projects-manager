@@ -147,3 +147,37 @@ export class ExamplePipe implements PipeTransform {
 }
 
 //============================================
+
+ngOnChanges
+Quand il est appelé : À chaque fois qu'une des propriétés d'entrée liées à un composant change.
+Cas d'usage : Utilisé pour réagir aux modifications des entrées (@Input properties). 
+Par exemple, si votre composant dépend de données passées par un parent, 
+vous pouvez utiliser ce hook pour mettre à jour les valeurs internes du composant en réponse aux changements.
+
+ngOnInit
+Quand il est appelé : Une seule fois, après la première initialisation des propriétés liées aux entrées du composant.
+Cas d'usage : Utilisé pour initialiser les données du composant. Idéal pour récupérer des données à partir d'un service ou initialiser des propriétés.
+
+ngDoCheck
+Quand il est appelé : À chaque cycle de détection des changements. Utilisé pour détecter et agir sur les changements que Angular ne peut pas détecter.
+Cas d'usage : Utilisé pour implémenter une logique de détection de changements personnalisée.
+
+ngAfterContentInit
+Quand il est appelé : Une seule fois, après la projection du contenu dans le composant.
+Cas d'usage : Utilisé pour toute initialisation dépendante du contenu projeté (utilisation de ng-content).
+
+ngAfterContentChecked
+Quand il est appelé : Après chaque vérification du contenu projeté.
+Cas d'usage : Utilisé pour réagir aux modifications du contenu projeté après chaque vérification de changement.
+
+ngAfterViewInit
+Quand il est appelé : Une seule fois, après l'initialisation des vues du composant.
+Cas d'usage : Utilisé pour toute initialisation dépendante de la vue du composant, comme la manipulation directe du DOM.
+
+ngAfterViewChecked
+Quand il est appelé : Après chaque vérification de la vue du composant.
+Cas d'usage : Utilisé pour réagir aux modifications de la vue après chaque vérification de changement.
+
+ngOnDestroy
+Quand il est appelé : Juste avant que le composant soit détruit.
+Cas d'usage : Utilisé pour effectuer des tâches de nettoyage, comme la désinscription d'observables ou la libération de ressources.
