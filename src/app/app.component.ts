@@ -12,6 +12,7 @@ import { ListSkillsComponent } from './components/content/list-skills/list-skill
 import { NotableAchievementsComponent } from './components/content/notable-achievements/notable-achievements.component';
 import { ToolsOverviewComponent } from './components/content/tools-overview/tools-overview.component';
 import { MarqueeInterestsComponent } from './components/content/marquee-interests/marquee-interests.component';
+import { ContactComponent } from './components/content/contact/contact.component';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,8 @@ import { MarqueeInterestsComponent } from './components/content/marquee-interest
     ListSkillsComponent,
     NotableAchievementsComponent,
     ToolsOverviewComponent,
-    MarqueeInterestsComponent
+    MarqueeInterestsComponent,
+    ContactComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
