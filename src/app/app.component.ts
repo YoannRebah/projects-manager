@@ -13,6 +13,7 @@ import { NotableAchievementsComponent } from './components/content/notable-achie
 import { ToolsOverviewComponent } from './components/content/tools-overview/tools-overview.component';
 import { MarqueeInterestsComponent } from './components/content/marquee-interests/marquee-interests.component';
 import { ContactComponent } from './components/content/contact/contact.component';
+import { LocationComponent } from './components/content/location/location.component';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,8 @@ import { ContactComponent } from './components/content/contact/contact.component
     NotableAchievementsComponent,
     ToolsOverviewComponent,
     MarqueeInterestsComponent,
-    ContactComponent
+    ContactComponent,
+    LocationComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
