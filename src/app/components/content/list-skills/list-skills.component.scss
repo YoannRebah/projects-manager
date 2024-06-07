@@ -1,0 +1,137 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.list-skills {
+    list-style: none;
+
+    .li-skill {
+        display: flex;
+        flex-direction: column;
+
+        &:last-of-type {
+            + hr {
+                display: none;
+            }
+        }
+
+        &#html {
+            .container-icon-text {
+                color: $orange;
+            }
+            .container-progress-bar {
+                background: $orange2;
+
+                .progress-bar {
+                    background: $orange;
+                }
+            }
+        }
+
+        &#sass {
+            .container-icon-text {
+                color: $pink;
+            }
+            .container-progress-bar {
+                background: $pink2;
+
+                .progress-bar {
+                    background: $pink;
+                }
+            }
+        }
+
+        &#js {
+            .container-icon-text {
+                color: $yellow;
+            }
+            .container-progress-bar {
+                background: $yellow2;
+
+                .progress-bar {
+                    background: $yellow;
+                }
+            }
+        }
+
+        .container-icon-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 15;
+
+            p {
+                font-size: 0.9rem;
+                font-weight: 700;
+                margin-bottom: .33rem;
+                text-align: center;
+
+                @include screen('s') {
+                    font-size: 1.1rem;
+                    margin-bottom: .5rem;
+                }
+            }
+
+            i {
+                font-size: 3rem;
+
+                @include screen('s') {
+                    font-size: 6rem;
+                }
+            }
+        }
+
+        .list-details-skill {
+            list-style: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            flex: 85;
+
+            .li-detail-skill {
+                height: 16px;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                p {
+                    width: 200px;
+                    text-align: right;
+                    font-size: 0.7rem;
+                    text-wrap: nowrap;
+
+                    @include screen('s') {
+                        width: 250px;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .container-progress-bar {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+
+                    .progress-bar {
+                        position: relative;
+                        height: 100%;
+
+                        &::after {
+                            content: attr(data-percent);
+                            position: absolute;
+                            transform: translate(-50%, -50%);
+                            top: 53%;
+                            right: 0;
+                            font-size: 0.72rem;
+                            font-weight: 700;
+                            border-radius: 50%;
+                            height: 100%;
+                            color: $black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
