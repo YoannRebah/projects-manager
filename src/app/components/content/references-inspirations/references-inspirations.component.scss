@@ -1,3 +1,7 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
 .references-inspirations {
 
     .list-references-inspirations {
@@ -8,14 +12,13 @@
 
         li {
             margin-bottom: 1rem;
-
-            a {
-                
-            }
         }
     }
 
     .note {
-        
+        margin-top: .8rem;
+        font-style: italic;
+        color: $yellow;
+        font-size: .85rem;
     }
 }

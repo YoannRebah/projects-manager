@@ -3,6 +3,9 @@
 @import '../../../styles/layout/container';
 
 .footer {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+    background: $black;
 
     .list-footer {
         list-style: none;
@@ -14,7 +17,7 @@
             margin-bottom: 1rem;
 
             a {
-                
+                font-size: .85rem;
             }
         }
     }

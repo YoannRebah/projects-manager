@@ -47,7 +47,7 @@ export class FooterComponent {
       ariaLabel: 'Centres d\'intérêt',
     },
     {
-      href: '#arcade',
+      href: '#arcade-room',
       html: "Salle d'Arcade",
       ariaLabel: 'Salle d\'Arcade',
     },
