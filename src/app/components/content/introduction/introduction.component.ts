@@ -7,21 +7,22 @@ import { Introduction } from '../../../models/introduction';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './introduction.component.html',
-  styleUrls: ['./introduction.component.scss']
+  styleUrls: ['./introduction.component.scss'],
 })
-
 export class IntroductionComponent {
   stringArray: Introduction[] = [
     {
-      text: `Bienvenue sur mon portfolio&nbsp;!`
+      text: `Bienvenue sur mon portfolio directement inspiré des 80's&nbsp;!`,
     },
     {
-      text: `Les défis de ce projet&nbsp;? Réaliser un site from scratch sans utiliser de framework,
-      en intégrant Three.js et en créant des composants avec une identité visuelle bien marquée, dans une ambiance
-      fortement teintée années 1980.`
+      text: `Après avoir perfectionné mes compétences en HTML, SCSS et JavaScript, 
+      j'ai franchi une nouvelle étape en adoptant Angular 17 pour ce projet. 
+      Avec une identité visuelle distincte, chaque élément évoque l'énergie et le style rétro, 
+      offrant une expérience immersive qui célèbre l'esthétique audacieuse et 
+      vibrante des années 1980.`,
     },
     {
-      text: `Soyez curieux&nbsp;;) Survolez, cliquez... Bonne visite&nbsp;!` 
-    }
-  ]
+      text: `Soyez curieux&nbsp;;) Survolez, cliquez... Bonne visite&nbsp;!`,
+    },
+  ];
 }
