@@ -25,6 +25,89 @@
         background-blend-mode: color;
         opacity: 0.2;
         background-color: $pink;
+
+        .glitch-line-blue-red {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 0.18rem;
+            background-size: 100% 3px;
+            filter: blur(3px);
+
+            &_top {
+                top: 0;
+                animation: glitch-line-anim-top 0.25s linear infinite;
+                @keyframes glitch-line-anim-top {
+                    0% {
+                        background: linear-gradient(to right, 
+                        #0000ff 0%, #0000ff 10%, 
+                        #ff0000 10%, #ff0000 20%, 
+                        #0000ff 20%, #0000ff 40%, 
+                        #ff0000 40%, #ff0000 60%, 
+                        #0000ff 60%, #0000ff 65%, 
+                        #ff0000 65%, #ff0000 85%, 
+                        #0000ff 85%, #0000ff 100%);
+                    }
+                    50% {
+                        background: linear-gradient(to right, 
+                        #ff0000 0%, #ff0000 10%, 
+                        #0000ff 10%, #0000ff 20%, 
+                        #ff0000 20%, #ff0000 40%, 
+                        #0000ff 40%, #0000ff 60%, 
+                        #ff0000 60%, #ff0000 65%, 
+                        #0000ff 65%, #0000ff 85%, 
+                        #ff0000 85%, #ff0000 100%);
+                    }
+                    100% {
+                        background: linear-gradient(to right, 
+                        #0000ff 0%, #0000ff 10%, 
+                        #ff0000 10%, #ff0000 20%, 
+                        #0000ff 20%, #0000ff 40%, 
+                        #ff0000 40%, #ff0000 60%, 
+                        #0000ff 60%, #0000ff 65%, 
+                        #ff0000 65%, #ff0000 85%, 
+                        #0000ff 85%, #0000ff 100%);
+                    }
+                }
+            }
+
+            &_bottom {
+                bottom: 0;
+                animation: glitch-line-anim-bottom 0.25s linear infinite;
+                @keyframes glitch-line-anim-bottom {
+                    0% {
+                        background: linear-gradient(to right, 
+                        #0000ff 0%, #0000ff 5%, 
+                        #ff0000 5%, #ff0000 16%, 
+                        #0000ff 16%, #0000ff 30%, 
+                        #ff0000 30%, #ff0000 50%, 
+                        #0000ff 50%, #0000ff 65%, 
+                        #ff0000 65%, #ff0000 90%, 
+                        #0000ff 90%, #0000ff 100%);
+                    }
+                    50% {
+                        background: linear-gradient(to right, 
+                        #ff0000 0%, #ff0000 5%, 
+                        #0000ff 5%, #0000ff 16%, 
+                        #ff0000 16%, #ff0000 30%, 
+                        #0000ff 30%, #0000ff 50%, 
+                        #ff0000 50%, #ff0000 65%, 
+                        #0000ff 65%, #0000ff 90%, 
+                        #ff0000 90%, #ff0000 100%);
+                    }
+                    100% {
+                        background: linear-gradient(to right, 
+                        #0000ff 0%, #0000ff 5%, 
+                        #ff0000 5%, #ff0000 16%, 
+                        #0000ff 16%, #0000ff 30%, 
+                        #ff0000 30%, #ff0000 50%, 
+                        #0000ff 50%, #0000ff 65%, 
+                        #ff0000 65%, #ff0000 90%, 
+                        #0000ff 90%, #0000ff 100%);
+                    }
+                }
+            }
+        }
     }
 
     .footer {
