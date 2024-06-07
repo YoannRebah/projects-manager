@@ -8,26 +8,11 @@
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: 8;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: $body-bg;
-
-    .loader-background {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url(../../../../../public/assets/images/tv-no-signal.jpg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-blend-mode: color;
-        opacity: 0.2;
-        background-color: $pink;
-    }
 
     .glitch-line {
         position: absolute;
@@ -63,18 +48,6 @@
 
             &:nth-child(1) {
                 font-size: 1.4rem;
-                animation: text-anim 1s linear infinite;
-                @keyframes text-anim {
-                    0% {
-                        opacity: 0;
-                    }
-                    50% {
-                        opacity: 1;
-                    }
-                    100% {
-                        opacity: 0;
-                    }
-                }
             }
 
             &:nth-child(2) {
