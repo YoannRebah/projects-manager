@@ -17,6 +17,7 @@ import { LocationComponent } from './components/content/location/location.compon
 import { ArcadeRoomComponent } from './components/content/arcade-room/arcade-room.component';
 import { ReferencesInspirationsComponent } from './components/content/references-inspirations/references-inspirations.component';
 import { FooterComponent } from './components/navigation/footer/footer.component';
+import { IntroductionComponent } from './components/content/introduction/introduction.component';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +40,8 @@ import { FooterComponent } from './components/navigation/footer/footer.component
     LocationComponent,
     ArcadeRoomComponent,
     ReferencesInspirationsComponent,
-    FooterComponent
+    FooterComponent,
+    IntroductionComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

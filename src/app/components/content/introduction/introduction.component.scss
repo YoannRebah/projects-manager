@@ -1,0 +1,15 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.introduction {
+    p {
+        &:not(:last-child) {
+            margin-bottom: 0.9rem;
+    
+            @include screen('s') {
+                margin-bottom: 1.3rem;
+            }
+        }
+    }
+}
