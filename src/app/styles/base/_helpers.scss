@@ -33,22 +33,9 @@
     border-color: $cyan;
 }
 
-.flash-animation {
-    animation: flash-animation 1s linear infinite;
-    @keyframes flash-animation {
-        0% {
-            opacity: 0;
-        }
-        50% {
-            opacity: 0.5;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-}
-
 .overflow-x-auto-s {
+    margin: -4rem 0;
+    padding: 5rem 0;
     overflow-x: auto;
 
     @include screen('s') {

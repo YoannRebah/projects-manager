@@ -1,0 +1,179 @@
+.flash-animation {
+    animation: flash-animation 1s linear infinite;
+    @keyframes flash-animation {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}
+
+.glitch-line-animation-top {
+    animation: glitch-line-animation-top 0.25s linear infinite;
+    @keyframes glitch-line-animation-top {
+        0% {
+            background: linear-gradient(to right, 
+            #0000ff 0%, #0000ff 10%, 
+            #ff0000 10%, #ff0000 20%, 
+            #0000ff 20%, #0000ff 40%, 
+            #ff0000 40%, #ff0000 60%, 
+            #0000ff 60%, #0000ff 65%, 
+            #ff0000 65%, #ff0000 85%, 
+            #0000ff 85%, #0000ff 100%);
+        }
+        50% {
+            background: linear-gradient(to right, 
+            #ff0000 0%, #ff0000 10%, 
+            #0000ff 10%, #0000ff 20%, 
+            #ff0000 20%, #ff0000 40%, 
+            #0000ff 40%, #0000ff 60%, 
+            #ff0000 60%, #ff0000 65%, 
+            #0000ff 65%, #0000ff 85%, 
+            #ff0000 85%, #ff0000 100%);
+        }
+        100% {
+            background: linear-gradient(to right, 
+            #0000ff 0%, #0000ff 10%, 
+            #ff0000 10%, #ff0000 20%, 
+            #0000ff 20%, #0000ff 40%, 
+            #ff0000 40%, #ff0000 60%, 
+            #0000ff 60%, #0000ff 65%, 
+            #ff0000 65%, #ff0000 85%, 
+            #0000ff 85%, #0000ff 100%);
+        }
+    }
+}
+
+.glitch-line-animation-bottom {
+    animation: glitch-line-animation-bottom 0.25s linear infinite;
+    @keyframes glitch-line-animation-bottom {
+        0% {
+            background: linear-gradient(to right, 
+            #0000ff 0%, #0000ff 5%, 
+            #ff0000 5%, #ff0000 16%, 
+            #0000ff 16%, #0000ff 30%, 
+            #ff0000 30%, #ff0000 50%, 
+            #0000ff 50%, #0000ff 65%, 
+            #ff0000 65%, #ff0000 90%, 
+            #0000ff 90%, #0000ff 100%);
+        }
+        50% {
+            background: linear-gradient(to right, 
+            #ff0000 0%, #ff0000 5%, 
+            #0000ff 5%, #0000ff 16%, 
+            #ff0000 16%, #ff0000 30%, 
+            #0000ff 30%, #0000ff 50%, 
+            #ff0000 50%, #ff0000 65%, 
+            #0000ff 65%, #0000ff 90%, 
+            #ff0000 90%, #ff0000 100%);
+        }
+        100% {
+            background: linear-gradient(to right, 
+            #0000ff 0%, #0000ff 5%, 
+            #ff0000 5%, #ff0000 16%, 
+            #0000ff 16%, #0000ff 30%, 
+            #ff0000 30%, #ff0000 50%, 
+            #0000ff 50%, #0000ff 65%, 
+            #ff0000 65%, #ff0000 90%, 
+            #0000ff 90%, #0000ff 100%);
+        }
+    }
+}
+
+.glitch-line-animation {
+    animation: glitch-line-animation 60s linear infinite;
+    @keyframes glitch-line-animation {
+        0% {
+            top: 0%;
+        }
+        2% {
+            top: 100%;
+        }
+        5% {
+            top: 100%;
+        }
+        8% {
+            top: 0%;
+        }
+        11% {
+            top: 100%;
+        }
+        15% {
+            top: 0%;
+        }
+        18% {
+            top: 100%;
+        }
+        20% {
+            top: 0%;
+        }
+        22% {
+            top: 100%;
+        }
+        25% {
+            top: 100%;
+        }
+        28% {
+            top: 0%;
+        }
+        31% {
+            top: 100%;
+        }
+        35% {
+            top: 0%;
+        }
+        38% {
+            top: 100%;
+        }
+        40% {
+            top: 0%;
+        }
+        42% {
+            top: 100%;
+        }
+        45% {
+            top: 100%;
+        }
+        48% {
+            top: 0%;
+        }
+        50% {
+            top: 100%;
+        }
+        55% {
+            top: 0%;
+        }
+        60% {
+            top: 100%;
+        }
+        65% {
+            top: 0%;
+        }
+        70% {
+            top: 100%;
+        }
+        75% {
+            top: 0%;
+        }
+        80% {
+            top: 100%;
+        }
+        85% {
+            top: 100%;
+        }
+        90% {
+            top: 0%;
+        }
+        95% {
+            top: 100%;
+        }
+        100% {
+            top: 0%;
+        }
+    }
+}
