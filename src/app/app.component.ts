@@ -8,7 +8,7 @@ import { NavComponent } from './components/navigation/nav/nav.component';
 import { H1Component } from './components/text/h1/h1.component';
 import { H2Component } from './components/text/h2/h2.component';
 import { EmployeeCardComponent } from './components/content/employee-card/employee-card.component';
-import { ListSkillsComponent } from './components/content/list-skills/list-skills.component';
+import { SkillsComponent } from './components/content/skills/skills.component';
 import { NotableAchievementsComponent } from './components/content/notable-achievements/notable-achievements.component';
 import { ToolsOverviewComponent } from './components/content/tools-overview/tools-overview.component';
 import { MarqueeInterestsComponent } from './components/content/marquee-interests/marquee-interests.component';
@@ -32,7 +32,7 @@ import { IntroductionComponent } from './components/content/introduction/introdu
     H1Component,
     H2Component,
     EmployeeCardComponent,
-    ListSkillsComponent,
+    SkillsComponent,
     NotableAchievementsComponent,
     ToolsOverviewComponent,
     MarqueeInterestsComponent,

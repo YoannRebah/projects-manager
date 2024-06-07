@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Skills } from '../../../models/skills';
 
 @Component({
-  selector: 'app-list-skills',
+  selector: 'app-skills',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './list-skills.component.html',
-  styleUrls: ['./list-skills.component.scss']
+  templateUrl: './skills.component.html',
+  styleUrl: './skills.component.scss'
 })
 
-export class ListSkillsComponent {
-
+export class SkillsComponent {
   skills: Skills[] = [
     {
       id: 'html',
@@ -95,5 +94,4 @@ export class ListSkillsComponent {
       ],
     },
   ];
-  
 }
