@@ -1,0 +1,9 @@
+<footer class="container footer">
+    <ul class="list-footer">
+        <li *ngFor="let footerLink of footerLinks">
+            <a [href]="footerLink.href" [attr.aria-label]="footerLink.ariaLabel">
+                {{ footerLink.html }}
+            </a>
+        </li>
+    </ul>
+</footer>

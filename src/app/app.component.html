@@ -43,8 +43,8 @@
       <a href="#arcade" aria-label="Salle d'Arcade" data-title-popin="Vers la section Salle d'Arcade"></a>
     </div> -->
 
-    <!-- tools -->
-    <app-section id="tools">
+    <!-- tools-overview -->
+    <app-section id="tools-overview">
       <app-h2>Logiciels & Outils</app-h2>
       <app-tools-overview></app-tools-overview>
     </app-section>
@@ -78,26 +78,6 @@
       <app-h2>Contact</app-h2>
       <app-location></app-location>
     </app-section>
-    <!-- <section id="location" class="container main-section">
-      <h2 class="btn megrim-regular text-shadow-glitch-2" data-h2="location"
-        data-title-popin="Afficher / Masquer la section">Localisation</h2>
-      <div class="content" data-content="location">
-        <div class="container-location">
-          <canvas class="canvas-earth-globe"></canvas>
-        </div>
-        <div class="container-location">
-          <div class="wrapper-location">
-            <h3>
-              <i class="fa-solid fa-globe"></i> Recherche en cours...
-            </h3>
-            <p><i class="fa-solid fa-check"></i> Pays&nbsp;: <span>France</span></p>
-            <p><i class="fa-solid fa-check"></i> Région&nbsp;: <span>Île-de-France</span></p>
-            <p><i class="fa-solid fa-check"></i> Département&nbsp;: <span>Essonne</span></p>
-            <p><i class="fa-solid fa-xmark"></i> Ville&nbsp;: <span id="typed-text-cities"></span></p>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
     <!-- arcade-room -->
     <app-section id="arcade-room">
@@ -114,13 +94,9 @@
   </div>
 
   <!-- footer -->
-  <footer class="container container_medium" data-container="footer">
-    <div class="content" data-content="footer">
-      <ul class="list-footer">
-        <!-- js load => controllers/Footer.js -->
-      </ul>
-    </div>
-  </footer>
+  <app-section id="footer">
+    <app-footer></app-footer>
+  </app-section>
 
 </main>
 

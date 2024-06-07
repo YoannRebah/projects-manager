@@ -45,6 +45,7 @@
             display: flex;
             justify-content: center;
             gap: 0.4rem;
+            animation-delay: 1.25s;
             animation: border-color-anim 2.5s linear infinite;
             @keyframes border-color-anim {
                 0% {
