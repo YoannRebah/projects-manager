@@ -1,8 +1,13 @@
 .references-inspirations {
 
     .list-references-inspirations {
+        list-style: none;
+        column-count: 3;
+        column-fill: auto;
+        max-height: 10rem;
 
         li {
+            margin-bottom: 1rem;
 
             a {
                 

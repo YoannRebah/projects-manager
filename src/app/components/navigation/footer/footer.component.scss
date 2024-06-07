@@ -1,8 +1,17 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
 .footer {
 
     .list-footer {
+        list-style: none;
+        column-count: 3;
+        column-fill: auto;
+        max-height: 10rem;
 
         li {
+            margin-bottom: 1rem;
 
             a {
                 
