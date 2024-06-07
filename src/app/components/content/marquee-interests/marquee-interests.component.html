@@ -1,0 +1,12 @@
+<div class="marquee-interests">
+    <ul>
+        <li *ngFor="let interest of interests">
+            <img [src]="interest.imagePath" [alt]="interest.imageAlt">
+        </li>
+    </ul>
+    <ul aria-hidden="true">
+        <li *ngFor="let interest of interests">
+            <img [src]="interest.imagePath" [alt]="interest.imageAlt">
+        </li>
+    </ul>
+</div>

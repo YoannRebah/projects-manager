@@ -11,6 +11,7 @@ import { EmployeeCardComponent } from './components/content/employee-card/employ
 import { ListSkillsComponent } from './components/content/list-skills/list-skills.component';
 import { NotableAchievementsComponent } from './components/content/notable-achievements/notable-achievements.component';
 import { ToolsOverviewComponent } from './components/content/tools-overview/tools-overview.component';
+import { MarqueeInterestsComponent } from './components/content/marquee-interests/marquee-interests.component';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,8 @@ import { ToolsOverviewComponent } from './components/content/tools-overview/tool
     EmployeeCardComponent,
     ListSkillsComponent,
     NotableAchievementsComponent,
-    ToolsOverviewComponent
+    ToolsOverviewComponent,
+    MarqueeInterestsComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
