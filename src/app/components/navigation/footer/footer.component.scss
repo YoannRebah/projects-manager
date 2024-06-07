@@ -14,10 +14,18 @@
         max-height: 10rem;
 
         li {
-            margin-bottom: 1rem;
+            margin-bottom: .75rem;
+
+            @include screen('s') {
+                margin-bottom: 1rem;
+            }
 
             a {
-                font-size: .85rem;
+                font-size: .7rem;
+
+                @include screen('s') {
+                    font-size: .85rem;
+                }
             }
         }
     }

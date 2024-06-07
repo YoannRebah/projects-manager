@@ -11,12 +11,24 @@
         max-height: 10rem;
 
         li {
-            margin-bottom: 1rem;
+            margin-bottom: .75rem;
+
+            @include screen('s') {
+                margin-bottom: 1rem;
+            }
+
+            a {
+                font-size: .85rem;
+
+                @include screen('s') {
+                    font-size: 1rem;
+                }
+            }
         }
     }
 
     .note {
-        margin-top: .8rem;
+        margin-top: 1rem;
         font-style: italic;
         color: $yellow;
         font-size: .85rem;
