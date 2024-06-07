@@ -165,13 +165,7 @@ $box-shadow-card: inset 0px -1px 45px 0px rgba(212, 212, 212, 0.2);
                 align-items: center;
 
                 span {
-                    &:nth-child(1) {
-                        font-size: 1.05rem;
-                        font-weight: 700;
-                    }
-                    &:nth-child(2) {
-                        font-size: 0.8rem;
-                    }
+                    font-size: 0.85rem;
                 }
 
                 i {
