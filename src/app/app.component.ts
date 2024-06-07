@@ -15,6 +15,7 @@ import { MarqueeInterestsComponent } from './components/content/marquee-interest
 import { ContactComponent } from './components/content/contact/contact.component';
 import { LocationComponent } from './components/content/location/location.component';
 import { ArcadeRoomComponent } from './components/content/arcade-room/arcade-room.component';
+import { ReferencesInspirationsComponent } from './components/content/references-inspirations/references-inspirations.component';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,8 @@ import { ArcadeRoomComponent } from './components/content/arcade-room/arcade-roo
     MarqueeInterestsComponent,
     ContactComponent,
     LocationComponent,
-    ArcadeRoomComponent
+    ArcadeRoomComponent,
+    ReferencesInspirationsComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

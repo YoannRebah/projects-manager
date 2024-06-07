@@ -1,0 +1,13 @@
+<div class="container references-inspirations">
+    <ul class="list-references-inspirations">
+        <li *ngFor="let refInspi of referencesInspirations">
+            <a [href]="refInspi.href" target="_blank" rel="noopener noreferrer">
+                {{ refInspi.text }}
+            </a>
+        </li>
+    </ul>
+    <p class="note">
+        <span>Note de la production&nbsp;:</span> Le signal TV sera rétabli dans une heure. Merci pour votre
+        compréhension.
+    </p>
+</div>
