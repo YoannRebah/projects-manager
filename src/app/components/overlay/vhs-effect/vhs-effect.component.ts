@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class VhsEffectComponent implements OnInit {
   isFlashing: boolean = false;
   timeoutDelay: number = 5000;
+  glitchLines: number[] = [];
 
   ngOnInit(): void {
     this.startFlashAnimation();

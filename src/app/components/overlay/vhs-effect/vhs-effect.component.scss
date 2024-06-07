@@ -23,7 +23,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-blend-mode: color;
-        opacity: 0.2;
+        opacity: 0.15;
         background-color: $pink;
 
         .glitch-line-blue-red {
@@ -105,6 +105,25 @@
                         #ff0000 65%, #ff0000 90%, 
                         #0000ff 90%, #0000ff 100%);
                     }
+                }
+            }
+        }
+
+        .glitch-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            opacity: 1;
+            height: 1px;
+            background: $white;
+            box-shadow: 6px -4px 2px rgba(255, 52, 52, 0.6), 8px -6px 2px rgba(52, 255, 120, 0.6);
+            animation: glitch-line-anim 2s linear infinite;
+            @keyframes glitch-line-anim {
+                0% {
+                    top: 0%;
+                }
+                100% {
+                    top: 100%;
                 }
             }
         }

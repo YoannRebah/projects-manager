@@ -14,26 +14,6 @@
     justify-content: center;
     background-color: $body-bg;
 
-    .glitch-line {
-        position: absolute;
-        left: 0;
-        top: 0%;
-        width: 100%;
-        opacity: 0.1;
-        height: 1px;
-        background: $white;
-        box-shadow: 6px -4px 2px rgba(255, 52, 52, 0.6), 8px -6px 2px rgba(52, 255, 120, 0.6);
-        animation: glitch-line-anim 2s linear infinite;
-        @keyframes glitch-line-anim {
-            0% {
-                top: 0%;
-            }
-            100% {
-                top: 100%;
-            }
-        }
-    }
-
     .container-loader {
         position: relative;
         display: flex;
