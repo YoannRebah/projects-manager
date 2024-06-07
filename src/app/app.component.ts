@@ -14,6 +14,7 @@ import { ToolsOverviewComponent } from './components/content/tools-overview/tool
 import { MarqueeInterestsComponent } from './components/content/marquee-interests/marquee-interests.component';
 import { ContactComponent } from './components/content/contact/contact.component';
 import { LocationComponent } from './components/content/location/location.component';
+import { ArcadeRoomComponent } from './components/content/arcade-room/arcade-room.component';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,8 @@ import { LocationComponent } from './components/content/location/location.compon
     ToolsOverviewComponent,
     MarqueeInterestsComponent,
     ContactComponent,
-    LocationComponent
+    LocationComponent,
+    ArcadeRoomComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
