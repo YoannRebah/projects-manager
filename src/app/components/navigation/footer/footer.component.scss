@@ -11,7 +11,11 @@
         list-style: none;
         column-count: 3;
         column-fill: auto;
-        max-height: 10rem;
+        max-height: 12rem;
+
+        @include screen('s') {
+            max-height: 10rem;
+        }
 
         li {
             margin-bottom: .75rem;

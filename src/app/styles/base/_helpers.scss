@@ -48,6 +48,14 @@
     }
 }
 
+.overflow-x-auto-s {
+    overflow-x: auto;
+
+    @include screen('s') {
+        overflow: hidden;
+    }
+}
+
 .display-none {
     display: none !important;
 }
