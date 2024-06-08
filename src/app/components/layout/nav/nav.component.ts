@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Navigation } from '../../../models/navigation';
 
@@ -11,7 +11,6 @@ import { Navigation } from '../../../models/navigation';
 })
 
 export class NavComponent {
-  
   navLinks: Navigation[] = [
     {
       href: '#',
@@ -46,5 +45,11 @@ export class NavComponent {
       dataTitlePopin: 'Code source du portfolio',
     },
   ];
+  scrollTopPosition: number = 0;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.scrollTopPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  }
 
 }

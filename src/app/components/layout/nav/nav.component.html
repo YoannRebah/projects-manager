@@ -1,4 +1,4 @@
-<nav class="container container_medium nav">
+<nav class="container container_medium nav" [class]="scrollTopPosition > 0 ? 'border-active' : null">
     <ul class="container list-nav">
       <li *ngFor="let link of navLinks">
         <a 

@@ -8,11 +8,19 @@ $nav-height: 3.5rem;
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 1;
     height: $nav-height;
     background: $body-bg;
-    border-bottom: 1.5px solid $cyan;
-    z-index: 1;
-    transition: 0.25s ease-in-out;
+    border-bottom: 1px solid;
+    border-color: $cyan;
+
+    @include screen('s') {
+        border-color: transparent;
+    }
+    
+    &.border-active {
+        border-color: $cyan;
+    }
 
     ul {
         list-style: none;
