@@ -2,96 +2,143 @@
 @import '../../../styles/base/mixins';
 @import '../../../styles/layout/container';
 
+// .h1 {
+//     display: flex;
+//     flex-direction: column;
+
+//     span {
+//         position: relative;
+
+//         &:nth-child(1) {
+//             font-size: 2.2rem;
+//             text-shadow: $shadow-cyan-3d;
+//             font-style: italic;
+//             margin-bottom: -1rem;
+//             margin-left: 0.85rem;
+//             animation: neon-glitch-anim 10s linear infinite;
+
+//             @keyframes neon-glitch-anim {
+//                 0% {
+//                     text-shadow: $shadow-cyan-3d;
+//                 }
+
+//                 90% {
+//                     text-shadow: $shadow-cyan-3d;
+//                 }
+
+//                 94% {
+//                     text-shadow: $shadow-black-3d;
+//                 }
+
+//                 97% {
+//                     text-shadow: $shadow-cyan-3d;
+//                 }
+
+//                 100% {
+//                     text-shadow: $shadow-black-3d;
+//                 }
+//             }
+
+//             @include screen('s') {
+//                 font-size: 3.2rem;
+//                 margin-bottom: -2.5rem;
+//             }
+//         }
+
+//         &:nth-child(2) {
+//             margin-bottom: -2rem;
+
+//             @include screen('s') {
+//                 margin-bottom: -4rem;
+//             }
+//         }
+
+//         &:nth-child(2),
+//         &:nth-child(3) {
+//             font-size: 5rem;
+//             text-shadow: $shadow-pink;
+
+//             @include screen('s') {
+//                 font-size: 8rem;
+//             }
+//         }
+
+//         &:nth-child(3) {
+//             margin-left: 1rem;
+//             margin-bottom: -1rem;
+
+//             @include screen('s') {
+//                 margin-bottom: -2rem;
+//             }
+//         }
+
+//         &:nth-child(4) {
+//             font-size: 1.75rem;
+//             text-shadow: $shadow-cyan-3d;
+//             font-style: italic;
+//             text-align: right;
+//             margin-right: 1rem;
+//             animation: neon-glitch2-anim 20s linear infinite;
+
+//             @keyframes neon-glitch2-anim {
+//                 0% {
+//                     text-shadow: $shadow-cyan-3d;
+//                 }
+
+//                 90% {
+//                     text-shadow: $shadow-cyan-3d;
+//                 }
+
+//                 92% {
+//                     text-shadow: $shadow-black-3d;
+//                 }
+
+//                 100% {
+//                     text-shadow: $shadow-black-3d;
+//                 }
+//             }
+
+//             @include screen('s') {
+//                 font-size: 2.5rem;
+//             }
+//         }
+//     }
+// }
+
 .h1 {
+    position: relative;
     display: flex;
     flex-direction: column;
 
     span {
-        position: relative;
-
         &:nth-child(1) {
-            font-size: 2.2rem;
-            text-shadow: $shadow-cyan-3d;
-            font-style: italic;
-            margin-bottom: -1rem;
-            margin-left: 0.85rem;
-            animation: neon-glitch-anim 10s linear infinite;
-            @keyframes neon-glitch-anim {
-                0% {
-                    text-shadow: $shadow-cyan-3d;
-                }
-                90% {
-                    text-shadow: $shadow-cyan-3d;
-                }
-                94% {
-                    text-shadow: $shadow-black-3d;
-                }
-                97% {
-                    text-shadow: $shadow-cyan-3d;
-                }
-                100% {
-                    text-shadow: $shadow-black-3d;
-                }
-            }
-
-            @include screen('s') {
-                font-size: 3.2rem;
-                margin-bottom: -2.5rem;
-            }
+            text-transform: uppercase;
+            font-size: 14.5vw;
+            background: linear-gradient(hsl(239, 50%, 30%) 15%,
+            hsl(239, 50%, 40%) 25%,
+            hsl(200, 60%, 50%) 35%,
+            hsl(100, 70%, 80%) 45%,
+            hsl(60, 100%, 98%) 50%,
+            hsl(240, 0%, 0%) 52%,
+            hsl(240, 10%, 10%) 60%,
+            hsl(240, 50%, 30%) 70%,
+            hsl(220, 70%, 60%) 80%,
+            hsl(212, 92%, 76%) 85%);
+            -webkit-text-stroke: 1px hsl(200, 65%, 80%);
+            color: transparent;
+            background-clip: text;
+            filter: drop-shadow(1px 3px 0px hsl(242, 54%, 10%)) drop-shadow(1px 3px 0px hsl(242, 54%, 15%)) drop-shadow(1px 3px 0px hsl(242, 54%, 20%)) drop-shadow(1px 3px 0px hsl(242, 54%, 25%)) drop-shadow(1px 3px 0px hsl(242, 54%, 30%)) drop-shadow(0px 0px 10px rgba(16, 16, 16, 0.4));
         }
 
         &:nth-child(2) {
-            margin-bottom: -2rem;
-
-            @include screen('s') {
-                margin-bottom: -4rem;
-            }
-        }
-
-        &:nth-child(2),
-        &:nth-child(3) {
-            font-size: 5rem;
-            text-shadow: $shadow-pink;
-
-            @include screen('s') {
-                font-size: 8rem;
-            }
-        }
-
-        &:nth-child(3) {
-            margin-left: 1rem;
-            margin-bottom: -1rem;
-
-            @include screen('s') {
-                margin-bottom: -2rem;
-            }
-        }
-
-        &:nth-child(4) {
-            font-size: 1.75rem;
-            text-shadow: $shadow-cyan-3d;
-            font-style: italic;
-            text-align: right;
-            margin-right: 1rem;
-            animation: neon-glitch2-anim 20s linear infinite;
-            @keyframes neon-glitch2-anim {
-                0% {
-                    text-shadow: $shadow-cyan-3d;
-                }
-                90% {
-                    text-shadow: $shadow-cyan-3d;
-                }
-                92% {
-                    text-shadow: $shadow-black-3d;
-                }
-                100% {
-                    text-shadow: $shadow-black-3d;
-                }
-            }
-
-            @include screen('s') {
-                font-size: 2.5rem;
-            }
+            position: absolute;
+            font-size: 9vw;
+            bottom: -40%;
+            right: 0;
+            transform: rotate(-12deg);
+            color: $pink;
+            text-transform: capitalize;
+            filter: brightness(120%);
         }
     }
 }
