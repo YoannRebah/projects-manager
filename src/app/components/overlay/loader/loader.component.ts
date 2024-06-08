@@ -10,11 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 
 export class LoaderComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   timeoutDelay: number = 5000;
 
   ngOnInit(): void {
-    this.show();
     let timeout = setTimeout(()=>{
       this.hide();
       clearTimeout(timeout);
