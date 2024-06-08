@@ -15,7 +15,7 @@ import * as THREE from 'three';
 export class LocationComponent implements OnInit, AfterViewInit {
   iconCheckClassNames = "fa-solid fa-check";
   iconUncheckClassNames = "fa-solid fa-xmark";
-  typedStringArray: string[] = ["????", "Failed to retrieve data", "NETWORK_FAILED", "ERROR_6005", "Cannot retrieve data"]; 
+  typedStringArray: string[] = ["????", "UNKNOWN_CITY", "NETWORK_FAILED", "ERROR_6005"]; 
   locationList: Location[] = [
     {
       iconClassNames: this.iconCheckClassNames,
