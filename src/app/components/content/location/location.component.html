@@ -1,21 +1,22 @@
 <div class="container location flex-center-column-s">
     <div class="block-location">
-        <canvas class="canvas-earth-globe"></canvas>
+      <canvas class="canvas-earth-globe"></canvas>
     </div>
     <div class="block-location">
-        <div class="container-location-list">
-            <h3>
-                <i class="fa-solid fa-globe"></i> Recherche en cours...
-            </h3>
-            <ul class="location-list">
-                <li *ngFor="let location of locationList">
-                    <p>
-                        <i [class]="location.iconClassNames" aria-hidden="true"></i>
-                        <span class="key">{{ location.key }}&nbsp;:&nbsp;</span>
-                        <span class="value">{{ location.value }}</span>
-                    </p>
-                </li>
-            </ul>
-        </div>
+      <div class="container-location-list">
+        <h3>
+          <i class="fa-solid fa-globe"></i> Recherche en cours...
+        </h3>
+        <ul class="location-list">
+          <li *ngFor="let location of locationList">
+            <p>
+              <i [class]="location.iconClassNames" aria-hidden="true"></i>
+              <span class="key">{{ location.key }}&nbsp;:&nbsp;</span>
+              <span #typedElement *ngIf="location.tempRefVar" class="value">{{ location.value }}</span>
+              <span *ngIf="!location.tempRefVar" class="value">{{ location.value }}</span>
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
+</div>  
