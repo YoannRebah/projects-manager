@@ -67,9 +67,10 @@ export class FooterComponent {
       ariaLabel: 'Références & Inspirations',
     },
     {
-      href: 'https://github.com/YoannRebah/portfolio',
+      href: 'https://github.com/YoannRebah/portfolio-angular',
       html: 'Code Source (Git)',
       ariaLabel: 'Code Source (Git)',
+      target: "_blank"
     },
   ];
 }

@@ -4,8 +4,9 @@
         <a 
           [href]="link.href" 
           [attr.aria-label]="link.ariaLabel" 
-          [class]="link.classNames || null"
-          [attr.target]="link.target || null"
+          [class]="link.classNames"
+          [attr.target]="link.target"
+          [attr.rel]="link.target === '_blank' ? 'noopener noreferrer' : null"
         >
           <i *ngIf="link.iconClassNames" [class]="link.iconClassNames" aria-label="hidden"></i>
           <span *ngIf="link.html" class="hidden-flex-s">{{ link.html }}</span>
