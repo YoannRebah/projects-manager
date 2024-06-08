@@ -3,8 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from './components/overlay/loader/loader.component';
 import { VhsEffectComponent } from './components/overlay/vhs-effect/vhs-effect.component';
 import { SectionComponent } from './components/layout/section/section.component'; 
-import { HeroBannerComponent } from './components/layout/hero-banner/hero-banner.component';
-import { NavComponent } from './components/navigation/nav/nav.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { NavComponent } from './components/layout/nav/nav.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
 import { H1Component } from './components/text/h1/h1.component';
 import { H2Component } from './components/text/h2/h2.component';
 import { EmployeeCardComponent } from './components/content/employee-card/employee-card.component';
@@ -16,7 +17,6 @@ import { ContactComponent } from './components/content/contact/contact.component
 import { LocationComponent } from './components/content/location/location.component';
 import { ArcadeRoomComponent } from './components/content/arcade-room/arcade-room.component';
 import { ReferencesInspirationsComponent } from './components/content/references-inspirations/references-inspirations.component';
-import { FooterComponent } from './components/navigation/footer/footer.component';
 import { IntroductionComponent } from './components/content/introduction/introduction.component';
 import { AdvertisementComponent } from './components/content/advertisement/advertisement.component';
 
@@ -28,8 +28,9 @@ import { AdvertisementComponent } from './components/content/advertisement/adver
     LoaderComponent,
     VhsEffectComponent,
     SectionComponent,
-    HeroBannerComponent,
+    HeaderComponent,
     NavComponent,
+    FooterComponent,
     H1Component,
     H2Component,
     EmployeeCardComponent,
@@ -41,7 +42,6 @@ import { AdvertisementComponent } from './components/content/advertisement/adver
     LocationComponent,
     ArcadeRoomComponent,
     ReferencesInspirationsComponent,
-    FooterComponent,
     IntroductionComponent,
     AdvertisementComponent
   ],

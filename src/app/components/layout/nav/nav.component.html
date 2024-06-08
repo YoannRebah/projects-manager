@@ -1,5 +1,5 @@
 <nav class="container container_medium nav">
-    <ul class="list-nav">
+    <ul class="container list-nav">
       <li *ngFor="let link of navLinks">
         <a 
           [href]="link.href" 
@@ -12,7 +12,4 @@
         </a>
       </li>
     </ul>
-    <button class="btn" data-btn-action="reduce-main-nav" data-title-popin="Masquer le menu" aria-label="Afficher / Masquer la navigation">
-      <i class="fa-solid fa-chevron-up fa-icon" aria-hidden="true"></i>
-    </button>
 </nav>
