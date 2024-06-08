@@ -35,7 +35,6 @@ export class LocationComponent implements OnInit, AfterViewInit {
     {
       iconClassNames: this.iconUncheckClassNames,
       key: "Ville",
-      value: "[typed]",
       tempRefVar: "typedElement"
     }
   ];
