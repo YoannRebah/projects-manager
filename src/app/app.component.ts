@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoaderComponent } from './components/overlay/loader/loader.component';
 import { VhsEffectComponent } from './components/overlay/vhs-effect/vhs-effect.component';
+import { MainComponent } from './components/layout/main/main.component';
 import { SectionComponent } from './components/layout/section/section.component'; 
 import { HeaderComponent } from './components/layout/header/header.component';
 import { NavComponent } from './components/layout/nav/nav.component';
@@ -27,6 +28,7 @@ import { AdvertisementComponent } from './components/content/advertisement/adver
     RouterOutlet,
     LoaderComponent,
     VhsEffectComponent,
+    MainComponent,
     SectionComponent,
     HeaderComponent,
     NavComponent,
