@@ -18,6 +18,7 @@ import { ArcadeRoomComponent } from './components/content/arcade-room/arcade-roo
 import { ReferencesInspirationsComponent } from './components/content/references-inspirations/references-inspirations.component';
 import { FooterComponent } from './components/navigation/footer/footer.component';
 import { IntroductionComponent } from './components/content/introduction/introduction.component';
+import { AdvertisementComponent } from './components/content/advertisement/advertisement.component';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,8 @@ import { IntroductionComponent } from './components/content/introduction/introdu
     ArcadeRoomComponent,
     ReferencesInspirationsComponent,
     FooterComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    AdvertisementComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

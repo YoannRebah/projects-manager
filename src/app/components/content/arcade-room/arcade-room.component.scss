@@ -37,6 +37,7 @@
     .insert-coins {
         display: flex;
         align-items: center;
+        margin-top: 1rem;
         margin-bottom: 2rem;
 
         img {
@@ -69,20 +70,17 @@
         }
     }
 
-    [data-btn-action="open-arcade-menu"] {
+    button {
         font-size: 1rem;
         color: $white;
         padding: 0.5rem 2rem;
-        border-radius: 0.15rem;
-        background: $pink2-light;
-        transition: background 0.1s ease-in-out;
 
         @include screen('s') {
             font-size: 1.5rem;
         }
 
         &:hover {
-            background: $pink2;
+            color: $cyan;
         }
     }
 }
