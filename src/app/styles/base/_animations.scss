@@ -1,3 +1,5 @@
+@import './variables';
+
 .flash-animation {
     animation: flash-animation 1s linear infinite;
     @keyframes flash-animation {
@@ -13,9 +15,15 @@
     }
 }
 
-.glitch-line-animation-top {
-    animation: glitch-line-animation-top 0.25s linear infinite;
-    @keyframes glitch-line-animation-top {
+.chromatic-aberration-animation {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0.33rem;
+    background-size: 100% 3px;
+    filter: blur(6px);
+    animation: chromatic-aberration-animation 0.2s linear infinite;
+    @keyframes chromatic-aberration-animation {
         0% {
             background: linear-gradient(to right, 
             #0000ff 0%, #0000ff 10%, 
@@ -47,45 +55,24 @@
             #0000ff 85%, #0000ff 100%);
         }
     }
-}
 
-.glitch-line-animation-bottom {
-    animation: glitch-line-animation-bottom 0.25s linear infinite;
-    @keyframes glitch-line-animation-bottom {
-        0% {
-            background: linear-gradient(to right, 
-            #0000ff 0%, #0000ff 5%, 
-            #ff0000 5%, #ff0000 16%, 
-            #0000ff 16%, #0000ff 30%, 
-            #ff0000 30%, #ff0000 50%, 
-            #0000ff 50%, #0000ff 65%, 
-            #ff0000 65%, #ff0000 90%, 
-            #0000ff 90%, #0000ff 100%);
-        }
-        50% {
-            background: linear-gradient(to right, 
-            #ff0000 0%, #ff0000 5%, 
-            #0000ff 5%, #0000ff 16%, 
-            #ff0000 16%, #ff0000 30%, 
-            #0000ff 30%, #0000ff 50%, 
-            #ff0000 50%, #ff0000 65%, 
-            #0000ff 65%, #0000ff 90%, 
-            #ff0000 90%, #ff0000 100%);
-        }
-        100% {
-            background: linear-gradient(to right, 
-            #0000ff 0%, #0000ff 5%, 
-            #ff0000 5%, #ff0000 16%, 
-            #0000ff 16%, #0000ff 30%, 
-            #ff0000 30%, #ff0000 50%, 
-            #0000ff 50%, #0000ff 65%, 
-            #ff0000 65%, #ff0000 90%, 
-            #0000ff 90%, #0000ff 100%);
-        }
+    &.top {
+        top: 0;
+    }
+
+    &.bottom {
+        bottom: 0;
     }
 }
 
 .glitch-line-animation {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    opacity: 0.25;
+    background: $white;
+    box-shadow: 6px -4px 2px rgba(255, 52, 52, 0.6), 8px -6px 2px rgba(52, 255, 120, 0.6);
     animation: glitch-line-animation 60s linear infinite;
     @keyframes glitch-line-animation {
         0% {
