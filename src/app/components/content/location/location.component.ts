@@ -44,8 +44,8 @@ export class LocationComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    if (typeof document !== 'undefined') { // Vérification si le document est défini
-      this.typedElements.forEach((element, index) => {
+    if (typeof document !== 'undefined') {
+      this.typedElements.forEach((element) => {
         new Typed(
           element.nativeElement,
           {
