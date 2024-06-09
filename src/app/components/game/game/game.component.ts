@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, Renderer2, ElementRef, OnInit, OnDestroy, NgZone, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./game.component.scss']
 })
 
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
   keyHighScore: string = 'high-score';
   score: number = 0;
   scoreMin: number = 0;
@@ -22,8 +22,13 @@ export class GameComponent implements OnInit {
   gameIsOver: boolean = false;
   mouseIsMoving: boolean = false;
   collisionBoxIsHitted: boolean = false;
+  meteorInterval: any;
+  increaseInterval: any;
+  meteorsPerSecond: number = 3;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  @ViewChild('gameContainer') gameContainer!: ElementRef;
+
+  constructor(private renderer: Renderer2, private el: ElementRef, private ngZone: NgZone) {}
 
   get playerHighScore(): number {
     if (this.isLocalStorageAvailable()) {
@@ -46,22 +51,28 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.initGame();
+    this.startPlayingGame();
   }
 
-  isLocalStorageAvailable(): boolean {
-    try {
-      const test = 'test';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
+  ngOnDestroy(): void {
+    if (this.meteorInterval) {
+      clearInterval(this.meteorInterval);
+    }
+    if (this.increaseInterval) {
+      clearInterval(this.increaseInterval);
     }
   }
 
   initGame(): void {
     this.highScore = this.playerHighScore;
     this.storeDefaultHighScore();
+  }
+
+  startPlayingGame(): void {
+    this.startCreatingMeteors();
+    this.increaseInterval = setInterval(() => {
+      this.meteorsPerSecond++;
+    }, 5000);
   }
 
   stopGame(): void {
@@ -85,6 +96,17 @@ export class GameComponent implements OnInit {
   resetScoreCounter(): void {
     this.score = this.scoreMin;
     this.scoreIsPaused = false;
+  }
+
+  isLocalStorageAvailable(): boolean {
+    try {
+      const test = 'test';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   storeDefaultHighScore(): void {
@@ -127,11 +149,23 @@ export class GameComponent implements OnInit {
   }
 
   createRandomMeteor(): void {
+    const gameContainer = this.gameContainer.nativeElement;
     const meteor = this.renderer.createElement('img');
+    this.renderer.addClass(meteor, "meteor");
     this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
     this.renderer.setStyle(meteor, 'width', `${this.randomMeteorWidth}px`);
-    this.renderer.appendChild(this.el.nativeElement, meteor);
+    this.renderer.appendChild(gameContainer, meteor);
+  }
+
+  startCreatingMeteors(): void {
+    this.ngZone.runOutsideAngular(() => {
+      this.meteorInterval = setInterval(() => {
+        for (let i = 0; i < this.meteorsPerSecond; i++) {
+          this.createRandomMeteor();
+        }
+      }, 1000);
+    });
   }
 
 }
