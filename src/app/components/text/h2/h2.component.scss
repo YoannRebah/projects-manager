@@ -7,12 +7,13 @@
     font-weight: 700 !important;
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     padding-top: 6rem;
     margin-bottom: 5rem;
+    letter-spacing: 0.4rem;
 
     @include screen('s') {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
 
     &::before {
