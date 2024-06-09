@@ -9,6 +9,7 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './time-counter.component.html',
   styleUrls: ['./time-counter.component.scss']
 })
+
 export class TimeCounterComponent implements OnInit, OnDestroy {
   time: number = 0;
   timeString: string = '00:00:00';
