@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Contact } from '../../../models/contact';
+import { Contact } from '../../../shared/models/contact';
 
 @Component({
   selector: 'app-contact',

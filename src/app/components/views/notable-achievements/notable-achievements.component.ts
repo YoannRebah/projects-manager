@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Achievements } from '../../../models/achievements';
+import { Achievements } from '../../../shared/models/achievements';
 
 @Component({
   selector: 'app-notable-achievements',

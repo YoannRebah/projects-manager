@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Introduction } from '../../../models/introduction';
+import { Introduction } from '../../../shared/models/introduction';
 
 @Component({
   selector: 'app-introduction',
@@ -25,7 +25,7 @@ export class IntroductionComponent {
       vibrante des années 1980.`
     },
     {
-      text: `Soyez curieux&nbsp;;) Survolez, cliquez... Bonne visite&nbsp;!`,
+      text: `Soyez curieux, survolez, cliquez... Bonne visite&nbsp;!`,
     },
   ];
 }

@@ -1,6 +1,6 @@
 import { Component, Input, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { H2 } from '../../../models/h2';
+import { H2 } from '../../../shared/models/h2';
 
 @Component({
   selector: 'app-h2',

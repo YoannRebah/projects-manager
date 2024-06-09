@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, AfterViewInit, QueryList, ViewChildren, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Location } from '../../../models/location';
+import { Location } from '../../../shared/models/location';
 import Typed from 'typed.js';
 import * as THREE from 'three';
 

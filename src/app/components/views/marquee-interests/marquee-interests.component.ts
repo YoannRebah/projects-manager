@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Interests } from '../../../models/interests';
+import { Interests } from '../../../shared/models/interests';
 
 @Component({
   selector: 'app-marquee-interests',

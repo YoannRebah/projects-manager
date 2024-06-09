@@ -1,0 +1,30 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.list-footer {
+    list-style: none;
+    column-count: 3;
+    column-fill: auto;
+    max-height: 12rem;
+
+    @include screen('s') {
+        max-height: 10rem;
+    }
+
+    li {
+        margin-bottom: .75rem;
+
+        @include screen('s') {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            font-size: .7rem;
+
+            @include screen('s') {
+                font-size: .85rem;
+            }
+        }
+    }
+}

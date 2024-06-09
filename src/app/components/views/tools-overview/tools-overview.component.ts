@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Tools } from '../../../models/tools';
+import { Tools } from '../../../shared/models/tools';
 
 @Component({
   selector: 'app-tools-overview',

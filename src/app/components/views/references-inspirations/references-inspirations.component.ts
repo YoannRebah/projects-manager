@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReferencesInspirations } from '../../../models/references-inspirations';
+import { ReferencesInspirations } from '../../../shared/models/references-inspirations';
 
 @Component({
   selector: 'app-references-inspirations',
