@@ -1,0 +1,21 @@
+<div class="game-background">
+    <div class="container grid-game">
+        <div class="block-header">
+            <button class="btn" data-btn-action="back-to-arcade-menu" data-title-popin="Retour au menu principal" aria-label="Retour au menu principal">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                <span class="jersey-15-regular">Menu principal</span>
+            </button>
+            <div class="container-health-bar">
+                <p class="jersey-15-regular">PV</p>
+                <div class="health-bar"></div>
+            </div>
+            <div class="container-score">
+                <p class="jersey-15-regular">Score&nbsp;: <span class="score">{{ currentScore }}</span></p>
+                <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
+            </div>
+        </div>
+        <div class="block-content">
+            <div class="container game"></div>
+        </div>
+    </div>
+</div>

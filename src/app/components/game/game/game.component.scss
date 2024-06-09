@@ -1,0 +1,208 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.game-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: $body-bg;
+
+    .grid-game {
+        padding: 0 16%;
+        padding-top: 1rem;
+        padding-bottom: 2.5rem;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas: "block-header" "block-content";
+    
+        .block-header {
+            grid-area: block-header;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            button {
+                display: flex;
+                align-items: center;
+                background: $orange;
+                color: $white;
+                padding: 0.42rem 1rem;
+                transition: 0.1s ease-in-out;
+    
+                &:hover {
+                    filter: brightness(120%);
+                }
+
+                i {
+                    margin-right: 0.3rem;
+                    font-size: 1.1rem;
+                }
+                
+                span {
+                    text-transform: uppercase;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .container-health-bar {
+                position: relative;
+                width: 200px;
+                height: 10px;
+                background: $pink;
+
+                p {
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: -10%;
+                    font-size: 1.6rem;
+                }
+
+                .health-bar {
+                    width: 100%;
+                    height: 100%;
+                    background: $cyan;
+                }
+            }
+
+            .container-score {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+                p, span {
+                    font-size: 1.6rem;
+                    text-transform: uppercase;
+                }
+
+                span {
+                    min-width: 60px;
+                    display: inline-block;
+                }
+            }
+        }
+        
+        .block-content {
+            grid-area: block-content;
+            border: 1px dashed $orange;
+
+            .game {
+                height: 100%;
+                background-color: $body-bg;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                mix-blend-mode: difference;
+                background-image: url(../../../../../public/assets/images/space-background.jpeg);
+                cursor: none;
+                overflow: hidden;
+
+                h3 {
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: 50%;
+                    font-size: 2rem;
+                    text-transform: uppercase;
+                    animation: move-mouse-anim 0.8s linear infinite;
+                    @keyframes move-mouse-anim {
+                        0% {
+                            opacity: 0;
+                        }
+                        50% {
+                            opacity: 0.65;
+                        }
+                        100% {
+                            opacity: 0;
+                        }
+                    }
+                }
+
+                .game-cursor {
+                    position: absolute;
+                    width: 50px;
+                    height: 125px;
+                    bottom: 0;
+                    left: -25%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    background-image: url(../../../../../public/assets/gif/rocket-spaceship.gif);
+
+                    .collision-box {
+                        width: 50px;
+                        height: 80px;
+                        opacity: 0.6;
+                        
+                        &.active {
+                            animation: collision-anim 0.3s forwards;
+                            @keyframes collision-anim {
+                                0% {
+                                    background: transparent;
+                                }
+                                50% {
+                                    background: $red;
+                                }
+                                100% {
+                                    background: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .meteor {
+                    position: absolute;
+                    top: -20%;
+                    opacity: 0;
+                    animation: meteor-anim;
+                    animation-timing-function: linear;
+                    animation-fill-mode: forwards;
+                    @keyframes meteor-anim {
+                        0% {
+                            top: -20%;
+                            opacity: 0;
+                        }
+                        5% {
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 1;
+                            top: 100%;
+                        }
+                    }
+                    
+                    &.meteor-anim-1 {
+                        animation-duration: 1s;
+                    }
+
+                    &.meteor-anim-2 {
+                        animation-duration: 1.8s;
+                    }
+
+                    &.meteor-anim-3 {
+                        animation-duration: 2.5s;
+                    }
+
+                    &.meteor-anim-4 {
+                        animation-duration: 2.8s;
+                    }
+
+                    &.meteor-anim-5 {
+                        animation-duration: 3.2s;
+                    }
+                }
+            }
+        }
+    }
+}

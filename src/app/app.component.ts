@@ -32,6 +32,8 @@ import { ListNavComponent } from './components/views/list-nav/list-nav.component
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
 // ads
 import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.component';
+// game
+import { GameComponent } from './components/game/game/game.component';
 
 @Component({
   selector: 'app-root',
@@ -67,7 +69,9 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
     ListNavComponent,
     ListFooterComponent,
     // ads
-    AdsPosterComponent
+    AdsPosterComponent,
+    // game
+    GameComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
