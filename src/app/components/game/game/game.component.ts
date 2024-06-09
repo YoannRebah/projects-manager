@@ -193,6 +193,7 @@ export class GameComponent implements OnInit, OnDestroy {
     const gameContainer = this.gameContainer.nativeElement;
     const meteor = this.renderer.createElement('img');
     this.renderer.setAttribute(meteor, 'src', 'assets/images/meteor.png');
+    this.renderer.setAttribute(meteor, 'data-damage', this.defineMeteorDamages(this.randomMeteorWidth));
     this.renderer.addClass(meteor, "meteor");
     this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
@@ -200,14 +201,12 @@ export class GameComponent implements OnInit, OnDestroy {
     this.renderer.appendChild(gameContainer, meteor);
   }
 
-  startCreatingMeteors(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.meteorInterval = setInterval(() => {
-        for (let i = 0; i < this.meteorsPerSecond; i++) {
-          this.createRandomMeteor();
-        }
-      }, 1000);
-    });
+  defineMeteorDamages(width: number): string {
+    let damage: string = "0";
+    if(width < 40) damage = "10";
+    if(width > 40 && width < 60) damage = "20";
+    if(width > 60) damage = "30";
+    return damage;
   }
 
 }
