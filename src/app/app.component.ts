@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+// service
+import { LoaderService } from './shared/services/loader.service';
+// shared
+import { LoaderComponent } from './components/shared/loader/loader.component';
 // overlay
-import { LoaderComponent } from './components/overlay/loader/loader.component';
 import { VhsEffectComponent } from './components/overlay/vhs-effect/vhs-effect.component';
 import { TvProgramComponent } from './components/overlay/tv-program/tv-program.component';
 // layout
@@ -35,8 +38,9 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
   standalone: true,
   imports: [
     RouterOutlet,
-    // overlay
+    // shared
     LoaderComponent,
+    // overlay
     VhsEffectComponent,
     TvProgramComponent,
     // layout
@@ -69,6 +73,18 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
-  title = 'portfolio';
+export class AppComponent implements OnInit {
+  title: string = 'portfolio';
+  timeoutLoaderDelay: number = 5000;
+
+  constructor(private loaderService: LoaderService) {}
+
+  ngOnInit(): void {
+    this.loaderService.show();
+    let timeout = setTimeout(() => {
+      this.loaderService.hide();
+      clearTimeout(timeout);
+    }, this.timeoutLoaderDelay);
+  }
+
 }
