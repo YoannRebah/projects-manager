@@ -1,5 +1,4 @@
-import { Component, Input, HostBinding } from '@angular/core';
-import { Section } from '../../../shared/models/section';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-section',
@@ -9,6 +8,6 @@ import { Section } from '../../../shared/models/section';
   styleUrls: ['./section.component.scss']
 })
 
-export class SectionComponent implements Section {
-  @HostBinding('id') @Input() id?: string;
+export class SectionComponent {
+  @Input() id?: string;
 }

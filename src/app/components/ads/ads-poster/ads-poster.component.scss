@@ -2,7 +2,8 @@
 @import '../../../styles/base/mixins';
 @import '../../../styles/layout/container';
 
-.advertisement {
+.ads-poster {
+    display: block;
     margin: 0 auto;
     margin-top: 3rem;
     max-width: 740px;
@@ -10,7 +11,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    background-image: url(../../../../../public/assets/images/advertisement.jpg);
 
     @include screen('s') {
         margin-top: 6rem;

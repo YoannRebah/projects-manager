@@ -24,9 +24,10 @@ import { LocationComponent } from './components/views/location/location.componen
 import { ArcadeRoomComponent } from './components/views/arcade-room/arcade-room.component';
 import { ReferencesInspirationsComponent } from './components/views/references-inspirations/references-inspirations.component';
 import { IntroductionComponent } from './components/views/introduction/introduction.component';
-import { AdvertisementComponent } from './components/views/advertisement/advertisement.component';
 import { ListNavComponent } from './components/views/list-nav/list-nav.component';
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
+// ads
+import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.component';
 
 @Component({
   selector: 'app-root',
@@ -57,9 +58,10 @@ import { ListFooterComponent } from './components/views/list-footer/list-footer.
     ArcadeRoomComponent,
     ReferencesInspirationsComponent,
     IntroductionComponent,
-    AdvertisementComponent,
     ListNavComponent,
-    ListFooterComponent
+    ListFooterComponent,
+    // ads
+    AdsPosterComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
