@@ -7,15 +7,23 @@
             </button>
             <div class="container-health-bar">
                 <p class="jersey-15-regular">PV</p>
-                <div class="health-bar"></div>
+                <div class="health-bar" [style.width]="health + '%'"></div>
             </div>
             <div class="container-score">
-                <p class="jersey-15-regular">Score&nbsp;: <span class="score">{{ currentScore }}</span></p>
+                <p class="jersey-15-regular">Score&nbsp;: <span class="score">{{ score }}</span></p>
                 <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
             </div>
         </div>
         <div class="block-content">
-            <div class="container game"></div>
+            <div class="container game">
+                <p *ngIf="mouseIsMoving" class="move-to-start flash-animation">
+                    <span>Déplacez la souris</span>
+                    <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
+                </p>
+                <div class="game-cursor">
+                    <div class="collision-box" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

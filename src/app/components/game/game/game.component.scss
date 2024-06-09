@@ -105,35 +105,31 @@
                 cursor: none;
                 overflow: hidden;
 
-                h3 {
+                .move-to-start {
                     display: flex;
                     align-items: center;
                     position: absolute;
                     transform: translate(-50%, -50%);
                     top: 50%;
                     left: 50%;
-                    font-size: 2rem;
                     text-transform: uppercase;
-                    animation: move-mouse-anim 0.8s linear infinite;
-                    @keyframes move-mouse-anim {
-                        0% {
-                            opacity: 0;
-                        }
-                        50% {
-                            opacity: 0.65;
-                        }
-                        100% {
-                            opacity: 0;
-                        }
+
+                    span, i {
+                        font-size: 2rem;
+                    }
+
+                    span {
+                        margin-right: .33rem;
                     }
                 }
 
                 .game-cursor {
                     position: absolute;
+                    transform: translate(-50%, 0);
+                    left: 50%;
+                    bottom: 0;
                     width: 50px;
                     height: 125px;
-                    bottom: 0;
-                    left: -25%;
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;
@@ -143,10 +139,11 @@
                         width: 50px;
                         height: 80px;
                         opacity: 0.6;
+                        background: $red;
                         
-                        &.active {
-                            animation: collision-anim 0.3s forwards;
-                            @keyframes collision-anim {
+                        &.hitted-animation {
+                            animation: hitted-animation 0.35s forwards;
+                            @keyframes hitted-animation {
                                 0% {
                                     background: transparent;
                                 }
