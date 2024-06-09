@@ -2,14 +2,14 @@
 @import '../../../styles/base/mixins';
 @import '../../../styles/layout/container';
 
-h2 {
+.h2 {
     color: $cyan;
     font-weight: 700 !important;
     display: flex;
     align-items: center;
     font-size: 1.5rem;
     padding-top: 6rem;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 
     @include screen('s') {
         font-size: 2.5rem;

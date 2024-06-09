@@ -5,6 +5,7 @@ import { LoaderComponent } from './components/overlay/loader/loader.component';
 import { VhsEffectComponent } from './components/overlay/vhs-effect/vhs-effect.component';
 // layout
 import { MainComponent } from './components/layout/main/main.component';
+import { ContentComponent } from './components/layout/content/content.component';
 import { SectionComponent } from './components/layout/section/section.component'; 
 import { HeaderComponent } from './components/layout/header/header.component';
 import { NavComponent } from './components/layout/nav/nav.component';
@@ -37,6 +38,7 @@ import { ListFooterComponent } from './components/views/list-footer/list-footer.
     VhsEffectComponent,
     // layout
     MainComponent,
+    ContentComponent,
     SectionComponent,
     HeaderComponent,
     NavComponent,

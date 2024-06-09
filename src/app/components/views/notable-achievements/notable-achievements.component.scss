@@ -2,7 +2,7 @@
 @import '../../../styles/base/mixins';
 @import '../../../styles/layout/container';
 
-$gap-polaroid: 3rem;
+$gap-polaroid: 4rem;
 
 .notable-achievements {
     margin: 0 auto;
@@ -25,7 +25,7 @@ $gap-polaroid: 3rem;
         flex-direction: column;
         height: 330px;
         border: 10px solid $white;
-        max-width: 320px;
+        max-width: 240px;
 
         @include screen('s') {
             max-width: inherit;

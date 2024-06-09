@@ -22,10 +22,6 @@
 
         .canvas-earth-globe {
             width: 100% !important;
-    
-            @include screen('s') {
-                width: 530px !important;
-            }
         }
 
         .container-location-list{
