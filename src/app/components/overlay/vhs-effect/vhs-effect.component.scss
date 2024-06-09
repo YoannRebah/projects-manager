@@ -12,10 +12,6 @@
     pointer-events: none;
     box-shadow: inset 0px 0px 37px 15px rgba(243, 243, 243, 0.08);
 
-    &>* {
-        pointer-events: none;
-    }
-
     .vhs-effect-background {
         position: absolute;
         bottom: 0;
@@ -27,7 +23,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-blend-mode: color;
-        opacity: 0.33;
+        opacity: 0.22;
         background-color: $pink;
     }
 
@@ -41,10 +37,6 @@
         justify-content: space-between;
         padding: 1rem 4%;
         opacity: 0.5;
-
-        &>* {
-            pointer-events: none;
-        }
 
         @include screen('s') {
             display: flex;
