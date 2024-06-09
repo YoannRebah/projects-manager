@@ -139,7 +139,6 @@
                         width: 50px;
                         height: 80px;
                         opacity: 0.6;
-                        background: $red;
                         
                         &.hitted-animation {
                             animation: hitted-animation 0.35s forwards;
@@ -162,10 +161,12 @@
                     position: absolute;
                     top: -20%;
                     opacity: 0;
-                    animation: meteor-anim;
+                    width: 50px;
+                    animation: meteor-falling-animation;
                     animation-timing-function: linear;
                     animation-fill-mode: forwards;
-                    @keyframes meteor-anim {
+                    animation-delay: 5s;
+                    @keyframes meteor-falling-animation {
                         0% {
                             top: -20%;
                             opacity: 0;
@@ -179,23 +180,23 @@
                         }
                     }
                     
-                    &.meteor-anim-1 {
+                    &.meteor-falling-animation-1 {
                         animation-duration: 1s;
                     }
 
-                    &.meteor-anim-2 {
+                    &.meteor-falling-animation-2 {
                         animation-duration: 1.8s;
                     }
 
-                    &.meteor-anim-3 {
+                    &.meteor-falling-animation-3 {
                         animation-duration: 2.5s;
                     }
 
-                    &.meteor-anim-4 {
+                    &.meteor-falling-animation-4 {
                         animation-duration: 2.8s;
                     }
 
-                    &.meteor-anim-5 {
+                    &.meteor-falling-animation-5 {
                         animation-duration: 3.2s;
                     }
                 }

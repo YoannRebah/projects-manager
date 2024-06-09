@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,15 +23,29 @@ export class GameComponent implements OnInit {
   mouseIsMoving: boolean = false;
   collisionBoxIsHitted: boolean = false;
 
-  ngOnInit(): void {
-    this.initGame();
-  }
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   get playerHighScore(): number {
     if (this.isLocalStorageAvailable()) {
       return localStorage.getItem(this.keyHighScore) ? parseInt(localStorage.getItem(this.keyHighScore)!, 10) : 0;
     }
     return 0;
+  }
+
+  get randomMeteorClassNamesIndex(): number {
+    return Math.floor(Math.random() * 5) + 1;
+  }
+
+  get randomMeteorLeftPosition(): number {
+    return Math.floor(Math.random() * 101);
+  }
+
+  get randomMeteorWidth(): number {
+    return Math.floor(Math.random() * 61) + 20;
+  }
+
+  ngOnInit(): void {
+    this.initGame();
   }
 
   isLocalStorageAvailable(): boolean {
@@ -110,6 +124,14 @@ export class GameComponent implements OnInit {
       this.collisionBoxIsHitted = false;
       clearTimeout(timeout);
     }, 500)
+  }
+
+  createRandomMeteor(): void {
+    const meteor = this.renderer.createElement('img');
+    this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
+    this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
+    this.renderer.setStyle(meteor, 'width', `${this.randomMeteorWidth}px`);
+    this.renderer.appendChild(this.el.nativeElement, meteor);
   }
 
 }
