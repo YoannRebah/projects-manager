@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TimeCounterComponent } from '../../shared/time-counter/time-counter.component';
 
 @Component({
   selector: 'app-vhs-effect',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TimeCounterComponent],
   templateUrl: './vhs-effect.component.html',
   styleUrl: './vhs-effect.component.scss'
 })
