@@ -1,0 +1,16 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.tv-program {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 8;
+
+    video {
+        height: 100%;
+    }
+}

@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 // overlay
 import { LoaderComponent } from './components/overlay/loader/loader.component';
 import { VhsEffectComponent } from './components/overlay/vhs-effect/vhs-effect.component';
+import { TvProgramComponent } from './components/overlay/tv-program/tv-program.component';
 // layout
 import { MainComponent } from './components/layout/main/main.component';
 import { ContentComponent } from './components/layout/content/content.component';
@@ -37,6 +38,7 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
     // overlay
     LoaderComponent,
     VhsEffectComponent,
+    TvProgramComponent,
     // layout
     MainComponent,
     ContentComponent,
