@@ -93,16 +93,16 @@
         .block-content {
             grid-area: block-content;
             border: 1px dashed $orange;
+            background-color: $body-bg;
+            background-image: url(../../../../../public/assets/images/space-background.jpeg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            mix-blend-mode: difference;
 
             .game-container {
                 height: 100%;
-                background-color: $body-bg;
-                background-position: center;
-                background-size: cover;
-                background-repeat: no-repeat;
-                mix-blend-mode: difference;
-                background-image: url(../../../../../public/assets/images/space-background.jpeg);
-                cursor: none;
+                // cursor: none;
                 overflow: hidden;
 
                 .move-to-start {
@@ -126,9 +126,8 @@
 
                 .game-cursor {
                     position: absolute;
-                    transform: translate(-50%, 0);
-                    left: 50%;
                     bottom: 0;
+                    left: -25.5%;
                     width: 75px;
                     height: 125px;
                     background-repeat: no-repeat;
@@ -163,16 +162,15 @@
 
                 .meteor {
                     position: absolute;
-                    top: -20%;
+                    top: -10%;
                     opacity: 0;
-                    width: 50px;
                     animation: meteor-falling-animation;
                     animation-timing-function: linear;
                     animation-fill-mode: forwards;
                     animation-delay: 5s;
                     @keyframes meteor-falling-animation {
                         0% {
-                            top: -20%;
+                            top: -10%;
                             opacity: 0;
                         }
                         5% {

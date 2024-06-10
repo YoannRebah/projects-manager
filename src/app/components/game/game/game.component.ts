@@ -1,4 +1,4 @@
-import { Component, Renderer2, ElementRef, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, Renderer2, ElementRef, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 import { GameService } from '../../../shared/services/game.service';
@@ -11,10 +11,12 @@ import { GameService } from '../../../shared/services/game.service';
   styleUrls: ['./game.component.scss']
 })
 
-export class GameComponent implements OnInit, OnDestroy {
+export class GameComponent implements OnInit {
   private subscription!: Subscription;
   private gameSubscription!: Subscription;
   clientX: number = 0;
+  mouseIsMoving: boolean = false;
+  mouseMoveFirstTime: boolean = true;
   keyHighScore: string = 'high-score';
   score: number = 0;
   scoreMin: number = 0;
@@ -26,13 +28,19 @@ export class GameComponent implements OnInit, OnDestroy {
   healthMin: number = 0;
   healthMax: number = 100;
   gameIsOver: boolean = false;
-  mouseIsMoving: boolean = false;
   collisionBoxIsHitted: boolean = false;
   meteorInterval: any;
   increaseInterval: any;
   meteorsPerSecond: number = 3;
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
+  @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
+  @ViewChild('collisionBox', { static: true }) collisionBox!: ElementRef;
+
+  @HostListener('document:keydown.escape', ['$event']) 
+  handleEscapeKey(event: KeyboardEvent) {
+    this.stopGame();
+  }
 
   constructor(
     private renderer: Renderer2,
@@ -62,26 +70,31 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.renderer.listen(this.gameContainer.nativeElement, 'mousemove', this.onMouseMove.bind(this));
-    this.initNewGame();
+    // this.renderer.listen(this.gameContainer.nativeElement, 'mousemove', this.onMouseMove.bind(this));
+    this.initPlayerScores();
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    if (this.gameSubscription) {
-      this.gameSubscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if(this.mouseMoveFirstTime) {
+  //     this.subscription.unsubscribe();
+  //     if (this.gameSubscription) {
+  //       this.gameSubscription.unsubscribe();
+  //     }
+  //   }
+  // }
 
   onMouseMove(event: MouseEvent): void {
-    this.mouseIsMoving = true;
+    if(this.mouseMoveFirstTime) {
+      this.mouseIsMoving = true;
+      this.mouseMoveFirstTime = false;
+      this.startGame();
+    }
     this.clientX = event.clientX;
-    console.log(this.clientX)
+    this.renderer.setStyle(this.gameCursor.nativeElement, 'transform', `translateX(${this.clientX}px)`);
   }
 
-  initNewGame(): void {
+  initPlayerScores(): void {
     this.storeDefaultHighScore();
-    this.startPlayingGame();
     this.setExistingPlayerHighScore();
   }
 
@@ -93,13 +106,13 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  startPlayingGame(): void {
+  startGame(): void {
     this.subscription = this.gameService.isRunning$.subscribe(
       (isRunning: boolean) => {
         if (isRunning) {
           this.initGameLogic();
         } else {
-          this.pauseScoreCounter();
+          this.pauseGame();
         }
       }
     );
@@ -115,7 +128,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameSubscription = timer$.subscribe(() => {
         this.ngZone.run(() => {
           this.updateScore();
-          this.initMeteor();
+          this.createRandomMeteor();
           this.cdr.detectChanges();
         });
       });
@@ -132,7 +145,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   stopGame(): void {
     this.updateHighScore();
-    this.resetScoreCounter();
+    this.resetGame();
   }
 
   updateHighScore(): void {
@@ -150,10 +163,13 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetScoreCounter(): void {
+  resetGame(): void {
     if (this.gameSubscription) {
       this.gameSubscription.unsubscribe();
       this.score = this.scoreMin;
+      this.mouseIsMoving = false;
+      this.mouseMoveFirstTime = true;
+      this.health = this.healthMax;
     }
   }
 
@@ -161,7 +177,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.highScore = this.playerHighScore;
   }
 
-  pauseScoreCounter(): void {
+  pauseGame(): void {
     if (this.gameSubscription) {
       this.gameSubscription.unsubscribe();
     }
@@ -197,11 +213,6 @@ export class GameComponent implements OnInit, OnDestroy {
     }, 500)
   }
 
-  initMeteor(): void {
-    this.createRandomMeteor();
-    this.removeOldMeteors();
-  }
-
   createRandomMeteor(): void {
     const meteorTimestamp = this.defineMeteorTimestamp();
     const gameContainer = this.gameContainer.nativeElement;
@@ -214,6 +225,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
     this.renderer.setStyle(meteor, 'width', `${this.randomMeteorWidth}px`);
     this.renderer.appendChild(gameContainer, meteor);
+    this.removeOldMeteors();
   }
 
   defineMeteorDamages(width: number): string {

@@ -15,13 +15,13 @@
             </div>
         </div>
         <div class="block-content">
-            <div #gameContainer class="container game-container">
+            <div #gameContainer class="container game-container" (mousemove)="onMouseMove($event)">
                 <p *ngIf="!mouseIsMoving" class="move-to-start jersey-15-regular flash-animation">
                     <span>Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
                 </p>
-                <div class="game-cursor">
-                    <div class="collision-box" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
+                <div #gameCursor class="game-cursor">
+                    <div #collisionBox class="collision-box" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
                 </div>
             </div>
         </div>
