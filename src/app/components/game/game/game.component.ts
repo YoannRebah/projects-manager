@@ -57,7 +57,7 @@ export class GameComponent implements OnInit, OnDestroy {
     private gameService: GameService,
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.gameSubscription = this.gameService.isRunning$.subscribe(isRunning => {
