@@ -20,6 +20,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private scoreSubscription!: Subscription;
   private meteorSubscription!: Subscription;
   private meteorIntervalAdjustSubscription!: Subscription;
+  private collisionCheckSubscription!: Subscription;
 
   // game container
   isInGameContainer: boolean = false;
@@ -30,6 +31,7 @@ export class GameComponent implements OnInit, OnDestroy {
   scoreMax: number = 99999;
   highScore: number = 0;
   scoreStepIncrease: number = 50;
+  keyHighScore: string = 'player-high-score';
 
   // health
   health: number = 100;
@@ -48,6 +50,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
+  @ViewChild('collisionBox', { static: true }) collisionBox!: ElementRef;
 
   constructor(
     private renderer: Renderer2,
@@ -63,10 +66,12 @@ export class GameComponent implements OnInit, OnDestroy {
         this.initScore();
         this.initMeteor();
         this.initMeteorIntervalAdjustment();
+        this.startCollisionCheck();
       } else {
         this.cancelScore();
         this.cancelMeteor();
         this.stopMeteorIntervalAdjustment();
+        this.stopCollisionCheck();
       }
     });
   }
@@ -78,24 +83,24 @@ export class GameComponent implements OnInit, OnDestroy {
     this.cancelScore();
     this.cancelMeteor();
     this.stopMeteorIntervalAdjustment();
+    this.stopCollisionCheck();
   }
 
   // GAME SERVICE
 
   startGame() {
     this.gameService.start();
-  }
-
-  pauseGame() {
-    this.gameService.pause();
+    this.storeHighScore();
+    this.highScore = this.playerHighScore;
   }
 
   stopGame() {
     this.gameService.stop();
-    this.resetGameVariables();
+    this.updateHighScore();
     this.cancelScore();
     this.cancelMeteor();
     this.stopMeteorIntervalAdjustment();
+    this.stopCollisionCheck();
     this.removeAllMeteors();
     this.resetGameVariables();
   }
@@ -134,6 +139,39 @@ export class GameComponent implements OnInit, OnDestroy {
   updatePlayerScore(): void {
     if(this.score <= this.scoreMax) {
       this.score += this.scoreStepIncrease;
+    }
+  }
+
+  isLocalStorageAvailable(): boolean {
+    try {
+      const test = 'test';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  get playerHighScore(): number {
+    if (this.isLocalStorageAvailable()) {
+      return parseInt(localStorage.getItem(this.keyHighScore)!, 10);
+    }
+    return 0;
+  }
+
+  updateHighScore(): void {
+    if(this.playerHighScore > this.score) {
+      this.highScore = this.playerHighScore;
+    } else {
+      this.highScore = this.score;
+    }
+    this.storeHighScore();
+  }
+
+  storeHighScore(): void {
+    if (this.isLocalStorageAvailable()) {
+      localStorage.setItem(this.keyHighScore, JSON.stringify(this.highScore));
     }
   }
 
@@ -284,18 +322,67 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  // BTN ACTIONS
+  // COLLISION CHECK
 
-  onClickStop(event: MouseEvent): void {
-    this.stopGame();
+  startCollisionCheck(): void {
+    if (this.collisionCheckSubscription) {
+      this.collisionCheckSubscription.unsubscribe();
+    }
+    this.ngZone.runOutsideAngular(() => {
+      const checkInterval$ = interval(100);
+      this.collisionCheckSubscription = checkInterval$.subscribe(() => {
+        this.ngZone.run(() => {
+          this.checkCollisions();
+          this.cdr.detectChanges();
+        });
+      });
+    });
   }
 
-  onClickQuit(event: MouseEvent): void {
-    // Handle quit action
+  stopCollisionCheck(): void {
+    if (this.collisionCheckSubscription) {
+      this.collisionCheckSubscription.unsubscribe();
+    }
   }
 
-  onClickPause(event: MouseEvent): void {
-    this.pauseGame();
+  checkCollisions(): void {
+    const collisionBox = this.collisionBox.nativeElement.getBoundingClientRect();
+    const meteors = this.gameContainer.nativeElement.querySelectorAll('.meteor');
+
+    meteors.forEach((meteor: Element) => {
+      const meteorRect = (meteor as HTMLElement).getBoundingClientRect();
+      if (this.isColliding(collisionBox, meteorRect)) {
+        const damage = meteor.getAttribute('data-damage');
+        this.handleCollision(damage);
+        this.renderer.removeChild(this.gameContainer.nativeElement, meteor);
+      }
+    });
+  }
+
+  isColliding(rect1: DOMRect, rect2: DOMRect): boolean {
+    return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
+  }
+
+  handleCollision(damage: string | null): void {
+    if (damage) {
+      if(parseInt(damage) > 0) {
+        const thisDamage = parseInt(damage)*-1;
+        this.updateHealth(thisDamage);
+      }
+    }
+  }
+
+  // HEALTH
+
+  updateHealth(delta: number): void {
+    this.health += delta;
+    if(this.health <= this.healthMin) {
+      this.health = this.healthMin;
+      this.stopGame();
+    }
+    if(this.health >= this.healthMax) {
+      this.health = this.healthMax;
+    }
   }
 
 }

@@ -13,10 +13,6 @@ export class GameService {
     this.runningSubject.next(true);
   }
 
-  pause() {
-    this.runningSubject.next(false);
-  }
-
   stop() {
     this.runningSubject.next(false);
   }
