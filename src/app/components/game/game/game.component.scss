@@ -150,6 +150,21 @@
                     background-size: cover;
                     background-position: center;
                     background-image: url(../../../../../public/assets/gif/rocket-spaceship.gif);
+                    pointer-events: none;
+                    opacity: 0;
+
+                    &>* {
+                        pointer-events: none;
+                    }
+
+                    &.can-be-hitted {
+                        pointer-events: all;
+                        opacity: 1;
+
+                        &>* {
+                            pointer-events: all;
+                        }
+                    }
 
                     .collision-box {
                         position: relative;

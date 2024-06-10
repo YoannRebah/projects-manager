@@ -12,11 +12,15 @@ import { GameService } from '../../../shared/services/game.service';
 })
 
 export class GameComponent implements OnInit, OnDestroy {
+
   // service
   isRunning: boolean = false;
   private gameSubscription!: Subscription;
   private scoreSubscription!: Subscription;
   private meteorSubscription!: Subscription;
+
+  // game container
+  isInGameContainer: boolean = false;
 
   // score
   score: number = 0;
@@ -38,6 +42,7 @@ export class GameComponent implements OnInit, OnDestroy {
   collisionBoxIsHitted: boolean = false;
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
+  @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
 
   constructor(
     private renderer: Renderer2,
@@ -206,17 +211,18 @@ export class GameComponent implements OnInit, OnDestroy {
   @HostListener('document:mousemove', ['$event'])
   onMouseMoveIntoGameContainer(event: MouseEvent): void {
     const rect = this.gameContainer.nativeElement.getBoundingClientRect();
-    const isInGameContainer = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+    this.isInGameContainer = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
 
-    if (isInGameContainer) {
+    if (this.isInGameContainer) {
       this.mouseIsMovingOnce = true;
       this.clientX = event.clientX;
+      this.renderer.setStyle(this.gameCursor.nativeElement, 'transform', `translateX(${this.clientX}px)`);
 
       if (!this.isRunning) {
         this.startGame();
       }
 
-    } else if (!isInGameContainer) {
+    } else if (!this.isInGameContainer) {
       if (this.isRunning) {
         this.pauseGame();
       }

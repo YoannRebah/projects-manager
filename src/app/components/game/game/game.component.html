@@ -31,7 +31,7 @@
                     <span>Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
                 </p>
-                <div #gameCursor class="game-cursor">
+                <div #gameCursor class="game-cursor" [class]="isInGameContainer ? 'can-be-hitted' : null">
                     <div #collisionBox class="collision-box" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
                 </div>
             </div>
