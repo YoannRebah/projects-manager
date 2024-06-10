@@ -1,4 +1,4 @@
-import { Component, Renderer2, ElementRef, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 import { GameService } from '../../../shared/services/game.service';
@@ -11,51 +11,113 @@ import { GameService } from '../../../shared/services/game.service';
   styleUrls: ['./game.component.scss']
 })
 
-export class GameComponent implements OnInit {
-  private subscription!: Subscription;
+export class GameComponent implements OnInit, OnDestroy {
+  // service
+  isRunning: boolean = false;
   private gameSubscription!: Subscription;
-  clientX: number = 0;
-  mouseIsMoving: boolean = false;
-  mouseMoveFirstTime: boolean = true;
-  keyHighScore: string = 'high-score';
+  private scoreSubscription!: Subscription;
+  private meteorSubscription!: Subscription;
+
+  // score
   score: number = 0;
   scoreMin: number = 0;
   scoreMax: number = 99999;
   highScore: number = 0;
   scoreStepIncrease: number = 50;
-  scoreIncreaseTimeoutDelay: number = 1000;
+
+  // health
   health: number = 100;
   healthMin: number = 0;
   healthMax: number = 100;
-  gameIsOver: boolean = false;
+
+  // mouse
+  mouseIsMovingOnce: boolean = false;
+  clientX: number = 0;
+
+  // collision box
   collisionBoxIsHitted: boolean = false;
-  meteorInterval: any;
-  increaseInterval: any;
-  meteorsPerSecond: number = 3;
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
-  @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
-  @ViewChild('collisionBox', { static: true }) collisionBox!: ElementRef;
-
-  @HostListener('document:keydown.escape', ['$event']) 
-  handleEscapeKey(event: KeyboardEvent) {
-    this.stopGame();
-  }
 
   constructor(
     private renderer: Renderer2,
-    private el: ElementRef,
+    private gameService: GameService,
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone,
-    private gameService: GameService
-  ) {}
+  ) { }
 
-  get playerHighScore(): number {
-    if (this.isLocalStorageAvailable()) {
-      return parseInt(localStorage.getItem(this.keyHighScore)!, 10);
-    }
-    return 0;
+  ngOnInit() {
+    this.gameSubscription = this.gameService.isRunning$.subscribe(isRunning => {
+      this.isRunning = isRunning;
+      if (isRunning) {
+        this.initScore();
+        this.initMeteor();
+      } else {
+        this.pauseScore();
+        this.pauseMeteor();
+      }
+    });
   }
+
+  ngOnDestroy() {
+    if (this.gameSubscription) {
+      this.gameSubscription.unsubscribe();
+    }
+    this.pauseScore();
+    this.pauseMeteor();
+  }
+
+  // GAME SERVICE
+
+  startGame() {
+    this.gameService.start();
+  }
+
+  pauseGame() {
+    this.gameService.pause();
+  }
+
+  stopGame() {
+    this.gameService.stop();
+  }
+
+  // GAME
+
+  resetGame(): void {
+    this.score = this.scoreMin;
+    this.health = this.healthMax;
+  }
+
+  // SCORE
+
+  initScore(): void {
+    if (this.scoreSubscription) {
+      this.scoreSubscription.unsubscribe();
+    }
+    this.ngZone.runOutsideAngular(() => {
+      const timer$ = interval(1000);
+      this.scoreSubscription = timer$.subscribe(() => {
+        this.ngZone.run(() => {
+          this.updateScore();
+          this.cdr.detectChanges();
+        });
+      });
+    });
+  }
+
+  pauseScore(): void {
+    if (this.scoreSubscription) {
+      this.scoreSubscription.unsubscribe();
+    }
+  }
+
+  updateScore(): void {
+    if(this.score <= this.scoreMax) {
+      this.score += this.scoreStepIncrease;
+    }
+  }
+
+  // METEOR
 
   get randomMeteorClassNamesIndex(): number {
     return Math.floor(Math.random() * 5) + 1;
@@ -69,151 +131,28 @@ export class GameComponent implements OnInit {
     return Math.floor(Math.random() * 61) + 20;
   }
 
-  ngOnInit(): void {
-    // this.renderer.listen(this.gameContainer.nativeElement, 'mousemove', this.onMouseMove.bind(this));
-    this.initPlayerScores();
-  }
-
-  // ngOnDestroy(): void {
-  //   if(this.mouseMoveFirstTime) {
-  //     this.subscription.unsubscribe();
-  //     if (this.gameSubscription) {
-  //       this.gameSubscription.unsubscribe();
-  //     }
-  //   }
-  // }
-
-  onMouseMove(event: MouseEvent): void {
-    if(this.mouseMoveFirstTime) {
-      this.mouseIsMoving = true;
-      this.mouseMoveFirstTime = false;
-      this.startGame();
+  initMeteor(): void {
+    if (this.meteorSubscription) {
+      this.meteorSubscription.unsubscribe();
     }
-    this.clientX = event.clientX;
-    this.renderer.setStyle(this.gameCursor.nativeElement, 'transform', `translateX(${this.clientX}px)`);
-  }
-
-  initPlayerScores(): void {
-    this.storeDefaultHighScore();
-    this.setExistingPlayerHighScore();
-  }
-
-  storeDefaultHighScore(): void {
-    if (this.isLocalStorageAvailable()) {
-      if(localStorage.getItem(this.keyHighScore) == null) {
-        localStorage.setItem(this.keyHighScore, JSON.stringify(0));
-      }
-    }
-  }
-
-  startGame(): void {
-    this.subscription = this.gameService.isRunning$.subscribe(
-      (isRunning: boolean) => {
-        if (isRunning) {
-          this.initGameLogic();
-        } else {
-          this.pauseGame();
-        }
-      }
-    );
-    let timeout = setTimeout(() => {
-      this.gameService.start();
-      clearTimeout(timeout);
-    }, this.scoreIncreaseTimeoutDelay);
-  }
-
-  initGameLogic(): void {
     this.ngZone.runOutsideAngular(() => {
       const timer$ = interval(1000);
-      this.gameSubscription = timer$.subscribe(() => {
+      this.meteorSubscription = timer$.subscribe(() => {
         this.ngZone.run(() => {
-          this.updateScore();
-          this.createRandomMeteor();
+          this.createMeteor();
           this.cdr.detectChanges();
         });
       });
     });
   }
 
-  updateScore(): void {
-    if(this.score < this.scoreMax) {
-      this.score += this.scoreStepIncrease;
-    } else {
-      this.stopGame();
+  pauseMeteor(): void {
+    if (this.meteorSubscription) {
+      this.meteorSubscription.unsubscribe();
     }
   }
 
-  stopGame(): void {
-    this.updateHighScore();
-    this.resetGame();
-  }
-
-  updateHighScore(): void {
-    if(this.playerHighScore > this.score) {
-      this.highScore = this.playerHighScore;
-    } else {
-      this.highScore = this.score;
-    }
-    this.storeHighScore();
-  }
-
-  storeHighScore(): void {
-    if (this.isLocalStorageAvailable()) {
-      localStorage.setItem(this.keyHighScore, JSON.stringify(this.highScore));
-    }
-  }
-
-  resetGame(): void {
-    if (this.gameSubscription) {
-      this.gameSubscription.unsubscribe();
-      this.score = this.scoreMin;
-      this.mouseIsMoving = false;
-      this.mouseMoveFirstTime = true;
-      this.health = this.healthMax;
-    }
-  }
-
-  setExistingPlayerHighScore(): void {
-    this.highScore = this.playerHighScore;
-  }
-
-  pauseGame(): void {
-    if (this.gameSubscription) {
-      this.gameSubscription.unsubscribe();
-    }
-  }
-
-  isLocalStorageAvailable(): boolean {
-    try {
-      const test = 'test';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  updateHealth(delta: number): void {
-    this.health += delta;
-    if(this.health <= this.healthMin) {
-      this.health = this.healthMin;
-      this.gameIsOver = true;
-    }
-    if(this.health >= this.healthMax) {
-      this.health = this.healthMax;
-    }
-  }
-
-  collisionBoxHitted(): void {
-    this.collisionBoxIsHitted = true;
-    let timeout = setTimeout(()=>{
-      this.collisionBoxIsHitted = false;
-      clearTimeout(timeout);
-    }, 500)
-  }
-
-  createRandomMeteor(): void {
+  createMeteor(): void {
     const meteorTimestamp = this.defineMeteorTimestamp();
     const gameContainer = this.gameContainer.nativeElement;
     const meteor = this.renderer.createElement('img');
@@ -262,8 +201,40 @@ export class GameComponent implements OnInit {
     }
   }
 
-  // meteorHitGameCursor(): void {
+  // MOUSE
 
-  // }
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMoveIntoGameContainer(event: MouseEvent): void {
+    const rect = this.gameContainer.nativeElement.getBoundingClientRect();
+    const isInGameContainer = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+
+    if (isInGameContainer) {
+      this.mouseIsMovingOnce = true;
+      this.clientX = event.clientX;
+
+      if (!this.isRunning) {
+        this.startGame();
+      }
+
+    } else if (!isInGameContainer) {
+      if (this.isRunning) {
+        this.pauseGame();
+      }
+    }
+  }
+
+  // BTN ACTIONS
+
+  onClickStop(event: MouseEvent): void {
+    this.stopGame();
+  }
+
+  onClickQuit(event: MouseEvent): void {
+    // Handle quit action
+  }
+
+  onClickPause(event: MouseEvent): void {
+    this.pauseGame();
+  }
 
 }

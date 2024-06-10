@@ -17,8 +17,7 @@ export class GameService {
     this.runningSubject.next(false);
   }
 
-  reset() {
+  stop() {
     this.runningSubject.next(false);
-    this.runningSubject.next(true);
   }
 }

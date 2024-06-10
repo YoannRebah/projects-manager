@@ -1,22 +1,33 @@
 <div class="game-background">
     <div class="container grid-game">
-        <div class="block-header">
-            <button class="btn" data-btn-action="back-to-arcade-menu" data-title-popin="Retour au menu principal" aria-label="Retour au menu principal">
-                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                <span class="jersey-15-regular">Menu principal</span>
-            </button>
-            <div class="container-health-bar">
-                <p class="jersey-15-regular">PV</p>
-                <div class="health-bar" [style.width]="health + '%'"></div>
+        <div class="header-game">
+            <div class="block-header-game">
+                <button class="btn" aria-label="Quitter" (click)="onClickQuit($event)">
+                    <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+                </button>
+                <button class="btn" aria-label="Stop" (click)="onClickStop($event)">
+                    <i class="fa-regular fa-circle-stop" aria-hidden="true"></i>
+                </button>
+                <button class="btn" aria-label="Pause" (click)="onClickPause($event)">
+                    <i class="fa-regular fa-circle-pause" aria-hidden="true"></i>
+                </button>
             </div>
-            <div class="container-score">
+            <div class="block-header-game">
+                <div class="container container-health-bar">
+                    <p class="jersey-15-regular">PV</p>
+                    <div class="health-bar">
+                        <div class="health" [style.width]="health + '%'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-header-game">
                 <p class="jersey-15-regular">Score&nbsp;: <span class="score">{{ score }}</span></p>
                 <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
             </div>
         </div>
-        <div class="block-content">
-            <div #gameContainer class="container game-container" (mousemove)="onMouseMove($event)">
-                <p *ngIf="!mouseIsMoving" class="move-to-start jersey-15-regular flash-animation">
+        <div class="content-game">
+            <div #gameContainer class="container game-container" (mousemove)="onMouseMoveIntoGameContainer($event)">
+                <p *ngIf="!mouseIsMovingOnce" class="move-to-start jersey-15-regular flash-animation">
                     <span>Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
                 </p>

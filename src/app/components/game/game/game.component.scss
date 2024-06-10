@@ -21,77 +21,93 @@
         grid-template-rows: 0.3fr 1.7fr;
         gap: 0px 0px;
         grid-auto-flow: row;
-        grid-template-areas: "block-header" "block-content";
+        grid-template-areas: "header-game" "content-game";
     
-        .block-header {
-            grid-area: block-header;
+        .header-game {
+            grid-area: header-game;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1rem;
 
-            button {
+            .block-header-game {
                 display: flex;
-                align-items: center;
-                background: $orange;
-                color: $white;
-                padding: 0.42rem 1rem;
-                transition: 0.1s ease-in-out;
+
+                // btn actions
+                &:nth-child(1) {
+                    flex: 20;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        width: 36px;
+                        height: 36px;
+                        background: $orange;
+                        color: $white;
+                        transition: 0.15s ease-in-out;
+            
+                        &:hover {
+                            filter: brightness(120%);
+                        }
+        
+                        i {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+
+                // health bar
+                &:nth-child(2) {
+                    flex: 50;
+                    align-items: center;
+
+                    .container-health-bar {
+                        display: flex;
+                        align-items: center;
+                        gap: .5rem;
+
+                        p {
+                            font-size: 1.7rem;
+                        }
+        
+                        .health-bar {
+                            width: 100%;
+                            height: 1rem;
+                            background: $pink;
+
+                            .health {
+                                height: 100%;
+                                background: $cyan;
+                            }
+                        }
+                    }
+                }
+
+                // score
+                &:nth-child(3) {
+                    flex: 30;
+                    flex-direction: column;
+                    align-items: flex-end;
+
+                    p, span {
+                        font-size: 1.5rem;
+                        text-transform: uppercase;
+                    }
     
-                &:hover {
-                    filter: brightness(120%);
-                }
-
-                i {
-                    margin-right: 0.3rem;
-                    font-size: 1.1rem;
-                }
-                
-                span {
-                    text-transform: uppercase;
-                    font-size: 1.5rem;
-                }
-            }
-
-            .container-health-bar {
-                position: relative;
-                width: 200px;
-                height: 10px;
-                background: $pink;
-
-                p {
-                    position: absolute;
-                    transform: translate(-50%, -50%);
-                    top: 50%;
-                    left: -10%;
-                    font-size: 1.6rem;
-                }
-
-                .health-bar {
-                    width: 100%;
-                    height: 100%;
-                    background: $cyan;
-                }
-            }
-
-            .container-score {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-
-                p, span {
-                    font-size: 1.6rem;
-                    text-transform: uppercase;
-                }
-
-                span {
-                    min-width: 60px;
-                    display: inline-block;
+                    span {
+                        min-width: 60px;
+                        display: inline-block;
+                    }
                 }
             }
         }
         
-        .block-content {
-            grid-area: block-content;
+        .content-game {
+            grid-area: content-game;
             border: 1px dashed $orange;
             background-color: $body-bg;
             background-image: url(../../../../../public/assets/images/space-background.jpeg);
