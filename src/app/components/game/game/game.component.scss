@@ -114,12 +114,13 @@
                     left: 50%;
                     text-transform: uppercase;
 
-                    span, i {
+                    span {
                         font-size: 2rem;
+                        margin-right: .5rem;
                     }
 
-                    span {
-                        margin-right: .33rem;
+                    i {
+                        font-size: 1.5rem;
                     }
                 }
 
@@ -128,7 +129,7 @@
                     transform: translate(-50%, 0);
                     left: 50%;
                     bottom: 0;
-                    width: 50px;
+                    width: 75px;
                     height: 125px;
                     background-repeat: no-repeat;
                     background-size: cover;
@@ -136,9 +137,12 @@
                     background-image: url(../../../../../public/assets/gif/rocket-spaceship.gif);
 
                     .collision-box {
+                        position: relative;
                         width: 50px;
-                        height: 80px;
+                        height: 70px;
+                        left: 11px;
                         opacity: 0.6;
+                        background: $white;
                         
                         &.hitted-animation {
                             animation: hitted-animation 0.35s forwards;

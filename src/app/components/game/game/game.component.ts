@@ -14,6 +14,7 @@ import { GameService } from '../../../shared/services/game.service';
 export class GameComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   private gameSubscription!: Subscription;
+  clientX: number = 0;
   keyHighScore: string = 'high-score';
   score: number = 0;
   scoreMin: number = 0;
@@ -31,7 +32,7 @@ export class GameComponent implements OnInit, OnDestroy {
   increaseInterval: any;
   meteorsPerSecond: number = 3;
 
-  @ViewChild('gameContainer') gameContainer!: ElementRef;
+  @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
 
   constructor(
     private renderer: Renderer2,
@@ -40,17 +41,6 @@ export class GameComponent implements OnInit, OnDestroy {
     private ngZone: NgZone,
     private gameService: GameService
   ) {}
-
-  ngOnInit(): void {
-    this.initNewGame();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    if (this.gameSubscription) {
-      this.gameSubscription.unsubscribe();
-    }
-  }
 
   get playerHighScore(): number {
     if (this.isLocalStorageAvailable()) {
@@ -71,6 +61,24 @@ export class GameComponent implements OnInit, OnDestroy {
     return Math.floor(Math.random() * 61) + 20;
   }
 
+  ngOnInit(): void {
+    this.renderer.listen(this.gameContainer.nativeElement, 'mousemove', this.onMouseMove.bind(this));
+    this.initNewGame();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    if (this.gameSubscription) {
+      this.gameSubscription.unsubscribe();
+    }
+  }
+
+  onMouseMove(event: MouseEvent): void {
+    this.mouseIsMoving = true;
+    this.clientX = event.clientX;
+    console.log(this.clientX)
+  }
+
   initNewGame(): void {
     this.storeDefaultHighScore();
     this.startPlayingGame();
@@ -89,7 +97,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.subscription = this.gameService.isRunning$.subscribe(
       (isRunning: boolean) => {
         if (isRunning) {
-          this.startScoreCounter();
+          this.initGameLogic();
         } else {
           this.pauseScoreCounter();
         }
@@ -101,13 +109,13 @@ export class GameComponent implements OnInit, OnDestroy {
     }, this.scoreIncreaseTimeoutDelay);
   }
 
-  startScoreCounter(): void {
+  initGameLogic(): void {
     this.ngZone.runOutsideAngular(() => {
       const timer$ = interval(1000);
       this.gameSubscription = timer$.subscribe(() => {
         this.ngZone.run(() => {
           this.updateScore();
-          this.createRandomMeteor();
+          this.initMeteor();
           this.cdr.detectChanges();
         });
       });
@@ -189,11 +197,18 @@ export class GameComponent implements OnInit, OnDestroy {
     }, 500)
   }
 
+  initMeteor(): void {
+    this.createRandomMeteor();
+    this.removeOldMeteors();
+  }
+
   createRandomMeteor(): void {
+    const meteorTimestamp = this.defineMeteorTimestamp();
     const gameContainer = this.gameContainer.nativeElement;
     const meteor = this.renderer.createElement('img');
     this.renderer.setAttribute(meteor, 'src', 'assets/images/meteor.png');
     this.renderer.setAttribute(meteor, 'data-damage', this.defineMeteorDamages(this.randomMeteorWidth));
+    this.renderer.setAttribute(meteor, 'data-timestamp', meteorTimestamp.toString());
     this.renderer.addClass(meteor, "meteor");
     this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
@@ -208,5 +223,35 @@ export class GameComponent implements OnInit, OnDestroy {
     if(width > 60) damage = "30";
     return damage;
   }
+
+  defineMeteorTimestamp(): number {
+    const now: Date = new Date();
+    const timestamp: number = now.getTime(); 
+    return timestamp;
+  }
+
+  meteorMustBeRemoved(timestamp: number): boolean {
+    const now: number = new Date().getTime();
+    const meteorTimestamp: number = new Date(timestamp).getTime();
+    const difference = now - meteorTimestamp;
+    return difference >= 10000;
+  }
+
+  removeOldMeteors(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const meteors = gameContainer.getElementsByClassName('meteor');
+
+    for (let i = meteors.length - 1; i >= 0; i--) {
+        const meteor = meteors[i] as HTMLElement;
+        const timestamp = parseInt(meteor.getAttribute('data-timestamp') || '0', 10);
+        if (this.meteorMustBeRemoved(timestamp)) {
+            this.renderer.removeChild(gameContainer, meteor);
+        }
+    }
+  }
+
+  // meteorHitGameCursor(): void {
+
+  // }
 
 }
