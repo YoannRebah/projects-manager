@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subscription, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { GameService } from '../../../shared/services/game.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private gameSubscription!: Subscription;
   private scoreSubscription!: Subscription;
   private meteorSubscription!: Subscription;
+  private meteorIntervalAdjustSubscription!: Subscription;
 
   // game container
   isInGameContainer: boolean = false;
@@ -41,6 +43,9 @@ export class GameComponent implements OnInit, OnDestroy {
   // collision box
   collisionBoxIsHitted: boolean = false;
 
+  // meteor
+  meteorIntervalSpeedGeneration: number = 1000;  // initial interval in milliseconds
+
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
 
@@ -57,9 +62,11 @@ export class GameComponent implements OnInit, OnDestroy {
       if (isRunning) {
         this.initScore();
         this.initMeteor();
+        this.initMeteorIntervalAdjustment();
       } else {
-        this.pauseScore();
-        this.pauseMeteor();
+        this.cancelScore();
+        this.cancelMeteor();
+        this.stopMeteorIntervalAdjustment();
       }
     });
   }
@@ -68,8 +75,9 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.gameSubscription) {
       this.gameSubscription.unsubscribe();
     }
-    this.pauseScore();
-    this.pauseMeteor();
+    this.cancelScore();
+    this.cancelMeteor();
+    this.stopMeteorIntervalAdjustment();
   }
 
   // GAME SERVICE
@@ -84,13 +92,20 @@ export class GameComponent implements OnInit, OnDestroy {
 
   stopGame() {
     this.gameService.stop();
+    this.resetGameVariables();
+    this.cancelScore();
+    this.cancelMeteor();
+    this.stopMeteorIntervalAdjustment();
+    this.removeAllMeteors();
+    this.resetGameVariables();
   }
 
   // GAME
 
-  resetGame(): void {
+  resetGameVariables(): void {
     this.score = this.scoreMin;
     this.health = this.healthMax;
+    this.mouseIsMovingOnce = false;
   }
 
   // SCORE
@@ -103,20 +118,20 @@ export class GameComponent implements OnInit, OnDestroy {
       const timer$ = interval(1000);
       this.scoreSubscription = timer$.subscribe(() => {
         this.ngZone.run(() => {
-          this.updateScore();
+          this.updatePlayerScore();
           this.cdr.detectChanges();
         });
       });
     });
   }
 
-  pauseScore(): void {
+  cancelScore(): void {
     if (this.scoreSubscription) {
       this.scoreSubscription.unsubscribe();
     }
   }
 
-  updateScore(): void {
+  updatePlayerScore(): void {
     if(this.score <= this.scoreMax) {
       this.score += this.scoreStepIncrease;
     }
@@ -141,8 +156,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.meteorSubscription.unsubscribe();
     }
     this.ngZone.runOutsideAngular(() => {
-      const timer$ = interval(1000);
-      this.meteorSubscription = timer$.subscribe(() => {
+      this.meteorSubscription = timer(0, this.meteorIntervalSpeedGeneration).subscribe(() => {
         this.ngZone.run(() => {
           this.createMeteor();
           this.cdr.detectChanges();
@@ -151,7 +165,7 @@ export class GameComponent implements OnInit, OnDestroy {
     });
   }
 
-  pauseMeteor(): void {
+  cancelMeteor(): void {
     if (this.meteorSubscription) {
       this.meteorSubscription.unsubscribe();
     }
@@ -195,7 +209,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   removeOldMeteors(): void {
     const gameContainer = this.gameContainer.nativeElement;
-    const meteors = gameContainer.getElementsByClassName('meteor');
+    const meteors = gameContainer.querySelectorAll('.meteor');
 
     for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i] as HTMLElement;
@@ -203,6 +217,47 @@ export class GameComponent implements OnInit, OnDestroy {
         if (this.meteorMustBeRemoved(timestamp)) {
             this.renderer.removeChild(gameContainer, meteor);
         }
+    }
+  }
+
+  removeAllMeteors(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const meteors = gameContainer.querySelectorAll('.meteor');
+
+    meteors.forEach((elem: Element)=>{
+      this.renderer.removeChild(gameContainer, elem);
+    });
+  }
+
+  // METEOR INTERVAL SPEED GENERATION
+
+  initMeteorIntervalAdjustment(): void {
+    this.meteorIntervalSpeedGeneration = 1000;
+    if (this.meteorIntervalAdjustSubscription) {
+      this.meteorIntervalAdjustSubscription.unsubscribe();
+    }
+    this.ngZone.runOutsideAngular(() => {
+      const adjustInterval$ = interval(3000);
+      this.meteorIntervalAdjustSubscription = adjustInterval$.subscribe(() => {
+        this.ngZone.run(() => {
+          this.increaseSpeedMeteorInterval();
+          this.cdr.detectChanges();
+        });
+      });
+    });
+  }
+
+  stopMeteorIntervalAdjustment(): void {
+    if (this.meteorIntervalAdjustSubscription) {
+      this.meteorIntervalAdjustSubscription.unsubscribe();
+    }
+  }
+
+  increaseSpeedMeteorInterval(): void {
+    if (this.meteorIntervalSpeedGeneration > 100) {
+      this.meteorIntervalSpeedGeneration -= 50;
+      this.cancelMeteor();
+      this.initMeteor();
     }
   }
 
@@ -224,7 +279,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     } else if (!this.isInGameContainer) {
       if (this.isRunning) {
-        this.pauseGame();
+        this.stopGame();
       }
     }
   }
