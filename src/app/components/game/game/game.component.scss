@@ -43,19 +43,18 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        border-radius: 50%;
-                        width: 36px;
-                        height: 36px;
                         background: $orange;
-                        color: $white;
+                        padding: .33rem .75rem;
                         transition: 0.15s ease-in-out;
             
                         &:hover {
                             filter: brightness(120%);
                         }
         
-                        i {
-                            font-size: 1.3rem;
+                        span {
+                            color: $white;
+                            font-size: 1.4rem;
+                            text-transform: uppercase;
                         }
                     }
                 }
