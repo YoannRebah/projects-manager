@@ -16,7 +16,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   private timeCounterSubscription!: Subscription;
   timeFromTimerCounterService: number = 0;
-  videoDurationTime: number = 227; //227
+  videoDurationTime: number = 10; //227
   maxTimeBeforeShowTvProgram: number = 10; //600
   maxTimeBeforeHideTvProgram: number = this.maxTimeBeforeShowTvProgram + this.videoDurationTime;
 
@@ -31,8 +31,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
       this.timeFromTimerCounterService = time;
-      if (this.timeFromTimerCounterService >= this.maxTimeBeforeShowTvProgram &&
-          this.timeFromTimerCounterService < this.maxTimeBeforeHideTvProgram) {
+      if (this.timeFromTimerCounterService >= this.maxTimeBeforeShowTvProgram && this.timeFromTimerCounterService < this.maxTimeBeforeHideTvProgram) {
         this.show();
       } else {
         this.hide();
@@ -77,4 +76,5 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   hideVhsEffectFooter(): void {
     this.vhsEffectService.hideFooter();
   }
+
 }
