@@ -11,12 +11,13 @@ import { TimeCounterService } from '../../../shared/services/time-counter.servic
   templateUrl: './tv-program.component.html',
   styleUrls: ['./tv-program.component.scss']
 })
-
 export class TvProgramComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   private timeCounterSubscription!: Subscription;
   timeFromTimerCounterService: number = 0;
-  maxTimeBeforeShowTvProgram: number = 10; // 20 seconds
+  videoDurationTime: number = 10;
+  maxTimeBeforeShowTvProgram: number = 10;
+  maxTimeBeforeHideTvProgram: number = this.maxTimeBeforeShowTvProgram + this.videoDurationTime;
 
   constructor(
     private tvProgramService: TvProgramService,
@@ -28,7 +29,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
       this.timeFromTimerCounterService = time;
-      if (this.timeFromTimerCounterService >= this.maxTimeBeforeShowTvProgram) {
+      if (this.timeFromTimerCounterService >= this.maxTimeBeforeShowTvProgram &&
+          this.timeFromTimerCounterService < this.maxTimeBeforeHideTvProgram) {
         this.show();
       } else {
         this.hide();
@@ -56,7 +58,6 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   playVideo(): void {
     if (this.tvProgramVideo && this.tvProgramVideo.nativeElement) {
       this.tvProgramVideo.nativeElement.play();
-      this.tvProgramVideo.nativeElement.play();
     }
   }
 
@@ -64,5 +65,4 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.hide();
     this.timeCounterService.reset();
   }
-
 }
