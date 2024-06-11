@@ -13,21 +13,21 @@ import { Subscription } from 'rxjs';
 
 export class LoaderComponent implements OnInit {
   isLoading: boolean = false;
-  private subscription!: Subscription;
+  private loaderSubscription!: Subscription;
 
   constructor(private loaderService: LoaderService) {}
 
   ngOnInit(): void {
-    this.subscription = this.loaderService.isLoading$.subscribe(
-      (loading) => {
-        this.isLoading = loading;
+    this.loaderSubscription = this.loaderService.isLoading$.subscribe((isLoading) => {
+        this.isLoading = isLoading;
       }
     );
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.loaderSubscription) {
+      this.loaderSubscription.unsubscribe();
     }
   }
+
 }

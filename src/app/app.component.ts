@@ -75,18 +75,32 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
 
 export class AppComponent implements OnInit {
   title: string = 'portfolio';
-  timeoutLoaderDelay: number = 5000;
-
+  isFirstLoad: boolean = true;
   constructor(
     private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
+    this.showLoaderFirstLoad();
+  }
+
+  showLoader(): void {
     this.loaderService.show();
-    let timeout = setTimeout(() => {
-      this.loaderService.hide();
-      clearTimeout(timeout);
-    }, this.timeoutLoaderDelay);
+  }
+
+  hideLoader(): void {
+    this.loaderService.hide();
+  }
+
+  showLoaderFirstLoad(): void {
+    if(this.isFirstLoad) {
+      this.showLoader();
+      let timeout = setTimeout(() => {
+        this.hideLoader();
+        this.isFirstLoad = false;
+        clearTimeout(timeout);
+      }, 5000);
+    }
   }
 
 }

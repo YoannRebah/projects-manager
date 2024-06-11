@@ -15,10 +15,11 @@ import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
 export class TvProgramComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   private timeCounterSubscription!: Subscription;
-  timeFromTimerCounterService: number = 0;
+  private tvProgramIsVisibleSubscription!: Subscription;
+  timeTimeCounter: number = 0;
   videoDurationTime: number = 227;
-  maxTimeBeforeShowTvProgram: number = 600;
-  maxTimeBeforeHideTvProgram: number = this.maxTimeBeforeShowTvProgram + this.videoDurationTime;
+  delayBeforeShow: number = 600;
+  delayBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
 
   constructor(
     private tvProgramService: TvProgramService,
@@ -30,11 +31,21 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
-      this.timeFromTimerCounterService = time;
-      if (this.timeFromTimerCounterService >= this.maxTimeBeforeShowTvProgram && this.timeFromTimerCounterService < this.maxTimeBeforeHideTvProgram) {
+      this.timeTimeCounter = time;
+      if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter < this.delayBeforeHide) {
         this.show();
       } else {
         this.hide();
+      }
+    });
+    this.tvProgramIsVisibleSubscription = this.tvProgramService.isVisible$.subscribe(isVisible => {
+      this.isVisible = isVisible;
+      if (isVisible) {
+        this.playVideo();
+        this.hideVhsEffectFooter();
+      } else {
+        this.stopVideo();
+        this.showVhsEffectFooter();
       }
     });
   }
@@ -43,19 +54,17 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     if (this.timeCounterSubscription) {
       this.timeCounterSubscription.unsubscribe();
     }
+    if (this.tvProgramIsVisibleSubscription) {
+      this.tvProgramIsVisibleSubscription.unsubscribe();
+    }
   }
 
   show(): void {
-    this.isVisible = true;
     this.tvProgramService.show();
-    this.playVideo();
-    this.hideVhsEffectFooter();
   }
 
   hide(): void {
-    this.isVisible = false;
     this.tvProgramService.hide();
-    this.showVhsEffectFooter();
   }
 
   playVideo(): void {
@@ -64,13 +73,15 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClickHideVideo(): void {
-    this.hide();
-    this.resetTimeCounter();
+  stopVideo(): void {
+    if (this.tvProgramVideo && this.tvProgramVideo.nativeElement) {
+      this.tvProgramVideo.nativeElement.pause();
+      this.tvProgramVideo.nativeElement.currentTime = 0;
+    }
   }
 
-  resetTimeCounter(): void {
-    this.timeCounterService.reset();
+  onClickHideVideo(): void {
+    this.hide();
   }
 
   showVhsEffectFooter(): void {
