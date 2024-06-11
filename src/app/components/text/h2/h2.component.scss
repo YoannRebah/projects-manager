@@ -10,7 +10,7 @@
     font-size: 1.75rem;
     padding-top: 6rem;
     margin-bottom: 5rem;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.1rem;
 
     @include screen('s') {
         font-size: 3.5rem;
@@ -39,19 +39,5 @@
         position: absolute;
         right: 0;
         bottom: -0.2rem;
-    }
-
-    &.reduce {
-        color: $pink;
-
-        &::before {
-            content: "+";
-            background: $cyan;
-            color: $pink;
-        }
-
-        &::after {
-            background: $cyan;
-        }
     }
 }

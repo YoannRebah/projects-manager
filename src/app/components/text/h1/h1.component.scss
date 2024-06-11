@@ -113,28 +113,24 @@
     span {
         &:nth-child(1) {
             text-transform: uppercase;
-            font-size: 14.5vw;
+            font-size: 11vw;
             background: linear-gradient(
-            $pink2 15%,
-            $pink 25%,
+            $pink3 15%,
+            $pink2 25%,
             $pink 35%,
             hsl(100, 70%, 80%) 45%,
             hsl(60, 100%, 98%) 50%,
-            hsl(240, 0%, 0%) 52%,
-            hsl(240, 10%, 10%) 60%,
-            hsl(240, 50%, 30%) 70%,
-            hsl(220, 70%, 60%) 80%,
-            hsl(212, 92%, 76%) 85%);
-            -webkit-text-stroke: 1px hsl(200, 65%, 80%);
+            $white 100%);
+            -webkit-text-stroke: 1px $white;
             color: transparent;
             background-clip: text;
-            filter: drop-shadow(1px 3px 0px hsl(242, 54%, 10%)) drop-shadow(1px 3px 0px hsl(242, 54%, 15%)) drop-shadow(1px 3px 0px hsl(242, 54%, 20%)) drop-shadow(1px 3px 0px hsl(242, 54%, 25%)) drop-shadow(1px 3px 0px hsl(242, 54%, 30%)) drop-shadow(0px 0px 10px rgba(16, 16, 16, 0.4));
+            filter: drop-shadow(1px 3px 0px $white) drop-shadow(1px 3px 0px $cyan) drop-shadow(1px 3px 0px $cyan2) drop-shadow(1px 3px 0px $cyan3) drop-shadow(1px 3px 0px $cyan2) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.2));
         }
 
         &:nth-child(2) {
             position: absolute;
             font-size: 9vw;
-            bottom: -40%;
+            bottom: -50%;
             right: 0;
             transform: rotate(-12deg);
             color: $pink;
