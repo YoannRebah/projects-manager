@@ -4,16 +4,26 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-
 export class GameService {
   private runningSubject = new BehaviorSubject<boolean>(false);
   isRunning$ = this.runningSubject.asObservable();
+  
+  private visibilitySubject = new BehaviorSubject<boolean>(false);
+  isVisible$ = this.visibilitySubject.asObservable();
 
-  start() {
+  show(): void {
+    this.visibilitySubject.next(true);
+  }
+
+  hide(): void {
+    this.visibilitySubject.next(false);
+  }
+
+  start(): void {
     this.runningSubject.next(true);
   }
 
-  stop() {
+  stop(): void {
     this.runningSubject.next(false);
   }
 }

@@ -33,7 +33,7 @@ import { ListFooterComponent } from './components/views/list-footer/list-footer.
 // ads
 import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.component';
 // game
-import { GameComponent } from './components/game/game/game.component';
+// import { GameComponent } from './components/game/game/game.component';
 
 @Component({
   selector: 'app-root',
@@ -71,7 +71,7 @@ import { GameComponent } from './components/game/game/game.component';
     // ads
     AdsPosterComponent,
     // game
-    GameComponent
+    // GameComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

@@ -16,14 +16,17 @@ export class GameComponent implements OnInit, OnDestroy {
 
   // service
   isRunning: boolean = false;
+  isVisible: boolean = false;
+  private gameIsVisibleSubscription!: Subscription;
   private gameSubscription!: Subscription;
   private scoreSubscription!: Subscription;
   private meteorSubscription!: Subscription;
   private meteorIntervalAdjustSubscription!: Subscription;
   private collisionCheckSubscription!: Subscription;
 
-  // game container
+  // game
   isInGameContainer: boolean = false;
+  gameCanBeStarted: boolean = false;
 
   // score
   score: number = 0;
@@ -75,11 +78,22 @@ export class GameComponent implements OnInit, OnDestroy {
         this.stopCollisionCheck();
       }
     });
+    this.gameIsVisibleSubscription = this.gameService.isVisible$.subscribe(isVisible => {
+      this.isVisible = isVisible;
+      if (isVisible) {
+        this.gameCanBeStarted = true;
+      } else {
+        this.gameCanBeStarted = false;
+      }
+    });
   }
 
   ngOnDestroy() {
     if (this.gameSubscription) {
       this.gameSubscription.unsubscribe();
+    }
+    if (this.gameIsVisibleSubscription) {
+      this.gameIsVisibleSubscription.unsubscribe();
     }
     this.cancelScore();
     this.cancelMeteor();
@@ -108,13 +122,27 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  // GAME SERVICE
-
-  startGame() {
-    this.gameService.start();
+  onClickQuitGame(): void {
+    this.hide();
   }
 
-  stopGame() {
+  // GAME SERVICE
+
+  show(): void {
+    this.gameService.show();
+  }
+
+  hide(): void {
+    this.gameService.hide();
+  }
+
+  startGame(): void {
+    if(this.gameCanBeStarted) {
+      this.gameService.start();
+    }
+  }
+
+  stopGame(): void {
     this.gameService.stop();
     this.storePlayerHighScore();
     this.updatePlayerHighScore();
