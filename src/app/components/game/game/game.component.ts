@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, timer } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { GameService } from '../../../shared/services/game.service';
 
 @Component({
@@ -22,6 +21,9 @@ export class GameComponent implements OnInit, OnDestroy {
   private meteorIntervalAdjustSubscription!: Subscription;
   private collisionCheckSubscription!: Subscription;
 
+  // storage
+  prefixStorageKey: string = 'lsPortfolioYR_';
+
   // game container
   isInGameContainer: boolean = false;
 
@@ -31,7 +33,7 @@ export class GameComponent implements OnInit, OnDestroy {
   scoreMax: number = 99999;
   highScore: number = 0;
   scoreStepIncrease: number = 50;
-  keyHighScore: string = 'player-high-score';
+  storageKeyHighScore: string = this.prefixStorageKey + 'player-high-score';
 
   // health
   health: number = 100;
@@ -60,6 +62,7 @@ export class GameComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.updatePlayerHighScore();
     this.gameSubscription = this.gameService.isRunning$.subscribe(isRunning => {
       this.isRunning = isRunning;
       if (isRunning) {
@@ -86,17 +89,37 @@ export class GameComponent implements OnInit, OnDestroy {
     this.stopCollisionCheck();
   }
 
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMoveIntoGameContainer(event: MouseEvent): void {
+    const rect = this.gameContainer.nativeElement.getBoundingClientRect();
+    this.isInGameContainer = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+
+    if (this.isInGameContainer) {
+      this.mouseIsMovingOnce = true;
+      this.clientX = event.clientX;
+      this.renderer.setStyle(this.gameCursor.nativeElement, 'transform', `translateX(${this.clientX}px)`);
+
+      if (!this.isRunning) {
+        this.startGame();
+      }
+
+    } else if (!this.isInGameContainer) {
+      if (this.isRunning) {
+        this.stopGame();
+      }
+    }
+  }
+
   // GAME SERVICE
 
   startGame() {
     this.gameService.start();
-    this.storeHighScore();
-    this.highScore = this.playerHighScore;
   }
 
   stopGame() {
     this.gameService.stop();
-    this.updateHighScore();
+    this.storePlayerHighScore();
+    this.updatePlayerHighScore();
     this.cancelScore();
     this.cancelMeteor();
     this.stopMeteorIntervalAdjustment();
@@ -114,6 +137,17 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   // SCORE
+
+  get storedPlayerHighScore(): number {
+    if (this.isLocalStorageAvailable()) {
+      if(localStorage.getItem(this.storageKeyHighScore)) {
+        return parseInt(localStorage.getItem(this.storageKeyHighScore)!, 10);
+      } else {
+        return 0;
+      }
+    }
+    return 0;
+  }
 
   initScore(): void {
     if (this.scoreSubscription) {
@@ -142,36 +176,15 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  isLocalStorageAvailable(): boolean {
-    try {
-      const test = 'test';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
-    }
+  updatePlayerHighScore(): void {
+    this.highScore = this.storedPlayerHighScore;
   }
 
-  get playerHighScore(): number {
+  storePlayerHighScore(): void {
     if (this.isLocalStorageAvailable()) {
-      return parseInt(localStorage.getItem(this.keyHighScore)!, 10);
-    }
-    return 0;
-  }
-
-  updateHighScore(): void {
-    if(this.playerHighScore > this.score) {
-      this.highScore = this.playerHighScore;
-    } else {
-      this.highScore = this.score;
-    }
-    this.storeHighScore();
-  }
-
-  storeHighScore(): void {
-    if (this.isLocalStorageAvailable()) {
-      localStorage.setItem(this.keyHighScore, JSON.stringify(this.highScore));
+      if(this.score > this.storedPlayerHighScore) {
+        localStorage.setItem(this.storageKeyHighScore, JSON.stringify(this.score));
+      }
     }
   }
 
@@ -299,29 +312,6 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  // MOUSE
-
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMoveIntoGameContainer(event: MouseEvent): void {
-    const rect = this.gameContainer.nativeElement.getBoundingClientRect();
-    this.isInGameContainer = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
-
-    if (this.isInGameContainer) {
-      this.mouseIsMovingOnce = true;
-      this.clientX = event.clientX;
-      this.renderer.setStyle(this.gameCursor.nativeElement, 'transform', `translateX(${this.clientX}px)`);
-
-      if (!this.isRunning) {
-        this.startGame();
-      }
-
-    } else if (!this.isInGameContainer) {
-      if (this.isRunning) {
-        this.stopGame();
-      }
-    }
-  }
-
   // COLLISION CHECK
 
   startCollisionCheck(): void {
@@ -359,10 +349,6 @@ export class GameComponent implements OnInit, OnDestroy {
     });
   }
 
-  isColliding(rect1: DOMRect, rect2: DOMRect): boolean {
-    return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
-  }
-
   handleCollision(damage: string | null): void {
     if (damage) {
       if(parseInt(damage) > 0) {
@@ -382,6 +368,27 @@ export class GameComponent implements OnInit, OnDestroy {
     }
     if(this.health >= this.healthMax) {
       this.health = this.healthMax;
+    }
+  }
+
+
+
+
+
+  // utilities
+  
+  isColliding(rect1: DOMRect, rect2: DOMRect): boolean {
+    return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
+  }
+
+  isLocalStorageAvailable(): boolean {
+    try {
+      const test = 'test';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
