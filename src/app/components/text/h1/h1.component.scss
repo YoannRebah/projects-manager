@@ -114,9 +114,10 @@
         &:nth-child(1) {
             text-transform: uppercase;
             font-size: 14.5vw;
-            background: linear-gradient(hsl(239, 50%, 30%) 15%,
-            hsl(239, 50%, 40%) 25%,
-            hsl(200, 60%, 50%) 35%,
+            background: linear-gradient(
+            $pink2 15%,
+            $pink 25%,
+            $pink 35%,
             hsl(100, 70%, 80%) 45%,
             hsl(60, 100%, 98%) 50%,
             hsl(240, 0%, 0%) 52%,
