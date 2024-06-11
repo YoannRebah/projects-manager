@@ -8,7 +8,7 @@
         <div class="glitch-line-animation" style="height: 5px;animation-delay: 17s;"></div>
         <div class="glitch-line-animation" style="height: 2px;animation-delay: 23s;"></div>
     </div>
-    <div class="footer" [class.flash-animation]="isFlashing">
+    <div class="footer" [class.flash-animation]="isFlashing" [class.display-none]="!footerIsVisible">
          <app-time-counter></app-time-counter>
         <div class="container-play text-shadow-glitch">
             <p class="reddit-mono">Play</p>

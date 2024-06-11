@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/tv-program.service';
 import { TimeCounterService } from '../../../shared/services/time-counter.service';
+import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -16,12 +17,13 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   private timeCounterSubscription!: Subscription;
   timeFromTimerCounterService: number = 0;
   videoDurationTime: number = 227; //227
-  maxTimeBeforeShowTvProgram: number = 5; //600
+  maxTimeBeforeShowTvProgram: number = 10; //600
   maxTimeBeforeHideTvProgram: number = this.maxTimeBeforeShowTvProgram + this.videoDurationTime;
 
   constructor(
     private tvProgramService: TvProgramService,
-    private timeCounterService: TimeCounterService
+    private timeCounterService: TimeCounterService,
+    private vhsEffectService: VhsEffectService
   ) {}
 
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
@@ -48,11 +50,13 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.isVisible = true;
     this.tvProgramService.show();
     this.playVideo();
+    this.hideVhsEffectFooter();
   }
 
   hide(): void {
     this.isVisible = false;
     this.tvProgramService.hide();
+    this.showVhsEffectFooter();
   }
 
   playVideo(): void {
@@ -64,5 +68,13 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   onClickHideVideo(): void {
     this.hide();
     this.timeCounterService.reset();
+  }
+
+  showVhsEffectFooter(): void {
+    this.vhsEffectService.showFooter();
+  }
+
+  hideVhsEffectFooter(): void {
+    this.vhsEffectService.hideFooter();
   }
 }
