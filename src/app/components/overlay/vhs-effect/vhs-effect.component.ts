@@ -13,7 +13,6 @@ import { TimeCounterComponent } from '../../shared/time-counter/time-counter.com
 export class VhsEffectComponent implements OnInit {
   isFlashing: boolean = false;
   timeoutDelay: number = 5000;
-  glitchLines: number[] = [];
 
   ngOnInit(): void {
     this.startFlashAnimation();
