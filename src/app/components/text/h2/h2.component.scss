@@ -33,16 +33,12 @@
     &::after {
         content: "";
         display: flex;
-        width: 94%;
+        width: 95%;
         height: 0.2rem;
         background: $pink;
         position: absolute;
         right: 0;
         bottom: -0.2rem;
-
-        @include screen('s') {
-            width: 97%;
-        }
     }
 
     &.reduce {
