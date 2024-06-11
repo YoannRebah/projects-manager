@@ -49,7 +49,7 @@ export class GameComponent implements OnInit, OnDestroy {
   collisionBoxIsHitted: boolean = false;
 
   // meteor
-  meteorIntervalSpeedGeneration: number = 1000;  // initial interval in milliseconds
+  meteorIntervalSpeedGeneration: number = 1000;
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
@@ -232,6 +232,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.renderer.setAttribute(meteor, 'data-timestamp', meteorTimestamp.toString());
     this.renderer.addClass(meteor, "meteor");
     this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
+    this.renderer.addClass(meteor, "cursor-none");
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
     this.renderer.setStyle(meteor, 'width', `${this.randomMeteorWidth}px`);
     this.renderer.appendChild(gameContainer, meteor);
@@ -339,13 +340,15 @@ export class GameComponent implements OnInit, OnDestroy {
   checkCollisions(): void {
     const collisionBox = this.collisionBox.nativeElement.getBoundingClientRect();
     const meteors = this.gameContainer.nativeElement.querySelectorAll('.meteor');
-
+  
     meteors.forEach((meteor: Element) => {
-      const meteorRect = (meteor as HTMLElement).getBoundingClientRect();
-      if (UtilitiesService.isColliding(collisionBox, meteorRect)) {
-        const damage = meteor.getAttribute('data-damage');
-        this.handleCollision(damage);
-        this.renderer.removeChild(this.gameContainer.nativeElement, meteor);
+      if (this.gameContainer.nativeElement.contains(meteor)) {
+        const meteorRect = (meteor as HTMLElement).getBoundingClientRect();
+        if (UtilitiesService.isColliding(collisionBox, meteorRect)) {
+          const damage = meteor.getAttribute('data-damage');
+          this.handleCollision(damage);
+          this.renderer.removeChild(this.gameContainer.nativeElement, meteor);
+        }
       }
     });
   }
@@ -355,8 +358,17 @@ export class GameComponent implements OnInit, OnDestroy {
       if(parseInt(damage) > 0) {
         const thisDamage = parseInt(damage)*-1;
         this.updateHealth(thisDamage);
+        this.gameCursorWasHitted();
       }
     }
+  }
+
+  gameCursorWasHitted(): void {
+    this.collisionBoxIsHitted = true;
+    let timeout = setTimeout(()=>{
+      this.collisionBoxIsHitted = false;
+      clearTimeout(timeout);
+    }, 500);
   }
 
   // HEALTH
