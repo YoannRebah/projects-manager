@@ -22,9 +22,6 @@ export class GameComponent implements OnInit, OnDestroy {
   private meteorIntervalAdjustSubscription!: Subscription;
   private collisionCheckSubscription!: Subscription;
 
-  // storage
-  prefixStorageKey: string = 'lsPortfolioYR_';
-
   // game container
   isInGameContainer: boolean = false;
 
@@ -34,7 +31,7 @@ export class GameComponent implements OnInit, OnDestroy {
   scoreMax: number = 99999;
   highScore: number = 0;
   scoreStepIncrease: number = 50;
-  storageKeyHighScore: string = this.prefixStorageKey + 'player-high-score';
+  storageKeyHighScore: string = UtilitiesService.portfolioPrefixStorageKey + 'player-high-score';
 
   // health
   health: number = 100;
