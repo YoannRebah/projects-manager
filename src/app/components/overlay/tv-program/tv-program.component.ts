@@ -1,5 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { TvProgramService } from '../../../shared/services/tv-program.service';
+import { TimeCounterService } from '../../../shared/services/time-counter.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -9,34 +12,57 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./tv-program.component.scss']
 })
 
-export class TvProgramComponent implements OnInit {
-  videoIsPlaying: boolean = false;
-  timeoutDelay: number = 15000;
-  @Input() videoPath?: string;
-  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+export class TvProgramComponent implements OnInit, OnDestroy {
+  isVisible: boolean = false;
+  private timeCounterSubscription!: Subscription;
+  timeFromTimerCounterService: number = 0;
+  maxTimeBeforeShowTvProgram: number = 10; // 20 seconds
+
+  constructor(
+    private tvProgramService: TvProgramService,
+    private timeCounterService: TimeCounterService
+  ) {}
+
+  @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
 
   ngOnInit(): void {
-    if (this.videoPath) {
-      this.stopVideo();
-      let timeout = setTimeout(() => {
-        this.playVideo();
-        clearTimeout(timeout);
-      }, this.timeoutDelay);
+    this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
+      this.timeFromTimerCounterService = time;
+      if (this.timeFromTimerCounterService >= this.maxTimeBeforeShowTvProgram) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeCounterSubscription) {
+      this.timeCounterSubscription.unsubscribe();
     }
+  }
+
+  show(): void {
+    this.isVisible = true;
+    this.tvProgramService.show();
+    this.playVideo();
+  }
+
+  hide(): void {
+    this.isVisible = false;
+    this.tvProgramService.hide();
   }
 
   playVideo(): void {
-    this.videoIsPlaying = true;
-    if (this.videoPlayer && this.videoPlayer.nativeElement) {
-      this.videoPlayer.nativeElement.play();
+    if (this.tvProgramVideo && this.tvProgramVideo.nativeElement) {
+      this.tvProgramVideo.nativeElement.play();
+      this.tvProgramVideo.nativeElement.play();
     }
   }
 
-  stopVideo(): void {
-    this.videoIsPlaying = false;
-    if (this.videoPlayer && this.videoPlayer.nativeElement) {
-      this.videoPlayer.nativeElement.pause();
-      this.videoPlayer.nativeElement.currentTime = 0;
-    }
+  onClickHideVideo(): void {
+    this.hide();
+    this.timeCounterService.reset();
   }
+
 }

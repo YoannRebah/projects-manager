@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// service
+// services
 import { LoaderService } from './shared/services/loader.service';
 // shared
 import { LoaderComponent } from './components/shared/loader/loader.component';
@@ -32,8 +32,6 @@ import { ListNavComponent } from './components/views/list-nav/list-nav.component
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
 // ads
 import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.component';
-// game
-// import { GameComponent } from './components/game/game/game.component';
 
 @Component({
   selector: 'app-root',
@@ -70,8 +68,6 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
     ListFooterComponent,
     // ads
     AdsPosterComponent,
-    // game
-    // GameComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -81,7 +77,9 @@ export class AppComponent implements OnInit {
   title: string = 'portfolio';
   timeoutLoaderDelay: number = 5000;
 
-  constructor(private loaderService: LoaderService) {}
+  constructor(
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
     this.loaderService.show();

@@ -38,6 +38,10 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
       this.timeCounterService.start();
       clearTimeout(timeout);
     }, this.timeoutDelay);
+    this.timeCounterService.time$.subscribe(time => {
+      this.time = time;
+      this.updateTimeString();
+    });
   }
 
   ngOnDestroy(): void {
@@ -70,11 +74,15 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   }
 
   updateTime(): void {
+    this.time++;
+    this.timeCounterService.setTime(this.time);
+  }
+
+  updateTimeString(): void {
     const hours = Math.floor(this.time / 3600);
     const minutes = Math.floor((this.time % 3600) / 60);
     const seconds = this.time % 60;
 
     this.timeString = `${this.formatTime(hours)}:${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
-    this.time++;
   }
 }

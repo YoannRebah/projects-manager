@@ -1,3 +1,7 @@
-<div *ngIf="videoIsPlaying" class="container tv-program">
-    <video #videoPlayer class="container" [src]="videoPath" controls="false" autoplay="true"></video>
-</div>  
+<div *ngIf="isVisible" class="container tv-program">
+    <video #tvProgramVideo class="container">
+        <source src="assets/videos/tv-program.mp4" type="video/mp4">
+        Votre navigateur ne prend pas en charge la balise video.
+    </video>
+    <button class="btn" (click)="onClickHideVideo()"></button>
+</div>
