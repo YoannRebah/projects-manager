@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, timer } from 'rxjs';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { GameService } from '../../../shared/services/game.service';
 
 @Component({
@@ -139,7 +140,7 @@ export class GameComponent implements OnInit, OnDestroy {
   // SCORE
 
   get storedPlayerHighScore(): number {
-    if (this.isLocalStorageAvailable()) {
+    if (UtilitiesService.isLocalStorageAvailable()) {
       if(localStorage.getItem(this.storageKeyHighScore)) {
         return parseInt(localStorage.getItem(this.storageKeyHighScore)!, 10);
       } else {
@@ -181,7 +182,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   storePlayerHighScore(): void {
-    if (this.isLocalStorageAvailable()) {
+    if (UtilitiesService.isLocalStorageAvailable()) {
       if(this.score > this.storedPlayerHighScore) {
         localStorage.setItem(this.storageKeyHighScore, JSON.stringify(this.score));
       }
@@ -341,7 +342,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     meteors.forEach((meteor: Element) => {
       const meteorRect = (meteor as HTMLElement).getBoundingClientRect();
-      if (this.isColliding(collisionBox, meteorRect)) {
+      if (UtilitiesService.isColliding(collisionBox, meteorRect)) {
         const damage = meteor.getAttribute('data-damage');
         this.handleCollision(damage);
         this.renderer.removeChild(this.gameContainer.nativeElement, meteor);
@@ -377,19 +378,19 @@ export class GameComponent implements OnInit, OnDestroy {
 
   // utilities
   
-  isColliding(rect1: DOMRect, rect2: DOMRect): boolean {
-    return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
-  }
+  // isColliding(rect1: DOMRect, rect2: DOMRect): boolean {
+  //   return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
+  // }
 
-  isLocalStorageAvailable(): boolean {
-    try {
-      const test = 'test';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  // isLocalStorageAvailable(): boolean {
+  //   try {
+  //     const test = 'test';
+  //     localStorage.setItem(test, test);
+  //     localStorage.removeItem(test);
+  //     return true;
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // }
 
 }
