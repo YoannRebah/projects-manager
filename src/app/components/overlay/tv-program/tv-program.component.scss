@@ -23,7 +23,7 @@
         height: 100%;
     }
 
-    .containter-message-signal-on {
+    .message-signal-on {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 50%;
@@ -32,16 +32,11 @@
         color: $white;
         padding: 1rem 1.5rem;
         pointer-events: none;
+        display: block;
         animation: signal-on-animation 5s linear forwards;
         @keyframes signal-on-animation {
-            0% {
-                opacity: 1;
-            }
-            99% {
-                opacity: 1;
-            }
             100% {
-                opacity: 0;
+                display: none;
             }
         }
 
