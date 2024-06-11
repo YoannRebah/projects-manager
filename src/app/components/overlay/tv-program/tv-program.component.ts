@@ -15,8 +15,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   private timeCounterSubscription!: Subscription;
   timeFromTimerCounterService: number = 0;
-  videoDurationTime: number = 227;
-  maxTimeBeforeShowTvProgram: number = 600;
+  videoDurationTime: number = 227; //227
+  maxTimeBeforeShowTvProgram: number = 5; //600
   maxTimeBeforeHideTvProgram: number = this.maxTimeBeforeShowTvProgram + this.videoDurationTime;
 
   constructor(
