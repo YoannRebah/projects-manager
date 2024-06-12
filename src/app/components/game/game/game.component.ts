@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { interval, Subscription, timer } from 'rxjs';
+import { interval, Subscription, timer, Observable } from 'rxjs';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { GameService } from '../../../shared/services/game.service';
 
@@ -13,16 +13,16 @@ import { GameService } from '../../../shared/services/game.service';
 })
 
 export class GameComponent implements OnInit, OnDestroy {
+  private gameSubscription!: Subscription;
+  private gameIsVisibleSubscription!: Subscription;
+  private scoreSubscription!: Subscription;
+  private meteorSubscription!: Subscription;
+  private meteorIntervalSpeedSubscription!: Subscription;
+  private collisionCheckSubscription!: Subscription;
 
   // service
   isRunning: boolean = false;
   isVisible: boolean = false;
-  private gameIsVisibleSubscription!: Subscription;
-  private gameSubscription!: Subscription;
-  private scoreSubscription!: Subscription;
-  private meteorSubscription!: Subscription;
-  private meteorIntervalAdjustSubscription!: Subscription;
-  private collisionCheckSubscription!: Subscription;
 
   // game
   isInGameContainer: boolean = false;
@@ -64,37 +64,13 @@ export class GameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updatePlayerHighScore();
-    this.gameSubscription = this.gameService.isRunning$.subscribe(isRunning => {
-      this.isRunning = isRunning;
-      if (isRunning) {
-        this.initScore();
-        this.initMeteor();
-        this.initMeteorIntervalAdjustment();
-        this.startCollisionCheck();
-      } else {
-        this.cancelScore();
-        this.cancelMeteor();
-        this.stopMeteorIntervalAdjustment();
-        this.stopCollisionCheck();
-      }
-    });
-    this.gameIsVisibleSubscription = this.gameService.isVisible$.subscribe(isVisible => {
-      this.isVisible = isVisible;
-      if (isVisible) {
-        this.gameCanBeStarted = true;
-      } else {
-        this.gameCanBeStarted = false;
-      }
-    });
+    this.subscribeGame();
+    this.subscribeGameIsVisible();
   }
 
   ngOnDestroy() {
-    if (this.gameSubscription) {
-      this.gameSubscription.unsubscribe();
-    }
-    if (this.gameIsVisibleSubscription) {
-      this.gameIsVisibleSubscription.unsubscribe();
-    }
+    this.unsubscribeGame();
+    this.unsubscribeGameIsVisible();
     this.cancelScore();
     this.cancelMeteor();
     this.stopMeteorIntervalAdjustment();
@@ -126,7 +102,132 @@ export class GameComponent implements OnInit, OnDestroy {
     this.hide();
   }
 
-  // GAME SERVICE
+  // sub & unsub ===================================
+
+  // game
+  subscribeGame(): void {
+    this.gameSubscription = this.gameService.isRunning$.subscribe({
+      next: (isRunning) => {
+        this.isRunning = isRunning;
+        if (isRunning) {
+          this.initScore();
+          this.initMeteor();
+          this.initMeteorIntervalAdjustment();
+          this.startCollisionCheck();
+        } else {
+          this.cancelScore();
+          this.cancelMeteor();
+          this.stopMeteorIntervalAdjustment();
+          this.stopCollisionCheck();
+        }
+      },
+      error: (e) => console.error('error gameSubscription', e)
+    });
+  }
+
+  unsubscribeGame(): void {
+    if (this.gameSubscription) {
+      this.gameSubscription.unsubscribe();
+    }
+  }
+
+  // game is visible
+  subscribeGameIsVisible(): void {
+    this.gameIsVisibleSubscription = this.gameService.isVisible$.subscribe({
+      next: (isVisible) => {
+        this.isVisible = isVisible;
+        if (isVisible) {
+          this.gameCanBeStarted = true;
+        } else {
+          this.gameCanBeStarted = false;
+        }
+      },
+      error: (e) => console.error('error gameIsVisibleSubscription', e)
+    });
+  }
+
+  unsubscribeGameIsVisible(): void {
+    if (this.gameIsVisibleSubscription) {
+      this.gameIsVisibleSubscription.unsubscribe();
+    }
+  }
+
+  // score
+  subscribeScore(timer$: Observable<number>): void {
+    this.scoreSubscription = timer$.subscribe({
+      next: () => {
+        this.ngZone.run(() => {
+          this.updatePlayerScore();
+          this.cdr.detectChanges();
+        });
+      },
+      error: (e) => console.error('error subscribeScore', e)
+    });
+  }
+
+  unsubscribeScore(): void {
+    if (this.scoreSubscription) {
+      this.scoreSubscription.unsubscribe();
+    }
+  }
+
+  // meteor
+  subscribeMeteor(): void {
+    this.meteorSubscription = timer(0, this.meteorIntervalSpeedGeneration).subscribe({
+      next: () => {
+        this.ngZone.run(() => {
+          this.createMeteor();
+          this.cdr.detectChanges();
+        });
+      }
+    });
+  }
+
+  unsubscribeMeteor(): void {
+    if (this.meteorSubscription) {
+      this.meteorSubscription.unsubscribe();
+    }
+  }
+
+  // meteor speed
+  subscribeMeteorSpeed(adjustInterval$: Observable<number>): void {
+    this.meteorIntervalSpeedSubscription = adjustInterval$.subscribe({
+      next: () => {
+        this.ngZone.run(() => {
+          this.increaseSpeedMeteorInterval();
+          this.cdr.detectChanges();
+        });
+      },
+      error: (e) => console.error('error subscribeMeteorSpeed', e)
+    });
+  }
+
+  unsubscribeMeteorSpeed(): void {
+    if (this.meteorIntervalSpeedSubscription) {
+      this.meteorIntervalSpeedSubscription.unsubscribe();
+    }
+  }
+
+  // collision check
+  subscribeCollisionCheck(checkInterval$: Observable<number>): void {
+    this.collisionCheckSubscription = checkInterval$.subscribe({
+      next: () => {
+        this.ngZone.run(() => {
+          this.checkCollisions();
+          this.cdr.detectChanges();
+        });
+      },
+      error: (e) => console.error('error subscribeCollisionCheck', e)
+    });
+  }
+
+  unsubscribeCollisionCheck(): void {
+    if (this.collisionCheckSubscription) {
+      this.collisionCheckSubscription.unsubscribe();
+    }
+  }
+
+  // END sub & unsub ================================
 
   show(): void {
     this.gameService.show();
@@ -176,24 +277,15 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   initScore(): void {
-    if (this.scoreSubscription) {
-      this.scoreSubscription.unsubscribe();
-    }
+    this.unsubscribeScore();
     this.ngZone.runOutsideAngular(() => {
       const timer$ = interval(1000);
-      this.scoreSubscription = timer$.subscribe(() => {
-        this.ngZone.run(() => {
-          this.updatePlayerScore();
-          this.cdr.detectChanges();
-        });
-      });
+      this.subscribeScore(timer$);
     });
   }
 
   cancelScore(): void {
-    if (this.scoreSubscription) {
-      this.scoreSubscription.unsubscribe();
-    }
+    this.unsubscribeScore();
   }
 
   updatePlayerScore(): void {
@@ -229,27 +321,18 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   initMeteor(): void {
-    if (this.meteorSubscription) {
-      this.meteorSubscription.unsubscribe();
-    }
+    this.unsubscribeMeteor();
     this.ngZone.runOutsideAngular(() => {
-      this.meteorSubscription = timer(0, this.meteorIntervalSpeedGeneration).subscribe(() => {
-        this.ngZone.run(() => {
-          this.createMeteor();
-          this.cdr.detectChanges();
-        });
-      });
+      this.subscribeMeteor();
     });
   }
 
   cancelMeteor(): void {
-    if (this.meteorSubscription) {
-      this.meteorSubscription.unsubscribe();
-    }
+    this.unsubscribeMeteor();
   }
 
   createMeteor(): void {
-    const meteorTimestamp = this.defineMeteorTimestamp();
+    const meteorTimestamp = UtilitiesService.timestampNow;
     const gameContainer = this.gameContainer.nativeElement;
     const meteor = this.renderer.createElement('img');
     this.renderer.setAttribute(meteor, 'src', 'assets/images/meteor.png');
@@ -270,12 +353,6 @@ export class GameComponent implements OnInit, OnDestroy {
     if(width > 40 && width < 60) damage = "20";
     if(width > 60) damage = "30";
     return damage;
-  }
-
-  defineMeteorTimestamp(): number {
-    const now: Date = new Date();
-    const timestamp: number = now.getTime(); 
-    return timestamp;
   }
 
   meteorMustBeRemoved(timestamp: number): boolean {
@@ -311,24 +388,15 @@ export class GameComponent implements OnInit, OnDestroy {
 
   initMeteorIntervalAdjustment(): void {
     this.meteorIntervalSpeedGeneration = 1000;
-    if (this.meteorIntervalAdjustSubscription) {
-      this.meteorIntervalAdjustSubscription.unsubscribe();
-    }
+    this.unsubscribeMeteorSpeed();
     this.ngZone.runOutsideAngular(() => {
       const adjustInterval$ = interval(3000);
-      this.meteorIntervalAdjustSubscription = adjustInterval$.subscribe(() => {
-        this.ngZone.run(() => {
-          this.increaseSpeedMeteorInterval();
-          this.cdr.detectChanges();
-        });
-      });
+      this.subscribeMeteorSpeed(adjustInterval$);
     });
   }
 
   stopMeteorIntervalAdjustment(): void {
-    if (this.meteorIntervalAdjustSubscription) {
-      this.meteorIntervalAdjustSubscription.unsubscribe();
-    }
+    this.unsubscribeMeteorSpeed();
   }
 
   increaseSpeedMeteorInterval(): void {
@@ -342,24 +410,15 @@ export class GameComponent implements OnInit, OnDestroy {
   // COLLISION CHECK
 
   startCollisionCheck(): void {
-    if (this.collisionCheckSubscription) {
-      this.collisionCheckSubscription.unsubscribe();
-    }
+    this.unsubscribeCollisionCheck();
     this.ngZone.runOutsideAngular(() => {
       const checkInterval$ = interval(100);
-      this.collisionCheckSubscription = checkInterval$.subscribe(() => {
-        this.ngZone.run(() => {
-          this.checkCollisions();
-          this.cdr.detectChanges();
-        });
-      });
+      this.subscribeCollisionCheck(checkInterval$);
     });
   }
 
   stopCollisionCheck(): void {
-    if (this.collisionCheckSubscription) {
-      this.collisionCheckSubscription.unsubscribe();
-    }
+    this.unsubscribeCollisionCheck();
   }
 
   checkCollisions(): void {

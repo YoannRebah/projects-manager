@@ -8,6 +8,12 @@ export class UtilitiesService {
 
   constructor() { }
 
+  public static get timestampNow(): number {
+    const now: Date = new Date();
+    const timestamp: number = now.getTime(); 
+    return timestamp;
+  }
+
   public static get commonTimeoutDelay(): number {
     return 5000;
   }
