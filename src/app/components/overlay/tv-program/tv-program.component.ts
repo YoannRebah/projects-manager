@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/tv-program.service';
 import { TimeCounterService } from '../../../shared/services/time-counter.service';
 import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
+import { LoaderService } from '../../../shared/services/loader.service';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -18,15 +20,16 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   private timeCounterSubscription!: Subscription;
   isVisible: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 227;
-  delayBeforeShow: number = 600;
+  videoDurationTime: number = 10;
+  delayBeforeShow: number = 10;
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
   isShown: boolean = false;
 
   constructor(
     private tvProgramService: TvProgramService,
     private timeCounterService: TimeCounterService,
-    private vhsEffectService: VhsEffectService
+    private vhsEffectService: VhsEffectService,
+    private loaderService: LoaderService
   ) {}
 
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
@@ -99,7 +102,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   hide(): void {
     this.tvProgramService.hide();
     this.stopVideo();
-    this.showVhsEffectFooter();
+    this.showLoader();
     this.unsubscribeTimeCounterService();
   }
 
@@ -122,6 +125,14 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   hideVhsEffectFooter(): void {
     this.vhsEffectService.hideFooter();
+  }
+
+  showLoader(): void {
+    this.loaderService.show();
+    UtilitiesService.commonTimeout(()=>{
+      this.loaderService.hide();
+      this.showVhsEffectFooter();
+    });
   }
 
 }
