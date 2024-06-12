@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/tv-program.service';
 import { TimeCounterService } from '../../../shared/services/time-counter.service';
 import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
-import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -22,7 +21,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   videoDurationTime: number = 10;
   delayBeforeShow: number = 10;
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
-  mustBeHide: boolean = false;
+  isShown: boolean = false;
 
   constructor(
     private tvProgramService: TvProgramService,
@@ -45,7 +44,6 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   onClickHideVideo(): void {
     this.hide();
-    this.mustBeHide = true;
   }
 
   // tv program is visible
@@ -69,17 +67,14 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.timeCounterSubscription = this.timeCounterService.time$.subscribe({
       next: (time) => {
         this.timeTimeCounter = time;
-        if(!this.mustBeHide) {
-          if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter < this.timeBeforeHide) {
+        if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter <= this.timeBeforeHide) {
+          if (!this.isShown) {
             this.show();
           }
-          if (this.timeTimeCounter >= this.timeBeforeHide) {
-            this.mustBeHide = true;
-          }
         }
-        if (this.mustBeHide) {
+        if (this.timeTimeCounter > this.timeBeforeHide) {
           this.hide();
-        } 
+        }
       },
       error: (e) => console.error('error subscribeTimeCounterService', e)
     });
@@ -93,16 +88,19 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   show(): void {
     this.tvProgramService.show();
-    this.playVideo();
-    this.hideVhsEffectFooter();
-    console.log('show()')
+    let timeout = setTimeout(()=>{
+      this.playVideo();
+      this.hideVhsEffectFooter();
+      this.isShown = true;
+      clearTimeout(timeout);
+    }, 500);
   }
 
   hide(): void {
     this.tvProgramService.hide();
     this.stopVideo();
     this.showVhsEffectFooter();
-    console.log('hide()')
+    this.unsubscribeTimeCounterService();
   }
 
   playVideo(): void {
