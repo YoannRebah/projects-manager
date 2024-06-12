@@ -18,10 +18,10 @@ export class LoaderComponent implements OnInit {
   constructor(private loaderService: LoaderService) {}
 
   ngOnInit(): void {
-    this.loaderSubscription = this.loaderService.isLoading$.subscribe((isLoading) => {
-        this.isLoading = isLoading;
-      }
-    );
+    this.loaderSubscription = this.loaderService.isLoading$.subscribe({
+      next: (isLoading) => this.isLoading = isLoading,
+      error: (error) => console.error('erreur lors de la souscription à loaderSubscription', error)
+    });
   }
 
   ngOnDestroy(): void {
