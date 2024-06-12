@@ -26,9 +26,13 @@
         color: $white;
         font-weight: 900;
         text-transform: uppercase;
-        font-size: 2.5rem;
+        font-size: 1.7rem;
         text-shadow: 3px 1px 1px $cyan, 2px 2px 1px $cyan2, 4px 2px 1px $cyan, 3px 3px 1px $cyan2, 5px 3px 1px $cyan, 4px 4px 1px $cyan2, 6px 4px 1px $cyan, 5px 5px 1px $cyan2, 7px 5px 1px $cyan, 6px 6px 1px $cyan2, 8px 6px 1px $cyan, 7px 7px 1px $cyan2, 9px 7px 1px $cyan;
       
+        @include screen('s') {
+            font-size: 2.5rem;
+        }
+
         span {
             position: relative;
             display: block;
