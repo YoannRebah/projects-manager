@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 // services
+import { UtilitiesService } from './shared/services/utilities.service';
 import { LoaderService } from './shared/services/loader.service';
 // shared
 import { LoaderComponent } from './components/shared/loader/loader.component';
@@ -75,32 +76,19 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
 
 export class AppComponent implements OnInit {
   title: string = 'portfolio';
-  isFirstLoad: boolean = true;
   constructor(
     private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
-    this.showLoaderFirstLoad();
+    this.showLoaderOnFirstLoad();
   }
 
-  showLoader(): void {
+  showLoaderOnFirstLoad(): void {
     this.loaderService.show();
-  }
-
-  hideLoader(): void {
-    this.loaderService.hide();
-  }
-
-  showLoaderFirstLoad(): void {
-    if(this.isFirstLoad) {
-      this.showLoader();
-      let timeout = setTimeout(() => {
-        this.hideLoader();
-        this.isFirstLoad = false;
-        clearTimeout(timeout);
-      }, 5000);
-    }
+    UtilitiesService.commonTimeout(()=>{
+      this.loaderService.hide();
+    });
   }
 
 }

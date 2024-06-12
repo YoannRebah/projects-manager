@@ -13,13 +13,19 @@
     align-items: center;
     justify-content: center;
     background-color: $body-bg;
+    background-image: url(../../../../../public/assets/images/signal-tv-off.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 
     .container-loader {
         position: relative;
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 350px;
+        background: $blue;
+        padding: 1rem 1.5rem;
 
         p {
             opacity: 0.65;
