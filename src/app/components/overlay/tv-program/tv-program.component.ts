@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/tv-program.service';
 import { TimeCounterService } from '../../../shared/services/time-counter.service';
 import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -12,6 +13,7 @@ import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
   templateUrl: './tv-program.component.html',
   styleUrls: ['./tv-program.component.scss']
 })
+
 export class TvProgramComponent implements OnInit, OnDestroy {
   private tvProgramIsVisibleSubscription!: Subscription;
   private timeCounterSubscription!: Subscription;
@@ -21,6 +23,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   videoDurationTime: number = 10;
   delayBeforeShow: number = 10;
   timeToHide: number = this.delayBeforeShow + this.videoDurationTime;
+  isSignalOn: boolean = false;
 
   constructor(
     private tvProgramService: TvProgramService,
@@ -96,6 +99,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   show(): void {
     this.tvProgramService.show();
+    this.autoToggleSignalOn();
   }
 
   hide(): void {
@@ -121,6 +125,14 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   hideVhsEffectFooter(): void {
     this.vhsEffectService.hideFooter();
+  }
+
+  autoToggleSignalOn(): void {
+    this.isSignalOn = true;
+    let timeout = setTimeout(()=>{
+      this.isSignalOn = false;
+      clearTimeout(timeout)
+    }, UtilitiesService.commonTimeoutDelay)
   }
 
 }

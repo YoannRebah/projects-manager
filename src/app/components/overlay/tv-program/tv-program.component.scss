@@ -32,13 +32,6 @@
         color: $white;
         padding: 1rem 1.5rem;
         pointer-events: none;
-        display: block;
-        animation: signal-on-animation 5s linear forwards;
-        @keyframes signal-on-animation {
-            100% {
-                display: none;
-            }
-        }
 
         p {
             font-size: 1.2rem;
