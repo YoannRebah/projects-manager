@@ -12,27 +12,27 @@ import { Subscription } from 'rxjs';
 })
 
 export class LoaderComponent implements OnInit {
-  isLoading: boolean = false;
   private loaderSubscription!: Subscription;
+  isLoading: boolean = false;
 
   constructor(private loaderService: LoaderService) {}
 
   ngOnInit(): void {
-    this.subscribeToLoader();
+    this.subscribeLoader();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToLoader();
+    this.unsubscribeLoader();
   }
 
-  subscribeToLoader(): void {
+  subscribeLoader(): void {
     this.loaderSubscription = this.loaderService.isLoading$.subscribe({
-      next: (isLoading) => this.isLoading = isLoading,
-      error: (error) => console.error('erreur lors de la souscription à loaderSubscription', error)
+      next: (isLoading: boolean) => this.isLoading = isLoading,
+      error: (e) => console.error('erreur loaderSubscription', e)
     });
   }
 
-  unsubscribeToLoader(): void {
+  unsubscribeLoader(): void {
     if (this.loaderSubscription) {
       this.loaderSubscription.unsubscribe();
     }

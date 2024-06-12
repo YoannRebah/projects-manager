@@ -13,13 +13,14 @@ import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
   styleUrls: ['./tv-program.component.scss']
 })
 export class TvProgramComponent implements OnInit, OnDestroy {
-  isVisible: boolean = false;
-  private timeCounterSubscription!: Subscription;
   private tvProgramIsVisibleSubscription!: Subscription;
+  private timeCounterSubscription!: Subscription;
+  isVisible: boolean = false;
+  forcingHide: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 227;
-  delayBeforeShow: number = 600;
-  delayBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
+  videoDurationTime: number = 10;
+  delayBeforeShow: number = 10;
+  timeToHide: number = this.delayBeforeShow + this.videoDurationTime;
 
   constructor(
     private tvProgramService: TvProgramService,
@@ -30,32 +31,66 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
 
   ngOnInit(): void {
-    this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
-      this.timeTimeCounter = time;
-      if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter < this.delayBeforeHide) {
-        this.show();
-      } else {
-        this.hide();
-      }
-    });
-    this.tvProgramIsVisibleSubscription = this.tvProgramService.isVisible$.subscribe(isVisible => {
-      this.isVisible = isVisible;
-      if (isVisible) {
-        this.playVideo();
-        this.hideVhsEffectFooter();
-      } else {
-        this.stopVideo();
-        this.showVhsEffectFooter();
-      }
-    });
+    this.subscribeTvProgramIsVisible();
+    this.subscribeTimeCounterService();
   }
 
   ngOnDestroy(): void {
-    if (this.timeCounterSubscription) {
-      this.timeCounterSubscription.unsubscribe();
-    }
+    this.unsubscribeTvProgramIsVisible();
+    this.unsubscribeTimeCounterService();
+  }
+
+  onClickHideVideo(): void {
+    this.forcingHide = true;
+    this.hide();
+  }
+
+  // tv program is visible
+  subscribeTvProgramIsVisible(): void {
+    this.tvProgramIsVisibleSubscription = this.tvProgramService.isVisible$.subscribe({
+      next: (isVisible) => {
+        this.isVisible = isVisible;
+        if (isVisible) {
+          this.playVideo();
+          this.hideVhsEffectFooter();
+        } else {
+          this.stopVideo();
+          this.showVhsEffectFooter();
+        }
+      },
+      error: (e) => console.error('error subscribeTvProgramIsVisible', e)
+    });
+  }
+
+  unsubscribeTvProgramIsVisible(): void {
     if (this.tvProgramIsVisibleSubscription) {
       this.tvProgramIsVisibleSubscription.unsubscribe();
+    }
+  }
+
+  // time counter service
+  subscribeTimeCounterService(): void {
+    this.timeCounterSubscription = this.timeCounterService.time$.subscribe({
+      next: (time) => {
+        this.timeTimeCounter = time;
+        if(this.forcingHide) {
+          this.hide();
+        } else {
+          if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter <= this.timeToHide) {
+            this.show();
+          } 
+          if (this.timeTimeCounter == this.timeToHide) {
+            this.hide();
+          } 
+        }
+      },
+      error: (e) => console.error('error subscribeTimeCounterService', e)
+    });
+  }
+
+  unsubscribeTimeCounterService(): void {
+    if (this.timeCounterSubscription) {
+      this.timeCounterSubscription.unsubscribe();
     }
   }
 
@@ -78,10 +113,6 @@ export class TvProgramComponent implements OnInit, OnDestroy {
       this.tvProgramVideo.nativeElement.pause();
       this.tvProgramVideo.nativeElement.currentTime = 0;
     }
-  }
-
-  onClickHideVideo(): void {
-    this.hide();
   }
 
   showVhsEffectFooter(): void {

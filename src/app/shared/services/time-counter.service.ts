@@ -9,9 +9,10 @@ export class TimeCounterService {
   private runningSubject = new BehaviorSubject<boolean>(false);
   isRunning$ = this.runningSubject.asObservable();
 
-  private timeSubject = new BehaviorSubject<number>(0);
-  time$ = this.timeSubject.asObservable();
+  private timeFollowingSubject = new BehaviorSubject<number>(0);
+  time$ = this.timeFollowingSubject.asObservable();
 
+  // running
   start() {
     this.runningSubject.next(true);
   }
@@ -20,14 +21,15 @@ export class TimeCounterService {
     this.runningSubject.next(false);
   }
 
+  // time following
   reset() {
     this.pause();
-    this.timeSubject.next(0);
+    this.timeFollowingSubject.next(0);
     this.start();
   }
 
   setTime(time: number) {
-    this.timeSubject.next(time);
+    this.timeFollowingSubject.next(time);
   }
   
 }

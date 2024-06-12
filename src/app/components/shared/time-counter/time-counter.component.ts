@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subscription, Observable } from 'rxjs';
 import { TimeCounterService } from '../../../shared/services/time-counter.service';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-time-counter',
@@ -12,11 +13,11 @@ import { TimeCounterService } from '../../../shared/services/time-counter.servic
 })
 
 export class TimeCounterComponent implements OnInit, OnDestroy {
+  private timeCounterSubscription!: Subscription;
+  private runningSubscription!: Subscription;
+  private timeFollowingSubscription!: Subscription;
   time: number = 0;
   timeString: string = '00:00:00';
-  private subscription!: Subscription;
-  private timerSubscription!: Subscription;
-  timeoutDelay: number = 5000;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -25,52 +26,84 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.timeCounterService.isRunning$.subscribe(
-      (isRunning: boolean) => {
-        if (isRunning) {
-          this.startTimer();
-        } else {
-          this.pauseTimer();
-        }
-      }
-    );
+    this.subscribeTimeCounterService();
+    this.subscribeTimerRunning();
+    
     let timeout = setTimeout(() => {
       this.timeCounterService.start();
       clearTimeout(timeout);
-    }, this.timeoutDelay);
-    this.timeCounterService.time$.subscribe(time => {
+    }, UtilitiesService.commonTimeoutDelay);
+
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeTimeFollowing();
+    this.unsubscribeTimerRunning();
+  }
+
+  // time counter service
+  subscribeTimeCounterService(): void {
+    this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
       this.time = time;
       this.updateTimeString();
     });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
+  unsubscribeTimeCounterService(): void {
+    if(this.timeCounterSubscription) {
+      this.timeCounterSubscription.unsubscribe();
+    }
+  }
+
+  // time running
+  subscribeTimerRunning(): void {
+    this.runningSubscription = this.timeCounterService.isRunning$.subscribe({
+      next: (isRunning: boolean) => {
+        if (isRunning) {
+          this.startTimer();
+        } else {
+          this.pauseTimer();
+        }
+      },
+      error: (e) => console.error('erreur subscribeToTimerRunning', e)
+    }
+    );
+  }
+
+  unsubscribeTimerRunning(): void {
+    if(this.runningSubscription) {
+      this.runningSubscription.unsubscribe();
+    }
+  }
+
+  // time following
+  subscribeTimeFollowing(timer$: Observable<number>): void {
+    this.timeFollowingSubscription = timer$.subscribe({
+      next: () => {
+        this.ngZone.run(() => {
+          this.updateTime();
+          this.cdr.detectChanges();
+        });
+      },
+      error: (e) => console.error('error subscribeToTimeFollowing', e)
+    });
+  }
+
+  unsubscribeTimeFollowing(): void {
+    if (this.timeFollowingSubscription) {
+      this.timeFollowingSubscription.unsubscribe();
     }
   }
 
   startTimer(): void {
     this.ngZone.runOutsideAngular(() => {
       const timer$ = interval(1000);
-      this.timerSubscription = timer$.subscribe(() => {
-        this.ngZone.run(() => {
-          this.updateTime();
-          this.cdr.detectChanges();
-        });
-      });
+      this.subscribeTimeFollowing(timer$);
     });
   }
 
   pauseTimer(): void {
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
-    }
-  }
-
-  formatTime(number: number): string {
-    return String(number).padStart(2, '0');
+    this.unsubscribeTimeFollowing();
   }
 
   updateTime(): void {
@@ -82,7 +115,6 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
     const hours = Math.floor(this.time / 3600);
     const minutes = Math.floor((this.time % 3600) / 60);
     const seconds = this.time % 60;
-
-    this.timeString = `${this.formatTime(hours)}:${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
+    this.timeString = `${UtilitiesService.formatTime(hours)}:${UtilitiesService.formatTime(minutes)}:${UtilitiesService.formatTime(seconds)}`;
   }
 }

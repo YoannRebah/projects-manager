@@ -8,6 +8,10 @@ export class UtilitiesService {
 
   constructor() { }
 
+  public static get commonTimeoutDelay(): number {
+    return 5000;
+  }
+
   public static get portfolioPrefixStorageKey(): string {
     return 'lsPortfolioYR_';
   }
@@ -25,6 +29,10 @@ export class UtilitiesService {
     } catch (e) {
       return false;
     }
+  }
+
+  public static formatTime(number: number): string {
+    return String(number).padStart(2, '0');
   }
 
 }
