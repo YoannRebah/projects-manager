@@ -181,3 +181,12 @@ Cas d'usage : Utilisé pour réagir aux modifications de la vue après chaque v�
 ngOnDestroy
 Quand il est appelé : Juste avant que le composant soit détruit.
 Cas d'usage : Utilisé pour effectuer des tâches de nettoyage, comme la désinscription d'observables ou la libération de ressources.
+
+==============================
+
+Signal
+
+Les primitives =>
+signal : valeur en lecture et écriture
+computed : lecture seule, valeur calculée sur base d'autres signaux
+effect : fonction arbitraire évaluée lors de changements des signaux utilisés

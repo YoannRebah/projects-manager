@@ -8,6 +8,13 @@ export class UtilitiesService {
 
   constructor() { }
 
+  public static commonTimeout(action: () => void, milliseconds: number = UtilitiesService.commonTimeoutDelay): Promise<void> {
+    return new Promise<void>(resolve => setTimeout(() => {
+      action();
+      resolve();
+    }, milliseconds));
+  }
+
   public static get timestampNow(): number {
     const now: Date = new Date();
     const timestamp: number = now.getTime(); 

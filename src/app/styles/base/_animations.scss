@@ -15,6 +15,15 @@
     }
 }
 
+.hide-5s-animation {
+    animation: hide-5s-animation 5s linear forwards;
+    @keyframes hide-5s-animation {
+        to {
+            display: none;
+        }
+    }
+}
+
 .chromatic-aberration-animation {
     position: absolute;
     left: 0;

@@ -25,27 +25,28 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
     private timeCounterService: TimeCounterService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.subscribeTimeCounterService();
     this.subscribeTimerRunning();
-    
-    let timeout = setTimeout(() => {
+    await UtilitiesService.commonTimeout(()=>{
       this.timeCounterService.start();
-      clearTimeout(timeout);
-    }, UtilitiesService.commonTimeoutDelay);
-
+    });
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeTimeFollowing();
+    this.unsubscribeTimeCounterService();
     this.unsubscribeTimerRunning();
+    this.unsubscribeTimeFollowing();
   }
 
   // time counter service
   subscribeTimeCounterService(): void {
-    this.timeCounterSubscription = this.timeCounterService.time$.subscribe(time => {
-      this.time = time;
-      this.updateTimeString();
+    this.timeCounterSubscription = this.timeCounterService.time$.subscribe({
+      next: (time: number) => {
+        this.time = time;
+        this.updateTimeString();
+      },
+      error: (e) => console.error('error subscribeTimeCounterService', e)
     });
   }
 
@@ -101,6 +102,13 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
       this.subscribeTimeFollowing(timer$);
     });
   }
+
+  // startTimerAfterCommonTimeoutDelay(): void {
+  //   let timeout = setTimeout(() => {
+  //     this.timeCounterService.start();
+  //     clearTimeout(timeout);
+  //   }, UtilitiesService.commonTimeoutDelay);
+  // }
 
   pauseTimer(): void {
     this.unsubscribeTimeFollowing();
