@@ -18,12 +18,11 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   private tvProgramIsVisibleSubscription!: Subscription;
   private timeCounterSubscription!: Subscription;
   isVisible: boolean = false;
-  forcingHide: boolean = false;
   timeTimeCounter: number = 0;
   videoDurationTime: number = 10;
   delayBeforeShow: number = 10;
-  timeToHide: number = this.delayBeforeShow + this.videoDurationTime;
-  isSignalOn: boolean = false;
+  timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
+  mustBeHide: boolean = false;
 
   constructor(
     private tvProgramService: TvProgramService,
@@ -34,6 +33,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
 
   ngOnInit(): void {
+    this.showVhsEffectFooter();
     this.subscribeTvProgramIsVisible();
     this.subscribeTimeCounterService();
   }
@@ -44,8 +44,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   }
 
   onClickHideVideo(): void {
-    this.forcingHide = true;
     this.hide();
+    this.mustBeHide = true;
   }
 
   // tv program is visible
@@ -53,13 +53,6 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.tvProgramIsVisibleSubscription = this.tvProgramService.isVisible$.subscribe({
       next: (isVisible) => {
         this.isVisible = isVisible;
-        if (isVisible) {
-          this.playVideo();
-          this.hideVhsEffectFooter();
-        } else {
-          this.stopVideo();
-          this.showVhsEffectFooter();
-        }
       },
       error: (e) => console.error('error subscribeTvProgramIsVisible', e)
     });
@@ -76,16 +69,17 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.timeCounterSubscription = this.timeCounterService.time$.subscribe({
       next: (time) => {
         this.timeTimeCounter = time;
-        if(this.forcingHide) {
-          this.hide();
-        } else {
-          if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter <= this.timeToHide) {
+        if(!this.mustBeHide) {
+          if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter < this.timeBeforeHide) {
             this.show();
-          } 
-          if (this.timeTimeCounter == this.timeToHide) {
-            this.hide();
-          } 
+          }
+          if (this.timeTimeCounter >= this.timeBeforeHide) {
+            this.mustBeHide = true;
+          }
         }
+        if (this.mustBeHide) {
+          this.hide();
+        } 
       },
       error: (e) => console.error('error subscribeTimeCounterService', e)
     });
@@ -99,11 +93,16 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   show(): void {
     this.tvProgramService.show();
-    this.autoToggleSignalOn();
+    this.playVideo();
+    this.hideVhsEffectFooter();
+    console.log('show()')
   }
 
   hide(): void {
     this.tvProgramService.hide();
+    this.stopVideo();
+    this.showVhsEffectFooter();
+    console.log('hide()')
   }
 
   playVideo(): void {
@@ -125,14 +124,6 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   hideVhsEffectFooter(): void {
     this.vhsEffectService.hideFooter();
-  }
-
-  autoToggleSignalOn(): void {
-    this.isSignalOn = true;
-    let timeout = setTimeout(()=>{
-      this.isSignalOn = false;
-      clearTimeout(timeout)
-    }, UtilitiesService.commonTimeoutDelay)
   }
 
 }
