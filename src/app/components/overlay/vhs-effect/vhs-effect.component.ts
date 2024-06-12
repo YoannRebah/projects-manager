@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TimeCounterComponent } from '../../shared/time-counter/time-counter.component';
 import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-vhs-effect',
@@ -13,27 +14,33 @@ import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
 })
 
 export class VhsEffectComponent implements OnInit, OnDestroy {
-  isFlashing: boolean = false;
-  timeoutDelay: number = 5000;
-  footerIsVisible: boolean = true;
   private vhsEffectSubscription!: Subscription;
+  isFlashing: boolean = false;
+  footerIsVisible: boolean = true;
 
   constructor(
     private vhsEffectService: VhsEffectService
   ) {}
 
   ngOnInit(): void {
-    this.startFlashAnimation();
-    let timeout = setTimeout(()=>{
-      this.stopFlashAnimation();
-      clearTimeout(timeout);
-    }, this.timeoutDelay);
-    this.vhsEffectSubscription = this.vhsEffectService.footerIsVisible$.subscribe(footerIsVisible => {
-      this.footerIsVisible = footerIsVisible;
-    })
+    this.subscribeVhsEffect();
+    this.autoToggleFlashAnimation();
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeVhsEffect();
+  }
+
+  subscribeVhsEffect(): void {
+    this.vhsEffectSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
+      next: (footerIsVisible) => {
+        this.footerIsVisible = footerIsVisible;
+      },
+      error: (e) => console.error('error subscribeVhsEffect', e)
+    })
+  }
+
+  unsubscribeVhsEffect(): void {
     if(this.vhsEffectSubscription) {
       this.vhsEffectSubscription.unsubscribe();
     }
@@ -45,6 +52,14 @@ export class VhsEffectComponent implements OnInit, OnDestroy {
 
   stopFlashAnimation(): void {
     this.isFlashing = false;
+  }
+
+  autoToggleFlashAnimation(): void {
+    this.startFlashAnimation();
+    let timeout = setTimeout(()=>{
+      this.stopFlashAnimation();
+      clearTimeout(timeout);
+    }, UtilitiesService.commonTimeoutDelay);
   }
 
   showFooter(): void {
