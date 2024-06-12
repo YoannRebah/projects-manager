@@ -11,14 +11,7 @@ export class GameService {
   private visibilitySubject = new BehaviorSubject<boolean>(false);
   isVisible$ = this.visibilitySubject.asObservable();
 
-  show(): void {
-    this.visibilitySubject.next(true);
-  }
-
-  hide(): void {
-    this.visibilitySubject.next(false);
-  }
-
+  // running
   start(): void {
     this.runningSubject.next(true);
   }
@@ -26,4 +19,14 @@ export class GameService {
   stop(): void {
     this.runningSubject.next(false);
   }
+
+  // visible
+  show(): void {
+    this.visibilitySubject.next(true);
+  }
+
+  hide(): void {
+    this.visibilitySubject.next(false);
+  }
+  
 }
