@@ -7,22 +7,22 @@
     flex-direction: column;
 
     fieldset {
-        padding: 2rem 2.5rem;
+        padding: 1.75rem 2.5rem;
+        padding-bottom: 1rem;
         margin-bottom: 1.6rem;
         border-color: $cyan;
         border-width: 1px;
 
         legend {
             padding: .75rem;
-            font-size: 1.4rem;
-            text-transform: uppercase;
+            font-size: 2.3rem;
             font-weight: 400;
         }
     }
 
     .row-form {
         display: flex;
-        margin-bottom: 1.85rem;
+        margin-bottom: 2rem;
         gap: 3rem;
 
         &.flex-column {

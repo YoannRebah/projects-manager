@@ -1,6 +1,6 @@
 <form class="container forms" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
     <fieldset>
-        <legend class="text-shadow-glitch-2">Identité</legend>
+        <legend class="text-shadow-glitch-2 caveat-regular">Identité</legend>
         <div class="container row-form">
             <div class="col-form">
                 <label for="input-lastName">Nom<sup>*</sup></label>
@@ -35,7 +35,7 @@
         </div>
     </fieldset>
     <fieldset>
-        <legend class="text-shadow-glitch-2">Entreprise</legend>
+        <legend class="text-shadow-glitch-2 caveat-regular">Entreprise</legend>
         <div class="container row-form">
             <div class="col-form">
                 <label for="input-compagny-name">Dénomination<sup>*</sup></label>
@@ -64,7 +64,7 @@
         </div>
     </fieldset>
     <fieldset>
-        <legend class="text-shadow-glitch-2">Message</legend>
+        <legend class="text-shadow-glitch-2 caveat-regular">Message</legend>
         <div class="container row-form flex-column">
             <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." formControlName="message"></textarea>
         </div>

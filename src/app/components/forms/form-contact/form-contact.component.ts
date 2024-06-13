@@ -41,7 +41,12 @@ export class FormContactComponent implements OnInit, OnDestroy {
   }
 
   onSubmitContactForm(): void {
-    console.log(this.contactForm);
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    } else {
+      console.log(this.contactForm.value);
+    }
   }
 
 }
