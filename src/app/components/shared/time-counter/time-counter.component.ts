@@ -14,10 +14,12 @@ import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 export class TimeCounterComponent implements OnInit, OnDestroy {
   private timeCounterSubscription!: Subscription;
-  private runningSubscription!: Subscription;
-  private timeFollowingSubscription!: Subscription;
+  private isRunningSubscription!: Subscription;
+  private followingTimeSubscription!: Subscription;
+  private isPausedSubscription!: Subscription;
   time: number = 0;
   timeString: string = '00:00:00';
+  isPaused: boolean = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -25,18 +27,18 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
     private timeCounterService: TimeCounterService
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.subscribeTimeCounterService();
-    this.subscribeTimerRunning();
-    await UtilitiesService.commonTimeout(()=>{
-      this.timeCounterService.start();
-    });
+    this.subscribeTimeCounterIsRunning();
+    this.subscribeToIsPaused();
+    this.showTimeCounterWithDelay();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeTimeCounterService();
-    this.unsubscribeTimerRunning();
-    this.unsubscribeTimeFollowing();
+    this.unsubscribeTimeCounterIsRunning();
+    this.unsubscribeFollowingTime();
+    this.unsubscribeIsPaused();
   }
 
   // time counter service
@@ -51,67 +53,73 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   }
 
   unsubscribeTimeCounterService(): void {
-    if(this.timeCounterSubscription) {
+    if (this.timeCounterSubscription) {
       this.timeCounterSubscription.unsubscribe();
     }
   }
 
   // time running
-  subscribeTimerRunning(): void {
-    this.runningSubscription = this.timeCounterService.isRunning$.subscribe({
+  subscribeTimeCounterIsRunning(): void {
+    this.isRunningSubscription = this.timeCounterService.isRunning$.subscribe({
       next: (isRunning: boolean) => {
         if (isRunning) {
           this.startTimer();
         } else {
-          this.pauseTimer();
+          this.unsubscribeFollowingTime();
         }
       },
-      error: (e) => console.error('erreur subscribeToTimerRunning', e)
-    }
-    );
+      error: (e) => console.error('error subscribeTimeCounterIsRunning', e)
+    });
   }
 
-  unsubscribeTimerRunning(): void {
-    if(this.runningSubscription) {
-      this.runningSubscription.unsubscribe();
+  unsubscribeTimeCounterIsRunning(): void {
+    if (this.isRunningSubscription) {
+      this.isRunningSubscription.unsubscribe();
+    }
+  }
+
+  // is paused
+  subscribeToIsPaused(): void {
+    this.isPausedSubscription = this.timeCounterService.isPaused$.subscribe({
+      next: (isPaused: boolean) => {
+        this.isPaused = isPaused;
+      },
+      error: (e) => console.error('error subscribeToIsPaused', e)
+    });
+  }
+
+  unsubscribeIsPaused(): void {
+    if (this.isPausedSubscription) {
+      this.isPausedSubscription.unsubscribe();
     }
   }
 
   // time following
-  subscribeTimeFollowing(timer$: Observable<number>): void {
-    this.timeFollowingSubscription = timer$.subscribe({
+  subscribeFollowingTime(timer$: Observable<number>): void {
+    this.followingTimeSubscription = timer$.subscribe({
       next: () => {
         this.ngZone.run(() => {
-          this.updateTime();
-          this.cdr.detectChanges();
+          if (!this.isPaused) {
+            this.updateTime();
+            this.cdr.detectChanges();
+          }
         });
       },
-      error: (e) => console.error('error subscribeToTimeFollowing', e)
+      error: (e) => console.error('error subscribeFollowingTime', e)
     });
   }
 
-  unsubscribeTimeFollowing(): void {
-    if (this.timeFollowingSubscription) {
-      this.timeFollowingSubscription.unsubscribe();
+  unsubscribeFollowingTime(): void {
+    if (this.followingTimeSubscription) {
+      this.followingTimeSubscription.unsubscribe();
     }
   }
 
   startTimer(): void {
     this.ngZone.runOutsideAngular(() => {
       const timer$ = interval(1000);
-      this.subscribeTimeFollowing(timer$);
+      this.subscribeFollowingTime(timer$);
     });
-  }
-
-  // startTimerAfterCommonTimeoutDelay(): void {
-  //   let timeout = setTimeout(() => {
-  //     this.timeCounterService.start();
-  //     clearTimeout(timeout);
-  //   }, UtilitiesService.commonTimeoutDelay);
-  // }
-
-  pauseTimer(): void {
-    this.unsubscribeTimeFollowing();
   }
 
   updateTime(): void {
@@ -124,5 +132,15 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
     const minutes = Math.floor((this.time % 3600) / 60);
     const seconds = this.time % 60;
     this.timeString = `${UtilitiesService.formatTime(hours)}:${UtilitiesService.formatTime(minutes)}:${UtilitiesService.formatTime(seconds)}`;
+  }
+
+  showTimeCounterWithDelay(): void {
+    UtilitiesService.commonTimeout(() => {
+      this.timeCounterService.start();
+    });
+  }
+
+  togglePause(): void {
+    this.timeCounterService.togglePause(!this.isPaused);
   }
 }

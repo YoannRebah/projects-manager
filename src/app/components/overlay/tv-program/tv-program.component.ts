@@ -104,6 +104,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.stopVideo();
     this.toggleLoader();
     this.showVhsEffectFooter();
+    this.toggleTimeCounterIsPaused();
     this.unsubscribeTimeCounterService();
   }
 
@@ -130,6 +131,13 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   toggleLoader(): void {
     this.loaderService.toggle();
+  }
+
+  toggleTimeCounterIsPaused(): void {
+    this.timeCounterService.togglePause(true);
+    UtilitiesService.commonTimeout(()=>{
+      this.timeCounterService.togglePause(false);
+    });
   }
 
 }

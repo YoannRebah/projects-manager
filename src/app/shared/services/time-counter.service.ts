@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-
 export class TimeCounterService {
   private runningSubject = new BehaviorSubject<boolean>(false);
   isRunning$ = this.runningSubject.asObservable();
@@ -12,24 +11,30 @@ export class TimeCounterService {
   private timeFollowingSubject = new BehaviorSubject<number>(0);
   time$ = this.timeFollowingSubject.asObservable();
 
+  private isPausedSubject = new BehaviorSubject<boolean>(false);
+  isPaused$ = this.isPausedSubject.asObservable();
+
   // running
   start(): void {
+    this.isPausedSubject.next(false);
     this.runningSubject.next(true);
   }
 
-  pause(): void {
+  stop(): void {
     this.runningSubject.next(false);
   }
 
-  // time following
-  reset(): void {
-    this.pause();
-    this.timeFollowingSubject.next(0);
-    this.start();
+  togglePause(isPaused: boolean): void {
+    this.isPausedSubject.next(isPaused);
+    if (!isPaused) {
+      this.runningSubject.next(true);
+    } else {
+      this.runningSubject.next(false);
+    }
   }
 
+  // time following
   setTime(time: number): void {
     this.timeFollowingSubject.next(time);
   }
-  
 }
