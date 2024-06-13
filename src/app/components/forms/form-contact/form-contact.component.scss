@@ -1,0 +1,56 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.forms {
+    display: flex;
+    flex-direction: column;
+
+    fieldset {
+        padding: 1rem 2rem;
+        margin-bottom: 1.5rem;
+        border-color: $cyan;
+
+        legend {
+            padding: .5rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    .row-form {
+        width: 100%;
+        display: flex;
+        margin-bottom: 1rem;
+        gap: 3rem;
+
+        &.flex-column {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .col-form {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        label {
+            margin-bottom: .33rem;
+        }
+
+        input, textarea {
+            cursor: text;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.65rem;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: none;
+            min-height: 5rem;
+        }
+    }
+}

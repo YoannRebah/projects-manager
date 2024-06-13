@@ -190,3 +190,10 @@ Les primitives =>
 signal : valeur en lecture et écriture
 computed : lecture seule, valeur calculée sur base d'autres signaux
 effect : fonction arbitraire évaluée lors de changements des signaux utilisés
+
+==============================
+
+Tailwind
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p

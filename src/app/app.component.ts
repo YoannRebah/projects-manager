@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 // services
-import { UtilitiesService } from './shared/services/utilities.service';
 import { LoaderService } from './shared/services/loader.service';
 // shared
 import { LoaderComponent } from './components/shared/loader/loader.component';
-// overlay
-import { VhsEffectComponent } from './components/overlay/vhs-effect/vhs-effect.component';
-import { TvProgramComponent } from './components/overlay/tv-program/tv-program.component';
+import { VhsEffectComponent } from './components/shared/vhs-effect/vhs-effect.component';
+import { TvProgramComponent } from './components/shared/tv-program/tv-program.component';
 // layout
 import { MainComponent } from './components/layout/main/main.component';
 import { ContentComponent } from './components/layout/content/content.component';
@@ -33,6 +31,8 @@ import { ListNavComponent } from './components/views/list-nav/list-nav.component
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
 // ads
 import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.component';
+// forms
+import { FormContactComponent } from './components/forms/form-contact/form-contact.component';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +41,6 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
     RouterOutlet,
     // shared
     LoaderComponent,
-    // overlay
     VhsEffectComponent,
     TvProgramComponent,
     // layout
@@ -69,16 +68,16 @@ import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.compo
     ListFooterComponent,
     // ads
     AdsPosterComponent,
+    // forms
+    FormContactComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent implements OnInit {
-  title: string = 'portfolio';
-  constructor(
-    private loaderService: LoaderService
-  ) {}
+
+  constructor(private loaderService: LoaderService) {}
 
   ngOnInit(): void {
     this.loaderService.toggle();

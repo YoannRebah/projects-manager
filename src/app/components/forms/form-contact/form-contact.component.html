@@ -1,0 +1,60 @@
+<form class="container forms" action="" method="">
+    <fieldset>
+        <legend>Identité</legend>
+        <div class="row-form">
+            <div class="col-form">
+                <label for="input-name">Nom<sup>*</sup>:</label>
+                <input id="input-name" name="contact-name" type="text" placeholder="Martin" required>
+            </div>
+            <div class="col-form">
+                <label for="input-email">E-mail<sup>*</sup>:</label>
+                <input id="input-email" name="contact-email" type="mail" placeholder="julie.martin@gmail.com" required>
+            </div>
+        </div>
+        <div class="row-form">
+            <div class="col-form">
+                <label for="input-firstname">Prénom<sup>*</sup>:</label>
+                <input id="input-firstname" name="contact-firstname" type="text" placeholder="Julie" required>
+            </div>
+            <div class="col-form">
+                <label for="input-phone">Téléphone<sup>*</sup>:</label>
+                <input id="input-phone" name="contact-phone" type="tel" placeholder="06 01 02 03 04" required>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Entreprise</legend>
+        <div class="row-form">
+            <div class="col-form">
+                <label for="input-compagny">Dénomination&nbsp;:</label>
+                <input id="input-compagny" name="contact-compagny" type="text" placeholder="Carrefour">
+            </div>
+            <div class="col-form">
+                <label for="input-compagny-post">Rôle dans l'entreprise&nbsp;:</label>
+                <input id="input-compagny-post" name="contact-compagny-post" type="text" placeholder="Chargé(e) de recrutement">
+            </div>
+        </div>
+        <div class="row-form flex-column">
+            <label for="dropdown-location">Localisation&nbsp;:</label>
+            <select id="dropdown-location" name="contact-location">
+                <ng-container *ngFor="let region of locationsFr | keyvalue">
+                  <optgroup [label]="region.key">
+                    <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
+                  </optgroup>
+                </ng-container>
+            </select>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Message</legend>
+        <div class="row-form flex-column">
+            <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..."></textarea>
+        </div>
+    </fieldset>
+    <div class="row-form">
+        <button type="submit">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            <span>Envoyer</span>
+        </button>
+    </div>
+</form>

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { TimeCounterComponent } from '../../shared/time-counter/time-counter.component';
+import { TimeCounterComponent } from '../time-counter/time-counter.component';
 import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
 
 @Component({
