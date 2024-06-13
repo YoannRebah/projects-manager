@@ -7,20 +7,22 @@
     flex-direction: column;
 
     fieldset {
-        padding: 1rem 2rem;
-        margin-bottom: 1.5rem;
+        padding: 2rem 2.5rem;
+        margin-bottom: 1.6rem;
         border-color: $cyan;
+        border-width: 1px;
 
         legend {
-            padding: .5rem;
-            font-size: 1.2rem;
+            padding: .75rem;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            font-weight: 400;
         }
     }
 
     .row-form {
-        width: 100%;
         display: flex;
-        margin-bottom: 1rem;
+        margin-bottom: 1.85rem;
         gap: 3rem;
 
         &.flex-column {
@@ -28,18 +30,49 @@
             gap: 0;
         }
 
+        &.submit {
+            align-items: center;
+            justify-content: center;
+
+            button {
+                margin-top: 1.5rem;
+                padding: 0.6rem 2.2rem;
+                color: $white;
+                font-size: 1.25rem;
+                border: 2px solid $cyan;
+
+                &:hover {
+                    background: $cyan;
+                    color: $black;
+                }
+            }
+        }
+
         .col-form {
+            position: relative;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
 
         label {
+            position: relative;
+            font-weight: 500;
+            font-size: 1.1rem;
             margin-bottom: .33rem;
+
+            sup {
+                position: absolute;
+            }
         }
 
         input, textarea {
+            border: 2px solid $white;
             cursor: text;
+        }
+
+        select {
+            border: 2px solid $white;
         }
 
         input, select, textarea {
@@ -51,6 +84,13 @@
         textarea {
             resize: none;
             min-height: 5rem;
+        }
+
+        .error-message {
+            position: absolute;
+            bottom: -22px;
+            color: $red;
+            font-weight: 600;
         }
     }
 }

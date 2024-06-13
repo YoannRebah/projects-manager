@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationsFrService } from '../../../shared/services/locations-fr.service';
-import { Department, Region } from '../../../shared/models/locations-fr';
+import { Region } from '../../../shared/models/locations-fr';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-form-contact',
@@ -13,16 +14,34 @@ import { Department, Region } from '../../../shared/models/locations-fr';
 })
 
 export class FormContactComponent implements OnInit, OnDestroy {
-  locationsFr: Region = {};
+  locationsFr: Region = LocationsFrService.locationsFr;
+  contactForm!: FormGroup;
 
-  constructor(private locationsService: LocationsFrService) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.locationsFr = LocationsFrService.locationsFr;
+    this.initContactForm();
   }
 
   ngOnDestroy(): void {
       
+  }
+
+  initContactForm(): void {
+    this.contactForm = this.formBuilder.group({
+      "lastName": ['', Validators.required],
+      "firstName": ['', Validators.required],
+      "email": ['', [Validators.required, Validators.email]],
+      "tel": ['', [Validators.required, Validators.pattern(UtilitiesService.regexValidateTelFr)]],
+      "compagnyName": ['', Validators.required],
+      "compagnyPost": [''],
+      "compagnyLocation": [''],
+      "message": ['']
+    });
+  }
+
+  onSubmitContactForm(): void {
+    console.log(this.contactForm);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PatternValidator } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,15 @@ import { Injectable } from '@angular/core';
 export class UtilitiesService {
 
   constructor() { }
+
+  public static get regexValidateTelFr(): RegExp {
+    return /^0[1-9]([-. ]?[0-9]{2}){4}$/
+  }
+
+  public static telFrIsValid(tel: string): boolean {
+    const regex: RegExp = UtilitiesService.regexValidateTelFr;
+    return regex.test(tel);
+  }
 
   public static commonTimeout(action: () => void, milliseconds: number = UtilitiesService.commonTimeoutDelay): Promise<void> {
     return new Promise<void>(resolve => setTimeout(() => {

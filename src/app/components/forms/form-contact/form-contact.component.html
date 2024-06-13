@@ -1,60 +1,75 @@
-<form class="container forms" action="" method="">
+<form class="container forms" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
     <fieldset>
-        <legend>Identité</legend>
-        <div class="row-form">
+        <legend class="text-shadow-glitch-2">Identité</legend>
+        <div class="container row-form">
             <div class="col-form">
-                <label for="input-name">Nom<sup>*</sup>:</label>
-                <input id="input-name" name="contact-name" type="text" placeholder="Martin" required>
+                <label for="input-lastName">Nom<sup>*</sup></label>
+                <input id="input-lastName" name="identity-lastName" type="text" autocomplete="off" placeholder="Martin" formControlName="lastName">
+                <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
+                    <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
+                </div>
             </div>
             <div class="col-form">
-                <label for="input-email">E-mail<sup>*</sup>:</label>
-                <input id="input-email" name="contact-email" type="mail" placeholder="julie.martin@gmail.com" required>
+                <label for="input-email">E-mail<sup>*</sup></label>
+                <input id="input-email" name="identity-email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" formControlName="email">
+                <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
+                    <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
+                </div>
             </div>
         </div>
-        <div class="row-form">
+        <div class="container row-form">
             <div class="col-form">
-                <label for="input-firstname">Prénom<sup>*</sup>:</label>
-                <input id="input-firstname" name="contact-firstname" type="text" placeholder="Julie" required>
+                <label for="input-firstName">Prénom<sup>*</sup></label>
+                <input id="input-firstName" name="identity-firstName" type="text" autocomplete="off" placeholder="Julie" formControlName="firstName">
+                <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
+                    <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
+                </div>
             </div>
             <div class="col-form">
-                <label for="input-phone">Téléphone<sup>*</sup>:</label>
-                <input id="input-phone" name="contact-phone" type="tel" placeholder="06 01 02 03 04" required>
+                <label for="input-tel">Téléphone<sup>*</sup></label>
+                <input id="input-tel" name="identity-tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" formControlName="tel">
+                <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
+                    <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
+                </div>
             </div>
         </div>
     </fieldset>
     <fieldset>
-        <legend>Entreprise</legend>
-        <div class="row-form">
+        <legend class="text-shadow-glitch-2">Entreprise</legend>
+        <div class="container row-form">
             <div class="col-form">
-                <label for="input-compagny">Dénomination&nbsp;:</label>
-                <input id="input-compagny" name="contact-compagny" type="text" placeholder="Carrefour">
+                <label for="input-compagny-name">Dénomination<sup>*</sup></label>
+                <input id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" formControlName="compagnyName">
+                <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
+                    <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
+                </div>
             </div>
             <div class="col-form">
-                <label for="input-compagny-post">Rôle dans l'entreprise&nbsp;:</label>
-                <input id="input-compagny-post" name="contact-compagny-post" type="text" placeholder="Chargé(e) de recrutement">
+                <label for="input-compagny-post">Rôle dans l'entreprise</label>
+                <input id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" formControlName="compagnyPost">
             </div>
         </div>
-        <div class="row-form flex-column">
-            <label for="dropdown-location">Localisation&nbsp;:</label>
-            <select id="dropdown-location" name="contact-location">
-                <ng-container *ngFor="let region of locationsFr | keyvalue">
-                  <optgroup [label]="region.key">
-                    <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
-                  </optgroup>
-                </ng-container>
-            </select>
+        <div class="container row-form">
+            <div class="col-form">
+                <label for="dropdown-compagny-location">Localisation</label>
+                <select id="dropdown-compagny-location" name="compagny-location" formControlName="compagnyLocation">
+                    <ng-container *ngFor="let region of locationsFr | keyvalue">
+                      <optgroup [label]="region.key">
+                        <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
+                      </optgroup>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="col-form"></div>
         </div>
     </fieldset>
     <fieldset>
-        <legend>Message</legend>
-        <div class="row-form flex-column">
-            <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..."></textarea>
+        <legend class="text-shadow-glitch-2">Message</legend>
+        <div class="container row-form flex-column">
+            <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." formControlName="message"></textarea>
         </div>
     </fieldset>
-    <div class="row-form">
-        <button type="submit">
-            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-            <span>Envoyer</span>
-        </button>
+    <div class="container row-form submit">
+        <button class="btn" type="submit">Envoyer</button>
     </div>
 </form>
