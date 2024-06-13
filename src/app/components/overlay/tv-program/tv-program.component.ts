@@ -20,8 +20,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   private timeCounterSubscription!: Subscription;
   isVisible: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 227;
-  delayBeforeShow: number = 300;
+  videoDurationTime: number = 6;
+  delayBeforeShow: number = 5;
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
   isShown: boolean = false;
 
@@ -102,7 +102,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   hide(): void {
     this.tvProgramService.hide();
     this.stopVideo();
-    this.showLoader();
+    this.toggleLoader();
+    this.showVhsEffectFooter();
     this.unsubscribeTimeCounterService();
   }
 
@@ -127,12 +128,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.vhsEffectService.hideFooter();
   }
 
-  showLoader(): void {
-    this.loaderService.show();
-    UtilitiesService.commonTimeout(()=>{
-      this.loaderService.hide();
-      this.showVhsEffectFooter();
-    });
+  toggleLoader(): void {
+    this.loaderService.toggle();
   }
 
 }

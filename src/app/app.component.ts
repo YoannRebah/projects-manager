@@ -81,14 +81,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.showLoaderOnFirstLoad();
-  }
-
-  showLoaderOnFirstLoad(): void {
-    this.loaderService.show();
-    UtilitiesService.commonTimeout(()=>{
-      this.loaderService.hide();
-    });
+    this.loaderService.toggle();
   }
 
 }

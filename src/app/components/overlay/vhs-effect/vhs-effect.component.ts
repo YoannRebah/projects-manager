@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TimeCounterComponent } from '../../shared/time-counter/time-counter.component';
 import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
-import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 @Component({
   selector: 'app-vhs-effect',
@@ -14,52 +13,56 @@ import { UtilitiesService } from '../../../shared/services/utilities.service';
 })
 
 export class VhsEffectComponent implements OnInit, OnDestroy {
-  private vhsEffectSubscription!: Subscription;
-  isFlashing: boolean = false;
-  footerIsVisible: boolean = true;
+  private footerIsVisibleSubscription!: Subscription;
+  private footerIsFlashingSubscription!: Subscription;
+  footerIsFlashing: boolean = false;
+  footerIsVisible: boolean = false;
 
   constructor(
     private vhsEffectService: VhsEffectService
   ) {}
 
   ngOnInit(): void {
-    this.subscribeVhsEffect();
-    this.autoToggleFlashAnimation();
+    this.subscribeFooterIsVisible();
+    this.subscribeFooterIsFlashing();
+    this.showFooter();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeVhsEffect();
+    this.unsubscribeFooterIsVisible();
+    this.unsubscribeFooterIsFlashing();
   }
 
-  subscribeVhsEffect(): void {
-    this.vhsEffectSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
+  // footer is visible
+  subscribeFooterIsVisible(): void {
+    this.footerIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
       next: (footerIsVisible) => {
         this.footerIsVisible = footerIsVisible;
       },
-      error: (e) => console.error('error subscribeVhsEffect', e)
+      error: (e) => console.error('error subscribeFooterIsVisible', e)
     })
   }
 
-  unsubscribeVhsEffect(): void {
-    if(this.vhsEffectSubscription) {
-      this.vhsEffectSubscription.unsubscribe();
+  unsubscribeFooterIsVisible(): void {
+    if(this.footerIsVisibleSubscription) {
+      this.footerIsVisibleSubscription.unsubscribe();
     }
   }
 
-  startFlashAnimation(): void {
-    this.isFlashing = true;
+  // footer is flashing
+  subscribeFooterIsFlashing(): void {
+    this.footerIsFlashingSubscription = this.vhsEffectService.footerIsFlashing$.subscribe({
+      next: (footerIsFlashing) => {
+        this.footerIsFlashing = footerIsFlashing;
+      },
+      error: (e) => console.error('error subscribeFooterIsFlashing', e)
+    })
   }
 
-  stopFlashAnimation(): void {
-    this.isFlashing = false;
-  }
-
-  autoToggleFlashAnimation(): void {
-    this.startFlashAnimation();
-    let timeout = setTimeout(()=>{
-      this.stopFlashAnimation();
-      clearTimeout(timeout);
-    }, UtilitiesService.commonTimeoutDelay);
+  unsubscribeFooterIsFlashing(): void {
+    if(this.footerIsFlashingSubscription) {
+      this.footerIsFlashingSubscription.unsubscribe();
+    }
   }
 
   showFooter(): void {

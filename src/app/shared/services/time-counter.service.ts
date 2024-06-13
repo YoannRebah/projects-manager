@@ -13,22 +13,22 @@ export class TimeCounterService {
   time$ = this.timeFollowingSubject.asObservable();
 
   // running
-  start() {
+  start(): void {
     this.runningSubject.next(true);
   }
 
-  pause() {
+  pause(): void {
     this.runningSubject.next(false);
   }
 
   // time following
-  reset() {
+  reset(): void {
     this.pause();
     this.timeFollowingSubject.next(0);
     this.start();
   }
 
-  setTime(time: number) {
+  setTime(time: number): void {
     this.timeFollowingSubject.next(time);
   }
   
