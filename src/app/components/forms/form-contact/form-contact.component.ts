@@ -62,7 +62,6 @@ export class FormContactComponent implements OnInit {
   }
 
   sendMail(templateParams: {}): void {
-    console.log(templateParams)
     emailjs.send(this.serviceId, this.templateId, templateParams, { publicKey: this.publicKey})
     .then(() => {
         console.log('SUCCESS!');

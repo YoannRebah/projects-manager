@@ -55,7 +55,7 @@
                 <select id="dropdown-compagny-location" name="compagny-location" formControlName="compagnyLocation">
                     <ng-container *ngFor="let region of locationsFr | keyvalue">
                       <optgroup [label]="region.key">
-                        <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
+                        <option *ngFor="let department of region.value" [value]="department.nom + ' - ' + department.code">{{ department.nom }}</option>
                       </optgroup>
                     </ng-container>
                 </select>
