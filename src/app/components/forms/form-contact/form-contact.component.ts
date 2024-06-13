@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { LocationsFrService } from '../../../shared/services/locations-fr.service';
 import { Region } from '../../../shared/models/locations-fr';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
-import { templateMail } from '../../../shared/models/template-mail';
 
 @Component({
   selector: 'app-form-contact',
@@ -21,6 +20,9 @@ export class FormContactComponent implements OnInit {
   serviceId: string = 'service_5ru7fw9';
   templateId: string = 'template_d02jila';
   publicKey: string = 'nAi6Eim9qL5XMDKyr';
+  mailSendWithSuccess!: boolean;
+  popinContactFormIsVisible: boolean = false;
+  sendIsPending: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -46,6 +48,7 @@ export class FormContactComponent implements OnInit {
       this.contactForm.markAllAsTouched();
       return;
     } else {
+      this.sendIsPending = true;
       const contactFormData = this.contactForm.value;
       const templateParams = {
         firstName: contactFormData.firstName,
@@ -64,10 +67,22 @@ export class FormContactComponent implements OnInit {
   sendMail(templateParams: {}): void {
     emailjs.send(this.serviceId, this.templateId, templateParams, { publicKey: this.publicKey})
     .then(() => {
-        console.log('SUCCESS!');
+        this.mailSendWithSuccess = true;
+        this.togglePopin();
       },
-      (error) => console.log('FAILED...', (error as EmailJSResponseStatus).text)
+      (error) => {
+        this.mailSendWithSuccess = false;
+        this.togglePopin();
+      }
     );
+  }
+
+  togglePopin(): void {
+    this.popinContactFormIsVisible = true;
+    UtilitiesService.commonTimeout(()=>{
+      this.popinContactFormIsVisible = false;
+      this.sendIsPending = false;
+    });
   }
 
 }

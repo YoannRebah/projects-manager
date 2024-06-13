@@ -1,75 +1,87 @@
-<form class="container forms" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
-    <fieldset>
-        <legend class="text-shadow-glitch-2 caveat-regular">Identité</legend>
-        <div class="container row-form">
-            <div class="col-form">
-                <label for="input-lastName">Nom<sup>*</sup></label>
-                <input type="text" autocomplete="off" placeholder="Martin" formControlName="lastName">
-                <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
-                    <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
+<div class="container">
+    <form class="container forms" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
+        <fieldset>
+            <legend class="text-shadow-glitch-2 caveat-regular">Identité</legend>
+            <div class="container row-form">
+                <div class="col-form">
+                    <label for="input-lastName">Nom<sup>*</sup></label>
+                    <input type="text" autocomplete="off" placeholder="Martin" formControlName="lastName">
+                    <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
+                        <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
+                    </div>
+                </div>
+                <div class="col-form">
+                    <label for="input-email">E-mail<sup>*</sup></label>
+                    <input type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" formControlName="email">
+                    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
+                        <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
+                    </div>
                 </div>
             </div>
-            <div class="col-form">
-                <label for="input-email">E-mail<sup>*</sup></label>
-                <input type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" formControlName="email">
-                <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
-                    <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
+            <div class="container row-form">
+                <div class="col-form">
+                    <label for="input-firstName">Prénom<sup>*</sup></label>
+                    <input type="text" autocomplete="off" placeholder="Julie" formControlName="firstName">
+                    <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
+                        <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
+                    </div>
+                </div>
+                <div class="col-form">
+                    <label for="input-tel">Téléphone<sup>*</sup></label>
+                    <input type="tel" autocomplete="off" placeholder="06 01 02 03 04" formControlName="tel">
+                    <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
+                        <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container row-form">
-            <div class="col-form">
-                <label for="input-firstName">Prénom<sup>*</sup></label>
-                <input type="text" autocomplete="off" placeholder="Julie" formControlName="firstName">
-                <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
-                    <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
+        </fieldset>
+        <fieldset>
+            <legend class="text-shadow-glitch-2 caveat-regular">Entreprise</legend>
+            <div class="container row-form">
+                <div class="col-form">
+                    <label for="input-compagny-name">Dénomination<sup>*</sup></label>
+                    <input type="text" autocomplete="off" placeholder="Carrefour" formControlName="compagnyName">
+                    <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
+                        <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
+                    </div>
+                </div>
+                <div class="col-form">
+                    <label for="input-compagny-post">Rôle dans l'entreprise</label>
+                    <input type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" formControlName="compagnyPost">
                 </div>
             </div>
-            <div class="col-form">
-                <label for="input-tel">Téléphone<sup>*</sup></label>
-                <input type="tel" autocomplete="off" placeholder="06 01 02 03 04" formControlName="tel">
-                <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
-                    <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
+            <div class="container row-form">
+                <div class="col-form">
+                    <label for="dropdown-compagny-location">Localisation</label>
+                    <select id="dropdown-compagny-location" name="compagny-location" formControlName="compagnyLocation">
+                        <ng-container *ngFor="let region of locationsFr | keyvalue">
+                          <optgroup [label]="region.key">
+                            <option *ngFor="let department of region.value" [value]="department.nom + ' - ' + department.code">{{ department.nom }}</option>
+                          </optgroup>
+                        </ng-container>
+                    </select>
                 </div>
+                <div class="col-form"></div>
             </div>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend class="text-shadow-glitch-2 caveat-regular">Entreprise</legend>
-        <div class="container row-form">
-            <div class="col-form">
-                <label for="input-compagny-name">Dénomination<sup>*</sup></label>
-                <input type="text" autocomplete="off" placeholder="Carrefour" formControlName="compagnyName">
-                <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
-                    <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
-                </div>
+        </fieldset>
+        <fieldset>
+            <legend class="text-shadow-glitch-2 caveat-regular">Message</legend>
+            <div class="container row-form flex-column">
+                <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." formControlName="message"></textarea>
             </div>
-            <div class="col-form">
-                <label for="input-compagny-post">Rôle dans l'entreprise</label>
-                <input type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" formControlName="compagnyPost">
-            </div>
+        </fieldset>
+        <div class="container row-form submit">
+            <button class="btn" type="submit">
+                <div *ngIf="sendIsPending" class="loader"></div>
+                <span *ngIf="!sendIsPending">Envoyer</span>
+            </button>
         </div>
-        <div class="container row-form">
-            <div class="col-form">
-                <label for="dropdown-compagny-location">Localisation</label>
-                <select id="dropdown-compagny-location" name="compagny-location" formControlName="compagnyLocation">
-                    <ng-container *ngFor="let region of locationsFr | keyvalue">
-                      <optgroup [label]="region.key">
-                        <option *ngFor="let department of region.value" [value]="department.nom + ' - ' + department.code">{{ department.nom }}</option>
-                      </optgroup>
-                    </ng-container>
-                </select>
-            </div>
-            <div class="col-form"></div>
+    </form>
+    <div *ngIf="popinContactFormIsVisible" class="popin-contact-form" [class]="mailSendWithSuccess ? 'message-success' : 'message-error'">
+        <div class="background-popin"></div>
+        <div class="container-message">
+            <p *ngIf="mailSendWithSuccess" class="text-shadow-glitch-2">Le formulaire a été transmis avec succès&nbsp;!</p>
+            <p *ngIf="!mailSendWithSuccess" class="text-shadow-glitch-2">Aïe... Il y a eu un problème lors de l'envoi du formulaire...</p>
         </div>
-    </fieldset>
-    <fieldset>
-        <legend class="text-shadow-glitch-2 caveat-regular">Message</legend>
-        <div class="container row-form flex-column">
-            <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." formControlName="message"></textarea>
-        </div>
-    </fieldset>
-    <div class="container row-form submit">
-        <button class="btn" type="submit">Envoyer</button>
     </div>
-</form>
+</div>
