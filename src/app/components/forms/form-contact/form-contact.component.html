@@ -4,14 +4,14 @@
         <div class="container row-form">
             <div class="col-form">
                 <label for="input-lastName">Nom<sup>*</sup></label>
-                <input id="input-lastName" name="identity-lastName" type="text" autocomplete="off" placeholder="Martin" formControlName="lastName">
+                <input type="text" autocomplete="off" placeholder="Martin" formControlName="lastName">
                 <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
                     <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
                 </div>
             </div>
             <div class="col-form">
                 <label for="input-email">E-mail<sup>*</sup></label>
-                <input id="input-email" name="identity-email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" formControlName="email">
+                <input type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" formControlName="email">
                 <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
                     <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
                 </div>
@@ -20,14 +20,14 @@
         <div class="container row-form">
             <div class="col-form">
                 <label for="input-firstName">Prénom<sup>*</sup></label>
-                <input id="input-firstName" name="identity-firstName" type="text" autocomplete="off" placeholder="Julie" formControlName="firstName">
+                <input type="text" autocomplete="off" placeholder="Julie" formControlName="firstName">
                 <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
                     <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
                 </div>
             </div>
             <div class="col-form">
                 <label for="input-tel">Téléphone<sup>*</sup></label>
-                <input id="input-tel" name="identity-tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" formControlName="tel">
+                <input type="tel" autocomplete="off" placeholder="06 01 02 03 04" formControlName="tel">
                 <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
                     <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
                 </div>
@@ -39,14 +39,14 @@
         <div class="container row-form">
             <div class="col-form">
                 <label for="input-compagny-name">Dénomination<sup>*</sup></label>
-                <input id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" formControlName="compagnyName">
+                <input type="text" autocomplete="off" placeholder="Carrefour" formControlName="compagnyName">
                 <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
                     <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
                 </div>
             </div>
             <div class="col-form">
                 <label for="input-compagny-post">Rôle dans l'entreprise</label>
-                <input id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" formControlName="compagnyPost">
+                <input type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" formControlName="compagnyPost">
             </div>
         </div>
         <div class="container row-form">
