@@ -68,6 +68,7 @@ export class FormContactComponent implements OnInit {
     emailjs.send(this.serviceId, this.templateId, templateParams, { publicKey: this.publicKey})
     .then(() => {
         this.mailSendWithSuccess = true;
+        this.contactForm.reset();
         this.togglePopin();
       },
       (error) => {

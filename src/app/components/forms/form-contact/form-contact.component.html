@@ -78,7 +78,6 @@
         </div>
     </form>
     <div *ngIf="popinContactFormIsVisible" class="popin-contact-form" [class]="mailSendWithSuccess ? 'message-success' : 'message-error'">
-        <div class="background-popin"></div>
         <div class="container-message">
             <p *ngIf="mailSendWithSuccess" class="text-shadow-glitch-2">Le formulaire a été transmis avec succès&nbsp;!</p>
             <p *ngIf="!mailSendWithSuccess" class="text-shadow-glitch-2">Aïe... Il y a eu un problème lors de l'envoi du formulaire...</p>
