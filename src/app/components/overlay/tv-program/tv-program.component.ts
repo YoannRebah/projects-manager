@@ -20,8 +20,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   private timeCounterSubscription!: Subscription;
   isVisible: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 6;
-  delayBeforeShow: number = 5;
+  videoDurationTime: number = 227;
+  delayBeforeShow: number = 300;
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
   isShown: boolean = false;
 

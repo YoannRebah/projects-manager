@@ -4,10 +4,10 @@
 
 .introduction {
     p {
-        font-size: 1rem;
+        font-size: 0.85rem;
 
         @include screen('s') {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         &:not(:last-child) {
