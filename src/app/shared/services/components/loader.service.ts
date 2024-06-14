@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UtilitiesService } from './utilities.service';
+import { TimeoutService } from '../timeout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class LoaderService {
 
   toggle(): void {
     this.show();
-    UtilitiesService.commonTimeout(()=>{
+    TimeoutService.setTimeout(()=>{
       this.hide();
     });
   }

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, Observable } from 'rxjs';
-import { TimeCounterService } from '../../../shared/services/time-counter.service';
-import { UtilitiesService } from '../../../shared/services/utilities.service';
+import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
+import { DatetimeService } from '../../../shared/services/datetime.service';
+import { TimeoutService } from '../../../shared/services/timeout.service';
 
 @Component({
   selector: 'app-time-counter',
@@ -131,11 +132,11 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
     const hours = Math.floor(this.time / 3600);
     const minutes = Math.floor((this.time % 3600) / 60);
     const seconds = this.time % 60;
-    this.timeString = `${UtilitiesService.formatTime(hours)}:${UtilitiesService.formatTime(minutes)}:${UtilitiesService.formatTime(seconds)}`;
+    this.timeString = `${DatetimeService.formatTime(hours)}:${DatetimeService.formatTime(minutes)}:${DatetimeService.formatTime(seconds)}`;
   }
 
   showTimeCounterWithDelay(): void {
-    UtilitiesService.commonTimeout(() => {
+    TimeoutService.setTimeout(() => {
       this.timeCounterService.start();
     });
   }

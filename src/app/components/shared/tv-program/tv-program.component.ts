@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { TvProgramService } from '../../../shared/services/tv-program.service';
-import { TimeCounterService } from '../../../shared/services/time-counter.service';
-import { VhsEffectService } from '../../../shared/services/vhs-effect.service';
-import { LoaderService } from '../../../shared/services/loader.service';
-import { UtilitiesService } from '../../../shared/services/utilities.service';
+import { TvProgramService } from '../../../shared/services/components/tv-program.service';
+import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
+import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
+import { LoaderService } from '../../../shared/services/components/loader.service';
+import { TimeoutService } from '../../../shared/services/timeout.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -135,7 +135,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   toggleTimeCounterIsPaused(): void {
     this.timeCounterService.togglePause(true);
-    UtilitiesService.commonTimeout(()=>{
+    TimeoutService.setTimeout(()=>{
       this.timeCounterService.togglePause(false);
     });
   }

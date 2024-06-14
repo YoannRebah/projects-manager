@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UtilitiesService } from './utilities.service';
+import { TimeoutService } from '../timeout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class VhsEffectService {
 
   toggleFooterFlashing(): void {
     this.startFooterFlashing();
-    UtilitiesService.commonTimeout(()=>{
+    TimeoutService.setTimeout(()=>{
       this.stopFooterFlashing();
     });
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameComponent } from '../../game/game/game.component';
-import { GameService } from '../../../shared/services/game.service';
+import { GameService } from '../../../shared/services/components/game.service';
 
 @Component({
   selector: 'app-arcade-room',

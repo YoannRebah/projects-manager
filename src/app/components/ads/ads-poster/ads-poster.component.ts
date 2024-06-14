@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './ads-poster.component.html',
-  styleUrls: ['./ads-poster.component.scss']
+  styleUrl: './ads-poster.component.scss'
 })
 
 export class AdsPosterComponent {

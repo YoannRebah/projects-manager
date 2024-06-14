@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LocationsFrService } from '../../../shared/services/locations-fr.service';
+import { LocationsFrService } from '../../../shared/services/components/locations-fr.service';
 import { Region } from '../../../shared/models/locations-fr';
-import { UtilitiesService } from '../../../shared/services/utilities.service';
+import { TimeoutService } from '../../../shared/services/timeout.service';
+import { ValidatorsService } from '../../../shared/services/validators.service';
 
 @Component({
   selector: 'app-form-contact',
@@ -35,7 +36,7 @@ export class FormContactComponent implements OnInit {
       "lastName": ['', Validators.required],
       "firstName": ['', Validators.required],
       "email": ['', [Validators.required, Validators.email]],
-      "tel": ['', [Validators.required, Validators.pattern(UtilitiesService.regexValidateTelFr)]],
+      "tel": ['', [Validators.required, Validators.pattern(ValidatorsService.regexValidateTelFr)]],
       "compagnyName": ['', Validators.required],
       "compagnyPost": [''],
       "compagnyLocation": [''],
@@ -80,7 +81,7 @@ export class FormContactComponent implements OnInit {
 
   togglePopin(): void {
     this.popinContactFormIsVisible = true;
-    UtilitiesService.commonTimeout(()=>{
+    TimeoutService.setTimeout(()=>{
       this.popinContactFormIsVisible = false;
       this.sendIsPending = false;
     });

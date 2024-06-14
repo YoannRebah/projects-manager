@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 // services
-import { LoaderService } from './shared/services/loader.service';
+import { LoaderService } from './shared/services/components/loader.service';
 // shared
 import { LoaderComponent } from './components/shared/loader/loader.component';
 import { VhsEffectComponent } from './components/shared/vhs-effect/vhs-effect.component';

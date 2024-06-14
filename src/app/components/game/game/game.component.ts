@@ -1,15 +1,18 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, timer, Observable } from 'rxjs';
-import { UtilitiesService } from '../../../shared/services/utilities.service';
-import { GameService } from '../../../shared/services/game.service';
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { GameService } from '../../../shared/services/components/game.service';
+import { DatetimeService } from '../../../shared/services/datetime.service';
+import { TimeoutService } from '../../../shared/services/timeout.service';
+import { DomService } from '../../../shared/services/dom.service';
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrl: './game.component.scss'
 })
 
 export class GameComponent implements OnInit, OnDestroy {
@@ -34,7 +37,7 @@ export class GameComponent implements OnInit, OnDestroy {
   scoreMax: number = 99999;
   highScore: number = 0;
   scoreStepIncrease: number = 50;
-  storageKeyHighScore: string = UtilitiesService.portfolioPrefixStorageKey + 'player-high-score';
+  storageKeyHighScore: string = LocalStorageService.portfolioPrefixStorageKey + 'player-high-score';
 
   // health
   health: number = 100;
@@ -266,7 +269,7 @@ export class GameComponent implements OnInit, OnDestroy {
   // SCORE
 
   get storedPlayerHighScore(): number {
-    if (UtilitiesService.isLocalStorageAvailable()) {
+    if (LocalStorageService.testIsAvailable()) {
       if(localStorage.getItem(this.storageKeyHighScore)) {
         return parseInt(localStorage.getItem(this.storageKeyHighScore)!, 10);
       } else {
@@ -299,7 +302,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   storePlayerHighScore(): void {
-    if (UtilitiesService.isLocalStorageAvailable()) {
+    if (LocalStorageService.testIsAvailable()) {
       if(this.score > this.storedPlayerHighScore) {
         localStorage.setItem(this.storageKeyHighScore, JSON.stringify(this.score));
       }
@@ -332,7 +335,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   createMeteor(): void {
-    const meteorTimestamp = UtilitiesService.timestampNow;
+    const meteorTimestamp = DatetimeService.timestampNow;
     const gameContainer = this.gameContainer.nativeElement;
     const meteor = this.renderer.createElement('img');
     this.renderer.setAttribute(meteor, 'src', 'assets/images/meteor.png');
@@ -428,7 +431,7 @@ export class GameComponent implements OnInit, OnDestroy {
     meteors.forEach((meteor: Element) => {
       if (this.gameContainer.nativeElement.contains(meteor)) {
         const meteorRect = (meteor as HTMLElement).getBoundingClientRect();
-        if (UtilitiesService.isColliding(collisionBox, meteorRect)) {
+        if (DomService.isColliding(collisionBox, meteorRect)) {
           const damage = meteor.getAttribute('data-damage');
           this.handleCollision(damage);
           this.renderer.removeChild(this.gameContainer.nativeElement, meteor);
@@ -449,9 +452,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
   gameCursorWasHitted(): void {
     this.collisionBoxIsHitted = true;
-    let timeout = setTimeout(()=>{
+    TimeoutService.setTimeout(()=>{
       this.collisionBoxIsHitted = false;
-      clearTimeout(timeout);
     }, 500);
   }
 
