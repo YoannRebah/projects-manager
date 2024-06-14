@@ -6,6 +6,7 @@ import { LocationsFrService } from '../../../shared/services/components/location
 import { Region } from '../../../shared/models/locations-fr';
 import { TimeoutService } from '../../../shared/services/timeout.service';
 import { ValidatorsService } from '../../../shared/services/validators.service';
+import { WindowRefService } from '../../../shared/services/window-ref.service';
 
 @Component({
   selector: 'app-form-contact',
@@ -25,7 +26,7 @@ export class FormContactComponent implements OnInit {
   popinContactFormIsVisible: boolean = false;
   sendIsPending: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private windowRefService: WindowRefService) { }
 
   ngOnInit(): void {
     this.initContactForm();
@@ -48,6 +49,8 @@ export class FormContactComponent implements OnInit {
     if(!this.sendIsPending) {
       if (this.contactForm.invalid) {
         this.contactForm.markAllAsTouched();
+        const contactFormSectionId = this.windowRefService.windowRef.document.querySelector('#contact');
+        if (contactFormSectionId) contactFormSectionId.scrollIntoView({ behavior: 'smooth' });
         return;
       } else {
         this.sendIsPending = true;

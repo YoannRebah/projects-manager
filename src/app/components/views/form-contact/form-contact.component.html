@@ -6,14 +6,18 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-lastName">Nom<sup>*</sup></label>
-                        <input type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName">
+                        <input type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
+                        [ngClass]="{'input-error': contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched}"
+                        >
                         <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
                             <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
                         </div>
                     </div>
                     <div class="col-input">
                         <label for="input-firstName">Prénom<sup>*</sup></label>
-                        <input type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName">
+                        <input type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
+                        [ngClass]="{'input-error': contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched}"
+                        >
                         <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
                             <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
                         </div>
@@ -22,7 +26,9 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-email">E-mail<sup>*</sup></label>
-                        <input type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email">
+                        <input type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
+                        [ngClass]="{'input-error': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}"
+                        >
                         <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
                             <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
                             <small *ngIf="contactForm.get('email')?.errors?.['email']">Le format est invalide</small>
@@ -30,7 +36,9 @@
                     </div>
                     <div class="col-input">
                         <label for="input-tel">Téléphone<sup>*</sup></label>
-                        <input type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel">
+                        <input type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
+                        [ngClass]="{'input-error': contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched}"
+                        >
                         <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
                             <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
                             <small *ngIf="contactForm.get('tel')?.errors?.['pattern']">Le format est invalide</small>
@@ -45,7 +53,9 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-compagny-name">Dénomination<sup>*</sup></label>
-                        <input type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName">
+                        <input type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
+                        [ngClass]="{'input-error': contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched}"
+                        >
                         <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
                             <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
                         </div>
@@ -87,7 +97,7 @@
             </div>
         </fieldset>
         <div class="container-submit">
-            <button class="btn" tabindex="9" type="submit">
+            <button class="btn btn-submit" tabindex="9" type="submit">
                 <div *ngIf="sendIsPending" class="loader-packman"></div>
                 <span *ngIf="!sendIsPending">Envoyer</span>
             </button>
