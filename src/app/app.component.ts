@@ -22,17 +22,14 @@ import { SkillsComponent } from './components/views/skills/skills.component';
 import { NotableAchievementsComponent } from './components/views/notable-achievements/notable-achievements.component';
 import { ToolsOverviewComponent } from './components/views/tools-overview/tools-overview.component';
 import { MarqueeInterestsComponent } from './components/views/marquee-interests/marquee-interests.component';
-import { ContactComponent } from './components/views/contact/contact.component';
 import { LocationComponent } from './components/views/location/location.component';
 import { ArcadeRoomComponent } from './components/views/arcade-room/arcade-room.component';
 import { ReferencesInspirationsComponent } from './components/views/references-inspirations/references-inspirations.component';
 import { IntroductionComponent } from './components/views/introduction/introduction.component';
 import { ListNavComponent } from './components/views/list-nav/list-nav.component';
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
-// ads
-import { AdsPosterComponent } from './components/ads/ads-poster/ads-poster.component';
-// forms
-import { FormContactComponent } from './components/forms/form-contact/form-contact.component';
+import { FormContactComponent } from './components/views/form-contact/form-contact.component';
+import { AdsPosterComponent } from './components/views/ads-poster/ads-poster.component';
 
 @Component({
   selector: 'app-root',
@@ -59,16 +56,13 @@ import { FormContactComponent } from './components/forms/form-contact/form-conta
     NotableAchievementsComponent,
     ToolsOverviewComponent,
     MarqueeInterestsComponent,
-    ContactComponent,
     LocationComponent,
     ArcadeRoomComponent,
     ReferencesInspirationsComponent,
     IntroductionComponent,
     ListNavComponent,
     ListFooterComponent,
-    // ads
     AdsPosterComponent,
-    // forms
     FormContactComponent
   ],
   templateUrl: './app.component.html',

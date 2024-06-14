@@ -1,6 +1,6 @@
-@import '../../../styles/base/variables';
-@import '../../../styles/base/mixins';
-@import '../../../styles/layout/container';
+@import '../../styles/base/variables';
+@import '../../styles/base/mixins';
+@import '../../styles/layout/container';
 
 .game-background {
     position: fixed;
@@ -109,7 +109,7 @@
             grid-area: content-game;
             border: 1px dashed $orange;
             background-color: $body-bg;
-            background-image: url(../../../../../public/assets/images/space-background.jpeg);
+            background-image: url(../../../../public/assets/images/space-background.jpeg);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -147,7 +147,7 @@
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;
-                    background-image: url(../../../../../public/assets/gif/rocket-spaceship.gif);
+                    background-image: url(../../../../public/assets/gif/rocket-spaceship.gif);
                     pointer-events: none;
                     opacity: 0;
 

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, timer, Observable } from 'rxjs';
-import { LocalStorageService } from '../../../shared/services/local-storage.service';
-import { GameService } from '../../../shared/services/components/game.service';
-import { DatetimeService } from '../../../shared/services/datetime.service';
-import { TimeoutService } from '../../../shared/services/timeout.service';
-import { DomService } from '../../../shared/services/dom.service';
+import { LocalStorageService } from '../../shared/services/local-storage.service';
+import { GameService } from '../../shared/services/components/game.service';
+import { DatetimeService } from '../../shared/services/datetime.service';
+import { TimeoutService } from '../../shared/services/timeout.service';
+import { DomService } from '../../shared/services/dom.service';
 
 @Component({
   selector: 'app-game',
