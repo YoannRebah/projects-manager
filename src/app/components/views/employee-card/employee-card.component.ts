@@ -22,50 +22,36 @@ export class EmployeeCardComponent implements AfterViewInit {
     const nativeElement = this.employeeCard.nativeElement;
     this.height = nativeElement.clientHeight;
     this.width = nativeElement.clientWidth;
-
-    this.addEventMouseMove();
-    this.addEventMouseOut();
-    this.addEventMouseDown();
-    this.addEventMouseUp();
+    this.addMouseEvents();
   }
 
-  addEventMouseMove(): void {
-    this.renderer.listen(this.employeeCard.nativeElement, 'mousemove', (event) => this.handleMove(event));
-  }
+  addMouseEvents(): void {
+    const card = this.employeeCard.nativeElement;
 
-  handleMove(event: MouseEvent): void {
-    const xVal = event.layerX;
-    const yVal = event.layerY;
-    const yRotation = 20 * ((xVal - this.width / 2) / this.width);
-    const xRotation = -20 * ((yVal - this.height / 2) / this.height);
-    const transformString = `perspective(500px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-    this.renderer.setStyle(this.employeeCard.nativeElement, 'transform', transformString);
-  }
+    this.renderer.listen(card, 'mousemove', (event) => {
+      requestAnimationFrame(() => {
+        const xVal = event.layerX;
+        const yVal = event.layerY;
+        const yRotation = 20 * ((xVal - this.width / 2) / this.width);
+        const xRotation = -20 * ((yVal - this.height / 2) / this.height);
+        const transformString = `perspective(500px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+        this.renderer.setStyle(card, 'transform', transformString);
+      });
+    });
 
-  addEventMouseOut(): void {
-    this.renderer.listen(this.employeeCard.nativeElement, 'mouseout', () => this.handleMouseOut());
-  }
+    this.renderer.listen(card, 'mouseout', () => {
+      const transformString = 'perspective(500px) scale(1) rotateX(0) rotateY(0)';
+      this.renderer.setStyle(card, 'transform', transformString);
+    });
 
-  handleMouseOut(): void {
-    const transformString = 'perspective(500px) scale(1) rotateX(0) rotateY(0)';
-    this.renderer.setStyle(this.employeeCard.nativeElement, 'transform', transformString);
-  }
+    this.renderer.listen(card, 'mousedown', () => {
+      const transformString = 'perspective(500px) scale(0.9) rotateX(0) rotateY(0)';
+      this.renderer.setStyle(card, 'transform', transformString);
+    });
 
-  addEventMouseDown(): void {
-    this.renderer.listen(this.employeeCard.nativeElement, 'mousedown', () => this.handleMouseDown());
-  }
-
-  handleMouseDown(): void {
-    const transformString = 'perspective(500px) scale(0.9) rotateX(0) rotateY(0)';
-    this.renderer.setStyle(this.employeeCard.nativeElement, 'transform', transformString);
-  }
-
-  addEventMouseUp(): void {
-    this.renderer.listen(this.employeeCard.nativeElement, 'mouseup', () => this.handleMouseUp());
-  }
-
-  handleMouseUp(): void {
-    const transformString = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)';
-    this.renderer.setStyle(this.employeeCard.nativeElement, 'transform', transformString);
+    this.renderer.listen(card, 'mouseup', () => {
+      const transformString = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)';
+      this.renderer.setStyle(card, 'transform', transformString);
+    });
   }
 }
