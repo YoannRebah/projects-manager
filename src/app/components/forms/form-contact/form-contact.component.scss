@@ -7,18 +7,33 @@
     flex-direction: column;
 
     fieldset {
-        padding: 1rem 3rem;
+        padding: 1rem 1.2rem;
         margin-bottom: 1.75rem;
         border: 1px dashed $cyan;
 
+        @include screen('s') {
+            padding: 1rem 3rem;
+        }
+
         legend {
-            padding: .75rem;
-            font-size: 2.2rem;
+            padding: .5rem;
+            font-size: 1.35rem;
+
+            @include screen('s') {
+                padding: .75rem;
+                font-size: 2.2rem;
+            }
         }
 
         .container-form-flex {
             display: flex;
-            gap: 3rem;
+            flex-direction: column;
+            gap: 0;
+
+            @include screen('s') {
+                flex-direction: row;
+                gap: 3rem;
+            }
 
             .col-flex-1 {
                 flex: 1;
@@ -32,11 +47,15 @@
                     label {
                         position: relative;
                         font-weight: 500;
-                        font-size: 1.1rem;
+                        font-size: 0.9rem;
                         margin-bottom: .33rem;
             
                         sup {
                             position: absolute;
+                        }
+
+                        @include screen('s') {
+                            font-size: 1.1rem;
                         }
                     }
             
@@ -64,15 +83,27 @@
             
                     textarea {
                         resize: none;
-                        min-height: 5rem;
+                        min-height: 10rem;
+
+                        @include screen('s') {
+                            min-height: 6rem;
+                        }
                     }
             
                     .error-message {
                         position: absolute;
-                        top: 6px;
+                        top: 1%;
                         right: 1%;
                         color: $pink;
                         font-weight: 600;
+
+                        small {
+                            font-size: 0.75rem;
+
+                            @include screen('s') {
+                                font-size: 0.9rem;
+                            }
+                        }
                     }
                 }
             }
