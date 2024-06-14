@@ -18,6 +18,7 @@ import { WindowRefService } from '../../../shared/services/window-ref.service';
 
 export class FormContactComponent implements OnInit {
   locationsFr: Region = LocationsFrService.locationsFr;
+  selectedLocation!: string;
   contactForm!: FormGroup;
   serviceId: string = 'service_5ru7fw9';
   templateId: string = 'template_d02jila';
@@ -43,6 +44,7 @@ export class FormContactComponent implements OnInit {
       "compagnyLocation": [''],
       "message": ['']
     });
+    this.subscribeCompagnyLocation();
   }
 
   onSubmitContactForm(): void {
@@ -90,6 +92,17 @@ export class FormContactComponent implements OnInit {
       this.popinContactFormIsVisible = false;
       this.sendIsPending = false;
     });
+  }
+
+  subscribeCompagnyLocation(): void {
+    this.contactForm.get('compagnyLocation')!.valueChanges.subscribe((value) => {
+      this.selectedLocation = value;
+      this.isGoodChoice();
+    });
+  }
+
+  isGoodChoice(): boolean {
+    return this.selectedLocation === "37" || this.selectedLocation === "91";
   }
 
 }

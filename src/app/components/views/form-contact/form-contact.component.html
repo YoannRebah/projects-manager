@@ -6,7 +6,7 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-lastName">Nom<sup>*</sup></label>
-                        <input type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
+                        <input id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
                         [ngClass]="{'input-error': contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched}"
                         >
                         <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-input">
                         <label for="input-firstName">Prénom<sup>*</sup></label>
-                        <input type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
+                        <input id="input-firstName" name="firstName" type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
                         [ngClass]="{'input-error': contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched}"
                         >
                         <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
@@ -26,7 +26,7 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-email">E-mail<sup>*</sup></label>
-                        <input type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
+                        <input id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
                         [ngClass]="{'input-error': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}"
                         >
                         <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-input">
                         <label for="input-tel">Téléphone<sup>*</sup></label>
-                        <input type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
+                        <input id="input-tel" name="tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
                         [ngClass]="{'input-error': contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched}"
                         >
                         <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
@@ -53,7 +53,7 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-compagny-name">Dénomination<sup>*</sup></label>
-                        <input type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
+                        <input id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
                         [ngClass]="{'input-error': contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched}"
                         >
                         <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
@@ -64,7 +64,7 @@
                 <div class="col-flex-1">
                     <div class="col-input">
                         <label for="input-compagny-post">Rôle dans l'entreprise</label>
-                        <input type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" tabindex="6" formControlName="compagnyPost">
+                        <input id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" tabindex="6" formControlName="compagnyPost">
                     </div>
                 </div>
             </div>
@@ -75,10 +75,11 @@
                         <select id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
                             <ng-container *ngFor="let region of locationsFr | keyvalue">
                               <optgroup [label]="region.key">
-                                <option *ngFor="let department of region.value" [value]="department.nom + ' - ' + department.code">{{ department.nom }}</option>
+                                <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
                               </optgroup>
                             </ng-container>
                         </select>
+                        <img *ngIf="isGoodChoice()" class="img-good-choice" src="assets/gif/heart-love.gif" alt="Bon choix">
                     </div>
                 </div>
                 <div class="col-flex-1"></div>
