@@ -18,24 +18,16 @@ export class SkillsComponent {
       iconClassName: 'fa-brands fa-html5',
       details: [
         {
-          text: 'Structure',
+          text: 'Structure & Sémantique',
           percent: 92,
         },
         {
-          text: 'Accessibilité',
+          text: 'Attributs et Liens',
           percent: 84,
         },
         {
-          text: 'SEO',
+          text: 'Formulaires et Inputs',
           percent: 77,
-        },
-        {
-          text: 'Performances',
-          percent: 99,
-        },
-        {
-          text: 'Bonnes pratiques',
-          percent: 87,
         },
       ],
     },
@@ -45,24 +37,16 @@ export class SkillsComponent {
       iconClassName: 'fa-brands fa-sass',
       details: [
         {
-          text: 'Syntaxe',
+          text: 'Syntaxe & Préprocesseur',
           percent: 80,
         },
         {
-          text: 'Sélecteurs',
+          text: 'Nesting & Partials',
           percent: 90,
         },
         {
-          text: 'Architecture',
+          text: 'Mixins, Functions & Extends',
           percent: 85,
-        },
-        {
-          text: 'Performances',
-          percent: 78,
-        },
-        {
-          text: 'Bonnes pratiques',
-          percent: 93,
         },
       ],
     },
@@ -72,24 +56,16 @@ export class SkillsComponent {
       iconClassName: 'fa-brands fa-js',
       details: [
         {
-          text: 'Syntaxe de base',
+          text: 'Syntaxe & Bases',
           percent: 95,
         },
         {
-          text: 'Fonctions',
+          text: 'DOM Manipulation & Événements',
           percent: 88,
         },
         {
-          text: 'POO',
+          text: 'Asynchrone & Promesses',
           percent: 82,
-        },
-        {
-          text: 'Asynchronicité',
-          percent: 76,
-        },
-        {
-          text: 'Bonnes pratiques',
-          percent: 97,
         },
       ],
     },
@@ -99,24 +75,16 @@ export class SkillsComponent {
       iconClassName: 'fa-brands fa-angular',
       details: [
         {
-          text: 'Syntaxe de base',
+          text: 'Architecture & Composants',
           percent: 80,
         },
         {
-          text: 'Fonctions',
+          text: 'Services & DI',
           percent: 78,
         },
         {
-          text: 'POO',
+          text: 'Routage & Navigation',
           percent: 88,
-        },
-        {
-          text: 'Asynchronicité',
-          percent: 71,
-        },
-        {
-          text: 'Bonnes pratiques',
-          percent: 84,
         },
       ],
     },

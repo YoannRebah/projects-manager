@@ -7,7 +7,7 @@
                     <i [class]="skill.iconClassName" aria-hidden="true"></i>
                 </div>
                 <ul class="container list-details-skill">
-                    <li *ngFor="let detail of skill.details" [id]="skill.id" class="container li-detail-skill">
+                    <li *ngFor="let detail of skill.details" class="container li-detail-skill">
                         <p>{{ detail.text }}&nbsp;:</p>
                         <div class="container-progress-bar">
                             <div class="progress-bar" [style.width]="detail.percent + '%'"></div>
