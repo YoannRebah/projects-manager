@@ -45,23 +45,25 @@ export class FormContactComponent implements OnInit {
   }
 
   onSubmitContactForm(): void {
-    if (this.contactForm.invalid) {
-      this.contactForm.markAllAsTouched();
-      return;
-    } else {
-      this.sendIsPending = true;
-      const contactFormData = this.contactForm.value;
-      const templateParams = {
-        firstName: contactFormData.firstName,
-        lastName: contactFormData.lastName,
-        email: contactFormData.email,
-        tel: contactFormData.tel,
-        compagnyName: contactFormData.compagnyName,
-        compagnyPost: contactFormData.compagnyPost,
-        location: contactFormData.compagnyLocation,
-        message: contactFormData.message
-      };
-      this.sendMail(templateParams);
+    if(!this.sendIsPending) {
+      if (this.contactForm.invalid) {
+        this.contactForm.markAllAsTouched();
+        return;
+      } else {
+        this.sendIsPending = true;
+        const contactFormData = this.contactForm.value;
+        const templateParams = {
+          firstName: contactFormData.firstName,
+          lastName: contactFormData.lastName,
+          email: contactFormData.email,
+          tel: contactFormData.tel,
+          compagnyName: contactFormData.compagnyName,
+          compagnyPost: contactFormData.compagnyPost,
+          location: contactFormData.compagnyLocation,
+          message: contactFormData.message
+        };
+        this.sendMail(templateParams);
+      }
     }
   }
 

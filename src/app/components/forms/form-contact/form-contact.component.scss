@@ -7,103 +7,104 @@
     flex-direction: column;
 
     fieldset {
-        padding: 1.75rem 2.5rem;
-        padding-bottom: 1rem;
+        padding: 1.5rem;
         margin-bottom: 1.3rem;
-        border-color: $cyan;
-        border-width: 1px;
+        border: 1px dashed $cyan;
 
         legend {
             padding: .75rem;
-            font-size: 2.3rem;
-            font-weight: 400;
+            font-size: 2.2rem;
+        }
+
+        .container-form-flex {
+            display: flex;
+            gap: 3rem;
+
+            .col-flex-1 {
+                flex: 1;
+
+                .col-input {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 1.3rem;
+
+                    label {
+                        position: relative;
+                        font-weight: 500;
+                        font-size: 1.1rem;
+                        margin-bottom: .33rem;
+            
+                        sup {
+                            position: absolute;
+                        }
+                    }
+            
+                    input,
+                    textarea {
+                        border: 2px solid $white;
+                        cursor: text;
+                    }
+            
+                    select {
+                        border: 2px solid $white;
+                    }
+            
+                    input,
+                    select,
+                    textarea {
+                        width: 100%;
+                        padding: 0.65rem;
+                        font-size: 1rem;
+
+                        &:focus {
+                            outline-color: $pink;
+                        }
+                    }
+            
+                    textarea {
+                        resize: none;
+                        min-height: 5rem;
+                    }
+            
+                    .error-message {
+                        position: absolute;
+                        top: 6px;
+                        right: 1%;
+                        color: $red;
+                        font-weight: 600;
+                    }
+                }
+            }
         }
     }
 
-    .row-form {
+    .container-submit {
         display: flex;
-        margin-bottom: 2rem;
-        gap: 3rem;
+        align-items: center;
+        justify-content: center;
 
-        &.flex-column {
-            flex-direction: column;
-            gap: 0;
-        }
-
-        &.submit {
+        button {
+            margin-top: 1.5rem;
+            border: 2px solid $cyan;
+            width: 150px;
+            height: 45px;
+            display: flex;
             align-items: center;
             justify-content: center;
 
-            button {
-                margin-top: 1.5rem;
-                border: 2px solid $cyan;
-                width: 150px;
-                height: 45px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                &:hover {
-                    background: $cyan;
-
-                    span {
-                        color: $black;
-                    }
-                }
+            &:hover {
+                background: $cyan;
 
                 span {
-                    color: $white;
-                    font-size: 1.25rem;
+                    color: $black;
                 }
             }
-        }
 
-        .col-form {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        label {
-            position: relative;
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-bottom: .33rem;
-
-            sup {
-                position: absolute;
+            span {
+                color: $white;
+                font-size: 1.25rem;
             }
-        }
-
-        input,
-        textarea {
-            border: 2px solid $white;
-            cursor: text;
-        }
-
-        select {
-            border: 2px solid $white;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.65rem;
-            font-size: 1rem;
-        }
-
-        textarea {
-            resize: none;
-            min-height: 5rem;
-        }
-
-        .error-message {
-            position: absolute;
-            bottom: -22px;
-            color: $red;
-            font-weight: 600;
         }
     }
 }
