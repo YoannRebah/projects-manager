@@ -233,3 +233,101 @@
         }
     }
 }
+
+.game-over-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    background: $body-bg;
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-image: url(../../../../public/assets/images/game-over-background.png);
+        filter: hue-rotate(306deg);
+    }
+
+    .block-game-over {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1;
+
+        h3 {
+            font-size: 16vw;
+            font-weight: 500;
+            -webkit-text-stroke: 2px $pink;
+
+            @include screen('s') {
+                font-size: 12vw;
+            }
+        }
+
+        p {
+            font-size: 4.5vw;
+            font-weight: 500;
+            -webkit-text-stroke: 1px $black;
+
+            @include screen('s') {
+                font-size: 2.8vw;
+            }
+        }
+
+        .container-btn {
+            margin-top: 2.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+
+            button {
+                padding: .9rem 1.5rem;
+                background: $pink;
+                color: $white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    filter: brightness(90%);
+                }
+
+                &:last-child {
+                    background: $black;
+                }
+
+                i {
+                    margin-right: .5rem;
+                    font-size: 1rem;
+
+                    @include screen('s') {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                span {
+                    font-size: .8rem;
+                    text-transform: uppercase;
+                    font-weight: 600;
+
+                    @include screen('s') {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

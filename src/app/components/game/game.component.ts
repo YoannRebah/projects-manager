@@ -26,11 +26,10 @@ export class GameComponent implements OnInit, OnDestroy {
   // service
   isRunning: boolean = false;
   isVisible: boolean = false;
-
   // game
   isInGameContainer: boolean = false;
   gameCanBeStarted: boolean = false;
-
+  gameIsOver: boolean = false;
   // score
   score: number = 0;
   scoreMin: number = 0;
@@ -38,19 +37,16 @@ export class GameComponent implements OnInit, OnDestroy {
   highScore: number = 0;
   scoreStepIncrease: number = 50;
   storageKeyHighScore: string = LocalStorageService.portfolioPrefixStorageKey + 'player-high-score';
-
+  storageKeyScore: string = LocalStorageService.portfolioPrefixStorageKey + 'player-score';
   // health
   health: number = 100;
   healthMin: number = 0;
   healthMax: number = 100;
-
   // mouse
   mouseIsMovingOnce: boolean = false;
   clientX: number = 0;
-
   // collision box
   collisionBoxIsHitted: boolean = false;
-
   // meteor
   meteorIntervalSpeedGeneration: number = 1000;
 
@@ -90,7 +86,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.clientX = event.clientX;
       this.renderer.setStyle(this.gameCursor.nativeElement, 'transform', `translateX(${this.clientX}px)`);
 
-      if (!this.isRunning) {
+      if (!this.isRunning && !this.gameIsOver) {
         this.startGame();
       }
 
@@ -103,6 +99,11 @@ export class GameComponent implements OnInit, OnDestroy {
 
   onClickQuitGame(): void {
     this.hide();
+  }
+
+  onClickRetryGame(): void {
+    this.gameIsOver = false;
+    this.resetGameVariables();
   }
 
   // sub & unsub ===================================
@@ -248,6 +249,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
   stopGame(): void {
     this.gameService.stop();
+    this.gameIsOver = true;
+    this.storePlayerScore();
     this.storePlayerHighScore();
     this.updatePlayerHighScore();
     this.cancelScore();
@@ -279,6 +282,13 @@ export class GameComponent implements OnInit, OnDestroy {
     return 0;
   }
 
+  get storedPlayerScore(): number {
+    if (LocalStorageService.testIsAvailable()) {
+      return parseInt(localStorage.getItem(this.storageKeyScore)!, 10);
+    }
+    return 0;
+  }
+
   initScore(): void {
     this.unsubscribeScore();
     this.ngZone.runOutsideAngular(() => {
@@ -306,6 +316,12 @@ export class GameComponent implements OnInit, OnDestroy {
       if(this.score > this.storedPlayerHighScore) {
         localStorage.setItem(this.storageKeyHighScore, JSON.stringify(this.score));
       }
+    }
+  }
+
+  storePlayerScore(): void {
+    if (LocalStorageService.testIsAvailable()) {
+      localStorage.setItem(this.storageKeyScore, JSON.stringify(this.score));
     }
   }
 

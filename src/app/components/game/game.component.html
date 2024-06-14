@@ -31,4 +31,19 @@
             </div>
         </div>
     </div>
+    <div *ngIf="gameIsOver" class="game-over-background">
+        <div class="block-game-over">
+            <h3 class="jersey-15-regular">Game Over</h3>
+            <p>Score&nbsp;: <span>{{ storedPlayerScore }}</span></p>
+            <div class="container-btn">
+                <button class="btn" (click)="onClickRetryGame()">
+                    <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                    <span>Recommencer</span>
+                </button>
+                <button class="btn" (click)="onClickQuitGame()">
+                    <span>Quitter</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
