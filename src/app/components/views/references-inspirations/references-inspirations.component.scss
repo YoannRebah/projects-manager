@@ -26,16 +26,4 @@
             }
         }
     }
-
-    .note {
-        margin-top: 1.2rem;
-        font-style: italic;
-        color: $yellow;
-        font-size: .7rem;
-
-        @include screen('s') {
-            margin-top: 1rem;
-            font-size: .85rem;
-        }
-    }
 }
