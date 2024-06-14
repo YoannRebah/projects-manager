@@ -22,11 +22,11 @@ export class SkillsComponent {
           percent: 92,
         },
         {
-          text: 'Attributs et Liens',
+          text: 'Attributs & Liens',
           percent: 84,
         },
         {
-          text: 'Formulaires et Inputs',
+          text: 'Formulaires & Inputs',
           percent: 77,
         },
       ],
@@ -45,7 +45,7 @@ export class SkillsComponent {
           percent: 90,
         },
         {
-          text: 'Mixins, Functions & Extends',
+          text: 'Mixins & Functions',
           percent: 85,
         },
       ],
@@ -60,7 +60,7 @@ export class SkillsComponent {
           percent: 95,
         },
         {
-          text: 'DOM Manipulation & Événements',
+          text: 'DOM & Événements',
           percent: 88,
         },
         {
