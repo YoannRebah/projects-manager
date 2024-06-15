@@ -30,10 +30,6 @@
 
             .container-title {
 
-                i {
-
-                }
-
                 p {
 
                 }
@@ -57,6 +53,22 @@
                 }
             }
 
+        }
+
+        .content {
+            display: flex;
+
+            .container-img {
+                flex: 30;
+
+                img {
+                    width: 50px;
+                }
+            }
+
+            .container-text {
+                flex: 70;
+            }
         }
     }
 }

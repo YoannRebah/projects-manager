@@ -15,6 +15,10 @@ export class PopinComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
 
   @Input() id?: string;
+  @Input() isError?: string;
+  @Input() formSentSuccess?: string;
+  @Input() title?: string;
+  @Input() contentText?: string;
 
   constructor(private popinService: PopinService) {}
 
