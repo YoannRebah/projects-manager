@@ -19,7 +19,6 @@ import { H2Component } from './components/text/h2/h2.component';
 // views
 import { EmployeeCardComponent } from './components/views/employee-card/employee-card.component';
 import { SkillsComponent } from './components/views/skills/skills.component';
-import { NotableAchievementsComponent } from './components/views/notable-achievements/notable-achievements.component';
 import { AchievementsComponent } from './components/views/achievements/achievements.component';
 import { ToolsOverviewComponent } from './components/views/tools-overview/tools-overview.component';
 import { MarqueeInterestsComponent } from './components/views/marquee-interests/marquee-interests.component';
@@ -54,7 +53,6 @@ import { AdsPosterComponent } from './components/views/ads-poster/ads-poster.com
     // views
     EmployeeCardComponent,
     SkillsComponent,
-    NotableAchievementsComponent,
     AchievementsComponent,
     ToolsOverviewComponent,
     MarqueeInterestsComponent,

@@ -1,9 +1,0 @@
-<div class="container notable-achievements">
-    <div *ngFor="let achievement of achievements" class="polaroid">
-        <img [src]="achievement.imagesPath.src" class="scotch-band" [class]="achievement.imagesPath.classNames" alt="Scotch">
-        <div [id]="achievement.id" class="photo"></div>
-        <div class="note">
-            <p class="permanent-marker-regular">{{ achievement.text }}</p>
-        </div>
-    </div>
-</div>

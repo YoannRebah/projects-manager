@@ -13,7 +13,7 @@
         box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
 
         button,
-        .container-flex-2-columns {
+        .container-columns {
             border-top: 2px solid $white2;
             border-left: 2px solid $white2;
             border-right: 2px solid $black2;
@@ -78,7 +78,7 @@
                 }
             }
 
-            .container-flex-2-columns {
+            .container-columns {
                 display: none;
                 height: 50vh;
 

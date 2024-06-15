@@ -17,150 +17,20 @@
         </header>
         <div class="content">
             <div class="container-btn-tabs">
-                <button class="btn" [ngClass]="{'active': activeIndex === 0}" (click)="setActive(0)">Lorem</button>
-                <button class="btn" [ngClass]="{'active': activeIndex === 1}" (click)="setActive(1)">Lorem</button>
-                <button class="btn" [ngClass]="{'active': activeIndex === 2}" (click)="setActive(2)">Lorem</button>
-                <button class="btn" [ngClass]="{'active': activeIndex === 3}" (click)="setActive(3)">Lorem</button>
+                <button *ngFor="let btn of btnTabs" class="btn" [ngClass]="{'active': activeIndex === btn.index}" (click)="setActive(btn.index)">{{ btn.text }}</button>
             </div>
-            <div class="container-flex-2-columns" [ngClass]="{'active': activeIndex === 0}">
+            <div *ngFor="let column of columns" class="container-columns" [ngClass]="{'active': activeIndex === column.index}">
                 <div class="column">
-                    <img src="assets/gif/achievements-1.gif" alt="">
+                    <img [src]="column.img.path" [alt]="column.img.path">
                 </div>
                 <div class="column">
                     <div class="container-block-details">
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
+                        <div *ngFor="let blockDetail of column.blockDetails" class="block-details">
+                            <p>{{ blockDetail.title }}</p>
                             <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-flex-2-columns" [ngClass]="{'active': activeIndex === 1}">
-                <div class="column">
-                    <img src="assets/gif/achievements-2.gif" alt="">
-                </div>
-                <div class="column">
-                    <div class="container-block-details">
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-flex-2-columns" [ngClass]="{'active': activeIndex === 2}">
-                <div class="column">
-                    <img src="assets/gif/achievements-3.gif" alt="">
-                </div>
-                <div class="column">
-                    <div class="container-block-details">
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-flex-2-columns" [ngClass]="{'active': activeIndex === 3}">
-                <div class="column">
-                    <img src="assets/gif/achievements-5.gif" alt="">
-                </div>
-                <div class="column">
-                    <div class="container-block-details">
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                            </ul>
-                        </div>
-                        <div class="block-details">
-                            <p>Lorem ipsum dolor :</p>
-                            <ul>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
-                                <li><p>Lorem ipsum dolor, sit amet.</p></li>
+                                <li *ngFor="let text of blockDetail.list">
+                                    <p>{{ text }}</p>
+                                </li>
                             </ul>
                         </div>
                     </div>
