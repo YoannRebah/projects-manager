@@ -20,7 +20,7 @@
         border: 5px solid $grey;
         background: $grey;
         color: $grey2;
-        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+        box-shadow: 2px 2px 0px 0px $black-transparent2;
 
         header {
             display: flex;
@@ -32,6 +32,7 @@
             .container-title {
                 p {
                     margin-left: .2rem;
+                    color: $white;
                 }
             }
 
@@ -58,6 +59,13 @@
         .content {
             display: flex;
             padding: 1rem;
+
+            .container-img,
+            .container-text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
             .container-img {
                 flex: 30;
