@@ -1,0 +1,14 @@
+<div *ngIf="isVisible" [id]="id" class="popin-background">
+    <div class="container popin">
+        <header>
+            <div class="container-title">
+                <i></i>
+                <p></p>
+            </div>
+            <button class="btn" (click)="onClickHide()">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </header>
+        <div class="content"></div>
+    </div>
+</div>

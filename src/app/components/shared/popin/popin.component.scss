@@ -1,0 +1,62 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.popin-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .popin {
+        display: flex;
+        flex-direction: column;
+        max-width: 370px;
+        border: 5px solid $grey;
+        background: $grey;
+        color: $grey2;
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .33rem;
+            background: $blue2;
+
+            .container-title {
+
+                i {
+
+                }
+
+                p {
+
+                }
+            }
+
+            button {
+                background: $grey;
+                width: 24px;
+                height: 24px;
+                font-size: 1.05rem;
+                border-top: 2px solid $white2;
+                border-left: 2px solid $white2;
+                border-right: 2px solid $black2;
+                border-bottom: 2px solid $black2;
+
+                &:active {
+                    border-top: 2px solid $black2;
+                    border-left: 2px solid $black2;
+                    border-right: 2px solid $white2;
+                    border-bottom: 2px solid $white2;
+                }
+            }
+
+        }
+    }
+}
