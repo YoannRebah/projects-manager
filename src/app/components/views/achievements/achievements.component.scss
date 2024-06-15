@@ -78,27 +78,34 @@
                     padding: 2rem;
 
                     &:first-child {
-                        flex: 30;
+                        flex: 40;
                         align-items: center;
                         justify-content: center;
                     }
 
                     &:last-child {
-                        flex: 70;
+                        flex: 60;
                     }
 
                     img {
-                        width: 70%;
+                        width: 65%;
                     }
 
-                    p {
+                    .block-details {
+                        &:not(:last-child) {
+                            margin-bottom: 1rem;
+                        }
 
-                    }
-
-                    ul {
-
-                        li {
-
+                        p {
+                            margin-bottom: .25rem;
+                        }
+    
+                        ul {
+                            margin-left: 2rem;
+    
+                            li {
+    
+                            }
                         }
                     }
                 }
