@@ -1,4 +1,4 @@
-<div *ngIf="isVisible" [id]="id" class="popin-background">
+<div *ngIf="isVisible" #popin [id]="id" class="popin-background" [style.position]="position">
     <div class="container popin">
         <header>
             <div class="container-title">
