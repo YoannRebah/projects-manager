@@ -20,6 +20,15 @@
             border-bottom: 2px solid $black2;
         }
 
+        button {
+            &:active {
+                border-top: 2px solid $black2;
+                border-left: 2px solid $black2;
+                border-right: 2px solid $white2;
+                border-bottom: 2px solid $white2;
+            }
+        }
+
         header {
             display: flex;
             align-items: center;
@@ -35,7 +44,7 @@
                 }
 
                 p {
-                    
+                    margin-left: .2rem;
                 }
             }
 
@@ -102,6 +111,7 @@
 
                         p {
                             margin-bottom: .25rem;
+                            font-size: 0.9rem;
                         }
     
                         ul {
