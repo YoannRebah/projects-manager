@@ -70,7 +70,11 @@
             }
 
             .container-flex-2-columns {
-                display: flex;
+                display: none;
+
+                &.active {
+                    display: flex;
+                }
 
                 .column {
                     display: flex;
