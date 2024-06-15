@@ -1,0 +1,123 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/layout/container';
+
+.achievements {
+
+    .achievements-window {
+        display: flex;
+        flex-direction: column;
+        border: 5px solid $grey;
+        background: $grey;
+        color: $grey2;
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+
+        button,
+        .container-flex-2-columns {
+            border-top: 2px solid $white2;
+            border-left: 2px solid $white2;
+            border-right: 2px solid $black2;
+            border-bottom: 2px solid $black2;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .33rem;
+            background: $blue2;
+
+            .title {
+                color: $white;
+
+                i {
+
+                }
+
+                p {
+                    
+                }
+            }
+
+            .container-btn {
+                display: flex;
+                gap: 0.33rem;
+
+                button {
+                    background: $grey;
+                    width: 24px;
+                    height: 24px;
+                    font-size: 1.05rem;
+                }
+            }
+        }
+
+        .content {
+            margin: 1rem;
+
+            .container-btn-tabs {
+                margin-bottom: -2px;
+
+                button {
+                    padding: .33rem .5rem;
+                    border-bottom: none;
+
+                    &.active {
+                        border-bottom: 2px solid $grey;
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            .container-flex-2-columns {
+                display: flex;
+
+                .column {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 2rem;
+
+                    &:first-child {
+                        flex: 30;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    &:last-child {
+                        flex: 70;
+                    }
+
+                    img {
+                        width: 70%;
+                    }
+
+                    p {
+
+                    }
+
+                    ul {
+
+                        li {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+
+            .container-btn {
+                display: flex;
+                gap: .5rem;
+
+                button {
+                    padding: .5rem 2rem;
+                }
+            }
+        }
+    }
+}
