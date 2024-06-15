@@ -80,6 +80,7 @@
 
             .container-flex-2-columns {
                 display: none;
+                height: 50vh;
 
                 &.active {
                     display: flex;
@@ -104,21 +105,26 @@
                         width: 65%;
                     }
 
-                    .block-details {
-                        &:not(:last-child) {
-                            margin-bottom: 1rem;
-                        }
+                    .container-block-details {
+                        max-height: 100%;
+                        overflow-y: scroll;
 
-                        p {
-                            margin-bottom: .25rem;
-                            font-size: 0.9rem;
-                        }
+                        .block-details {
+                            &:not(:last-child) {
+                                margin-bottom: 1rem;
+                            }
     
-                        ul {
-                            margin-left: 2rem;
-    
-                            li {
-    
+                            p {
+                                margin-bottom: .25rem;
+                                font-size: 0.9rem;
+                            }
+        
+                            ul {
+                                margin-left: 2rem;
+        
+                                li {
+        
+                                }
                             }
                         }
                     }
