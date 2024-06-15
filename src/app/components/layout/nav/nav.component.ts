@@ -10,17 +10,17 @@ import { WindowRefService } from '../../../shared/services/window-ref.service';
 })
 
 export class NavComponent implements OnInit {
-  scrollTopPosition: number = 0;
+  windowTopPosition: number = 0;
 
   constructor(private windowRefService: WindowRefService) {}
 
   ngOnInit(): void {
-    this.scrollTopPosition = this.windowRefService.windowTopPosition;
+    this.windowTopPosition = this.windowRefService.windowTopPosition;
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    this.scrollTopPosition = this.windowRefService.windowTopPosition;
+    this.windowTopPosition = this.windowRefService.windowTopPosition;
   }
 
 }
