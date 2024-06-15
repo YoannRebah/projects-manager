@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BtnTab, Column } from '../../../shared/models/achievements';
+import { PopinComponent } from '../../shared/popin/popin.component';
+import { PopinService } from '../../../shared/services/components/popin.service';
 
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PopinComponent],
   templateUrl: './achievements.component.html',
   styleUrl: './achievements.component.scss'
 })
@@ -14,6 +16,7 @@ export class AchievementsComponent {
   activeIndex: number = 0;
   indexMin: number = 0;
   indexMax: number = 3;
+  popinIsVisible: boolean = false;
   btnTabs: BtnTab[] = [
     { text: "Lorem", index: 0 },
     { text: "Lorem", index: 1 },
@@ -167,6 +170,8 @@ export class AchievementsComponent {
     }
   ];
 
+  constructor(private popinService: PopinService) {}
+
   setActive(index: number): void {
     this.activeIndex = index;
   }
@@ -185,6 +190,11 @@ export class AchievementsComponent {
     } else {
       this.activeIndex = this.indexMin
     }
+  }
+
+  showPopin(): void {
+    this.popinIsVisible = true;
+    this.popinService.show();
   }
 
 }

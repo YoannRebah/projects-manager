@@ -3,7 +3,7 @@
 @import '../../../styles/layout/container';
 
 .popin-background {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: $black-transparent;
 
     .popin {
         display: flex;
@@ -29,9 +30,8 @@
             background: $blue2;
 
             .container-title {
-
                 p {
-
+                    margin-left: .2rem;
                 }
             }
 
@@ -57,6 +57,7 @@
 
         .content {
             display: flex;
+            padding: 1rem;
 
             .container-img {
                 flex: 30;

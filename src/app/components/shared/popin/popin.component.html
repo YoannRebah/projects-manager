@@ -2,7 +2,7 @@
     <div class="container popin">
         <header>
             <div class="container-title">
-                <p>{{ title }}</p>
+                <p>{{ titleText }}</p>
             </div>
             <button class="btn" (click)="onClickHide()">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -10,8 +10,8 @@
         </header>
         <div class="content">
             <div class="container-img">
-                <img *ngIf="isError && !formSentSuccess" src="assets/images/icon-error.png" alt="Erreur">
-                <img *ngIf="!isError && !formSentSuccess" src="assets/images/icon-check.png" alt="Valide">
+                <img *ngIf="isError && formSentSuccess == null" src="assets/images/icon-error.png" alt="Erreur">
+                <img *ngIf="!isError && formSentSuccess == null" src="assets/images/icon-check.png" alt="Valide">
                 <img *ngIf="formSentSuccess && isError == null" src="assets/images/icon-mail.png" alt="Formulaire transmis">
             </div>
             <div class="container-text">
