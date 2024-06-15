@@ -104,10 +104,18 @@
             </button>
         </div>
     </form>
-    <div *ngIf="popinContactFormIsVisible" class="popin-contact-form" [class]="mailSendWithSuccess ? 'message-success' : 'message-error'">
-        <div class="container-message">
-            <p *ngIf="mailSendWithSuccess" class="text-shadow-glitch-2">Le formulaire a été transmis avec succès&nbsp;!</p>
-            <p *ngIf="!mailSendWithSuccess" class="text-shadow-glitch-2">Aïe... Il y a eu un problème lors de l'envoi du formulaire...</p>
-        </div>
-    </div>
+    <app-popin 
+        id="popin-form-sent-success" 
+        position="fixed"
+        img="mail" 
+        titleText="Demande de contact" 
+        contentText="Le mail a bien été transmis. Merci !"
+    ></app-popin>
+    <app-popin 
+        id="popin-form-sent-error" 
+        position="fixed"
+        img="error" 
+        titleText="Demande de contact" 
+        contentText="Aïe... Il y a eu une erreur lors de l'envoi du mail..."
+    ></app-popin>
 </div>

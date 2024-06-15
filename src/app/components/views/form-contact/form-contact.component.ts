@@ -7,11 +7,13 @@ import { Region } from '../../../shared/models/locations-fr';
 import { TimeoutService } from '../../../shared/services/timeout.service';
 import { ValidatorsService } from '../../../shared/services/validators.service';
 import { WindowRefService } from '../../../shared/services/window-ref.service';
+import { PopinComponent } from '../../shared/popin/popin.component';
+import { PopinService } from '../../../shared/services/components/popin.service';
 
 @Component({
   selector: 'app-form-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PopinComponent],
   templateUrl: './form-contact.component.html',
   styleUrl: './form-contact.component.scss'
 })
@@ -24,10 +26,13 @@ export class FormContactComponent implements OnInit {
   templateId: string = 'template_d02jila';
   publicKey: string = 'nAi6Eim9qL5XMDKyr';
   mailSendWithSuccess!: boolean;
-  popinContactFormIsVisible: boolean = false;
   sendIsPending: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private windowRefService: WindowRefService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private windowRefService: WindowRefService,
+    private popinService: PopinService
+  ) { }
 
   ngOnInit(): void {
     this.initContactForm();
@@ -77,21 +82,13 @@ export class FormContactComponent implements OnInit {
     .then(() => {
         this.mailSendWithSuccess = true;
         this.contactForm.reset();
-        this.togglePopin();
+        this.showPopinAfterSubmitForm('popin-form-sent-success');
       },
       (error) => {
         this.mailSendWithSuccess = false;
-        this.togglePopin();
+        this.showPopinAfterSubmitForm('popin-form-sent-error');
       }
     );
-  }
-
-  togglePopin(): void {
-    this.popinContactFormIsVisible = true;
-    TimeoutService.setTimeout(()=>{
-      this.popinContactFormIsVisible = false;
-      this.sendIsPending = false;
-    });
   }
 
   subscribeCompagnyLocation(): void {
@@ -103,6 +100,11 @@ export class FormContactComponent implements OnInit {
 
   isGoodChoice(): boolean {
     return this.selectedLocation === "37" || this.selectedLocation === "91";
+  }
+
+  showPopinAfterSubmitForm(id: string) {
+    this.popinService.show(id);
+    this.sendIsPending = false;
   }
 
 }
