@@ -16,7 +16,6 @@ export class AchievementsComponent {
   activeIndex: number = 0;
   indexMin: number = 0;
   indexMax: number = 3;
-  popinIsVisible: boolean = false;
   btnTabs: BtnTab[] = [
     { text: "Lorem", index: 0 },
     { text: "Lorem", index: 1 },
@@ -193,7 +192,6 @@ export class AchievementsComponent {
   }
 
   showPopin(): void {
-    this.popinIsVisible = true;
     this.popinService.show();
   }
 

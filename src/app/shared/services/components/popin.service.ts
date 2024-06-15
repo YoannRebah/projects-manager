@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class PopinService {
-  private isVisibleSubject = new BehaviorSubject<boolean>(true);
+  private isVisibleSubject = new BehaviorSubject<boolean>(false);
   isVisible$ = this.isVisibleSubject.asObservable();
 
   show(): void {

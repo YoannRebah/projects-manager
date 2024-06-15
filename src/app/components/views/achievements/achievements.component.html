@@ -10,8 +10,8 @@
                 <button class="btn">
                     <i class="fa-solid fa-question"></i>
                 </button>
-                <button class="btn">
-                    <i class="fa-solid fa-xmark" (click)="showPopin()"></i>
+                <button class="btn" (click)="showPopin()">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         </header>
@@ -46,7 +46,7 @@
     </div>
     <app-popin 
         id="popin-achievements" 
-        isError="true" 
+        img="error" 
         titleText="Erreur 37_100" 
         contentText="Vous ne pouvez pas faire ça pour le moment"
     ></app-popin>

@@ -15,8 +15,7 @@ export class PopinComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
 
   @Input() id?: string;
-  @Input() isError?: string;
-  @Input() formSentSuccess?: string;
+  @Input() img?: string; // error | valid | mail
   @Input() titleText?: string;
   @Input() contentText?: string;
 
@@ -32,9 +31,7 @@ export class PopinComponent implements OnInit, OnDestroy {
 
   subscribeIsVisible(): void {
     this.isVisibleSubscription = this.popinService.isVisible$.subscribe({
-      next: (isVisible) => {
-        this.isVisible = isVisible;
-      },
+      next: (isVisible) => this.isVisible = isVisible,
       error: (e) => console.error('error subscribeIsVisible', e)
     })
   }
@@ -43,10 +40,6 @@ export class PopinComponent implements OnInit, OnDestroy {
     if(this.isVisibleSubscription) {
       this.isVisibleSubscription.unsubscribe();
     }
-  }
-
-  show(): void {
-    this.popinService.show();
   }
 
   hide(): void {
