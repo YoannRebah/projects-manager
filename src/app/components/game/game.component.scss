@@ -259,6 +259,7 @@
         background-position: center;
         background-image: url(../../../../public/assets/images/game-over-background.png);
         filter: hue-rotate(306deg);
+        opacity: 0.5;
     }
 
     .block-game-over {
@@ -270,10 +271,11 @@
         h3 {
             font-size: 16vw;
             font-weight: 500;
-            -webkit-text-stroke: 2px $pink;
+            -webkit-text-stroke: 0.25px $pink;
 
             @include screen('s') {
                 font-size: 12vw;
+                -webkit-text-stroke: 1px $pink;
             }
         }
 

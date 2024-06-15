@@ -138,6 +138,10 @@
                         @include screen('s') {
                             width: 62%;
                         }
+
+                        @include screen('xl') {
+                            width: 75%;
+                        }
     
                         .progress-bar {
                             position: relative;
