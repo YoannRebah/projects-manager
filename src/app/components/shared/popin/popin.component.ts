@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PopinService } from '../../../shared/services/components/popin.service';
 import { Subscription } from 'rxjs';
+import { PopinService } from '../../../shared/services/components/popin.service';
 
 @Component({
   selector: 'app-popin',
@@ -22,7 +22,9 @@ export class PopinComponent implements OnInit, OnDestroy {
   constructor(private popinService: PopinService) {}
 
   ngOnInit(): void {
-    this.subscribeIsVisible();
+    if (this.id) {
+      this.subscribeIsVisible();
+    }
   }
 
   ngOnDestroy(): void {
@@ -30,20 +32,22 @@ export class PopinComponent implements OnInit, OnDestroy {
   }
 
   subscribeIsVisible(): void {
-    this.isVisibleSubscription = this.popinService.isVisible$.subscribe({
+    this.isVisibleSubscription = this.popinService.isVisible$(this.id!).subscribe({
       next: (isVisible) => this.isVisible = isVisible,
       error: (e) => console.error('error subscribeIsVisible', e)
-    })
+    });
   }
 
   unsubscribeIsVisible(): void {
-    if(this.isVisibleSubscription) {
+    if (this.isVisibleSubscription) {
       this.isVisibleSubscription.unsubscribe();
     }
   }
 
   hide(): void {
-    this.popinService.hide();
+    if (this.id) {
+      this.popinService.hide(this.id);
+    }
   }
 
   onClickHide(): void {

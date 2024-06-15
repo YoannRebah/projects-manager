@@ -191,8 +191,8 @@ export class AchievementsComponent {
     }
   }
 
-  showPopin(): void {
-    this.popinService.show();
+  showPopin(id: string): void {
+    this.popinService.show(id);
   }
 
 }

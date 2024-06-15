@@ -7,10 +7,10 @@
                 </p>
             </div>
             <div class="container-btn">
-                <button class="btn">
+                <button class="btn" (click)="showPopin('popin-need-help')">
                     <i class="fa-solid fa-question"></i>
                 </button>
-                <button class="btn" (click)="showPopin()">
+                <button class="btn" (click)="showPopin('popin-try-quit')">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -45,9 +45,15 @@
         </footer>
     </div>
     <app-popin 
-        id="popin-achievements" 
+        id="popin-need-help" 
+        img="error" 
+        titleText="Erreur 34_0201" 
+        contentText="L'aide n'est pas disponible pour le moment..."
+    ></app-popin>
+    <app-popin 
+        id="popin-try-quit" 
         img="error" 
         titleText="Erreur 37_100" 
-        contentText="Vous ne pouvez pas faire ça pour le moment"
+        contentText="Vous ne pouvez pas faire ça pour le moment..."
     ></app-popin>
 </div>
