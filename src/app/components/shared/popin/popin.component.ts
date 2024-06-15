@@ -15,7 +15,7 @@ export class PopinComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
 
   @Input() id?: string;
-  @Input() img?: string; // error | valid | mail
+  @Input() img?: string; // error | valid | mail | help
   @Input() titleText?: string;
   @Input() contentText?: string;
 
