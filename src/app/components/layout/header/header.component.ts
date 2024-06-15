@@ -11,7 +11,8 @@ import { WindowRefService } from '../../../shared/services/window-ref.service';
 
 export class HeaderComponent implements OnInit {
   windowTopPosition: number = 0;
-  filterValue: number = 0;
+  grayscaleValue: number = 0;
+  opacityValue: number = 0;
 
   @ViewChild('header', { static: true }) header!: ElementRef;
 
@@ -19,19 +20,20 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.windowTopPosition = this.windowRefService.windowTopPosition;
-    this.setGrayscaleStyleValue();
+    this.setStylesValue();
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     this.windowTopPosition = this.windowRefService.windowTopPosition;
-    this.setGrayscaleStyleValue();
+    this.setStylesValue();
   }
 
-  setGrayscaleStyleValue(): void {
-    this.filterValue = this.windowTopPosition / 500;
-    if(this.filterValue <= 1) {
-      this.header.nativeElement.style.filter = `grayscale(${this.filterValue})`;
-    }
+  setStylesValue(): void {
+    this.grayscaleValue = this.windowTopPosition / 500;
+    this.opacityValue = parseFloat((1 - (this.windowTopPosition / 700)).toFixed(3));
+
+    if(this.grayscaleValue <= 1) this.header.nativeElement.style.filter = `grayscale(${this.grayscaleValue})`;
+    if(this.opacityValue >= 0) this.header.nativeElement.style.opacity = this.opacityValue;
   }
 }
