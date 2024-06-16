@@ -13,14 +13,17 @@
 
     ul {
         list-style: none;
+        height: 15vh;
+        max-height: 15vh;
+        overflow-y: auto;
 
         li {
             display: flex;
             align-items: center;
-            margin-bottom: .75rem;
+            margin-bottom: .5rem;
 
             p {
-                margin-right: .75rem;
+                margin-right: .65rem;
                 color: $green;
                 font-size: 1.1rem;
 
@@ -31,11 +34,12 @@
 
             input {
                 outline: none;
-                font-weight: 600;
+                font-weight: 500;
                 color: $white;
                 background: none;
                 border: none;
                 font-size: 1.1rem;
+                letter-spacing: 1px;
                 cursor: text;
             }
         }
