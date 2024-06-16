@@ -205,7 +205,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
     }
 
     this.inputCommandValue = this.commandsHistory[this.currentCommandIndex] || '';
-    console.log(this.inputCommandValue)
     this.setInputWithCommandsHistory();
   }
 
