@@ -1,0 +1,43 @@
+@import '../../styles/base/variables';
+@import '../../styles/base/mixins';
+@import '../../styles/layout/container';
+
+.terminal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: $black;
+    padding: 2.5rem 5rem;
+    z-index: 9;
+
+    ul {
+        list-style: none;
+
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: .75rem;
+
+            p {
+                margin-right: .75rem;
+                color: $green;
+                font-size: 1.1rem;
+
+                span {
+                    color: $white;
+                }
+            }
+
+            input {
+                outline: none;
+                font-weight: 600;
+                color: $white;
+                background: none;
+                border: none;
+                font-size: 1.1rem;
+                cursor: text;
+            }
+        }
+    }
+}

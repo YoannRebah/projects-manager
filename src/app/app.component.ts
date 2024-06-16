@@ -30,6 +30,8 @@ import { ListNavComponent } from './components/views/list-nav/list-nav.component
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
 import { FormContactComponent } from './components/views/form-contact/form-contact.component';
 import { AdsPosterComponent } from './components/views/ads-poster/ads-poster.component';
+// components
+import { TerminalComponent } from './components/terminal/terminal.component';
 
 @Component({
   selector: 'app-root',
@@ -63,10 +65,12 @@ import { AdsPosterComponent } from './components/views/ads-poster/ads-poster.com
     ListNavComponent,
     ListFooterComponent,
     AdsPosterComponent,
-    FormContactComponent
+    FormContactComponent,
+    // components
+    TerminalComponent
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss'
 })
 
 export class AppComponent implements OnInit {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { TimeoutService } from '../timeout.service';
+import { TimeoutService } from '../utilities/timeout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ import { TimeoutService } from '../timeout.service';
 export class LoaderService {
   private loadingSubject = new BehaviorSubject<boolean>(true);
   isLoading$ = this.loadingSubject.asObservable();
+
+  constructor() { }
 
   show(): void {
     this.loadingSubject.next(true);

@@ -4,9 +4,9 @@ import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationsFrService } from '../../../shared/services/components/locations-fr.service';
 import { Region } from '../../../shared/models/locations-fr';
-import { TimeoutService } from '../../../shared/services/timeout.service';
-import { ValidatorsService } from '../../../shared/services/validators.service';
-import { WindowRefService } from '../../../shared/services/window-ref.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
+import { ValidatorsService } from '../../../shared/services/utilities/validators.service';
+import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { PopinComponent } from '../../shared/popin/popin.component';
 import { PopinService } from '../../../shared/services/components/popin.service';
 

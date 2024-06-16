@@ -14,6 +14,8 @@ export class TimeCounterService {
   private isPausedSubject = new BehaviorSubject<boolean>(false);
   isPaused$ = this.isPausedSubject.asObservable();
 
+  constructor() { }
+
   // running
   start(): void {
     this.isPausedSubject.next(false);

@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class PopinService {
   private isVisibleSubjects: Map<string, BehaviorSubject<boolean>> = new Map();
 
+  constructor() { }
+
   show(id: string): void {
     if (!this.isVisibleSubjects.has(id)) {
       this.isVisibleSubjects.set(id, new BehaviorSubject<boolean>(true));

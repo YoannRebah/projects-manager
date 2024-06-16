@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class TimeoutService {
+  
   constructor() { }
 
   public static get timeoutDelay(): number {

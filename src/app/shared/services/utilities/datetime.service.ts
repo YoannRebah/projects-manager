@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class DatetimeService {
+  
   constructor() { }
 
   public static get timestampNow(): number {

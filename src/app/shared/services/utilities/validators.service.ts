@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class ValidatorsService {
+  
   constructor() { }
 
   public static get regexValidateTelFr(): RegExp {

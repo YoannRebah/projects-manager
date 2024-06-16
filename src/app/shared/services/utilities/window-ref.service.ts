@@ -17,9 +17,8 @@ export class WindowRefService {
   }
 
   public get windowTopPosition(): number {
-    const win = this.windowRef;
-    if (win) {
-      return win.pageYOffset || win.document.documentElement.scrollTop || win.document.body.scrollTop || 0;
+    if (this.windowRef) {
+      return this.windowRef.scrollY || 0;
     }
     return 0;
   }

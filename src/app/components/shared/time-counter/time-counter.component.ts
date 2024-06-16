@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angula
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, Observable } from 'rxjs';
 import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
-import { DatetimeService } from '../../../shared/services/datetime.service';
-import { TimeoutService } from '../../../shared/services/timeout.service';
+import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-time-counter',

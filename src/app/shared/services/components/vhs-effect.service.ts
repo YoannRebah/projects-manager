@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { TimeoutService } from '../timeout.service';
+import { TimeoutService } from '../utilities/timeout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,8 @@ export class VhsEffectService {
 
   private footerIsFlashingSubject = new BehaviorSubject<boolean>(false);
   footerIsFlashing$ = this.footerIsFlashingSubject.asObservable();
+
+  constructor() { }
 
   showFooter(): void {
     this.footerIsVisibleSubject.next(true);

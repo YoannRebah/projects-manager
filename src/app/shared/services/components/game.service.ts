@@ -11,6 +11,8 @@ export class GameService {
   private visibilitySubject = new BehaviorSubject<boolean>(false);
   isVisible$ = this.visibilitySubject.asObservable();
 
+  constructor() { }
+
   // running
   start(): void {
     this.runningSubject.next(true);

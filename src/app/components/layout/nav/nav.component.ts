@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { WindowRefService } from '../../../shared/services/window-ref.service';
+import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 
 @Component({
   selector: 'app-nav',

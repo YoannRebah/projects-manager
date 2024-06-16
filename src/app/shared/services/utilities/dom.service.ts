@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class DomService {
+  
   constructor() { }
 
   public static isColliding(rect1: DOMRect, rect2: DOMRect): boolean {

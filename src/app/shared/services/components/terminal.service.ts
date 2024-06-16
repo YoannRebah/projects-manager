@@ -5,9 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 
-export class TvProgramService {
+export class TerminalService {
   private isVisibleSubject = new BehaviorSubject<boolean>(false);
-  isVisible$ = this.isVisibleSubject.asObservable();
+  isVisibleSubject$ = this.isVisibleSubject.asObservable();
 
   constructor() { }
 

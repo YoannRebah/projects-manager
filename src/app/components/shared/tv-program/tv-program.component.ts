@@ -5,7 +5,7 @@ import { TvProgramService } from '../../../shared/services/components/tv-program
 import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { LoaderService } from '../../../shared/services/components/loader.service';
-import { TimeoutService } from '../../../shared/services/timeout.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-tv-program',
