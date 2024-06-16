@@ -4,6 +4,7 @@ import { TerminalService } from '../../shared/services/components/terminal.servi
 import { Subscription } from 'rxjs';
 import { DatetimeService } from '../../shared/services/utilities/datetime.service';
 import { TimeoutService } from '../../shared/services/utilities/timeout.service';
+import { LoaderService } from '../../shared/services/components/loader.service';
 
 @Component({
   selector: 'app-terminal',
@@ -16,12 +17,14 @@ import { TimeoutService } from '../../shared/services/utilities/timeout.service'
 export class TerminalComponent implements OnInit, OnDestroy {
   private subscriptionIsVisible!: Subscription;
   isVisible: boolean = false;
+  inputCommandValue!: string
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
   constructor(
     private terminalService: TerminalService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -62,11 +65,16 @@ export class TerminalComponent implements OnInit, OnDestroy {
     }
     if (event.key === 'Enter') {
       event.preventDefault();
-      this.createRowTerminal();
+      if(this.inputCommandValue) {
+        this.execCommandLine();
+        this.createRowTerminal();
+      } else {
+        this.createRowTerminal();
+      }
     }
   }
 
-  createRowTerminal(inputValue?: string): void {
+  createRowTerminal(): void {
     if(this.isVisible) {
       const rowTerminalTimestamp = DatetimeService.timestampNow;
       const terminalList = this.terminalList.nativeElement;
@@ -86,6 +94,23 @@ export class TerminalComponent implements OnInit, OnDestroy {
       if (terminalList) {
         this.renderer.appendChild(terminalList, rowTerminal);
         input.focus();
+        this.renderer.listen(input, 'input', (e)=>{
+          this.inputCommandValue = e.target.value;
+        })
+      }
+    }
+  }
+
+  execCommandLine(): void {
+    if(this.inputCommandValue) {
+      const command = this.inputCommandValue;
+      switch(command) {
+        case 'show loader': this.loaderService.show();
+        break;
+        case 'hide loader': this.loaderService.hide();
+        break;
+        case 'toggle loader': this.loaderService.toggle();
+        break;
       }
     }
   }
