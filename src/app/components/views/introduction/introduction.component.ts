@@ -7,7 +7,7 @@ import { Introduction } from '../../../shared/models/introduction';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './introduction.component.html',
-  styleUrls: ['./introduction.component.scss'],
+  styleUrl: './introduction.component.scss',
 })
 
 export class IntroductionComponent {
