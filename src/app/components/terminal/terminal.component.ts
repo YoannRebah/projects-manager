@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TerminalService } from '../../shared/services/components/terminal.service';
 import { Subscription } from 'rxjs';
 import { TimeoutService } from '../../shared/services/utilities/timeout.service';
-import { LoaderService } from '../../shared/services/components/loader.service';
 import { LocalStorageService } from '../../shared/services/utilities/local-storage.service';
+// testable services
+import { LoaderService } from '../../shared/services/components/loader.service';
+import { TvProgramService } from '../../shared/services/components/tv-program.service';
 
 @Component({
   selector: 'app-terminal',
@@ -28,7 +30,8 @@ export class TerminalComponent implements OnInit, OnDestroy {
   constructor(
     private terminalService: TerminalService,
     private renderer: Renderer2,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private tvProgramService: TvProgramService
   ) {}
 
   ngOnInit(): void {
@@ -166,6 +169,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
         case 'hide loader': this.loaderService.hide();
         break;
         case 'toggle loader': this.loaderService.toggle();
+        break;
+        case 'show tv': this.tvProgramService.show();
+        break;
+        case 'hide tv': this.tvProgramService.hide();
         break;
       }
     }
