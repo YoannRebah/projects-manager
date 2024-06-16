@@ -1,0 +1,95 @@
+@import '../../../styles/base/variables';
+@import '../../../styles/base/mixins';
+@import '../../../styles/base/container';
+
+.blog {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .container-presentation-card {
+        display: none;
+        gap: 1.5rem;
+
+        &.active {
+            display: flex;
+        } 
+
+        .container-card {
+            flex: 1;
+            padding: 2rem;
+            background: $grey;
+            color: $black;
+
+            .card {  
+                position: relative;
+                height: 100%;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1.5fr 0.5fr;
+                gap: 26px 0px;
+                grid-auto-flow: row;
+                grid-template-areas: "block-title" "block-text" "block-cta";
+    
+                .block-title { 
+                    grid-area: block-title; 
+
+                    h2 {
+                        font-size: 1.4rem;
+                    }
+                }
+            
+                .block-text { 
+                    grid-area: block-text; 
+
+                    p {
+                        font-size: 1rem;
+                    }
+                }
+                
+                .block-cta { 
+                    grid-area: block-cta; 
+
+                    a {
+                        font-size: 1.15rem;
+                        color: $blue2;
+
+                        &:hover {
+                            color: $blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .container-pagination {
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+
+            ul {
+                list-style: none;
+                display: flex;
+                gap: .5rem;
+
+                li {
+                    button {
+                        width: 34px;
+                        height: 34px;
+                        color: $black;
+                        background: $grey;
+                        font-size: 1.15rem;
+
+                        &.active,
+                        &:hover {
+                            background: $blue;
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

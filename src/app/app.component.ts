@@ -30,6 +30,7 @@ import { ListNavComponent } from './components/views/list-nav/list-nav.component
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
 import { FormContactComponent } from './components/views/form-contact/form-contact.component';
 import { AdsPosterComponent } from './components/views/ads-poster/ads-poster.component';
+import { BlogComponent } from './components/views/blog/blog.component';
 // components
 import { TerminalComponent } from './components/terminal/terminal.component';
 
@@ -66,6 +67,7 @@ import { TerminalComponent } from './components/terminal/terminal.component';
     ListFooterComponent,
     AdsPosterComponent,
     FormContactComponent,
+    BlogComponent,
     // components
     TerminalComponent
   ],

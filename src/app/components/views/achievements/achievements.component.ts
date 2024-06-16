@@ -170,7 +170,7 @@ export class AchievementsComponent {
     this.activeIndex = index;
   }
 
-  triggerPrev(): void {
+  onClickPrev(): void {
     if(this.activeIndex > this.indexMin) {
       this.activeIndex--
     } else {
@@ -178,7 +178,7 @@ export class AchievementsComponent {
     }
   }
 
-  triggerNext(): void {
+  onClickNext(): void {
     if(this.activeIndex < this.indexMax) {
       this.activeIndex++
     } else {
