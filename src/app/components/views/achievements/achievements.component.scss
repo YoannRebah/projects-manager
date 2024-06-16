@@ -10,7 +10,7 @@
         border: 5px solid $grey;
         background: $grey;
         color: $grey2;
-        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+        box-shadow: 2px 2px 0px 0px $black-transparent;
 
         button,
         .container-columns {
@@ -38,13 +38,12 @@
 
             .title {
                 color: $white;
+                display: flex;
+                align-items: center;
+                margin-left: .33rem;
 
                 i {
-
-                }
-
-                p {
-                    margin-left: .2rem;
+                    margin-right: .45rem;
                 }
             }
 
@@ -107,24 +106,20 @@
 
                     .container-block-details {
                         max-height: 100%;
-                        overflow-y: scroll;
+                        overflow-y: auto;
 
                         .block-details {
                             &:not(:last-child) {
-                                margin-bottom: 1rem;
+                                margin-bottom: 1.5rem;
                             }
     
                             p {
                                 margin-bottom: .25rem;
-                                font-size: 0.9rem;
+                                font-size: .9rem;
                             }
         
                             ul {
                                 margin-left: 2rem;
-        
-                                li {
-        
-                                }
                             }
                         }
                     }

@@ -2,9 +2,8 @@
     <div class="achievements-window">
         <header>
             <div class="title">
-                <p>
-                    Lorem ipsum dolor sitipsum dolor sit
-                </p>
+                <i class="fa-solid fa-computer" aria-hidden="true"></i>
+                <p>Propriétés des réalisations notables</p>
             </div>
             <div class="container-btn">
                 <button class="btn" (click)="showPopin('popin-need-help')">
@@ -17,9 +16,9 @@
         </header>
         <div class="content">
             <div class="container-btn-tabs">
-                <button *ngFor="let btn of btnTabs" class="btn" [ngClass]="{'active': activeIndex === btn.index}" (click)="setActive(btn.index)">{{ btn.text }}</button>
+                <button *ngFor="let btn of btnTabs" class="btn" [class.active]="activeIndex === btn.index" (click)="setActive(btn.index)">{{ btn.text }}</button>
             </div>
-            <div *ngFor="let column of columns" class="container-columns" [ngClass]="{'active': activeIndex === column.index}">
+            <div *ngFor="let column of columns" class="container-columns" [class.active]="activeIndex === column.index">
                 <div class="column">
                     <img [src]="column.img.path" [alt]="column.img.path">
                 </div>
@@ -44,16 +43,7 @@
             </div>
         </footer>
     </div>
-    <app-popin 
-        id="popin-need-help" 
-        img="help" 
-        titleText="Erreur 34_0201" 
-        contentText="L'aide n'est pas disponible pour le moment..."
-    ></app-popin>
-    <app-popin 
-        id="popin-try-quit" 
-        img="error" 
-        titleText="Erreur 37_100" 
-        contentText="Vous ne pouvez pas faire ça pour le moment..."
-    ></app-popin>
+    <!-- popins -->
+    <app-popin id="popin-need-help" img="help" titleText="Erreur 34_0201" contentText="L'aide n'est pas disponible pour le moment..."></app-popin>
+    <app-popin id="popin-try-quit" img="error" titleText="Erreur 37_100" contentText="Vous ne pouvez pas faire ça pour le moment..."></app-popin>
 </div>

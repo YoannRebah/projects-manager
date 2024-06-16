@@ -17,10 +17,10 @@ export class AchievementsComponent {
   indexMin: number = 0;
   indexMax: number = 3;
   btnTabs: BtnTab[] = [
-    { text: "Lorem", index: 0 },
-    { text: "Lorem", index: 1 },
-    { text: "Lorem", index: 2 },
-    { text: "Lorem", index: 3 }
+    { text: "BNP Paribas", index: 0 },
+    { text: "Hello bank!", index: 1 },
+    { text: "Hello bank! pro", index: 2 },
+    { text: "Projets Perso", index: 3 },
   ];
   columns: Column[] = [
     {
@@ -31,7 +31,15 @@ export class AchievementsComponent {
       },
       blockDetails: [
         {
-          title: "Lorem ipsum dolor 1 :",
+          title: "Missions :",
+          list: [
+            "Création de page / landing page",
+            "Intégrations de mailing",
+            "Gestion de contenu",
+          ]
+        },
+        {
+          title: "Environnement :",
           list: [
             "Lorem ipsum dolor, sit amet.",
             "Lorem ipsum dolor, sit amet.",
@@ -40,21 +48,12 @@ export class AchievementsComponent {
           ]
         },
         {
-          title: "Lorem ipsum dolor 1 :",
+          title: "Logiciels & Outils :",
           list: [
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet."
-          ]
-        },
-        {
-          title: "Lorem ipsum dolor 1 :",
-          list: [
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet."
+            "VS Code",
+            "Git",
+            "Zeplin",
+            "Jenkins"
           ]
         }
       ]
@@ -62,17 +61,15 @@ export class AchievementsComponent {
     {
       index: 1,
       img: {
-        path: "assets/gif/achievements-2.gif",
+        path: "assets/gif/achievements-4.gif",
         alt: ""
       },
       blockDetails: [
         {
-          title: "Lorem ipsum dolor 2 :",
+          title: "Missions :",
           list: [
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet."
+            "Création de page / landing page",
+            "Gestion de contenu",
           ]
         },
         {
@@ -85,12 +82,12 @@ export class AchievementsComponent {
           ]
         },
         {
-          title: "Lorem ipsum dolor 2 :",
+          title: "Logiciels & Outils :",
           list: [
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet."
+            "VS Code",
+            "Git",
+            "Zeplin",
+            "Jenkins"
           ]
         }
       ]
@@ -103,12 +100,10 @@ export class AchievementsComponent {
       },
       blockDetails: [
         {
-          title: "Lorem ipsum dolor 3 :",
+          title: "Missions :",
           list: [
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet.",
-            "Lorem ipsum dolor, sit amet."
+            "Création de page / landing page",
+            "Gestion de contenu",
           ]
         },
         {
@@ -139,7 +134,7 @@ export class AchievementsComponent {
       },
       blockDetails: [
         {
-          title: "Lorem ipsum dolor 4 :",
+          title: "Création de sites :",
           list: [
             "Lorem ipsum dolor, sit amet.",
             "Lorem ipsum dolor, sit amet.",
@@ -148,7 +143,7 @@ export class AchievementsComponent {
           ]
         },
         {
-          title: "Lorem ipsum dolor 4 :",
+          title: "Création de jeux vidéos :",
           list: [
             "Lorem ipsum dolor, sit amet.",
             "Lorem ipsum dolor, sit amet.",
@@ -157,7 +152,7 @@ export class AchievementsComponent {
           ]
         },
         {
-          title: "Lorem ipsum dolor 4 :",
+          title: "Création de logiciel :",
           list: [
             "Lorem ipsum dolor, sit amet.",
             "Lorem ipsum dolor, sit amet.",
