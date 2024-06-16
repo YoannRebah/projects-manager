@@ -23,16 +23,29 @@
             margin-bottom: .5rem;
 
             p {
+                position: relative;
                 margin-right: .65rem;
                 color: $green;
                 font-size: 1.1rem;
 
-                span {
+                .span-root {
                     color: $white;
+                }
+
+                .span-caret {
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    right: -12%;
+                    height: 90%;
+                    width: 10px;
+                    background: $pink;
+                    border: 2px solid $pink2;
                 }
             }
 
             input {
+                width: 100%;
                 outline: none;
                 font-weight: 500;
                 color: $white;
@@ -42,8 +55,8 @@
                 letter-spacing: 1px;
                 cursor: text;
 
-                &.disabled {
-                    pointer-events: none;
+                &:disabled {
+                    cursor: url(../../../../public/assets/images/mouse-cursor.png), auto;
                 }
             }
         }

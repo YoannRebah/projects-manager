@@ -16,7 +16,8 @@ import { LoaderService } from '../../shared/services/components/loader.service';
 export class TerminalComponent implements OnInit, OnDestroy {
   private subscriptionIsVisible!: Subscription;
   isVisible: boolean = false;
-  inputCommandValue!: string
+  inputCommandValue!: string;
+  inputCommandIsFocused: boolean = false;
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -89,22 +90,43 @@ export class TerminalComponent implements OnInit, OnDestroy {
       const rowTerminal = this.renderer.createElement('li');
       this.renderer.addClass(rowTerminal, 'row-terminal');
       const p = this.renderer.createElement('p');
-      const span = this.renderer.createElement('span');
+      const spanRoot = this.renderer.createElement('span');
+      this.renderer.addClass(spanRoot, 'span-root');
+      const spanCaret = this.renderer.createElement('span');
+      this.renderer.addClass(spanCaret, 'span-caret');
+      this.renderer.addClass(spanCaret, 'display-none');
+      this.renderer.addClass(spanCaret, 'flash-animation');
       const input = this.renderer.createElement('input');
+      this.renderer.setAttribute(input, 'spellcheck', 'false');
   
       this.renderer.appendChild(p, this.renderer.createText("yoann@portfolio:"));
-      this.renderer.appendChild(span, this.renderer.createText("~#"));
+      this.renderer.appendChild(spanRoot, this.renderer.createText("~#"));
   
-      this.renderer.appendChild(p, span);
+      this.renderer.appendChild(p, spanRoot);
+      this.renderer.appendChild(p, spanCaret);
       this.renderer.appendChild(rowTerminal, p);
       this.renderer.appendChild(rowTerminal, input);
   
       if (terminalList) {
         this.renderer.appendChild(terminalList, rowTerminal);
         input.focus();
-        this.renderer.listen(input, 'input', (e) => { this.inputCommandValue = e.target.value; })
+        this.addEventsInput(input, spanCaret);
       }
     }
+  }
+
+  addEventsInput(input: HTMLInputElement, spanCaret: HTMLSpanElement): void {
+    this.renderer.listen(input, 'focus', () => { 
+      this.renderer.addClass(spanCaret, 'display-none');
+    });
+    this.renderer.listen(input, 'blur', () => { 
+      if(!input.disabled) {
+        this.renderer.removeClass(spanCaret, 'display-none'); 
+      }
+    });
+    this.renderer.listen(input, 'input', (e) => { 
+      this.inputCommandValue = e.target.value; 
+    });
   }
 
   disablePreviousInputs(): void {
