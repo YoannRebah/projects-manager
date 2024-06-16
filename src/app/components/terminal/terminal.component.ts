@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, Rend
 import { CommonModule } from '@angular/common';
 import { TerminalService } from '../../shared/services/components/terminal.service';
 import { Subscription } from 'rxjs';
-import { DatetimeService } from '../../shared/services/utilities/datetime.service';
 import { TimeoutService } from '../../shared/services/utilities/timeout.service';
 import { LoaderService } from '../../shared/services/components/loader.service';
 
@@ -54,32 +53,41 @@ export class TerminalComponent implements OnInit, OnDestroy {
     this.isVisible = !this.isVisible;
   }
 
+  onPressKeyCtrlQ(): void {
+    this.toggleTerminalIsVisible();
+    TimeoutService.setTimeout(()=>{
+      this.createRowTerminal();
+    }, 150);
+  }
+
+  onPressKeyEnter(): void {
+    this.disablePreviousInputs();
+    if(this.inputCommandValue) {
+      this.execCommandLine();
+      this.createRowTerminal();
+    } else {
+      this.createRowTerminal();
+    }
+  }
+
   @HostListener('window:keydown', ['$event'])
   handleKeyDownTerminal(event: KeyboardEvent) {
     if (event.ctrlKey && event.key === 'q') {
       event.preventDefault();
-      this.toggleTerminalIsVisible();
-      TimeoutService.setTimeout(()=>{
-        this.createRowTerminal();
-      }, 150);
+      this.onPressKeyCtrlQ();
     }
     if (event.key === 'Enter') {
       event.preventDefault();
-      if(this.inputCommandValue) {
-        this.execCommandLine();
-        this.createRowTerminal();
-      } else {
-        this.createRowTerminal();
-      }
+      this.onPressKeyEnter();
     }
   }
 
   createRowTerminal(): void {
     if(this.isVisible) {
-      const rowTerminalTimestamp = DatetimeService.timestampNow;
       const terminalList = this.terminalList.nativeElement;
   
       const rowTerminal = this.renderer.createElement('li');
+      this.renderer.addClass(rowTerminal, 'row-terminal');
       const p = this.renderer.createElement('p');
       const span = this.renderer.createElement('span');
       const input = this.renderer.createElement('input');
@@ -94,11 +102,17 @@ export class TerminalComponent implements OnInit, OnDestroy {
       if (terminalList) {
         this.renderer.appendChild(terminalList, rowTerminal);
         input.focus();
-        this.renderer.listen(input, 'input', (e)=>{
-          this.inputCommandValue = e.target.value;
-        })
+        this.renderer.listen(input, 'input', (e) => { this.inputCommandValue = e.target.value; })
       }
     }
+  }
+
+  disablePreviousInputs(): void {
+    const previousRows = document.querySelectorAll('.row-terminal');
+    previousRows.forEach((elem: Element) => {
+      const input = elem.querySelector('input');
+      if (input) input.disabled = true;
+    });
   }
 
   execCommandLine(): void {
