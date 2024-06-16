@@ -7,6 +7,7 @@ import { LocalStorageService } from '../../shared/services/utilities/local-stora
 // testable services
 import { LoaderService } from '../../shared/services/components/loader.service';
 import { TvProgramService } from '../../shared/services/components/tv-program.service';
+import { VhsEffectService } from '../../shared/services/components/vhs-effect.service';
 
 @Component({
   selector: 'app-terminal',
@@ -31,7 +32,8 @@ export class TerminalComponent implements OnInit, OnDestroy {
     private terminalService: TerminalService,
     private renderer: Renderer2,
     private loaderService: LoaderService,
-    private tvProgramService: TvProgramService
+    private tvProgramService: TvProgramService,
+    private vhsEffectService: VhsEffectService
   ) {}
 
   ngOnInit(): void {
@@ -163,18 +165,26 @@ export class TerminalComponent implements OnInit, OnDestroy {
     if(this.inputCommandValue) {
       const command = this.inputCommandValue;
       this.updateCommandsHistory(command);
-      switch(command) {
-        case 'show loader': this.loaderService.show();
-        break;
-        case 'hide loader': this.loaderService.hide();
-        break;
-        case 'toggle loader': this.loaderService.toggle();
-        break;
-        case 'show tv': this.tvProgramService.show();
-        break;
-        case 'hide tv': this.tvProgramService.hide();
-        break;
-      }
+      this.commandsLine(command);
+    }
+  }
+
+  commandsLine(command: string): void {
+    switch(command) {
+      case 'show loader': this.loaderService.show();
+      break;
+      case 'hide loader': this.loaderService.hide();
+      break;
+      case 'toggle loader': this.loaderService.toggle();
+      break;
+      case 'show tv': this.tvProgramService.show();
+      break;
+      case 'hide tv': this.tvProgramService.hide();
+      break;
+      case 'show vhs': this.vhsEffectService.show();
+      break;
+      case 'hide vhs': this.vhsEffectService.hide();
+      break;
     }
   }
 

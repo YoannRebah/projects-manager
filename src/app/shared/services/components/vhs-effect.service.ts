@@ -7,6 +7,9 @@ import { TimeoutService } from '../utilities/timeout.service';
 })
 
 export class VhsEffectService {
+  private isVisibleSubject = new BehaviorSubject<boolean>(true);
+  isVisible$ = this.isVisibleSubject.asObservable();
+
   private footerIsVisibleSubject = new BehaviorSubject<boolean>(false);
   footerIsVisible$ = this.footerIsVisibleSubject.asObservable();
 
@@ -14,6 +17,14 @@ export class VhsEffectService {
   footerIsFlashing$ = this.footerIsFlashingSubject.asObservable();
 
   constructor() { }
+
+  show(): void {
+    this.isVisibleSubject.next(true);
+  }
+
+  hide(): void {
+    this.isVisibleSubject.next(false);
+  }
 
   showFooter(): void {
     this.footerIsVisibleSubject.next(true);
