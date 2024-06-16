@@ -17,8 +17,10 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 
 export class TvProgramComponent implements OnInit, OnDestroy {
   private tvProgramIsVisibleSubscription!: Subscription;
+  private tvProgramIsPlayingSubscription!: Subscription;
   private timeCounterSubscription!: Subscription;
   isVisible: boolean = false;
+  isPlaying: boolean = false;
   timeTimeCounter: number = 0;
   videoDurationTime: number = 227;
   delayBeforeShow: number = 300;
@@ -37,16 +39,37 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.showVhsEffectFooter();
     this.subscribeTvProgramIsVisible();
+    this.subscribeTvProgramIsPlaying();
     this.subscribeTimeCounterService();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeTvProgramIsVisible();
+    this.unsubscribeTvProgramIsPlaying();
     this.unsubscribeTimeCounterService();
   }
 
   onClickHideVideo(): void {
     this.hide();
+  }
+
+  // tv program is playing
+  subscribeTvProgramIsPlaying(): void {
+    this.tvProgramIsPlayingSubscription = this.tvProgramService.isPlaying$.subscribe({
+      next: (isPlaying) => {
+        this.isPlaying = isPlaying;
+        if(this.isVisible && isPlaying) {
+          this.playVideo();
+        }
+      },
+      error: (e) => console.error('error subscribeTvProgramIsPlaying', e)
+    })
+  }
+
+  unsubscribeTvProgramIsPlaying(): void {
+    if(this.tvProgramIsPlayingSubscription) {
+      this.tvProgramIsPlayingSubscription.unsubscribe();
+    }
   }
 
   // tv program is visible
@@ -91,11 +114,10 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   show(): void {
     this.tvProgramService.show();
-    let timeout = setTimeout(()=>{
+    TimeoutService.setTimeout(()=>{
       this.playVideo();
       this.hideVhsEffectFooter();
       this.isShown = true;
-      clearTimeout(timeout);
     }, 500);
   }
 
