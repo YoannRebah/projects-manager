@@ -4,6 +4,7 @@ import { TerminalService } from '../../shared/services/components/terminal.servi
 import { Subscription } from 'rxjs';
 import { TimeoutService } from '../../shared/services/utilities/timeout.service';
 import { LoaderService } from '../../shared/services/components/loader.service';
+import { LocalStorageService } from '../../shared/services/utilities/local-storage.service';
 
 @Component({
   selector: 'app-terminal',
@@ -18,6 +19,9 @@ export class TerminalComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   inputCommandValue!: string;
   inputCommandIsFocused: boolean = false;
+  commandsHistory: string[] = [];
+  terminalHistoryKey: string = LocalStorageService.portfolioPrefixStorageKey + "terminal-history";
+  currentCommandIndex: number = -1;
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -77,9 +81,19 @@ export class TerminalComponent implements OnInit, OnDestroy {
       event.preventDefault();
       this.onPressKeyCtrlQ();
     }
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      this.onPressKeyEnter();
+    if(this.inputCommandIsFocused) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        this.onPressKeyEnter();
+      }
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        this.navigateHistory('up');
+      }
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        this.navigateHistory('down'); 
+      }
     }
   }
 
@@ -110,6 +124,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
       if (terminalList) {
         this.renderer.appendChild(terminalList, rowTerminal);
         input.focus();
+        this.inputCommandIsFocused = true;
         this.addEventsInput(input, spanCaret);
       }
     }
@@ -117,13 +132,17 @@ export class TerminalComponent implements OnInit, OnDestroy {
 
   addEventsInput(input: HTMLInputElement, spanCaret: HTMLSpanElement): void {
     this.renderer.listen(input, 'focus', () => { 
+      this.inputCommandIsFocused = true;
       this.renderer.addClass(spanCaret, 'display-none');
     });
-    this.renderer.listen(input, 'blur', () => { 
-      if(!input.disabled) {
+
+    this.renderer.listen(input, 'blur', (e) => { 
+      if(!input.disabled && !e.target.value) {
+        this.inputCommandIsFocused = false;
         this.renderer.removeClass(spanCaret, 'display-none'); 
       }
     });
+
     this.renderer.listen(input, 'input', (e) => { 
       this.inputCommandValue = e.target.value; 
     });
@@ -140,12 +159,62 @@ export class TerminalComponent implements OnInit, OnDestroy {
   execCommandLine(): void {
     if(this.inputCommandValue) {
       const command = this.inputCommandValue;
+      this.updateCommandsHistory(command);
       switch(command) {
         case 'show loader': this.loaderService.show();
         break;
         case 'hide loader': this.loaderService.hide();
         break;
         case 'toggle loader': this.loaderService.toggle();
+        break;
+      }
+    }
+  }
+
+  updateCommandsHistory(command: string): void {
+    if(!this.commandsHistory.includes(command)) {
+      this.commandsHistory.push(command);
+
+      if(LocalStorageService.testIsAvailable()) {
+        const commandsHistoryStringify = JSON.stringify(this.commandsHistory);
+        localStorage.setItem(this.terminalHistoryKey, commandsHistoryStringify);
+      }
+    }
+  }
+
+  get storedCommandsHistory(): string[] {
+    const storedHistory = localStorage.getItem(this.terminalHistoryKey);
+    return storedHistory ? JSON.parse(storedHistory) : [];
+  }
+
+  navigateHistory(direction: 'up' | 'down'): void {
+    if (this.commandsHistory.length === 0) {
+      return;
+    }
+
+    if (direction === 'up') {
+      if (this.currentCommandIndex === -1) {
+        this.currentCommandIndex = this.commandsHistory.length - 1;
+      } else if (this.currentCommandIndex > 0) {
+        this.currentCommandIndex--;
+      }
+    } else if (direction === 'down') {
+      if (this.currentCommandIndex === -1 || this.currentCommandIndex < this.commandsHistory.length - 1) {
+        this.currentCommandIndex++;
+      }
+    }
+
+    this.inputCommandValue = this.commandsHistory[this.currentCommandIndex] || '';
+    console.log(this.inputCommandValue)
+    this.setInputWithCommandsHistory();
+  }
+
+  setInputWithCommandsHistory(): void {
+    const rowTerminals = this.terminalList.nativeElement.querySelectorAll('.row-terminal');
+    for (let i = 0; i < rowTerminals.length; i++) {
+      const inputElement = rowTerminals[i].querySelector('input');
+      if (inputElement && !inputElement.disabled) {
+        inputElement.value = this.inputCommandValue;
         break;
       }
     }
