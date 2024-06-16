@@ -13,7 +13,7 @@ import { Introduction } from '../../../shared/models/introduction';
 export class IntroductionComponent {
   stringArray: Introduction[] = [
     {
-      text: `Bienvenue sur mon portfolio directement inspiré des 80's&nbsp;!`,
+      text: `Bienvenue sur mon portfolio&nbsp;!`,
     },
     {
       text: `Après avoir perfectionné mes compétences en HTML, SCSS et JavaScript, 
@@ -21,11 +21,10 @@ export class IntroductionComponent {
     },
     {
       text: `Avec une identité visuelle distincte, chaque élément évoque l'énergie et le style rétro, 
-      offrant une expérience immersive qui célèbre l'esthétique audacieuse et 
-      vibrante des années 1980.`
+      offrant une expérience immersive qui célèbre l'esthétique des années 1980 - 1990.`
     },
     {
-      text: `Soyez curieux, survolez, cliquez... Bonne visite&nbsp;!`,
+      text: `Survolez, cliquez... Bonne visite&nbsp;!`,
     },
   ];
 }

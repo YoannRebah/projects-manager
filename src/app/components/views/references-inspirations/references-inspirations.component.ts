@@ -32,8 +32,8 @@ export class ReferencesInspirationsComponent {
       href: 'https://codepen.io/technokami/pen/abojmZa',
     },
     {
-      text: 'Neon Text Effect',
-      href: 'https://codepen.io/ananyaneogi/pen/Bgozrz',
+      text: 'EmailJS',
+      href: 'https://www.emailjs.com/',
     },
     {
       text: 'Marquee',
