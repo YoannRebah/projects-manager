@@ -37,6 +37,9 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     this.vhsEffectIsVisibleSubscription = this.vhsEffectService.isVisible$.subscribe({
       next: (isVisible) => {
         this.vhsEffectIsVisible = isVisible;
+        if(!this.vhsEffectIsVisible) {
+          this.vhsEffectService.hideFooter();
+        }
       },
       error: (e) => console.error('error subscribeVhsEffectIsVisible', e)
     })
@@ -77,10 +80,14 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
 
   onChangeFooterIsVisible(Event: Event): void {
     const inputElement = (Event.target as HTMLInputElement);
-    if(inputElement.checked) {
-      this.vhsEffectService.showFooter();
+    if(this.vhsEffectIsVisible) {
+      if(inputElement.checked) {
+        this.vhsEffectService.showFooter();
+      } else {
+        this.vhsEffectService.hideFooter();
+      }
     } else {
-      this.vhsEffectService.hideFooter();
+      inputElement.checked = false;
     }
   }
 
