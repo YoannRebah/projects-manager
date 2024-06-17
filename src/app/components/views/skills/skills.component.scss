@@ -140,6 +140,10 @@
                         }
 
                         @include screen('xl') {
+                            width: 68%;
+                        }
+
+                        @include screen('xxl') {
                             width: 75%;
                         }
     
