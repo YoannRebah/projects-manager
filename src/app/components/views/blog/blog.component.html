@@ -1,9 +1,9 @@
 <div class="container blog">
-    <div *ngFor="let cardGroup of blogCards; let i = index;" class="container-presentation-card" [class.active]="activeIndex == i">
+    <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group" [class.active]="activeIndex == i">
         <div *ngFor="let card of cardGroup" class="container-card">
             <div class="card">
                 <div class="block-title">
-                    <h2>{{ card.h2 }}</h2>
+                    <h2 class="megrim-regular">{{ card.h2 }}</h2>
                 </div>
                 <div class="block-text">
                     <p>{{ card.p }}</p>
@@ -20,7 +20,7 @@
                 <li>
                     <button class="btn" (click)="onClickPrev()"><<</button>
                 </li>
-                <li *ngFor="let cardGroup of blogCards; let i = index;">
+                <li *ngFor="let cardGroup of cardGroups; let i = index;">
                     <button class="btn" [class.active]="activeIndex == i" (click)="setActive(i)">
                         {{ i + 1 }}
                     </button>

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class BlogComponent implements OnInit, OnDestroy {
   activeIndex: number = 0;
   indexMin: number = 0;
-  blogCards = [
+  cardGroups = [
     [
       {
         h2: "Tout savoir sur le pourquoi du comment avec qui. 1",
@@ -110,7 +110,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       }
     ]
   ];
-  indexMax: number = this.blogCards.length - 1;
+  indexMax: number = this.cardGroups.length - 1;
 
   constructor() {}
 
