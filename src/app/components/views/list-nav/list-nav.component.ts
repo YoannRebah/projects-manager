@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Anchor } from '../../../shared/models/common/anchor';
+import { Button } from '../../../shared/models/common/button';
+import { ModalSettingsComponent } from '../../modals/modal-settings/modal-settings.component';
+import { ModalService } from '../../../shared/services/components/modal.service';
 
 @Component({
   selector: 'app-list-nav',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalSettingsComponent],
   templateUrl: './list-nav.component.html',
   styleUrls: ['./list-nav.component.scss']
 })
 
 export class ListNavComponent {
-  navLinks: Anchor[] = [
+  navAnchors: Anchor[] = [
     {
       href: '#',
       iconClassNames: 'fa-solid fa-home',
       ariaLabel: 'Accueil',
-      classNames: 'link-large',
+      classNames: 'large',
       tooltip: 'Accueil',
     },
     {
@@ -42,8 +45,27 @@ export class ListNavComponent {
       iconClassNames: 'fa-brands fa-github',
       target: '_blank',
       ariaLabel: 'Code source du portfolio',
-      classNames: 'link-large',
+      classNames: 'large',
       tooltip: 'Code source du portfolio',
     },
   ];
+  navButtons: Button[] = [
+    {
+      iconClassNames: 'fa-solid fa-gear',
+      classNames: 'large',
+      ariaLabel: 'Paramètres',
+      tooltip: 'Paramètres',
+      onClick: this.onClickShowSettings
+    }
+  ];
+
+  constructor(
+    private modalService: ModalService
+  ) {}
+
+  onClickShowSettings(): void {
+    this.modalService.show();
+    console.log('settings')
+  }
+
 }

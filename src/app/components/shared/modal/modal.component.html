@@ -1,4 +1,4 @@
-<div *ngIf="isVisible" #modal [id]="id" class="modal-background" [style.position]="position">
+<div *ngIf="isVisible" #modal [id]="id" class="modal-background" [class]="classNames" [style.position]="position">
     <div class="container modal">
         <header>
             <div class="container-title">
@@ -9,10 +9,10 @@
             </button>
         </header>
         <div class="content">
-            <ng-content select=".content"></ng-content>
+            <ng-content select=".custom-content"></ng-content>
         </div>
         <footer>
-            <ng-content select=".footer"></ng-content>
+            <ng-content select=".custom-footer"></ng-content>
         </footer>
     </div>
 </div>

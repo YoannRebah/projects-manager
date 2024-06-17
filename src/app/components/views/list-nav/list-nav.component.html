@@ -1,15 +1,30 @@
 <ul class="container list-nav">
-    <li *ngFor="let link of navLinks">
+    <li *ngFor="let anchor of navAnchors">
       <a 
-          [href]="link.href" 
-          [attr.aria-label]="link.ariaLabel" 
-          [class]="link.classNames"
-          [attr.target]="link.target"
-          [attr.rel]="link.target === '_blank' ? 'noopener noreferrer' : null"
-          [title]="link.tooltip || ''"
+          class="btn"
+          [href]="anchor.href" 
+          [attr.aria-label]="anchor.ariaLabel" 
+          [class]="anchor.classNames"
+          [attr.target]="anchor.target"
+          [attr.rel]="anchor.target === '_blank' ? 'noopener noreferrer' : null"
+          [title]="anchor.tooltip || ''"
       >
-        <i *ngIf="link.iconClassNames" [class]="link.iconClassNames" aria-label="hidden"></i>
-        <span *ngIf="link.text" class="silkscreen-regular hidden-flex-s">{{ link.text }}</span>
+        <i *ngIf="anchor.iconClassNames" [class]="anchor.iconClassNames" aria-label="hidden"></i>
+        <span *ngIf="anchor.text" class="silkscreen-regular hidden-flex-s">{{ anchor.text }}</span>
       </a>
     </li>
+    <li *ngFor="let btn of navButtons">
+      <button 
+          class="btn"
+          [attr.aria-label]="btn.ariaLabel" 
+          [class]="btn.classNames"
+          [title]="btn.tooltip || ''"
+          (click)="btn.onClick ? btn.onClick() : null"
+      >
+        <i *ngIf="btn.iconClassNames" [class]="btn.iconClassNames" aria-label="hidden"></i>
+        <span *ngIf="btn.text" class="silkscreen-regular hidden-flex-s">{{ btn.text }}</span>
+      </button>
+    </li>
 </ul>
+
+<app-modal-settings></app-modal-settings>

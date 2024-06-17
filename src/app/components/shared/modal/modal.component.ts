@@ -20,6 +20,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   ) {}
 
   @Input() id: string = 'default-modal-id';
+  @Input() classNames: string = 'default-modal-class';
   @Input() position: string = 'fixed';
   @Input() titleText?: string;
 

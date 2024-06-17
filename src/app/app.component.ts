@@ -67,7 +67,7 @@ import { TerminalComponent } from './components/terminal/terminal.component';
     FormContactComponent,
     BlogComponent,
     // components
-    TerminalComponent
+    TerminalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
