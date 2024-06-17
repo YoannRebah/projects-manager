@@ -10,6 +10,7 @@
     .card-group {
         position: relative;
         display: none;
+        justify-content: center;
         min-height: 20rem;
         gap: 1.5rem;
 
@@ -18,7 +19,7 @@
         } 
 
         .container-card {
-            width: calc(34% - 1.5rem);
+            width: calc(33% - 1.5rem);
 
             .card {  
                 position: relative;
@@ -31,7 +32,7 @@
                 gap: 26px 0px;
                 grid-auto-flow: row;
                 grid-template-areas: "block-title" "block-text" "block-cta";
-                border: 2px solid $pink;
+                border: 1px solid $pink;
                 box-shadow: 0px 1px 10px -2px $pink;
     
                 .block-title { 
@@ -89,13 +90,21 @@
                 gap: .5rem;
 
                 li {
+                    &:first-child {
+                        margin-right: 1rem;
+                    }
+
+                    &:last-child {
+                        margin-left: 1rem;
+                    }
+
                     button {
-                        width: 40px;
-                        height: 40px;
-                        font-size: 1.15rem;
+                        width: 42px;
+                        height: 42px;
+                        font-size: 1.2rem;
                         color: $cyan;
                         text-shadow: 0 -40px 100px, 0 0 2px, 0 0 10px $cyan, 0 0 1px $cyan, 0 0 0.1em $cyan, 0 0px 6px $cyan;
-                        border: 2px solid $pink;
+                        border: 1px solid $pink;
                         box-shadow: 0px 1px 10px -2px $pink;
 
                         &.active,
