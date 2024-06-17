@@ -12,7 +12,6 @@ import { GameService } from '../../../shared/services/components/game.service';
 })
 
 export class ArcadeRoomComponent {
-
   gameIsVisible: boolean = false;
 
   constructor(private gameService: GameService) {
@@ -21,7 +20,7 @@ export class ArcadeRoomComponent {
     });
   }
 
-  showGameComponent(): void {
+  onClickShowGame(): void {
     this.gameService.show();
   }
 
