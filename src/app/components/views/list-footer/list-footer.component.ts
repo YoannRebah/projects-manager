@@ -7,8 +7,9 @@ import { Anchor } from '../../../shared/models/common/anchor';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './list-footer.component.html',
-  styleUrls: ['./list-footer.component.scss']
+  styleUrl: './list-footer.component.scss'
 })
+
 export class ListFooterComponent {
   footerLinks: Anchor[] = [
     {
@@ -27,19 +28,24 @@ export class ListFooterComponent {
       ariaLabel: 'Compétences',
     },
     {
-      href: '#tools-overview',
-      text: "Logiciels",
-      ariaLabel: 'Logiciels',
-    },
-    {
       href: '#notable-achievements',
       text: "Réalisations Notables",
       ariaLabel: 'Réalisations Notables',
     },
     {
+      href: '#tools-overview',
+      text: "Logiciels",
+      ariaLabel: 'Logiciels',
+    },
+    {
       href: '#current-job',
       text: "Poste Actuel",
       ariaLabel: 'Poste Actuel',
+    },
+    {
+      href: '#location',
+      text: 'Localisation',
+      ariaLabel: 'Localisation',
     },
     {
       href: '#interests',
@@ -57,14 +63,9 @@ export class ListFooterComponent {
       ariaLabel: 'Contact',
     },
     {
-      href: '#location',
-      text: 'Localisation',
-      ariaLabel: 'Localisation',
-    },
-    {
-      href: '#references',
-      text: 'Références & Inspirations',
-      ariaLabel: 'Références & Inspirations',
+      href: '#blog',
+      text: 'Articles du blog',
+      ariaLabel: 'Articles du blog',
     },
     {
       href: 'https://github.com/YoannRebah/portfolio-angular',
