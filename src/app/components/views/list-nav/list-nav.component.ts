@@ -55,7 +55,7 @@ export class ListNavComponent {
       classNames: 'large',
       ariaLabel: 'Paramètres',
       tooltip: 'Paramètres',
-      onClick: this.onClickShowSettings
+      onClick: this.onClickShowSettings.bind(this)
     }
   ];
 

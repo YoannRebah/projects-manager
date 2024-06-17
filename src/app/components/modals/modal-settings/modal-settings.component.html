@@ -1,15 +1,20 @@
-<app-modal id="modal-settings" titleText="Paramètres">
+<app-modal id="modal-settings" classNames="modal-settings" titleText="Paramètres">
     <div class="custom-content">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam adipisci dolorem, est quos voluptatem ratione vel a labore earum dolores. Quos eveniet magni temporibus quaerat excepturi sunt incidunt corporis pariatur?
-        </p>
-    </div>
-    <div class="custom-footer">
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, commodi tempora aliquid voluptas aliquam veritatis omnis sint ea dolor ut possimus ullam magnam at debitis dicta est deserunt saepe reiciendis?
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, commodi tempora aliquid voluptas aliquam veritatis omnis sint ea dolor ut possimus ullam magnam at debitis dicta est deserunt saepe reiciendis?
-        </p>
+        <ul>
+            <li>
+                <label for="display-vhs-effect">Afficher l'effet VHS&nbsp;:</label>
+                <div class="btn-switch">
+                    <input id="display-vhs-effect" class="hovered-over" type="checkbox" (change)="onChangeVhsEffect($event)" [checked]="vhsEffectIsVisible">
+                    <div class="switch-btn"></div>
+                </div>
+            </li>
+            <li>
+                <label for="display-timer">Afficher le timer&nbsp;:</label>
+                <div class="btn-switch">
+                    <input id="display-timer" class="hovered-over" type="checkbox" (change)="onChangeFooterIsVisible($event)" [checked]="footerIsVisible">
+                    <div class="switch-btn"></div>
+                </div>
+            </li>
+        </ul>
     </div>
 </app-modal>

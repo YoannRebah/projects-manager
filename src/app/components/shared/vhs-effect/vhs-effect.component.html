@@ -1,4 +1,4 @@
-<div *ngIf="isVisible" class="vhs-effect">
+<div class="vhs-effect" [class.display-none]="!isVisible">
     <div class="vhs-effect-background">
         <div class="chromatic-aberration-animation top"></div>
         <div class="chromatic-aberration-animation bottom"></div>
