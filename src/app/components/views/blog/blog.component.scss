@@ -34,6 +34,12 @@
                 grid-template-areas: "block-title" "block-text" "block-cta";
                 border: 1px solid $pink;
                 box-shadow: 0px 1px 10px -2px $pink;
+
+                h2, p {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                }
     
                 .block-title { 
                     grid-area: block-title; 
@@ -42,11 +48,8 @@
                         font-size: 1.75rem;
                         color: $cyan;
                         text-shadow: 0 -40px 100px, 0 0 2px, 0 0 10px $cyan, 0 0 1px $cyan, 0 0 0.1em $cyan, 0 0px 6px $cyan;
-                        overflow: hidden;
-                        display: -webkit-box;
                         -webkit-line-clamp: 2;
-                                line-clamp: 2; 
-                        -webkit-box-orient: vertical;
+                        line-clamp: 2; 
                     }
                 }
             
@@ -56,12 +59,9 @@
                     p {
                         color: $white;
                         font-size: 1rem;
-                        font-weight: 200;
-                        overflow: hidden;
-                        display: -webkit-box;
+                        font-weight: 400;
                         -webkit-line-clamp: 5;
-                                line-clamp: 5; 
-                        -webkit-box-orient: vertical;
+                        line-clamp: 5; 
                     }
                 }
                 
