@@ -1,14 +1,15 @@
 <ul class="container list-nav">
     <li *ngFor="let link of navLinks">
       <a 
-        [href]="link.href" 
-        [attr.aria-label]="link.ariaLabel" 
-        [class]="link.classNames"
-        [attr.target]="link.target"
-        [attr.rel]="link.target === '_blank' ? 'noopener noreferrer' : null"
+          [href]="link.href" 
+          [attr.aria-label]="link.ariaLabel" 
+          [class]="link.classNames"
+          [attr.target]="link.target"
+          [attr.rel]="link.target === '_blank' ? 'noopener noreferrer' : null"
+          [title]="link.tooltip || ''"
       >
         <i *ngIf="link.iconClassNames" [class]="link.iconClassNames" aria-label="hidden"></i>
-        <span *ngIf="link.html" class="silkscreen-regular hidden-flex-s">{{ link.html }}</span>
+        <span *ngIf="link.text" class="silkscreen-regular hidden-flex-s">{{ link.text }}</span>
       </a>
     </li>
 </ul>

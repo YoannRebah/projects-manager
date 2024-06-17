@@ -1,12 +1,12 @@
 <ul class="list-footer">
     <li *ngFor="let footerLink of footerLinks">
         <a 
-        [href]="footerLink.href" 
-        [attr.aria-label]="footerLink.ariaLabel" 
-        [attr.target]="footerLink.target"
-        [attr.rel]="footerLink.target === '_blank' ? 'noopener noreferrer' : null"
+            [href]="footerLink.href" 
+            [attr.aria-label]="footerLink.ariaLabel" 
+            [attr.target]="footerLink.target"
+            [attr.rel]="footerLink.target === '_blank' ? 'noopener noreferrer' : null"
         >
-            {{ footerLink.html }}
+            {{ footerLink.text }}
         </a>
     </li>
 </ul>

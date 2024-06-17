@@ -1,12 +1,12 @@
 <div class="marquee-interests">
     <ul>
-        <li *ngFor="let interest of interests">
-            <img [src]="interest.imagePath" [alt]="interest.imageAlt">
+        <li *ngFor="let img of imgArray">
+            <img [src]="img.path" [alt]="img.alt">
         </li>
     </ul>
     <ul aria-hidden="true">
-        <li *ngFor="let interest of interests">
-            <img [src]="interest.imagePath" [alt]="interest.imageAlt">
+        <li *ngFor="let img of imgArray">
+            <img [src]="img.path" [alt]="img.alt">
         </li>
     </ul>
 </div>

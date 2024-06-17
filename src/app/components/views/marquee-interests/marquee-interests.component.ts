@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Interests } from '../../../shared/models/interests';
+import { Image } from '../../../shared/models/common/image';
 
 @Component({
   selector: 'app-marquee-interests',
@@ -11,26 +11,26 @@ import { Interests } from '../../../shared/models/interests';
 })
 
 export class MarqueeInterestsComponent {
-  interests: Interests[] = [
+  imgArray: Image[] = [
     {
-      imagePath: "../../assets/images/cinema.jpg",
-      imageAlt: "Cinéma"
+      path: "../../assets/images/cinema.jpg",
+      alt: "Cinéma"
     },
     {
-      imagePath: "../../assets/images/coding.jpg",
-      imageAlt: "Code"
+      path: "../../assets/images/coding.jpg",
+      alt: "Code"
     },
     {
-      imagePath: "../../assets/images/hiking.jpg",
-      imageAlt: "Randonnée"
+      path: "../../assets/images/hiking.jpg",
+      alt: "Randonnée"
     },
     {
-      imagePath: "../../assets/images/journey.jpg",
-      imageAlt: "Voyages"
+      path: "../../assets/images/journey.jpg",
+      alt: "Voyages"
     },
     {
-      imagePath: "../../assets/images/reading.jpg",
-      imageAlt: "Lecture"
+      path: "../../assets/images/reading.jpg",
+      alt: "Lecture"
     }
   ]
 }

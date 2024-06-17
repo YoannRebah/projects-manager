@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Navigation } from '../../../shared/models/navigation';
+import { Anchor } from '../../../shared/models/common/anchor';
 
 @Component({
   selector: 'app-list-footer',
@@ -10,65 +10,65 @@ import { Navigation } from '../../../shared/models/navigation';
   styleUrls: ['./list-footer.component.scss']
 })
 export class ListFooterComponent {
-  footerLinks: Navigation[] = [
+  footerLinks: Anchor[] = [
     {
       href: '#',
-      html: "Accueil",
+      text: "Accueil",
       ariaLabel: 'Accueil',
     },
     {
       href: '#intro',
-      html: "Introduction",
+      text: "Introduction",
       ariaLabel: 'Introduction',
     },
     {
       href: '#skills',
-      html: "Compétences",
+      text: "Compétences",
       ariaLabel: 'Compétences',
     },
     {
       href: '#tools-overview',
-      html: "Logiciels",
+      text: "Logiciels",
       ariaLabel: 'Logiciels',
     },
     {
       href: '#notable-achievements',
-      html: "Réalisations Notables",
+      text: "Réalisations Notables",
       ariaLabel: 'Réalisations Notables',
     },
     {
       href: '#current-job',
-      html: "Poste Actuel",
+      text: "Poste Actuel",
       ariaLabel: 'Poste Actuel',
     },
     {
       href: '#interests',
-      html: "Centres d'intérêt",
+      text: "Centres d'intérêt",
       ariaLabel: 'Centres d\'intérêt',
     },
     {
       href: '#arcade-room',
-      html: "Salle d'Arcade",
+      text: "Salle d'Arcade",
       ariaLabel: 'Salle d\'Arcade',
     },
     {
       href: '#contact',
-      html: "Contact",
+      text: "Contact",
       ariaLabel: 'Contact',
     },
     {
       href: '#location',
-      html: 'Localisation',
+      text: 'Localisation',
       ariaLabel: 'Localisation',
     },
     {
       href: '#references',
-      html: 'Références & Inspirations',
+      text: 'Références & Inspirations',
       ariaLabel: 'Références & Inspirations',
     },
     {
       href: 'https://github.com/YoannRebah/portfolio-angular',
-      html: 'Code Source (Git)',
+      text: 'Code Source (Git)',
       ariaLabel: 'Code Source (Git)',
       target: "_blank"
     },

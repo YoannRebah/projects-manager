@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './employee-card.component.html',
-  styleUrls: ['./employee-card.component.scss']
+  styleUrl: './employee-card.component.scss'
 })
 export class EmployeeCardComponent implements AfterViewInit {
 
