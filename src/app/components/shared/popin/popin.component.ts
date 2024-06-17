@@ -15,7 +15,7 @@ export class PopinComponent implements AfterViewInit, OnDestroy {
   private isVisibleSubscription!: Subscription;
   isVisible: boolean = false;
 
-  @Input() id?: string = 'popin-default-id';
+  @Input() id: string = 'popin-default-id';
   @Input() position?: string = 'absolute';
   @Input() img?: string; // error | success | mail | help
   @Input() titleText?: string;
