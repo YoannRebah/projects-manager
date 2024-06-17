@@ -24,7 +24,6 @@ import { ToolsOverviewComponent } from './components/views/tools-overview/tools-
 import { MarqueeInterestsComponent } from './components/views/marquee-interests/marquee-interests.component';
 import { LocationComponent } from './components/views/location/location.component';
 import { ArcadeRoomComponent } from './components/views/arcade-room/arcade-room.component';
-import { ReferencesInspirationsComponent } from './components/views/references-inspirations/references-inspirations.component';
 import { IntroductionComponent } from './components/views/introduction/introduction.component';
 import { ListNavComponent } from './components/views/list-nav/list-nav.component';
 import { ListFooterComponent } from './components/views/list-footer/list-footer.component';
@@ -61,7 +60,6 @@ import { TerminalComponent } from './components/terminal/terminal.component';
     MarqueeInterestsComponent,
     LocationComponent,
     ArcadeRoomComponent,
-    ReferencesInspirationsComponent,
     IntroductionComponent,
     ListNavComponent,
     ListFooterComponent,

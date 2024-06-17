@@ -16,15 +16,15 @@
         </header>
         <div class="content">
             <div class="container-btn-tabs">
-                <button *ngFor="let btn of btnTabs" class="btn" [class.active]="activeIndex === btn.index" (click)="setActive(btn.index)">{{ btn.text }}</button>
+                <button *ngFor="let achievement of achievements; let i = index;" class="btn" [class.active]="activeIndex === i" (click)="setActive(i)">{{ achievement.tab.text }}</button>
             </div>
-            <div *ngFor="let column of columns" class="container-columns" [class.active]="activeIndex === column.index">
-                <div class="column">
-                    <img [src]="column.img.path" [alt]="column.img.path">
+            <div *ngFor="let achievement of achievements; let i = index;" class="achievements-columns" [class.active]="activeIndex === i">
+                <div class="column column_img">
+                    <img [src]="achievement.img.path" [alt]="achievement.img.path">
                 </div>
-                <div class="column">
-                    <div class="container-block-details">
-                        <div *ngFor="let blockDetail of column.blockDetails" class="block-details">
+                <div class="column column_details">
+                    <div class="container-details">
+                        <div *ngFor="let blockDetail of achievement.blockDetails" class="details">
                             <p>{{ blockDetail.title }}</p>
                             <ul>
                                 <li *ngFor="let text of blockDetail.list">

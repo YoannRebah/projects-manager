@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BtnTab, Column } from '../../../shared/models/achievements';
+import { Achievements } from '../../../shared/models/achievements';
 import { PopinComponent } from '../../shared/popin/popin.component';
 import { PopinService } from '../../../shared/services/components/popin.service';
 
@@ -15,16 +15,12 @@ import { PopinService } from '../../../shared/services/components/popin.service'
 export class AchievementsComponent {
   activeIndex: number = 0;
   indexMin: number = 0;
-  indexMax: number = 3;
-  btnTabs: BtnTab[] = [
-    { text: "BNP Paribas", index: 0 },
-    { text: "Hello bank!", index: 1 },
-    { text: "Hello bank! pro", index: 2 },
-    { text: "Projets Perso", index: 3 },
-  ];
-  columns: Column[] = [
+  achievements: Achievements[] = 
+  [
     {
-      index: 0,
+      tab: {
+        text: "BNP Paribas"
+      },
       img: {
         path: "assets/gif/achievements-1.gif",
         alt: ""
@@ -59,7 +55,9 @@ export class AchievementsComponent {
       ]
     },
     {
-      index: 1,
+      tab: {
+        text: "Hello bank!"
+      },
       img: {
         path: "assets/gif/achievements-4.gif",
         alt: ""
@@ -93,7 +91,9 @@ export class AchievementsComponent {
       ]
     },
     {
-      index: 2,
+      tab: {
+        text: "Hello bank! pro"
+      },
       img: {
         path: "assets/gif/achievements-3.gif",
         alt: ""
@@ -127,7 +127,9 @@ export class AchievementsComponent {
       ]
     },
     {
-      index: 3,
+      tab: {
+        text: "Projets Perso"
+      },
       img: {
         path: "assets/gif/achievements-5.gif",
         alt: ""
@@ -163,6 +165,7 @@ export class AchievementsComponent {
       ]
     }
   ];
+  indexMax: number = this.achievements.length - 1;
 
   constructor(private popinService: PopinService) {}
 

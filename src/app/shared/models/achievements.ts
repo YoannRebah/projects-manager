@@ -1,19 +1,12 @@
-export interface BtnTab {
-    text: string;
-    index: number;
-}
+import { Image } from "./common/image";
+import { Button } from "./common/button";
 
-export interface Column {
-    index: number;
+export interface Achievements {
+    tab: Button;
     img: Image;
     blockDetails: BlockDetail[];
 }
 
-interface Image {
-    path: string;
-    alt: string;
-}
-  
 interface BlockDetail {
     title: string;
     list: string[];
