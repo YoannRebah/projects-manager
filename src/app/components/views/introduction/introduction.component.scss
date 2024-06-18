@@ -2,24 +2,13 @@
 
 .introduction {
     p {
-        font-size: 0.85rem;
-
-        @include screen('s') {
-            font-size: 1.15rem;
-        }
-
         &:not(:last-child) {
-            margin-bottom: 0.9rem;
-    
-            @include screen('s') {
-                margin-bottom: 1.3rem;
-            }
+            margin-bottom: 1rem;
         }
 
         &.note {
             margin-top: 1.2rem;
             font-style: italic;
-            color: $yellow;
             font-size: .7rem;
     
             @include screen('s') {

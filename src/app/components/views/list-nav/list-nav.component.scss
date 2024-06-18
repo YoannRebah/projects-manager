@@ -1,21 +1,13 @@
 @import '../../../../styles/base';
 
 .list-nav {
-    list-style: none;
-    height: 100%;
-
     li {
-        height: 100%;
-        flex: 1;
-
         a, 
         button {
             text-decoration: none;
             width: fit-content;
             font-size: 1.1rem;
             padding: .5rem;
-
-            color: $white;
 
             &:hover {
                 color: $cyan;
