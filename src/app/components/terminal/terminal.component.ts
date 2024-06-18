@@ -108,15 +108,35 @@ export class TerminalComponent implements OnInit, OnDestroy {
   
       const rowTerminal = this.renderer.createElement('li');
       this.renderer.addClass(rowTerminal, 'row-terminal');
+      this.renderer.addClass(rowTerminal, 'flex');
+      this.renderer.addClass(rowTerminal, 'items-center');
+      
       const p = this.renderer.createElement('p');
+      this.renderer.addClass(p, 'relative');
+      this.renderer.addClass(p, 'mr-4');
+      this.renderer.addClass(p, 'text-green');
+      
       const spanRoot = this.renderer.createElement('span');
       this.renderer.addClass(spanRoot, 'span-root');
+      this.renderer.addClass(spanRoot, 'text-white');
+      
       const spanCaret = this.renderer.createElement('span');
       this.renderer.addClass(spanCaret, 'span-caret');
+      this.renderer.addClass(spanCaret, 'absolute');
+      this.renderer.addClass(spanCaret, 'bg-pink');
+      this.renderer.addClass(spanCaret, 'border-2');
+      this.renderer.addClass(spanCaret, 'border-pink-dark');
       this.renderer.addClass(spanCaret, 'display-none');
       this.renderer.addClass(spanCaret, 'flash-animation');
+      
       const input = this.renderer.createElement('input');
       this.renderer.setAttribute(input, 'spellcheck', 'false');
+      this.renderer.addClass(input, 'w-full');
+      this.renderer.addClass(input, 'text-white');
+      this.renderer.addClass(input, 'bg-transparent');
+      this.renderer.addClass(input, 'border-none');
+      this.renderer.addClass(input, 'outline-none');
+      this.renderer.addClass(input, 'font-medium');
   
       this.renderer.appendChild(p, this.renderer.createText("yoann@portfolio:"));
       this.renderer.appendChild(spanRoot, this.renderer.createText("~#"));

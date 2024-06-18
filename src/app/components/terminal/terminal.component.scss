@@ -1,56 +1,19 @@
 @import '../../../styles/base';
 
 .terminal {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: $black;
-    padding: 2.5rem 5rem;
-    z-index: 9;
-
     ul {
-        list-style: none;
-        height: 15vh;
-        max-height: 15vh;
-        overflow-y: auto;
-
         li {
-            display: flex;
-            align-items: center;
-            margin-bottom: .5rem;
-
             p {
-                position: relative;
-                margin-right: .65rem;
-                color: $green;
-                font-size: 1.1rem;
-
-                .span-root {
-                    color: $white;
-                }
-
                 .span-caret {
-                    position: absolute;
                     transform: translate(-50%, -50%);
                     top: 50%;
                     right: -12%;
                     height: 90%;
                     width: 10px;
-                    background: $pink;
-                    border: 2px solid $pink2;
                 }
             }
 
             input {
-                width: 100%;
-                outline: none;
-                font-weight: 500;
-                color: $white;
-                background: none;
-                border: none;
-                font-size: 1.1rem;
-                letter-spacing: 1px;
                 cursor: text;
 
                 &:disabled {
