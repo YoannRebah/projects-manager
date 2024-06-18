@@ -2,7 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    cursor: url(../../../../public/assets/images/mouse-cursor.png), auto;
+    cursor: url(../../public/assets/images/mouse-cursor.png), auto;
 }
 
 html, body {
@@ -20,7 +20,7 @@ html, body {
 
 a, button, .btn, .hovered-over {
     &:hover {
-        cursor: url(../../../../public/assets/images/mouse-cursor-hover.png), auto;
+        cursor: url(../../public/assets/images/mouse-cursor-hover.png), auto;
     }
 }
 

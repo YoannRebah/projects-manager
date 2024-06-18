@@ -1,2 +1,9 @@
-@import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
-@import './app/styles/styles';
+// base (shared with components)
+@import './styles/base';
+
+// partials
+@import './styles/typography';
+@import './styles/presets';
+@import './styles/helpers';
+@import './styles/container';
+@import './styles/animations';
