@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class IntroductionComponent {
   textArray: string[] = [
     `Bienvenue sur mon portfolio&nbsp;!`,
-    `Après avoir perfectionné mes compétences en HTML, SCSS et JavaScript, j'ai franchi une nouvelle étape en adoptant Angular 17 pour ce projet.`,
+    `Après avoir perfectionné mes compétences en HTML, SCSS et JavaScript, j'ai franchi une nouvelle étape en adoptant Angular 18 pour ce projet.`,
     `Avec une identité visuelle distincte, chaque élément évoque l'énergie et le style rétro, offrant une expérience immersive qui célèbre l'esthétique des années 1980 - 1990.`,
     `Survolez, cliquez... Bonne visite&nbsp;!`
   ];
