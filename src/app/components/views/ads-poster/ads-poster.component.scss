@@ -1,14 +1,9 @@
 @import '../../../../styles/base';
 
 .ads-poster {
-    display: block;
-    margin: 0 auto;
     margin-top: 3rem;
     max-width: 740px;
     height: 20rem;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
 
     @include screen('s') {
         margin-top: 6rem;
