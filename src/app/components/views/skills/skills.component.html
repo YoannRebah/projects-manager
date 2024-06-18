@@ -1,16 +1,16 @@
 <div class="container skills">
-    <ul class="container list-skills">
-        <li *ngFor="let skill of skills; let last = last" [id]="skill.id" class="container li-skill">
+    <ul class="container list-skills list-none">
+        <li *ngFor="let skill of skills; let last = last" [id]="skill.id" class="container li-skill flex flex-col">
             <div class="container flex-center-column-s">
-                <div class="container-icon-text">
-                    <p>{{ skill.language }}</p>
+                <div class="container-icon-text flex flex-col items-center">
+                    <p class="text-center">{{ skill.language }}</p>
                     <i [class]="skill.iconClassName" aria-hidden="true"></i>
                 </div>
-                <ul class="container list-details-skill">
-                    <li *ngFor="let detail of skill.details" class="container li-detail-skill">
+                <ul class="container list-details-skill list-none flex flex-col">
+                    <li *ngFor="let detail of skill.details" class="container li-detail-skill flex flex-col items-start">
                         <p>{{ detail.text }}&nbsp;:</p>
-                        <div class="container-progress-bar">
-                            <div class="progress-bar" [style.width]="detail.percent + '%'"></div>
+                        <div class="container-progress-bar relative w-full h-full">
+                            <div class="progress-bar relative w-full h-full" [style.width]="detail.percent + '%'"></div>
                         </div>
                     </li>
                 </ul>
