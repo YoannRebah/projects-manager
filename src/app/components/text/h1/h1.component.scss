@@ -1,24 +1,11 @@
 @import '../../../../styles/base';
 
 .h1 {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-
     span {
         &:nth-child(1) {
-            text-transform: uppercase;
             font-size: 22vw;
-            background: linear-gradient(
-            $pink3 15%,
-            $pink2 25%,
-            $pink 35%,
-            hsl(100, 70%, 80%) 45%,
-            hsl(60, 100%, 98%) 50%,
-            $white 100%);
+            background: linear-gradient($pink3 15%, $pink2 25%, $pink 35%, hsl(100, 70%, 80%) 45%, hsl(60, 100%, 98%) 50%, $white 100%);
             -webkit-text-stroke: 1px $white;
-            color: transparent;
             background-clip: text;
             filter: drop-shadow(1px 3px 0px $white) drop-shadow(1px 3px 0px $cyan) drop-shadow(1px 3px 0px $cyan2) drop-shadow(1px 3px 0px $cyan3) drop-shadow(1px 3px 0px $cyan2) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.2));
 
@@ -28,15 +15,11 @@
         }
 
         &:nth-child(2) {
-            position: absolute;
             font-size: 20vw;
             bottom: -30%;
             right: 0;
             transform: rotate(-12deg);
-            color: $pink;
-            text-transform: capitalize;
             filter: brightness(120%);
-            text-shadow: $shadow-pink-milk;
 
             @include screen('s') {
                 font-size: 9vw;

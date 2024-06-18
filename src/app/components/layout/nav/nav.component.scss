@@ -3,12 +3,9 @@
 $nav-height: 3.5rem;
 
 .nav {
-    position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
     height: $nav-height;
-    background: $body-bg;
     border-bottom: 1px solid;
     border-color: $cyan;
 

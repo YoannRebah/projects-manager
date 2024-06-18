@@ -1,7 +1,7 @@
-<ul class="container list-nav">
-    <li *ngFor="let anchor of navAnchors">
+<ul class="container mx-auto flex items-center list-nav">
+    <li *ngFor="let anchor of navAnchors" class="flex items-center justify-center">
       <a 
-          class="btn"
+          class="btn flex items-center justify-center"
           [href]="anchor.href" 
           [attr.aria-label]="anchor.ariaLabel" 
           [class]="anchor.classNames"
@@ -13,9 +13,9 @@
         <span *ngIf="anchor.text" class="silkscreen-regular hidden-flex-s">{{ anchor.text }}</span>
       </a>
     </li>
-    <li *ngFor="let btn of navButtons">
+    <li *ngFor="let btn of navButtons" class="flex items-center justify-center">
       <button 
-          class="btn"
+          class="btn flex items-center justify-center"
           [attr.aria-label]="btn.ariaLabel" 
           [class]="btn.classNames"
           [title]="btn.tooltip || ''"

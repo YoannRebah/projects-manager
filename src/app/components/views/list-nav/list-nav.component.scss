@@ -2,14 +2,9 @@
 
 .list-nav {
     list-style: none;
-    display: flex;
-    align-items: center;
     height: 100%;
 
     li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         height: 100%;
         flex: 1;
 
@@ -17,9 +12,6 @@
         button {
             text-decoration: none;
             width: fit-content;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 1.1rem;
             padding: .5rem;
 
