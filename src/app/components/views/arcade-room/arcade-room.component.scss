@@ -1,12 +1,8 @@
 @import '../../../../styles/base';
 
 .arcade-room {
-    margin: 0 auto;
     border-radius: .5rem;
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-size: 32px 32px;
     background-position: center;
     background-image: linear-gradient(to right, $pink-light 1px, transparent 1px), linear-gradient(to bottom, $pink2-light 1px, transparent 1px);
@@ -19,11 +15,7 @@
     }
 
     h3 {
-        display: flex;
-        align-items: center;
-        color: $white;
         font-weight: 900;
-        text-transform: uppercase;
         font-size: 1.7rem;
         text-shadow: 3px 1px 1px $cyan, 2px 2px 1px $cyan2, 4px 2px 1px $cyan, 3px 3px 1px $cyan2, 5px 3px 1px $cyan, 4px 4px 1px $cyan2, 6px 4px 1px $cyan, 5px 5px 1px $cyan2, 7px 5px 1px $cyan, 6px 6px 1px $cyan2, 8px 6px 1px $cyan, 7px 7px 1px $cyan2, 9px 7px 1px $cyan;
       
@@ -32,7 +24,6 @@
         }
 
         span {
-            position: relative;
             display: block;
             letter-spacing: -5px;
 
@@ -49,8 +40,6 @@
     }
 
     .insert-coins {
-        display: flex;
-        align-items: center;
         margin: 2.5rem 0;
 
         img {
@@ -72,7 +61,6 @@
         }
 
         span {
-            color: $white;
             font-size: 1.2rem;
             margin-right: 0.2rem;
             letter-spacing: -0.15rem;
@@ -84,9 +72,6 @@
     }
 
     button {
-        font-size: 1rem;
-        color: $white;
-
         @include screen('s') {
             font-size: 1.6rem;
         }

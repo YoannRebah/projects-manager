@@ -1,13 +1,13 @@
-<div class="container arcade-room">
-    <h3 class="silkscreen-regular">
-      <span data-text="LAUNCHER">LAUNCHER</span>
-      <span data-text="2000">2000</span>
+<div class="container arcade-room mx-auto flex flex-col items-center">
+    <h3 class="silkscreen-regular flex items-center uppercase text-white">
+      <span class="relative" data-text="LAUNCHER">LAUNCHER</span>
+      <span class="relative" data-text="2000">2000</span>
     </h3>
-    <div class="insert-coins flash-animation-infinite">
+    <div class="insert-coins flex items-center flash-animation-infinite">
       <img src="../../assets/images/coin-video-games.png" alt="Pièce de monnaie" aria-hidden="true">
-      <span class="silkscreen-regular">INSERT COINS</span>
+      <span class="silkscreen-regular text-white">INSERT COINS</span>
     </div>
-    <button class="btn" aria-label="Cliquez pour jouer" (click)="onClickShowGame()">
+    <button class="btn text-white" aria-label="Cliquez pour jouer" (click)="onClickShowGame()">
       <span class="silkscreen-regular">PRESS TO PLAY</span>
     </button>
     <!-- GameComponent -->
