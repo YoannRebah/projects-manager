@@ -1,12 +1,12 @@
-<div class="game-background">
-    <div class="container grid-game">
-        <div class="header-game">
-            <div class="block-header-game">
-                <button class="btn" aria-label="Quitter" (click)="onClickQuitGame()">
-                    <span class="jersey-15-regular">Quitter</span>
+<div class="game-background fixed top-0 left-0 w-full h-full z-10 bg-body">
+    <div class="container grid-game h-full">
+        <header class="flex items-center justify-between">
+            <div class="block-header-game flex items-center">
+                <button class="btn flex items-center justify-center bg-orange" aria-label="Quitter" (click)="onClickQuitGame()">
+                    <span class="text-white uppercase jersey-15-regular">Quitter</span>
                 </button>
             </div>
-            <div class="block-header-game">
+            <div class="block-header-game flex items-center">
                 <div class="container container-health-bar">
                     <p class="jersey-15-regular">PV</p>
                     <div class="health-bar">
@@ -14,25 +14,25 @@
                     </div>
                 </div>
             </div>
-            <div class="block-header-game">
-                <p class="jersey-15-regular">Score&nbsp;: <span class="score">{{ score }}</span></p>
-                <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
+            <div class="block-header-game flex flex-col items-end">
+                <p class="jersey-15-regular uppercase">Score&nbsp;: <span class="score">{{ score }}</span></p>
+                <p class="jersey-15-regular uppercase">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
             </div>
-        </div>
-        <div class="content-game cursor-hidden">
+        </header>
+        <div class="content-game bg-no-repeat bg-cover bg-center bg-body cursor-hidden">
             <div #gameContainer class="container game-container" (mousemove)="onMouseMoveIntoGameContainer($event)">
-                <p *ngIf="!mouseIsMovingOnce" class="move-to-start jersey-15-regular flash-animation-infinite">
+                <p *ngIf="!mouseIsMovingOnce" class="move-to-start flex absolute items-center uppercase jersey-15-regular flash-animation-infinite">
                     <span>Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
                 </p>
-                <div #gameCursor class="game-cursor" [class]="isInGameContainer ? 'can-be-hitted' : null">
-                    <div #collisionBox class="collision-box" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
+                <div #gameCursor class="game-cursor absolute bg-no-repeat bg-cover bg-center" [class]="isInGameContainer ? 'can-be-hitted' : null">
+                    <div #collisionBox class="collision-box relative" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="gameIsOver" class="game-over-background">
-        <div class="block-game-over">
+    <div *ngIf="gameIsOver" class="game-over-background fixed top-0 left-0 w-full h-full z-10 bg-body flex items-center justify-center z-10 bg-body">
+        <div class="block-game-over flex flex-col items-center">
             <h3 class="jersey-15-regular">Game Over</h3>
             <p>Score&nbsp;: <span>{{ storedPlayerScore }}</span></p>
             <div class="container-btn">

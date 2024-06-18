@@ -1,47 +1,30 @@
 @import '../../../styles/base';
 
 .game-background {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    background-color: $body-bg;
 
     .grid-game {
         padding: 0 16%;
         padding-top: 1rem;
         padding-bottom: 2.5rem;
-        height: 100%;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 0.3fr 1.7fr;
-        gap: 0px 0px;
+        gap: 0;
         grid-auto-flow: row;
         grid-template-areas: "header-game" "content-game";
     
-        .header-game {
+        header{
             grid-area: header-game;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             gap: 1rem;
 
             .block-header-game {
-                display: flex;
 
                 // btn actions
                 &:nth-child(1) {
                     flex: 20;
-                    align-items: center;
                     gap: 0.5rem;
 
                     button {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: $orange;
                         padding: .33rem .75rem;
                         transition: 0.15s ease-in-out;
             
@@ -50,9 +33,7 @@
                         }
         
                         span {
-                            color: $white;
                             font-size: 1.4rem;
-                            text-transform: uppercase;
                         }
                     }
                 }
@@ -60,7 +41,6 @@
                 // health bar
                 &:nth-child(2) {
                     flex: 50;
-                    align-items: center;
 
                     .container-health-bar {
                         display: flex;
@@ -87,17 +67,13 @@
                 // score
                 &:nth-child(3) {
                     flex: 30;
-                    flex-direction: column;
-                    align-items: flex-end;
 
                     p, span {
                         font-size: 1.5rem;
-                        text-transform: uppercase;
                     }
     
                     span {
                         min-width: 60px;
-                        display: inline-block;
                     }
                 }
             }
@@ -106,11 +82,7 @@
         .content-game {
             grid-area: content-game;
             border: 1px dashed $orange;
-            background-color: $body-bg;
             background-image: url(../../../../public/assets/images/space-background.jpeg);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
             mix-blend-mode: difference;
 
             .game-container {
@@ -118,13 +90,9 @@
                 overflow: hidden;
 
                 .move-to-start {
-                    display: flex;
-                    align-items: center;
-                    position: absolute;
                     transform: translate(-50%, -50%);
                     top: 50%;
                     left: 50%;
-                    text-transform: uppercase;
 
                     span {
                         font-size: 2rem;
@@ -137,14 +105,10 @@
                 }
 
                 .game-cursor {
-                    position: absolute;
                     bottom: 0;
                     left: -25.5%;
                     width: 75px;
                     height: 125px;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    background-position: center;
                     background-image: url(../../../../public/assets/gif/rocket-spaceship.gif);
                     pointer-events: none;
                     opacity: 0;
@@ -163,7 +127,6 @@
                     }
 
                     .collision-box {
-                        position: relative;
                         width: 50px;
                         height: 70px;
                         left: 11px;
@@ -233,17 +196,6 @@
 }
 
 .game-over-background {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    background: $body-bg;
-
     &::before {
         content: '';
         display: block;
@@ -260,9 +212,6 @@
     }
 
     .block-game-over {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
         z-index: 1;
 
         h3 {
