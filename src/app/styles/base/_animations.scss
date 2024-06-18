@@ -1,8 +1,8 @@
 @import './variables';
 
-.flash-animation {
-    animation: flash-animation 1s linear infinite;
-    @keyframes flash-animation {
+.flash-animation-infinite {
+    animation: flash-animation-infinite 1s linear infinite;
+    @keyframes flash-animation-infinite {
         0% {
             opacity: 0;
         }
@@ -11,6 +11,45 @@
         }
         100% {
             opacity: 0;
+        }
+    }
+}
+
+.flash-animation-5s {
+    animation: flash-animation-5s 5s linear forwards;
+    @keyframes flash-animation-5s {
+        0% {
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.5;
+        }
+        20% {
+            opacity: 0;
+        }
+        30% {
+            opacity: 0.5;
+        }
+        40% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        60% {
+            opacity: 0;
+        }
+        70% {
+            opacity: 0.5;
+        }
+        80% {
+            opacity: 0;
+        }
+        90% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 0.5;
         }
     }
 }

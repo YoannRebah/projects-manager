@@ -15,7 +15,6 @@ import { VhsEffectService } from '../../../shared/services/components/vhs-effect
 export class VhsEffectComponent implements OnInit, OnDestroy {
   private isVisibleSubscription!: Subscription;
   private footerIsVisibleSubscription!: Subscription;
-  private footerIsFlashingSubscription!: Subscription;
   isVisible: boolean = true;
   footerIsFlashing: boolean = false;
   footerIsVisible: boolean = false;
@@ -27,14 +26,12 @@ export class VhsEffectComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeIsVisible()
     this.subscribeFooterIsVisible();
-    this.subscribeFooterIsFlashing();
     this.showFooter();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeIsVisible();
     this.unsubscribeFooterIsVisible();
-    this.unsubscribeFooterIsFlashing();
   }
 
   // is visible
@@ -66,22 +63,6 @@ export class VhsEffectComponent implements OnInit, OnDestroy {
   unsubscribeFooterIsVisible(): void {
     if(this.footerIsVisibleSubscription) {
       this.footerIsVisibleSubscription.unsubscribe();
-    }
-  }
-
-  // footer is flashing
-  subscribeFooterIsFlashing(): void {
-    this.footerIsFlashingSubscription = this.vhsEffectService.footerIsFlashing$.subscribe({
-      next: (footerIsFlashing) => {
-        this.footerIsFlashing = footerIsFlashing;
-      },
-      error: (e) => console.error('error subscribeFooterIsFlashing', e)
-    })
-  }
-
-  unsubscribeFooterIsFlashing(): void {
-    if(this.footerIsFlashingSubscription) {
-      this.footerIsFlashingSubscription.unsubscribe();
     }
   }
 
