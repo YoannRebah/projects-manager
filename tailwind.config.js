@@ -14,6 +14,7 @@ module.exports = {
         "body": 'hsl(249, 88%, 5%)',
         "cyan": 'hsl(172, 85%, 49%)',
         "cyan-dark": 'hsl(170, 79%, 33%)',
+        "footer": 'hsl(249, 88%, 8%)',
         "grey": 'hsl(210, 7%, 78%)',
         "grey-dark": 'hsl(300, 3%, 26%)',
         "orange": 'hsl(18, 81%, 54%)',

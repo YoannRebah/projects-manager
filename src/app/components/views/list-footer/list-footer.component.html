@@ -1,10 +1,10 @@
-<div class="container list-footer">
-    <div class="content-footer">
+<div class="container list-footer flex justify-center gap-20">
+    <div class="content-footer flex items-center">
         <img src="assets/gif/footer.gif" alt="">
     </div>
-    <div class="content-footer list-footer-group">
-        <ul *ngFor="let footerLink of footerLinks">
-            <li *ngFor="let linkGroup of footerLink">
+    <div class="content-footer list-footer-group flex items-center gap-24">
+        <ul *ngFor="let footerLink of footerLinks" class="list-none">
+            <li *ngFor="let linkGroup of footerLink" class="mb-5">
                 <a 
                     [href]="linkGroup.href" 
                     [attr.aria-label]="linkGroup.ariaLabel" 
