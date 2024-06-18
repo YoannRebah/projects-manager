@@ -19,14 +19,14 @@
                 <p class="jersey-15-regular">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
             </div>
         </div>
-        <div class="content-game">
-            <div #gameContainer class="container game-container cursor-none" (mousemove)="onMouseMoveIntoGameContainer($event)">
-                <p *ngIf="!mouseIsMovingOnce" class="move-to-start jersey-15-regular flash-animation-infinite cursor-none">
+        <div class="content-game cursor-hidden">
+            <div #gameContainer class="container game-container" (mousemove)="onMouseMoveIntoGameContainer($event)">
+                <p *ngIf="!mouseIsMovingOnce" class="move-to-start jersey-15-regular flash-animation-infinite">
                     <span>Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
                 </p>
-                <div #gameCursor class="game-cursor cursor-none" [class]="isInGameContainer ? 'can-be-hitted' : null">
-                    <div #collisionBox class="collision-box cursor-none" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
+                <div #gameCursor class="game-cursor" [class]="isInGameContainer ? 'can-be-hitted' : null">
+                    <div #collisionBox class="collision-box" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
                 </div>
             </div>
         </div>

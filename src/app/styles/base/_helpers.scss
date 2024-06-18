@@ -16,8 +16,12 @@
     }
 }
 
-.cursor-none {
+.cursor-hidden {
     cursor: none;
+
+    &>* {
+        cursor: none;
+    }
 }
 
 .user-select-none {
