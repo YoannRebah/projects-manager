@@ -1,7 +1,7 @@
-<div class="container blog">
-    <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group" [class.active]="activeIndex == i">
+<div class="container blog flex flex-col">
+    <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group relative justify-center" [class.active]="activeIndex == i">
         <div *ngFor="let card of cardGroup" class="container-card">
-            <div class="card">
+            <div class="card relative h-full">
                 <div class="block-title">
                     <h2 class="megrim-regular">{{ card.h2 }}</h2>
                 </div>
@@ -14,9 +14,9 @@
             </div>
         </div>
     </div>
-    <div class="container-pagination">
-        <nav>
-            <ul>
+    <div class="container-pagination flex justify-center">
+        <nav class="flex">
+            <ul class="list-none flex">
                 <li>
                     <button class="btn" (click)="onClickPrev()"><<</button>
                 </li>
