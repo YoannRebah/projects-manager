@@ -1,5 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -9,18 +8,6 @@ import { WindowRefService } from '../../../shared/services/utilities/window-ref.
   styleUrl: './nav.component.scss'
 })
 
-export class NavComponent implements OnInit {
-  windowTopPosition: number = 0;
-
-  constructor(private windowRefService: WindowRefService) {}
-
-  ngOnInit(): void {
-    this.windowTopPosition = this.windowRefService.windowTopPosition;
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll(): void {
-    this.windowTopPosition = this.windowRefService.windowTopPosition;
-  }
-
+export class NavComponent {
+  constructor() {}
 }

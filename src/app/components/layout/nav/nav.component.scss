@@ -3,17 +3,5 @@
 $nav-height: 3.5rem;
 
 .nav {
-    top: 0;
-    left: 0;
     height: $nav-height;
-    border-bottom: 1px solid;
-    border-color: $cyan;
-
-    @include screen('s') {
-        border-color: transparent;
-    }
-    
-    &.border-active {
-        border-color: $cyan;
-    }
 }
