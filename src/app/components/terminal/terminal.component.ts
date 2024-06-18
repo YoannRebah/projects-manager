@@ -185,13 +185,15 @@ export class TerminalComponent implements OnInit, OnDestroy {
       break;
       case 'stop tv': this.tvProgramService.stop();
       break;
-      case 'show vhs': this.vhsEffectService.show();
+      case 'show vhs': {
+        this.vhsEffectService.show();
+        this.vhsEffectService.showFooter();
+      }
       break;
-      case 'hide vhs': this.vhsEffectService.hide();
-      break;
-      case 'show timer': this.vhsEffectService.showFooter();
-      break;
-      case 'hide timer': this.vhsEffectService.hideFooter();
+      case 'hide vhs': {
+        this.vhsEffectService.hide();
+        this.vhsEffectService.hideFooter();
+      }
       break;
     }
   }

@@ -14,7 +14,10 @@ app-modal {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 1.1rem;
+                
+                &:not(:last-child) {
+                    margin-bottom: 1.1rem;
+                }
 
                 label {
                     font-size: 1rem;
@@ -40,19 +43,20 @@ app-modal {
                         opacity: 0;
 
                         &:checked {
-                            + .switch-btn {
-                                left: 50%;
+                            + .switch {
+                                left: 45%;
                                 background: $blue;
                             }
                         }
                     }
 
-                    .switch-btn {
+                    .switch {
                         position: absolute;
-                        top: 0;
-                        height: 100%;
+                        transform: translate(0%, -50%);
+                        top: 50%;
+                        left: 5%;
+                        height: 70%;
                         width: 50%;
-                        left: 0%;
                         background: $grey2;
                     }
                 }
