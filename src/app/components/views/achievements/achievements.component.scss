@@ -3,11 +3,7 @@
 .achievements {
 
     .achievements-window {
-        display: flex;
-        flex-direction: column;
         border: 5px solid $grey;
-        background: $grey;
-        color: $grey2;
         box-shadow: 2px 2px 0px 0px $black-transparent;
 
         button,
@@ -28,16 +24,9 @@
         }
 
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             padding: .33rem;
-            background: $blue2;
 
             .title {
-                color: $white;
-                display: flex;
-                align-items: center;
                 margin-left: .33rem;
 
                 i {
@@ -46,11 +35,9 @@
             }
 
             .container-btn {
-                display: flex;
                 gap: 0.33rem;
 
                 button {
-                    background: $grey;
                     width: 24px;
                     height: 24px;
                     font-size: 1.05rem;
@@ -84,8 +71,6 @@
                 }
 
                 .column {
-                    display: flex;
-                    flex-direction: column;
                     padding: 2rem;
 
                     &_img {
@@ -126,12 +111,9 @@
         }
 
         footer {
-            display: flex;
-            justify-content: flex-end;
             padding: 1rem;
 
             .container-btn {
-                display: flex;
                 gap: .5rem;
 
                 button {
