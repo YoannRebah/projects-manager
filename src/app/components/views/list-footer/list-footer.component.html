@@ -1,12 +1,19 @@
-<ul class="list-footer">
-    <li *ngFor="let footerLink of footerLinks">
-        <a 
-            [href]="footerLink.href" 
-            [attr.aria-label]="footerLink.ariaLabel" 
-            [attr.target]="footerLink.target"
-            [attr.rel]="footerLink.target === '_blank' ? 'noopener noreferrer' : null"
-        >
-            {{ footerLink.text }}
-        </a>
-    </li>
-</ul>
+<div class="container list-footer">
+    <div class="content-footer">
+        <img src="assets/gif/footer.gif" alt="">
+    </div>
+    <div class="content-footer list-footer-group">
+        <ul *ngFor="let footerLink of footerLinks">
+            <li *ngFor="let linkGroup of footerLink">
+                <a 
+                    [href]="linkGroup.href" 
+                    [attr.aria-label]="linkGroup.ariaLabel" 
+                    [attr.target]="linkGroup.target"
+                    [attr.rel]="linkGroup.target === '_blank' ? 'noopener noreferrer' : null"
+                >
+                    {{ linkGroup.text }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
