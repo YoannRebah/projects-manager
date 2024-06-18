@@ -1,14 +1,14 @@
-<div *ngIf="isVisible" #modal [id]="id" class="modal-background" [class]="classNames" [style.position]="position">
-    <div class="container modal">
-        <header>
-            <div class="container-title">
+<div *ngIf="isVisible" #modal [id]="id" class="modal-background top-0 left-0 w-full h-full flex items-center justify-center bg-black-transparent-light" [class]="classNames" [style.position]="position">
+    <div class="container modal flex flex-col max-w-[420px]">
+        <header class="flex items-center justify-between p-2 bg-blue-dark">
+            <div class="container-title ml-2 text-white">
                 <p>{{ titleText }}</p>
             </div>
-            <button class="btn" (click)="onClickHide()">
+            <button class="btn bg-grey text-grey-dark" (click)="onClickHide()">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
         </header>
-        <div class="content">
+        <div class="content bg-grey p-8">
             <ng-content select=".custom-content"></ng-content>
         </div>
         <footer>

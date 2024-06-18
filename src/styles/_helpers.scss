@@ -7,15 +7,6 @@
     }
 }
 
-.btn {
-    border: none;
-    background: none;
-
-    &>* {
-        pointer-events: none;
-    }
-}
-
 .cursor-hidden {
     cursor: none;
 
