@@ -4,6 +4,7 @@ import { ModalComponent } from '../../shared/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { Subscription } from 'rxjs';
 import { ToggleSwitchComponent } from '../../shared/toggle-switch/toggle-switch.component';
+import { ToggleSwitchService } from '../../../shared/services/components/toggle-switch.service';
 
 @Component({
   selector: 'app-modal-settings',
@@ -20,17 +21,22 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   footerIsVisible!: boolean;
 
   constructor(
-    private vhsEffectService: VhsEffectService
+    private vhsEffectService: VhsEffectService,
+    private toggleSwitchService: ToggleSwitchService
   ) {}
 
   ngOnInit(): void {
-    this.subscribeVhsEffectIsVisible();
-    this.subscribeFooterIsVisible();
+    // this.subscribeVhsEffectIsVisible();
+    // this.subscribeFooterIsVisible();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeVhsEffectIsVisible();
-    this.unsubscribeFooterIsVisible();
+    // this.unsubscribeVhsEffectIsVisible();
+    // this.unsubscribeFooterIsVisible();
+  }
+
+  test(): void {
+    console.log(document.querySelector('#checkbox-toggle-vhs-effect')?.getAttribute('checked'))
   }
 
   // vhs effect is visible

@@ -8,7 +8,6 @@ import { LocalStorageService } from '../../shared/services/utilities/local-stora
 import { LoaderService } from '../../shared/services/components/loader.service';
 import { TvProgramService } from '../../shared/services/components/tv-program.service';
 import { VhsEffectService } from '../../shared/services/components/vhs-effect.service';
-import { ToggleSwitchService } from '../../shared/services/components/toggle-switch.service';
 
 @Component({
   selector: 'app-terminal',
@@ -35,8 +34,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private loaderService: LoaderService,
     private tvProgramService: TvProgramService,
-    private vhsEffectService: VhsEffectService,
-    private toggleSwitchService: ToggleSwitchService
+    private vhsEffectService: VhsEffectService
   ) {}
 
   ngOnInit(): void {

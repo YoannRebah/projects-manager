@@ -1,58 +1,55 @@
 @import '../../../../styles/base';
 
-.popin-background {
+.popin {
+    max-width: 370px;
+    border: 5px solid $grey;
+    background: $grey;
+    color: $grey2;
+    box-shadow: 2px 2px 0px 0px $black-transparent2;
 
-    .popin {
-        max-width: 370px;
-        border: 5px solid $grey;
-        background: $grey;
-        color: $grey2;
-        box-shadow: 2px 2px 0px 0px $black-transparent2;
+    header {
+        padding: .33rem;
 
-        header {
-            padding: .33rem;
-
-            .container-title {
-                p {
-                    margin-left: .2rem;
-                    color: $white;
-                }
+        .container-title {
+            p {
+                margin-left: .2rem;
+                color: $white;
             }
-
-            button {
-                background: $grey;
-                width: 24px;
-                height: 24px;
-                font-size: 1.05rem;
-                border-top: 2px solid $white2;
-                border-left: 2px solid $white2;
-                border-right: 2px solid $black2;
-                border-bottom: 2px solid $black2;
-
-                &:active {
-                    border-top: 2px solid $black2;
-                    border-left: 2px solid $black2;
-                    border-right: 2px solid $white2;
-                    border-bottom: 2px solid $white2;
-                }
-            }
-
         }
 
-        .content {
-            padding: 1rem;
+        button {
+            background: $grey;
+            width: 24px;
+            height: 24px;
+            font-size: 1.05rem;
+            border-top: 2px solid $white2;
+            border-left: 2px solid $white2;
+            border-right: 2px solid $black2;
+            border-bottom: 2px solid $black2;
 
-            .container-img {
-                flex: 30;
-
-                img {
-                    width: 60px;
-                }
+            &:active {
+                border-top: 2px solid $black2;
+                border-left: 2px solid $black2;
+                border-right: 2px solid $white2;
+                border-bottom: 2px solid $white2;
             }
+        }
 
-            .container-text {
-                flex: 70;
+    }
+
+    .content {
+        padding: 1rem;
+
+        .container-img {
+            flex: 30;
+
+            img {
+                width: 60px;
             }
+        }
+
+        .container-text {
+            flex: 70;
         }
     }
 }

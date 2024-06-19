@@ -13,14 +13,14 @@
         opacity: 0;
 
         &:checked {
-            + .switch {
+            + .slider {
                 left: 45%;
                 background: $blue;
             }
         }
     }
 
-    .switch {
+    .slider {
         transform: translate(0%, -50%);
         top: 50%;
         left: 5%;
