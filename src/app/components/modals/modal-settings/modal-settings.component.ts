@@ -42,10 +42,10 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
         this.vhsEffectIsVisible = isVisible;
         if(this.vhsEffectIsVisible) {
           this.vhsEffectService.showFooter();
-          this.toggleSwitchService.check();
+          this.toggleSwitchService.check('toggle-vhs-effect');
         } else {
           this.vhsEffectService.hideFooter();
-          this.toggleSwitchService.uncheck();
+          this.toggleSwitchService.uncheck('toggle-vhs-effect');
         }
       },
       error: (e) => console.error('error subscribeVhsEffectIsVisible', e)
@@ -74,24 +74,21 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // onChangeVhsEffect(Event: Event): void {
-  //   const inputElement = (Event.target as HTMLInputElement);
-  //   if(inputElement.checked) {
-  //     this.vhsEffectService.show();
-  //     this.vhsEffectService.showFooter();
-  //   } else {
-  //     this.vhsEffectService.hide();
-  //     this.vhsEffectService.hideFooter();
-  //   }
-  // }
-
   toggleVhsEffect(): void {
-    if(this.toggleSwitchService.getCurrentState()) {
+    if(this.toggleSwitchService.isChecked$('toggle-vhs-effect')) {
       this.vhsEffectService.show();
       this.vhsEffectService.showFooter();
     } else {
       this.vhsEffectService.hide();
       this.vhsEffectService.hideFooter();
+    }
+  }
+
+  toggleTest(): void {
+    if(this.toggleSwitchService.isChecked$('toggle-test')) {
+      console.log('test checked')
+    } else {
+      console.log('test uncheck')
     }
   }
 
