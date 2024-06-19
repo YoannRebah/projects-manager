@@ -1,6 +1,6 @@
-<div *ngIf="isVisible" #popin [id]="id" class="popin-background" [style.position]="position">
-    <div class="container popin">
-        <header>
+<div *ngIf="isVisible" #popin [id]="id" class="popin-background fixed-backdrop-flex-center bg-black-transparent-light" [style.position]="position">
+    <div class="container popin flex flex-col">
+        <header class="flex-center-between bg-blue-dark">
             <div class="container-title">
                 <p>{{ titleText }}</p>
             </div>
@@ -8,14 +8,14 @@
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
         </header>
-        <div class="content">
-            <div class="container-img">
+        <div class="content flex">
+            <div class="container-img flex-center-center">
                 <img *ngIf="img === 'error'" src="assets/images/icon-error.png" alt="Erreur">
                 <img *ngIf="img === 'success'" src="assets/images/icon-check.png" alt="Valide">
                 <img *ngIf="img === 'mail'" src="assets/images/icon-mail.png" alt="Formulaire transmis">
                 <img *ngIf="img === 'help'" src="assets/images/icon-paperclip.png" alt="Aide">
             </div>
-            <div class="container-text">
+            <div class="container-text flex-center-center">
                 <p>{{ contentText }}</p>
             </div>
         </div>
