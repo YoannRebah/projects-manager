@@ -1,6 +1,9 @@
 <div class="game-background fixed-backdrop-flex-center">
-    <div class="container grid-game h-full grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';">
-        
+    <div 
+        class="container grid-game h-full grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" 
+        style="grid-template-areas: 'header-game' 'content-game';"
+    >
+        <!-- header -->
         <header class="relative flex items-center justify-between" style="grid-area: 'header-game';">
             <div class="block-header-game flex items-center flex-1">
                 <button class="btn flex items-center justify-center bg-orange" aria-label="Quitter" (click)="onClickQuitGame()">
@@ -20,22 +23,28 @@
                 <p class="jersey-15-regular uppercase">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
             </div>
         </header>
-
+        <!-- content-game -->
         <div 
-            class="content-game relative bg-no-repeat bg-cover bg-center bg-body cursor-hidden"
+            class="content-game relative bg-no-repeat bg-cover bg-center bg-body cursor-hidden border-2 border-dashed border-orange"
             style="background-image: url(assets/images/space-background.jpeg); grid-area: 'content-game';"
         >
             <div #gameContainer class="container game-container relative overflow-hidden h-full" (mousemove)="onMouseMoveIntoGameContainer($event)">
                 <p *ngIf="!mouseIsMovingOnce" class="move-to-start flex absolute translate-x-y top-1/2 left-1/2 items-center uppercase jersey-15-regular flash-animation-infinite">
-                    <span>Déplacez la souris</span>
-                    <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
+                    <span class="mr-2 text-3xl">Déplacez la souris</span>
+                    <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
                 </p>
-                <div #gameCursor class="game-cursor absolute bottom-0 bg-no-repeat bg-cover bg-center" [class]="isInGameContainer ? 'can-be-hitted' : null">
-                    <div #collisionBox class="collision-box relative" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
+                <div 
+                    #gameCursor 
+                    class="game-cursor absolute bottom-0 left-[-25.5%] w-[75px] h-[125px] opacity-0 bg-no-repeat bg-cover bg-center pointer-events-none" 
+                    [class]="isInGameContainer ? 'can-be-hitted' : null"
+                    style="background-image: url(assets/gif/rocket-spaceship.gif);"
+                >
+                    <div #collisionBox class="collision-box relative pointer-events-none" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- game over background -->
     <div 
         *ngIf="gameIsOver" 
         class="game-over-background fixed-backdrop-flex-center z-10 bg-body bg-no-repeat bg-contain bg-center"
@@ -55,4 +64,5 @@
             </div>
         </div>
     </div>
+
 </div>

@@ -1,59 +1,33 @@
 @import '../../../styles/base';
 
-.content-game {
-    border: 1px dashed $orange;
-}
-
-.move-to-start {
-    span {
-        font-size: 2rem;
-        margin-right: .5rem;
-    }
-
-    i {
-        font-size: 1.5rem;
-    }
-}
-
 .game-cursor {
-    left: -25.5%;
-    width: 75px;
-    height: 125px;
-    background-image: url(../../../../public/assets/gif/rocket-spaceship.gif);
-    pointer-events: none;
-    opacity: 0;
-
-    &>* {
-        pointer-events: none;
-    }
-
     &.can-be-hitted {
-        pointer-events: all;
+        pointer-events: all !important;
         opacity: 1;
 
         &>* {
-            pointer-events: all;
+            pointer-events: all !important;
         }
     }
+}
 
-    .collision-box {
-        width: 50px;
-        height: 70px;
-        left: 11px;
-        opacity: 0.6;
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
-        
-        &.hitted-animation {
-            animation: hitted-animation 0.35s forwards;
-            @keyframes hitted-animation {
-                0% {
-                    background: $red;
-                }
-                100% {
-                    background: transparent;
-                }
-            }
+.collision-box {
+    width: 50px;
+    height: 70px;
+    left: 11px;
+    opacity: 0.6;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.hitted-animation {
+    animation: hitted-animation 0.35s forwards;
+    @keyframes hitted-animation {
+        0% {
+            background: $red;
+        }
+        100% {
+            background: transparent;
         }
     }
 }
