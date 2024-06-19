@@ -2,11 +2,12 @@
     <div class="custom-content">
         <ul class="list-none">
             <li class="flex items-center justify-between">
-                <label for="display-vhs-effect" class="text-grey-dark">Afficher l'effet VHS&nbsp;:</label>
-                <div class="btn-switch relative flex items-center">
+                <label for="toggle-vhs-effect" class="text-grey-dark">Afficher l'effet VHS&nbsp;:</label>
+                <!-- <div class="btn-switch relative flex items-center">
                     <input id="display-vhs-effect" class="absolute w-full h-full z-10" type="checkbox" (change)="onChangeVhsEffect($event)" [checked]="vhsEffectIsVisible">
                     <div class="switch absolute bg-grey-dark transform center-y"></div>
-                </div>
+                </div> -->
+                <app-toggle-switch id="toggle-vhs-effect" (change)="toggleVhsEffect()"></app-toggle-switch>
             </li>
         </ul>
     </div>

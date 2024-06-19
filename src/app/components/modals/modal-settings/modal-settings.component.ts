@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { Subscription } from 'rxjs';
+import { ToggleSwitchService } from '../../../shared/services/components/toggle-switch.service';
+import { ToggleSwitchComponent } from '../../shared/toggle-switch/toggle-switch.component';
 
 @Component({
   selector: 'app-modal-settings',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [CommonModule, ModalComponent, ToggleSwitchComponent],
   templateUrl: './modal-settings.component.html',
   styleUrl: './modal-settings.component.scss'
 })
@@ -19,7 +21,8 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   footerIsVisible!: boolean;
 
   constructor(
-    private vhsEffectService: VhsEffectService
+    private vhsEffectService: VhsEffectService,
+    private toggleSwitchService: ToggleSwitchService
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +40,12 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     this.vhsEffectIsVisibleSubscription = this.vhsEffectService.isVisible$.subscribe({
       next: (isVisible) => {
         this.vhsEffectIsVisible = isVisible;
-        if(!this.vhsEffectIsVisible) {
+        if(this.vhsEffectIsVisible) {
+          this.vhsEffectService.showFooter();
+          this.toggleSwitchService.check();
+        } else {
           this.vhsEffectService.hideFooter();
+          this.toggleSwitchService.uncheck();
         }
       },
       error: (e) => console.error('error subscribeVhsEffectIsVisible', e)
@@ -67,27 +74,24 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onChangeVhsEffect(Event: Event): void {
-    const inputElement = (Event.target as HTMLInputElement);
-    if(inputElement.checked) {
+  // onChangeVhsEffect(Event: Event): void {
+  //   const inputElement = (Event.target as HTMLInputElement);
+  //   if(inputElement.checked) {
+  //     this.vhsEffectService.show();
+  //     this.vhsEffectService.showFooter();
+  //   } else {
+  //     this.vhsEffectService.hide();
+  //     this.vhsEffectService.hideFooter();
+  //   }
+  // }
+
+  toggleVhsEffect(): void {
+    if(this.toggleSwitchService.getCurrentState()) {
       this.vhsEffectService.show();
       this.vhsEffectService.showFooter();
     } else {
       this.vhsEffectService.hide();
       this.vhsEffectService.hideFooter();
-    }
-  }
-
-  onChangeFooterIsVisible(Event: Event): void {
-    const inputElement = (Event.target as HTMLInputElement);
-    if(this.vhsEffectIsVisible) {
-      if(inputElement.checked) {
-        this.vhsEffectService.showFooter();
-      } else {
-        this.vhsEffectService.hideFooter();
-      }
-    } else {
-      inputElement.checked = false;
     }
   }
 
