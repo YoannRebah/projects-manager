@@ -7,9 +7,7 @@
     }
 }
 
-.cursor-hidden {
-    cursor: none;
-
+.cursor-none {
     &>* {
         cursor: none;
     }

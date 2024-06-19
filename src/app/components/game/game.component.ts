@@ -358,8 +358,9 @@ export class GameComponent implements OnInit, OnDestroy {
     this.renderer.setAttribute(meteor, 'data-damage', this.defineMeteorDamages(this.randomMeteorWidth));
     this.renderer.setAttribute(meteor, 'data-timestamp', meteorTimestamp.toString());
     this.renderer.addClass(meteor, "meteor");
-    this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
+    this.renderer.addClass(meteor, "absolute");
     this.renderer.addClass(meteor, "cursor-none");
+    this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
     this.renderer.setStyle(meteor, 'width', `${this.randomMeteorWidth}px`);
     this.renderer.appendChild(gameContainer, meteor);

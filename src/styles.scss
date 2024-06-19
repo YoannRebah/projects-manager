@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .fixed-backdrop-flex-center {
+        @apply fixed top-0 left-0 w-full h-full z-10 bg-body flex items-center justify-center;
+    }
+    .translate-x-y {
+        @apply -translate-x-2/4 -translate-y-2/4;
+    }
+}
+
 // base (shared with components)
 @import './styles/base';
 
