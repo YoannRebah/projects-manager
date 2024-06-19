@@ -353,25 +353,32 @@ export class GameComponent implements OnInit, OnDestroy {
   createMeteor(): void {
     const meteorTimestamp = DatetimeService.timestampNow;
     const gameContainer = this.gameContainer.nativeElement;
+    const randomWidth = this.randomMeteorWidth;
+
     const meteor = this.renderer.createElement('img');
     this.renderer.setAttribute(meteor, 'src', 'assets/images/meteor.png');
-    this.renderer.setAttribute(meteor, 'data-damage', this.defineMeteorDamages(this.randomMeteorWidth));
+    this.renderer.setAttribute(meteor, 'data-damage', this.defineMeteorDamages(randomWidth));
     this.renderer.setAttribute(meteor, 'data-timestamp', meteorTimestamp.toString());
+    
     this.renderer.addClass(meteor, "meteor");
     this.renderer.addClass(meteor, "absolute");
     this.renderer.addClass(meteor, "cursor-none");
     this.renderer.addClass(meteor, `meteor-falling-animation-${this.randomMeteorClassNamesIndex}`);
+   
     this.renderer.setStyle(meteor, 'left', `${this.randomMeteorLeftPosition}%`);
-    this.renderer.setStyle(meteor, 'width', `${this.randomMeteorWidth}px`);
+    this.renderer.setStyle(meteor, 'width', `${randomWidth}px`);
+  
+    
     this.renderer.appendChild(gameContainer, meteor);
+
     this.removeOldMeteors();
   }
 
   defineMeteorDamages(width: number): string {
     let damage: string = "0";
-    if(width < 40) damage = "10";
-    if(width > 40 && width < 60) damage = "20";
-    if(width > 60) damage = "30";
+    if(width > 0 && width < 40) damage = "5";
+    if(width >= 40 && width <= 60) damage = "10";
+    if(width > 60) damage = "20";
     return damage;
   }
 
