@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { Subscription } from 'rxjs';
-import { ToggleSwitchService } from '../../../shared/services/components/toggle-switch.service';
 import { ToggleSwitchComponent } from '../../shared/toggle-switch/toggle-switch.component';
 
 @Component({
@@ -16,13 +15,12 @@ import { ToggleSwitchComponent } from '../../shared/toggle-switch/toggle-switch.
 
 export class ModalSettingsComponent implements OnInit, OnDestroy {
   private vhsEffectIsVisibleSubscription!: Subscription;
-  private footerVhsEffectIsVisibleSubscription!: Subscription;
   vhsEffectIsVisible!: boolean;
+  private footerVhsEffectIsVisibleSubscription!: Subscription;
   footerIsVisible!: boolean;
 
   constructor(
-    private vhsEffectService: VhsEffectService,
-    private toggleSwitchService: ToggleSwitchService
+    private vhsEffectService: VhsEffectService
   ) {}
 
   ngOnInit(): void {
@@ -40,13 +38,6 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     this.vhsEffectIsVisibleSubscription = this.vhsEffectService.isVisible$.subscribe({
       next: (isVisible) => {
         this.vhsEffectIsVisible = isVisible;
-        if(this.vhsEffectIsVisible) {
-          this.vhsEffectService.showFooter();
-          this.toggleSwitchService.check('toggle-vhs-effect');
-        } else {
-          this.vhsEffectService.hideFooter();
-          this.toggleSwitchService.uncheck('toggle-vhs-effect');
-        }
       },
       error: (e) => console.error('error subscribeVhsEffectIsVisible', e)
     })
@@ -71,24 +62,6 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   unsubscribeFooterIsVisible(): void {
     if(this.footerVhsEffectIsVisibleSubscription) {
       this.footerVhsEffectIsVisibleSubscription.unsubscribe();
-    }
-  }
-
-  toggleVhsEffect(): void {
-    if(this.toggleSwitchService.isChecked$('toggle-vhs-effect')) {
-      this.vhsEffectService.show();
-      this.vhsEffectService.showFooter();
-    } else {
-      this.vhsEffectService.hide();
-      this.vhsEffectService.hideFooter();
-    }
-  }
-
-  toggleTest(): void {
-    if(this.toggleSwitchService.isChecked$('toggle-test')) {
-      console.log('test checked')
-    } else {
-      console.log('test uncheck')
     }
   }
 

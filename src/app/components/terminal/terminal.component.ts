@@ -8,6 +8,7 @@ import { LocalStorageService } from '../../shared/services/utilities/local-stora
 import { LoaderService } from '../../shared/services/components/loader.service';
 import { TvProgramService } from '../../shared/services/components/tv-program.service';
 import { VhsEffectService } from '../../shared/services/components/vhs-effect.service';
+import { ToggleSwitchService } from '../../shared/services/components/toggle-switch.service';
 
 @Component({
   selector: 'app-terminal',
@@ -25,6 +26,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   commandsHistory: string[] = [];
   terminalHistoryKey: string = LocalStorageService.portfolioPrefixStorageKey + "terminal-history";
   currentCommandIndex: number = -1;
+  idToggleVhsEffect: string = 'toggle-vhs-effect';
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -33,7 +35,8 @@ export class TerminalComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private loaderService: LoaderService,
     private tvProgramService: TvProgramService,
-    private vhsEffectService: VhsEffectService
+    private vhsEffectService: VhsEffectService,
+    private toggleSwitchService: ToggleSwitchService
   ) {}
 
   ngOnInit(): void {
