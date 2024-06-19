@@ -1,13 +1,11 @@
 @import '../../../styles/base';
 
-.game-cursor {
-    &.can-be-hitted {
-        pointer-events: all !important;
-        opacity: 1;
+.can-be-hitted {
+    pointer-events: all !important;
+    opacity: 1 !important;
 
-        &>* {
-            pointer-events: all !important;
-        }
+    &>* {
+        pointer-events: all !important;
     }
 }
 

@@ -1,42 +1,44 @@
-<div class="game-background fixed-backdrop-flex-center">
+<div class="fixed-backdrop-flex-center z-10">
     <div 
-        class="container grid-game h-full grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" 
-        style="grid-template-areas: 'header-game' 'content-game';"
+        class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';"
     >
         <!-- header -->
         <header class="relative flex items-center justify-between" style="grid-area: 'header-game';">
-            <div class="block-header-game flex items-center flex-1">
-                <button class="btn flex items-center justify-center bg-orange" aria-label="Quitter" (click)="onClickQuitGame()">
+            <div class="flex items-center flex-[0_1_25%]">
+                <button class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter" (click)="onClickQuitGame()">
                     <span class="text-white uppercase jersey-15-regular">Quitter</span>
                 </button>
             </div>
-            <div class="block-header-game flex items-center flex-1">
-                <div class="container container-health-bar flex items-center">
-                    <p class="jersey-15-regular">PV</p>
+            <div class="flex items-center flex-[0_1_50%]">
+                <div class="container-health-bar flex items-center w-full">
+                    <p class="jersey-15-regular text-2xl mr-2">PV</p>
                     <div class="health-bar w-full bg-pink h-4">
                         <div class="health h-full bg-cyan" [style.width]="health + '%'"></div>
                     </div>
                 </div>
             </div>
-            <div class="block-header-game flex flex-col items-end flex-1">
-                <p class="jersey-15-regular uppercase">Score&nbsp;: <span class="score">{{ score }}</span></p>
-                <p class="jersey-15-regular uppercase">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
+            <div class="flex flex-col items-end flex-[0_1_25%]">
+                <p class="jersey-15-regular uppercase text-2xl">Score&nbsp;: <span class="score">{{ score }}</span></p>
+                <p class="jersey-15-regular uppercase text-xl">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
             </div>
         </header>
+
         <!-- content-game -->
         <div 
-            class="content-game relative bg-no-repeat bg-cover bg-center bg-body cursor-hidden border-2 border-dashed border-orange"
+            class="relative bg-no-repeat bg-cover bg-center bg-body cursor-none border-2 border-dashed border-orange"
             style="background-image: url(assets/images/space-background.jpeg); grid-area: 'content-game';"
         >
-            <div #gameContainer class="container game-container relative overflow-hidden h-full" (mousemove)="onMouseMoveIntoGameContainer($event)">
+            <div #gameContainer class="relative overflow-hidden h-full" (mousemove)="onMouseMoveIntoGameContainer($event)">
                 <p *ngIf="!mouseIsMovingOnce" class="move-to-start flex absolute translate-x-y top-1/2 left-1/2 items-center uppercase jersey-15-regular flash-animation-infinite">
                     <span class="mr-2 text-3xl">Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
                 </p>
+
+                <!-- game-cursor -->
                 <div 
                     #gameCursor 
-                    class="game-cursor absolute bottom-0 left-[-25.5%] w-[75px] h-[125px] opacity-0 bg-no-repeat bg-cover bg-center pointer-events-none" 
-                    [class]="isInGameContainer ? 'can-be-hitted' : null"
+                    class="game-cursor absolute bottom-0 left-[-36%] w-[75px] h-[125px] opacity-0 bg-no-repeat bg-cover bg-center pointer-events-none" 
+                    [class.can-be-hitted]="isInGameContainer"
                     style="background-image: url(assets/gif/rocket-spaceship.gif);"
                 >
                     <div #collisionBox class="collision-box relative pointer-events-none" [class]="collisionBoxIsHitted ? 'hitted-animation' : null"></div>
@@ -44,6 +46,7 @@
             </div>
         </div>
     </div>
+    
     <!-- game over background -->
     <div 
         *ngIf="gameIsOver" 
