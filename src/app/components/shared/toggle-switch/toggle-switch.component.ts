@@ -49,6 +49,6 @@ export class ToggleSwitchComponent implements OnInit, OnDestroy {
   toggleCheckbox(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.inputService.setInputState(this.id, input.checked);
-    this.stateChanged.emit(input.checked); // Émettre l'événement pour informer le parent
+    this.stateChanged.emit(input.checked);
   }
 }

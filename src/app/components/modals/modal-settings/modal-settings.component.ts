@@ -70,6 +70,7 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // toggle switch components
   onStateChanged(newState: boolean, id: string): void {
     if(id === this.toggleSwitchVhsEffectId) {
       if(newState) {
