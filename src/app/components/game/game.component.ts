@@ -30,6 +30,9 @@ export class GameComponent implements OnInit, OnDestroy {
   isInGameContainer: boolean = false;
   gameCanBeStarted: boolean = false;
   gameIsOver: boolean = false;
+  // game cursor
+  gameCursorGifPathRocket: string = 'assets/gif/rocket-spaceship.gif';
+  gameCursorGifPathExplosion: string = 'assets/gif/explosion.gif';
   // score
   score: number = 0;
   scoreMin: number = 0;
@@ -92,7 +95,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
     } else if (!this.isInGameContainer) {
       if (this.isRunning) {
-        this.stopGame();
+        this.playerIsDie();
       }
     }
   }
@@ -487,11 +490,28 @@ export class GameComponent implements OnInit, OnDestroy {
     this.health += delta;
     if(this.health <= this.healthMin) {
       this.health = this.healthMin;
-      this.stopGame();
+      this.playerIsDie();
     }
     if(this.health >= this.healthMax) {
       this.health = this.healthMax;
     }
+  }
+
+  setGameCursorGif(gifName: string): void {
+    if(gifName === 'rocket') {
+      this.renderer.setStyle(this.gameCursor.nativeElement, 'backgroundImage', `url(${this.gameCursorGifPathRocket})`);
+    }
+    if(gifName === 'explosion') {
+      this.renderer.setStyle(this.gameCursor.nativeElement, 'backgroundImage', `url(${this.gameCursorGifPathExplosion})`);
+    }
+  }
+
+  playerIsDie(): void {
+    this.setGameCursorGif('explosion');
+    TimeoutService.setTimeout(()=>{
+      this.stopGame();
+      this.setGameCursorGif('rocket');
+    }, 800);
   }
 
 }
