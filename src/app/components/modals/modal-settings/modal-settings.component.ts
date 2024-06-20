@@ -68,8 +68,6 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   }
 
   onToggleSwitchStateChanged(id: string, state: boolean): void {
-    console.log(`Toggle switch with id ${id} changed to ${state}`);
-    // Ajoutez ici l'action à déclencher en fonction de l'état
     if (state) {
       console.log(`Le switch ${id} est activé`);
     } else {

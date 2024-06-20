@@ -1,17 +1,10 @@
-@import '../../../../styles/base';
+@import '../../../../styles/variables';
 
 .toggle-switch {
-    width: 50px;
-    height: 18px;
-    border: 2px solid $grey2;
-
     &:has(> input:checked) {
         border: 2px solid $blue;
     }
-
     input {
-        opacity: 0;
-
         &:checked {
             + .slider {
                 left: 45%;
@@ -19,7 +12,6 @@
             }
         }
     }
-
     .slider {
         transform: translate(0%, -50%);
         top: 50%;

@@ -1,4 +1,7 @@
-<div class="toggle-switch relative flex items-center">
-    <input class="absolute w-full h-full z-10" type="checkbox" [checked]="isChecked" (change)="toggle($event)">
-    <div class="slider absolute bg-grey-dark transform center-y"></div>
+<div class="relative w-full flex-center-between">
+    <label [for]="id" class="text-grey-dark" [innerHTML]="label"></label>
+    <div class="toggle-switch relative flex items-center border-2 border-grey-dark w-[50px] h-[18px]">
+        <input [id]="id" class="absolute w-full h-full opacity-0 z-10" type="checkbox" [checked]="isChecked" (change)="toggle($event)">
+        <div class="slider absolute bg-grey-dark transform center-y"></div>
+    </div>
 </div>
