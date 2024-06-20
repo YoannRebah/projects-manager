@@ -11,15 +11,19 @@
             </div>
             <div class="flex items-center flex-[0_1_50%]">
                 <div class="container-health-bar flex items-center w-full">
-                    <p class="jersey-15-regular text-2xl mr-2">PV</p>
+                    <p class="text-lg mr-2">PV</p>
                     <div class="health-bar w-full bg-pink h-4">
                         <div class="health h-full bg-cyan" [style.width]="health + '%'"></div>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col items-end flex-[0_1_25%]">
-                <p class="jersey-15-regular uppercase text-2xl">Score&nbsp;: <span class="score">{{ score }}</span></p>
-                <p class="jersey-15-regular uppercase text-xl">High&nbsp;Score&nbsp;: <span class="high-score">{{ highScore }}</span></p>
+                <p class="uppercase text-xl">Score&nbsp;: 
+                    <span class="score w-[60px] inline-block">{{ score }}</span>
+                </p>
+                <p class="uppercase text-lg">High&nbsp;Score&nbsp;: 
+                    <span class="high-score w-[60px] inline-block">{{ highScore }}</span>
+                </p>
             </div>
         </header>
 
