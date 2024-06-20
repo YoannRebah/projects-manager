@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlogCard } from '../../../shared/models/blog-card';
 
@@ -10,7 +10,7 @@ import { BlogCard } from '../../../shared/models/blog-card';
   styleUrl: './blog.component.scss'
 })
 
-export class BlogComponent implements OnInit, OnDestroy {
+export class BlogComponent {
   activeIndex: number = 0;
   indexMin: number = 0;
   cardGroups: BlogCard[][] = [
@@ -115,14 +115,6 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   constructor() {}
 
-  ngOnInit(): void {
-      
-  }
-
-  ngOnDestroy(): void {
-      
-  }
-
   setActive(index: number): void {
     this.activeIndex = index;
   }
@@ -133,7 +125,6 @@ export class BlogComponent implements OnInit, OnDestroy {
     } else {
       this.activeIndex = this.indexMax;
     }
-    console.log(this.activeIndex)
   }
 
   onClickNext(): void {
@@ -142,6 +133,5 @@ export class BlogComponent implements OnInit, OnDestroy {
     } else {
       this.activeIndex = this.indexMin;
     }
-    console.log(this.activeIndex)
   }
 }
