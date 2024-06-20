@@ -114,7 +114,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
       
       const p = this.renderer.createElement('p');
       this.renderer.addClass(p, 'relative');
-      this.renderer.addClass(p, 'mr-4');
+      this.renderer.addClass(p, 'mr-2');
       this.renderer.addClass(p, 'text-green');
       
       const spanRoot = this.renderer.createElement('span');
@@ -124,6 +124,12 @@ export class TerminalComponent implements OnInit, OnDestroy {
       const spanCaret = this.renderer.createElement('span');
       this.renderer.addClass(spanCaret, 'span-caret');
       this.renderer.addClass(spanCaret, 'absolute');
+      this.renderer.addClass(spanCaret, 'translate-x-y');
+      this.renderer.addClass(spanCaret, 'top-[50%]');
+      this.renderer.addClass(spanCaret, 'right-[-14%]');
+      this.renderer.addClass(spanCaret, 'h-[90%]');
+      this.renderer.addClass(spanCaret, 'w-[10px]');
+      this.renderer.addClass(spanCaret, 'pointer-events-none');
       this.renderer.addClass(spanCaret, 'bg-pink');
       this.renderer.addClass(spanCaret, 'border-2');
       this.renderer.addClass(spanCaret, 'border-pink-dark');
