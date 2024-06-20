@@ -1,4 +1,4 @@
-import { Anchor } from "./common/anchor";
+import { Anchor } from "./base/anchor";
 
 export interface BlogCard {
     title: string,

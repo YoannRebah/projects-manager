@@ -1,22 +1,13 @@
 <app-modal id="modal-settings" classNames="modal-settings" titleText="Paramètres">
     <div class="custom-content">
-        <ul class="list-none">
-            <li>
-                <app-toggle-switch 
-                    id="toggle-vhs-effect" 
-                    (stateChanged)="onToggleSwitchStateChanged('toggle-vhs-effect', $event)"
-                    label="Afficher l'effet VHS&nbsp;:"
-                    >
-                </app-toggle-switch>
-            </li>
-            <li>
-                <app-toggle-switch 
-                    id="test" 
-                    (stateChanged)="onToggleSwitchStateChanged('test', $event)"
-                    label="Ceci est un test&nbsp;:"
-                    >
-                </app-toggle-switch>
-            </li>
-        </ul>
+      <ul class="list-none">
+        <li>
+            <app-toggle-switch #toggleSwitchVhsEffect 
+                [id]="toggleSwitchVhsEffectId" 
+                label="Afficher l'effet VHS&nbsp;:" 
+                (stateChanged)="onStateChanged($event, toggleSwitchVhsEffectId)">
+            </app-toggle-switch>
+        </li>
+      </ul>
     </div>
-</app-modal>
+</app-modal>  

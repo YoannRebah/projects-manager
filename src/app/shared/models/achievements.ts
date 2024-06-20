@@ -1,5 +1,5 @@
-import { Image } from "./common/image";
-import { Button } from "./common/button";
+import { Image } from "./base/image";
+import { Button } from "./base/button";
 
 export interface Achievements {
     tab: Button;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Image } from '../../../shared/models/common/image';
+import { Image } from '../../../shared/models/base/image';
 
 @Component({
   selector: 'app-marquee-interests',

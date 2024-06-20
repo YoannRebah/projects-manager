@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { Subscription } from 'rxjs';
 import { ToggleSwitchComponent } from '../../shared/toggle-switch/toggle-switch.component';
-import { ToggleSwitchService } from '../../../shared/services/components/toggle-switch.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-modal-settings',
@@ -16,62 +16,83 @@ import { ToggleSwitchService } from '../../../shared/services/components/toggle-
 
 export class ModalSettingsComponent implements OnInit, OnDestroy {
   private vhsEffectIsVisibleSubscription!: Subscription;
-  vhsEffectIsVisible!: boolean;
   private footerVhsEffectIsVisibleSubscription!: Subscription;
-  footerIsVisible!: boolean;
+  vhsEffectIsVisible: boolean = true;
+  footerIsVisible: boolean = true;
+  toggleSwitchVhsEffectId: string = 'toggle-vhs-effect';
 
-  constructor(
-    private vhsEffectService: VhsEffectService,
-    private toggleSwitchService: ToggleSwitchService
-  ) {}
+  @ViewChild('toggleSwitchVhsEffect') toggleSwitchVhsEffect!: ToggleSwitchComponent;
+
+  constructor(private vhsEffectService: VhsEffectService) {}
 
   ngOnInit(): void {
-    // this.subscribeVhsEffectIsVisible();
-    // this.subscribeFooterIsVisible();
+    this.subscribeVhsEffectIsVisible();
+    this.subscribeFooterIsVisible();
+    TimeoutService.setTimeout(()=>{
+      this.setToggleSwitchVhsEffectState(this.vhsEffectIsVisible);
+    });
   }
 
   ngOnDestroy(): void {
-    // this.unsubscribeVhsEffectIsVisible();
-    // this.unsubscribeFooterIsVisible();
+    this.unsubscribeVhsEffectIsVisible();
+    this.unsubscribeFooterIsVisible();
   }
 
-  // vhs effect is visible
+  // Subscribe methods
   subscribeVhsEffectIsVisible(): void {
     this.vhsEffectIsVisibleSubscription = this.vhsEffectService.isVisible$.subscribe({
       next: (isVisible) => {
         this.vhsEffectIsVisible = isVisible;
+        this.toggleVhsEffect();
       },
       error: (e) => console.error('error subscribeVhsEffectIsVisible', e)
-    })
+    });
   }
 
   unsubscribeVhsEffectIsVisible(): void {
-    if(this.vhsEffectIsVisibleSubscription) {
+    if (this.vhsEffectIsVisibleSubscription) {
       this.vhsEffectIsVisibleSubscription.unsubscribe();
     }
   }
 
-  // footer vhs effect is visible
   subscribeFooterIsVisible(): void {
     this.footerVhsEffectIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
       next: (footerIsVisible) => {
         this.footerIsVisible = footerIsVisible;
       },
       error: (e) => console.error('error subscribeFooterIsVisible', e)
-    })
+    });
   }
 
   unsubscribeFooterIsVisible(): void {
-    if(this.footerVhsEffectIsVisibleSubscription) {
+    if (this.footerVhsEffectIsVisibleSubscription) {
       this.footerVhsEffectIsVisibleSubscription.unsubscribe();
     }
   }
 
-  onToggleSwitchStateChanged(id: string, state: boolean): void {
-    if (state) {
-      console.log(`Le switch ${id} est activé`);
+  onStateChanged(newState: boolean, id: string): void {
+    if(id === this.toggleSwitchVhsEffectId) {
+      if(newState) {
+        this.vhsEffectService.show();
+        this.vhsEffectService.showFooter();
+      } else {
+        this.vhsEffectService.hide();
+        this.vhsEffectService.hideFooter();
+      }
+    }
+  }
+
+  setToggleSwitchVhsEffectState(newState: boolean): void {
+    if (this.toggleSwitchVhsEffect) {
+      this.toggleSwitchVhsEffect.checkboxState = newState;
+    }
+  }
+
+  toggleVhsEffect() {
+    if(this.vhsEffectIsVisible) {
+      this.setToggleSwitchVhsEffectState(true);
     } else {
-      console.log(`Le switch ${id} est désactivé`);
+      this.setToggleSwitchVhsEffectState(false);
     }
   }
 

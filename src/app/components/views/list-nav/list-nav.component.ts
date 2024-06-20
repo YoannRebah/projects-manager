@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Anchor } from '../../../shared/models/common/anchor';
-import { Button } from '../../../shared/models/common/button';
+import { Anchor } from '../../../shared/models/base/anchor';
+import { Button } from '../../../shared/models/base/button';
 import { ModalSettingsComponent } from '../../modals/modal-settings/modal-settings.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 
@@ -65,7 +65,6 @@ export class ListNavComponent {
 
   onClickShowSettings(): void {
     this.modalService.show();
-    console.log('settings')
   }
 
 }

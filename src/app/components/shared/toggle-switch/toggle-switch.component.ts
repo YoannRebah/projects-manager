@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToggleSwitchService } from '../../../shared/services/components/toggle-switch.service';
+import { InputService } from '../../../shared/services/base/input.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-toggle-switch',
@@ -9,28 +10,45 @@ import { ToggleSwitchService } from '../../../shared/services/components/toggle-
   templateUrl: './toggle-switch.component.html',
   styleUrl: './toggle-switch.component.scss'
 })
+export class ToggleSwitchComponent implements OnInit, OnDestroy {
+  private inputStateSubscription!: Subscription;
 
-export class ToggleSwitchComponent implements OnInit {
   @Input() id!: string;
   @Input() label!: string;
   @Output() stateChanged = new EventEmitter<boolean>();
-  isChecked: boolean = false;
 
-  constructor(private toggleSwitchService: ToggleSwitchService) {}
+  checkboxState: boolean = false;
+
+  constructor(private inputService: InputService) {}
 
   ngOnInit(): void {
-    this.isChecked = this.toggleSwitchService.getState(this.id);
+    this.subscribeInputState();
   }
 
-  toggle(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.isChecked = target.checked;
-    this.stateChanged.emit(this.isChecked);
-    if (this.isChecked) {
-      this.toggleSwitchService.check(this.id);
-    } else {
-      this.toggleSwitchService.uncheck(this.id);
+  ngOnDestroy(): void {
+    this.unsubscribeInputState();
+  }
+
+  subscribeInputState(): void {
+    if (this.id) {
+      this.inputStateSubscription = this.inputService.getInputState(this.id).subscribe({
+        next: (state) => {
+          this.checkboxState = state;
+        },
+        error: (e) => console.error('error subscribeInputState', e)
+      });
     }
   }
 
+  unsubscribeInputState(): void {
+    if (this.inputStateSubscription) {
+      this.inputStateSubscription.unsubscribe();
+    }
+  }
+
+  toggleCheckbox(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.inputService.setInputState(this.id, input.checked);
+    this.stateChanged.emit(input.checked); // Émettre l'événement pour informer le parent
+  }
 }

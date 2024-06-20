@@ -4,6 +4,7 @@ export interface Input {
     name?: string;
     classNames?: string;
     value?: string;
+    checked?: boolean;
     tooltip?: string;
     disabled?: boolean;
 }

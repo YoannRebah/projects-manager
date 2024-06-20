@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Anchor } from '../../../shared/models/common/anchor';
+import { Anchor } from '../../../shared/models/base/anchor';
 
 @Component({
   selector: 'app-list-footer',
