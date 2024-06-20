@@ -23,7 +23,7 @@ export class BlogComponent implements OnInit, OnDestroy {
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi. 1",
+        h2: "Tout savoir sur le pourquoi du comment avec qui. 1 Tout savoir sur le pourquoi du comment avec qui. 1",
         p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         a: {
           href: "/lorem",

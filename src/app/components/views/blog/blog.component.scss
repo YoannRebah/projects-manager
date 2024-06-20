@@ -2,60 +2,31 @@
 
 .card {  
     
-    .title { 
-
-        h2 {
-            font-size: 1.75rem;
-        }
+    h2 {
+        font-size: 1.75rem;
     }
 
-    .text { 
-
-        p {
-            font-size: 1rem;
-            font-weight: 400;
-        }
+    p {
+        font-size: 1rem;
+        font-weight: 400;
     }
     
-    .cta { 
-
-        a {
-            font-size: 1.2rem;
-        }
+    a {
+        font-size: 1.2rem;
     }
 }
 
 .container-pagination {
-    nav {
-        ul {
-            gap: .5rem;
+    button {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
 
-            li {
-                &:first-child {
-                    margin-right: 1rem;
-                }
-
-                &:last-child {
-                    margin-left: 1rem;
-                }
-
-                button {
-                    width: 42px;
-                    height: 42px;
-                    font-size: 1.2rem;
-                    color: $cyan;
-                    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 10px $cyan, 0 0 1px $cyan, 0 0 0.1em $cyan, 0 0px 6px $cyan;
-                    border: 1px solid $pink;
-                    box-shadow: 0px 1px 10px -2px $pink;
-
-                    &.active,
-                    &:hover {
-                        background: $cyan;
-                        color: $black;
-                        border-color: $cyan;
-                    }
-                }
-            }
+        &.active,
+        &:hover {
+            background: $cyan;
+            color: $black;
+            border-color: $cyan;
         }
     }
 }

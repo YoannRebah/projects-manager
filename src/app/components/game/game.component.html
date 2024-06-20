@@ -3,7 +3,7 @@
         class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';"
     >
         <!-- header -->
-        <header class="relative flex items-center justify-between" style="grid-area: 'header-game';">
+        <header class="relative flex items-center justify-between" style="grid-area: header-game;">
             <div class="flex items-center flex-[0_1_25%]">
                 <button class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter" (click)="onClickQuitGame()">
                     <span class="text-white uppercase jersey-15-regular">Quitter</span>
@@ -26,7 +26,7 @@
         <!-- content-game -->
         <div 
             class="relative bg-no-repeat bg-cover bg-center bg-body cursor-none border-2 border-dashed border-orange"
-            style="background-image: url(assets/images/space-background.jpeg); grid-area: 'content-game';"
+            style="background-image: url(assets/images/space-background.jpeg); grid-area: content-game;"
         >
             <div #gameContainer class="relative overflow-hidden h-full" (mousemove)="onMouseMoveIntoGameContainer($event)">
                 <p *ngIf="!mouseIsMovingOnce" class="move-to-start flex absolute translate-x-y top-1/2 left-1/2 items-center uppercase jersey-15-regular flash-animation-infinite">

@@ -2,16 +2,16 @@
     <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group relative min-h-80 flex justify-center gap-6" [class.hidden]="activeIndex != i">
         <div *ngFor="let card of cardGroup" class="container-card width-calc-33-minus-1-5rem">
             <div 
-                class="card relative h-full p-8 grid gap-10 grid-cols-1 grid-rows-[0.7fr_1.8fr_0.5fr] grid-flow-row border-2 border-pink shadow-pink" 
+                class="card relative h-full p-8 grid gap-10 grid-cols-1 grid-rows-[1fr_1.5fr_0.5fr] grid-flow-row border-2 border-pink shadow-pink" 
                 style="grid-template-areas: 'title' 'text' 'cta';"
             >
-                <div class="title" style="grid-area: 'title';">
+                <div style="grid-area: title;">
                     <h2 class="megrim-regular line-clamp-2 text-cyan text-shadow-cyan">{{ card.h2 }}</h2>
                 </div>
-                <div class="text" style="grid-area: 'text';">
+                <div style="grid-area: text;">
                     <p class="webkit-box line-clamp-5 text-white">{{ card.p }}</p>
                 </div>
-                <div class="cta" style="grid-area: 'cta';">
+                <div style="grid-area: cta;">
                     <a [href]="card.a.href" [attr.aria-label]="card.a.ariaLabel" class="btn">En savoir plus</a>
                 </div>
             </div>
@@ -19,17 +19,21 @@
     </div>
     <div class="container-pagination flex justify-center">
         <nav class="flex">
-            <ul class="list-none flex">
-                <li>
-                    <button class="btn" (click)="onClickPrev()"><<</button>
+            <ul class="list-none flex gap-2">
+                <li class="mr-4">
+                    <button class="btn border-2 border-pink shadow-pink text-shadow-cyan text-cyan" (click)="onClickPrev()">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    </button>
                 </li>
                 <li *ngFor="let cardGroup of cardGroups; let i = index;">
-                    <button class="btn" [class.active]="activeIndex == i" (click)="setActive(i)">
+                    <button class="btn border-2 border-pink shadow-pink text-shadow-cyan text-cyan" [class.active]="activeIndex == i" (click)="setActive(i)">
                         {{ i + 1 }}
                     </button>
                 </li>
-                <li>
-                    <button class="btn" (click)="onClickNext()">>></button>
+                <li class="ml-4">
+                    <button class="btn border-2 border-pink shadow-pink text-shadow-cyan text-cyan" (click)="onClickNext()">
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
                 </li>
             </ul>
         </nav>
