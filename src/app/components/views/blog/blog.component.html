@@ -6,13 +6,13 @@
                 style="grid-template-areas: 'title' 'text' 'cta';"
             >
                 <div style="grid-area: title;">
-                    <h2 class="megrim-regular line-clamp-2 text-cyan text-shadow-cyan">{{ card.h2 }}</h2>
+                    <h2 class="megrim-regular line-clamp-2 text-cyan text-shadow-cyan">{{ card.title }}</h2>
                 </div>
                 <div style="grid-area: text;">
-                    <p class="webkit-box line-clamp-5 text-white">{{ card.p }}</p>
+                    <p class="webkit-box line-clamp-5 text-white">{{ card.text }}</p>
                 </div>
                 <div style="grid-area: cta;">
-                    <a [href]="card.a.href" [attr.aria-label]="card.a.ariaLabel" class="btn">En savoir plus</a>
+                    <a [href]="card.cta.href" [attr.aria-label]="card.cta.ariaLabel" class="btn">En savoir plus</a>
                 </div>
             </div>
         </div>

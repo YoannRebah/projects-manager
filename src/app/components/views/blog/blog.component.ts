@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BlogCard } from '../../../shared/models/blog-card';
 
 @Component({
   selector: 'app-blog',
@@ -12,28 +13,28 @@ import { CommonModule } from '@angular/common';
 export class BlogComponent implements OnInit, OnDestroy {
   activeIndex: number = 0;
   indexMin: number = 0;
-  cardGroups = [
+  cardGroups: BlogCard[][] = [
     [
       {
-        h2: "Tout savoir sur le pourquoi du comment avec qui. 1",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment avec qui. 1",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi du comment avec qui. 1 Tout savoir sur le pourquoi du comment avec qui. 1",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment avec qui. 1 Tout savoir sur le pourquoi du comment avec qui. 1",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi du comment. 1",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis. Magnam ipsum placeat quisquam.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment. 1",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis. Magnam ipsum placeat quisquam.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
@@ -41,25 +42,25 @@ export class BlogComponent implements OnInit, OnDestroy {
     ],
     [
       {
-        h2: "Tout savoir sur le pourquoi du comment avec qui. 2",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment avec qui. 2",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi. 2",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        a: {
+        title: "Tout savoir sur le pourquoi. 2",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi du comment. 2",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis. Magnam ipsum placeat quisquam.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment. 2",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis. Magnam ipsum placeat quisquam.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
@@ -67,25 +68,25 @@ export class BlogComponent implements OnInit, OnDestroy {
     ],
     [
       {
-        h2: "Tout savoir sur le pourquoi du comment avec qui. 3",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment avec qui. 3",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi. 3",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        a: {
+        title: "Tout savoir sur le pourquoi. 3",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi du comment. 3",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis. Magnam ipsum placeat quisquam.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment. 3",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis. Magnam ipsum placeat quisquam.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
@@ -93,17 +94,17 @@ export class BlogComponent implements OnInit, OnDestroy {
     ],
     [
       {
-        h2: "Tout savoir sur le pourquoi du comment avec qui. 4",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
-        a: {
+        title: "Tout savoir sur le pourquoi du comment avec qui. 4",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ipsum placeat quisquam sequi culpa, debitis.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
       },
       {
-        h2: "Tout savoir sur le pourquoi. 4",
-        p: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        a: {
+        title: "Tout savoir sur le pourquoi. 4",
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        cta: {
           href: "/lorem",
           ariaLabel: "Lorem"
         }
