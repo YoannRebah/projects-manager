@@ -1,14 +1,17 @@
-<div class="container blog flex flex-col">
-    <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group relative justify-center" [class.active]="activeIndex == i">
-        <div *ngFor="let card of cardGroup" class="container-card">
-            <div class="card relative h-full">
-                <div class="block-title">
-                    <h2 class="megrim-regular">{{ card.h2 }}</h2>
+<div class="container blog flex flex-col gap-10">
+    <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group relative min-h-80 flex justify-center gap-6" [class.hidden]="activeIndex != i">
+        <div *ngFor="let card of cardGroup" class="container-card width-calc-33-minus-1-5rem">
+            <div 
+                class="card relative h-full p-8 grid gap-10 grid-cols-1 grid-rows-[0.7fr_1.8fr_0.5fr] grid-flow-row border-2 border-pink shadow-pink" 
+                style="grid-template-areas: 'title' 'text' 'cta';"
+            >
+                <div class="title" style="grid-area: 'title';">
+                    <h2 class="megrim-regular line-clamp-2 text-cyan text-shadow-cyan">{{ card.h2 }}</h2>
                 </div>
-                <div class="block-text">
-                    <p>{{ card.p }}</p>
+                <div class="text" style="grid-area: 'text';">
+                    <p class="webkit-box line-clamp-5 text-white">{{ card.p }}</p>
                 </div>
-                <div class="block-cta">
+                <div class="cta" style="grid-area: 'cta';">
                     <a [href]="card.a.href" [attr.aria-label]="card.a.ariaLabel" class="btn">En savoir plus</a>
                 </div>
             </div>

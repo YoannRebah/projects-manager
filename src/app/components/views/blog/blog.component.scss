@@ -1,101 +1,58 @@
 @import '../../../../styles/base';
 
-.blog {
-    gap: 2.5rem;
-
-    .card-group {
-        display: none;
-        min-height: 20rem;
-        gap: 1.5rem;
-
-        &.active {
-            display: flex;
-        } 
-
-        .container-card {
-            width: calc(33% - 1.5rem);
-
-            .card {  
-                padding: 2rem;
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-template-rows: 0.7fr 1.8fr 0.5fr;
-                gap: 26px 0px;
-                grid-auto-flow: row;
-                grid-template-areas: "block-title" "block-text" "block-cta";
-                border: 1px solid $pink;
-                box-shadow: 0px 1px 10px -2px $pink;
-
-                h2, p {
-                    overflow: hidden;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                }
+.card {  
     
-                .block-title { 
-                    grid-area: block-title; 
+    .title { 
 
-                    h2 {
-                        font-size: 1.75rem;
-                        color: $cyan;
-                        text-shadow: 0 -40px 100px, 0 0 2px, 0 0 10px $cyan, 0 0 1px $cyan, 0 0 0.1em $cyan, 0 0px 6px $cyan;
-                        -webkit-line-clamp: 2;
-                        line-clamp: 2; 
-                    }
-                }
-            
-                .block-text { 
-                    grid-area: block-text; 
-
-                    p {
-                        color: $white;
-                        font-size: 1rem;
-                        font-weight: 400;
-                        -webkit-line-clamp: 5;
-                        line-clamp: 5; 
-                    }
-                }
-                
-                .block-cta { 
-                    grid-area: block-cta; 
-
-                    a {
-                        font-size: 1.2rem;
-                    }
-                }
-            }
+        h2 {
+            font-size: 1.75rem;
         }
     }
 
-    .container-pagination {
-        nav {
-            ul {
-                gap: .5rem;
+    .text { 
 
-                li {
-                    &:first-child {
-                        margin-right: 1rem;
-                    }
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+    }
+    
+    .cta { 
 
-                    &:last-child {
-                        margin-left: 1rem;
-                    }
+        a {
+            font-size: 1.2rem;
+        }
+    }
+}
 
-                    button {
-                        width: 42px;
-                        height: 42px;
-                        font-size: 1.2rem;
-                        color: $cyan;
-                        text-shadow: 0 -40px 100px, 0 0 2px, 0 0 10px $cyan, 0 0 1px $cyan, 0 0 0.1em $cyan, 0 0px 6px $cyan;
-                        border: 1px solid $pink;
-                        box-shadow: 0px 1px 10px -2px $pink;
+.container-pagination {
+    nav {
+        ul {
+            gap: .5rem;
 
-                        &.active,
-                        &:hover {
-                            background: $cyan;
-                            color: $black;
-                            border-color: $cyan;
-                        }
+            li {
+                &:first-child {
+                    margin-right: 1rem;
+                }
+
+                &:last-child {
+                    margin-left: 1rem;
+                }
+
+                button {
+                    width: 42px;
+                    height: 42px;
+                    font-size: 1.2rem;
+                    color: $cyan;
+                    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 10px $cyan, 0 0 1px $cyan, 0 0 0.1em $cyan, 0 0px 6px $cyan;
+                    border: 1px solid $pink;
+                    box-shadow: 0px 1px 10px -2px $pink;
+
+                    &.active,
+                    &:hover {
+                        background: $cyan;
+                        color: $black;
+                        border-color: $cyan;
                     }
                 }
             }
