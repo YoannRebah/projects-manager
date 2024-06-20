@@ -1,27 +1,7 @@
-@import '../../../../styles/base';
-
-.card {  
-    
-    h2 {
-        font-size: 1.75rem;
-    }
-
-    p {
-        font-size: 1rem;
-        font-weight: 400;
-    }
-    
-    a {
-        font-size: 1.2rem;
-    }
-}
+@import '../../../../styles/variables';
 
 .container-pagination {
     button {
-        width: 42px;
-        height: 42px;
-        font-size: 1.2rem;
-
         &.active,
         &:hover {
             background: $cyan;
