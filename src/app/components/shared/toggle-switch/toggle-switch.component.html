@@ -1,4 +1,4 @@
 <div class="toggle-switch relative flex items-center">
-    <input [id]="id" class="absolute w-full h-full z-10" type="checkbox" [checked]="isChecked">
+    <input class="absolute w-full h-full z-10" type="checkbox" [checked]="isChecked" (change)="toggle($event)">
     <div class="slider absolute bg-grey-dark transform center-y"></div>
 </div>

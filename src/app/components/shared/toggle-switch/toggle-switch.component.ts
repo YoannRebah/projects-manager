@@ -1,45 +1,35 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ToggleSwitchService } from '../../../shared/services/components/toggle-switch.service';
 
 @Component({
   selector: 'app-toggle-switch',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './toggle-switch.component.html',
   styleUrl: './toggle-switch.component.scss'
 })
 
-export class ToggleSwitchComponent implements OnInit, OnDestroy {
-  private isCheckedSubscription!: Subscription;
+export class ToggleSwitchComponent implements OnInit {
+  @Input() id!: string;
+  @Input() label!: string;
+  @Output() stateChanged = new EventEmitter<boolean>();
   isChecked: boolean = false;
 
-  @Input() id!: string;
-
-  constructor(
-    private toggleSwitchService: ToggleSwitchService
-  ) {}
+  constructor(private toggleSwitchService: ToggleSwitchService) {}
 
   ngOnInit(): void {
-    this.subscribeIsChecked();
+    this.isChecked = this.toggleSwitchService.getState(this.id);
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribeIsChecked();
-  }
-
-  subscribeIsChecked(): void {
-    this.isCheckedSubscription = this.toggleSwitchService.isChecked$(this.id!).subscribe({
-      next: (isChecked) => {
-        this.isChecked = isChecked;
-      },
-      error: (e) => console.error('error subscribeIsChecked', e)
-    });
-  }
-
-  unsubscribeIsChecked(): void {
-    if (this.isCheckedSubscription) {
-      this.isCheckedSubscription.unsubscribe();
+  toggle(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.isChecked = target.checked;
+    this.stateChanged.emit(this.isChecked);
+    if (this.isChecked) {
+      this.toggleSwitchService.check(this.id);
+    } else {
+      this.toggleSwitchService.uncheck(this.id);
     }
   }
 

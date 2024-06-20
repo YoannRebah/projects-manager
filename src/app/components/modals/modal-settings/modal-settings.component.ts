@@ -35,10 +35,6 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     // this.unsubscribeFooterIsVisible();
   }
 
-  test(): void {
-    console.log(document.querySelector('#checkbox-toggle-vhs-effect')?.getAttribute('checked'))
-  }
-
   // vhs effect is visible
   subscribeVhsEffectIsVisible(): void {
     this.vhsEffectIsVisibleSubscription = this.vhsEffectService.isVisible$.subscribe({
@@ -68,6 +64,16 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   unsubscribeFooterIsVisible(): void {
     if(this.footerVhsEffectIsVisibleSubscription) {
       this.footerVhsEffectIsVisibleSubscription.unsubscribe();
+    }
+  }
+
+  onToggleSwitchStateChanged(id: string, state: boolean): void {
+    console.log(`Toggle switch with id ${id} changed to ${state}`);
+    // Ajoutez ici l'action à déclencher en fonction de l'état
+    if (state) {
+      console.log(`Le switch ${id} est activé`);
+    } else {
+      console.log(`Le switch ${id} est désactivé`);
     }
   }
 
