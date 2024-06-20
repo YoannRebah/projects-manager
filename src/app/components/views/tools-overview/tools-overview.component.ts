@@ -13,34 +13,34 @@ import { Tools } from '../../../shared/models/tools';
 export class ToolsOverviewComponent {
   tools: Tools[] = [
     {
-      id: "vs-code",
-      toolName: 'VS Code',
-      animationDelay: '10s',
+      id: 'vs-code',
+      text: 'VS Code',
+      bgImage: 'assets/images/logo-vs-code.png'
     },
     {
-      id: "vs",
-      toolName: 'Visual Studio',
-      animationDelay: '2.2s',
+      id: 'vs',
+      text: 'Visual Studio',
+      bgImage: 'assets/images/logo-vs.png'
     },
     {
-      id: "figma",
-      toolName: 'Figma',
-      animationDelay: '8s',
+      id: 'figma',
+      text: 'Figma',
+      bgImage: 'assets/images/logo-figma.png'
     },
     {
-      id: "git",
-      toolName: 'Git',
-      animationDelay: '4.5s',
+      id: 'git',
+      text: 'Git',
+      bgImage: 'assets/images/logo-git.png'
     },
     {
-      id: "aem",
-      toolName: 'AEM',
-      animationDelay: '1s',
+      id: 'aem',
+      text: 'AEM',
+      bgImage: 'assets/images/logo-aem.png'
     },
     {
-      id: "wordpress",
-      toolName: 'Wordpress',
-      animationDelay: '3.8s',
+      id: 'wordpress',
+      text: 'Wordpress',
+      bgImage: 'assets/images/logo-wordpress.png'
     },
   ];
 }

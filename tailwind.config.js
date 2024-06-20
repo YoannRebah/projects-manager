@@ -6,6 +6,7 @@ export const content = [
 export const theme = {
   extend: {
     colors: {
+      "black-light": 'hsl(0, 0%, 21%)',
       "black": 'hsl(0, 0%, 13%)',
       "black-transparent-dark": 'hsla(0, 0%, 0%, 0.75)',
       "black-transparent-light": 'hsla(0, 0%, 0%, 0.3)',
