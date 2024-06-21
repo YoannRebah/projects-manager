@@ -13,10 +13,13 @@ export class TimeoutService {
   }
 
   public static setTimeout(action: () => void, milliseconds: number = TimeoutService.timeoutDelay): Promise<void> {
-    return new Promise<void>(resolve => setTimeout(() => {
-      action();
-      resolve();
-    }, milliseconds));
+    return new Promise<void>(resolve => {
+      const timeoutId = setTimeout(() => {
+        action();
+        clearTimeout(timeoutId);
+        resolve();
+      }, milliseconds);
+    });
   }
 
 }
