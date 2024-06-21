@@ -511,7 +511,7 @@ export class GameComponent implements OnInit, OnDestroy {
     TimeoutService.setTimeout(()=>{
       this.stopGame();
       this.setGameCursorGif('rocket');
-    }, 800);
+    }, 750);
   }
 
 }
