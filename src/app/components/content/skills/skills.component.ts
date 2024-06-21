@@ -13,7 +13,9 @@ import { Skills } from './skills';
 export class SkillsComponent {
   skills: Skills[] = [
     {
-      id: 'html',
+      textColor: 'text-orange',
+      bgColor: 'bg-orange',
+      bgColorDark: 'bg-orange-dark',
       language: 'HTML',
       iconClassName: 'fa-brands fa-html5',
       details: [
@@ -32,7 +34,9 @@ export class SkillsComponent {
       ],
     },
     {
-      id: 'sass',
+      textColor: 'text-pink',
+      bgColor: 'bg-pink',
+      bgColorDark: 'bg-pink-dark',
       language: 'SASS',
       iconClassName: 'fa-brands fa-sass',
       details: [
@@ -51,7 +55,9 @@ export class SkillsComponent {
       ],
     },
     {
-      id: 'js',
+      textColor: 'text-yellow',
+      bgColor: 'bg-yellow',
+      bgColorDark: 'bg-yellow-dark',
       language: 'JavaScript',
       iconClassName: 'fa-brands fa-js',
       details: [
@@ -70,7 +76,9 @@ export class SkillsComponent {
       ],
     },
     {
-      id: 'angular',
+      textColor: 'text-red',
+      bgColor: 'bg-red',
+      bgColorDark: 'bg-red-dark',
       language: 'Angular',
       iconClassName: 'fa-brands fa-angular',
       details: [

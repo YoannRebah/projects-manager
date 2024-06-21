@@ -1,5 +1,7 @@
 export interface Skills {
-    id: string,
+    textColor: string,
+    bgColor: string,
+    bgColorDark: string,
     language: string,
     iconClassName: string,
     details: Details[]
