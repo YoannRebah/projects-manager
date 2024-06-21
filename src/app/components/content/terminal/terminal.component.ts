@@ -133,7 +133,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
       this.renderer.addClass(spanCaret, 'bg-pink');
       this.renderer.addClass(spanCaret, 'border-2');
       this.renderer.addClass(spanCaret, 'border-pink-dark');
-      this.renderer.addClass(spanCaret, 'display-none');
+      this.renderer.addClass(spanCaret, 'hidden');
       this.renderer.addClass(spanCaret, 'flash-animation');
       
       const input = this.renderer.createElement('input');
@@ -165,13 +165,13 @@ export class TerminalComponent implements OnInit, OnDestroy {
   addEventsInput(input: HTMLInputElement, spanCaret: HTMLSpanElement): void {
     this.renderer.listen(input, 'focus', () => { 
       this.inputCommandIsFocused = true;
-      this.renderer.addClass(spanCaret, 'display-none');
+      this.renderer.addClass(spanCaret, 'hidden');
     });
 
     this.renderer.listen(input, 'blur', (e) => { 
       if(!input.disabled && !e.target.value) {
         this.inputCommandIsFocused = false;
-        this.renderer.removeClass(spanCaret, 'display-none'); 
+        this.renderer.removeClass(spanCaret, 'hidden'); 
       }
     });
 
