@@ -1,8 +1,6 @@
 @import '../../../../styles/base';
 
 .forms {
-    display: flex;
-    flex-direction: column;
 
     fieldset {
         padding: 1rem 1.2rem;
@@ -24,8 +22,6 @@
         }
 
         .container-form-flex {
-            display: flex;
-            flex-direction: column;
             gap: 0;
 
             @include screen('s') {
@@ -37,9 +33,6 @@
                 flex: 1;
 
                 .col-input {
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
                     margin-bottom: 1.3rem;
 
                     label {
@@ -119,18 +112,12 @@
     }
 
     .container-submit {
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
         .btn-submit {
             margin-top: 1.5rem;
             border: 2px solid $cyan;
             width: 150px;
             height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-decoration: none;
 
             &:hover {
