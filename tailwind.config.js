@@ -39,7 +39,11 @@ export const theme = {
     boxShadow: {
       "pink": '0px 1px 10px -2px hsl(330, 72%, 69%)',
       "black-transparent-dark": '2px 2px 0px 0px hsla(0, 0%, 0%, 0.7)'
-    }
+    },
+    padding: {
+      '1.33': '0.33rem',
+      '2.5': '0.5rem',
+    },
   }
 };
 export const plugins = [

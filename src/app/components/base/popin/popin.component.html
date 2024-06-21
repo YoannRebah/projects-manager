@@ -2,7 +2,7 @@
     <div class="container popin flex flex-col max-w-[370px] border-4 border-grey bg-grey text-grey-dark shadow-black-transparent-dark">
         <header class="flex-center-between bg-blue-dark p-1">
             <div class="container-title">
-                <p class="ml-2 text-white">{{ titleText }}</p>
+                <p class="ml-2 text-white" [innerHTML]="title"></p>
             </div>
             <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="onClickHide()">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -16,7 +16,7 @@
                 <img *ngIf="img === 'help'" class="w-[60px]" src="assets/images/icon-paperclip.png" alt="Aide">
             </div>
             <div class="flex-center-center flex-[1_1_70%]">
-                <p>{{ contentText }}</p>
+                <p [innerHTML]="text"></p>
             </div>
         </div>
     </div>

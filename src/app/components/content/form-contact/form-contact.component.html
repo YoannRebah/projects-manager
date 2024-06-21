@@ -104,18 +104,8 @@
             </button>
         </div>
     </form>
-    <app-popin 
-        id="popin-form-sent-success" 
-        position="fixed"
-        img="mail" 
-        titleText="Demande de contact" 
-        contentText="Le mail a bien été transmis. Merci !"
-    ></app-popin>
-    <app-popin 
-        id="popin-form-sent-error" 
-        position="fixed"
-        img="error" 
-        titleText="Demande de contact" 
-        contentText="Aïe... Il y a eu une erreur lors de l'envoi du mail..."
-    ></app-popin>
+
+    <!-- popins -->
+    <app-popin  id="popin-form-sent-success" position="fixed" img="mail" title="Demande de contact" text="Le mail a bien été transmis. Merci !"></app-popin>
+    <app-popin id="popin-form-sent-error" position="fixed" img="error" title="Demande de contact" text="Aïe... Il y a eu une erreur lors de l'envoi du mail..."></app-popin>
 </div>

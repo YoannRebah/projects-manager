@@ -1,59 +1,68 @@
-<div class="container relative achievements">
-    <div class="achievements-window flex flex-col bg-grey text-grey-dark">
+<div class="container relative">
+    <div class="relative flex flex-col bg-grey border-4 border-grey shadow-black-transparent-dark">
         <!-- header -->
-        <header class="flex items-center justify-between bg-blue-dark">
-            <div class="title text-white flex items-center">
-                <i class="fa-solid fa-computer" aria-hidden="true"></i>
+        <header class="flex items-center justify-between p-2 bg-blue-dark">
+            <div class="text-white flex items-center ml-2">
+                <i class="fa-solid fa-computer mr-3" aria-hidden="true"></i>
                 <p>Propriétés des réalisations notables</p>
             </div>
-            <div class="container-btn flex">
-                <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="showPopin('popin-need-help')">
+            <div class="flex gap-1">
+                <button class="btn bg-grey w-[24px] h-[24px] text-grey-dark retro-windows-border-activable" (click)="showPopin('popin-need-help')">
                     <i class="fa-solid fa-question"></i>
                 </button>
-                <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="showPopin('popin-try-quit')">
+                <button class="btn bg-grey w-[24px] h-[24px] text-grey-dark retro-windows-border-activable" (click)="showPopin('popin-try-quit')">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         </header>
         <!-- content -->
-        <div class="content">
-            <div class="container-btn-tabs">
+        <div class="m-5 text-black">
+            <div class="mb-[-1px]">
+                <!-- btn tabs -->
                 <button 
                     *ngFor="let achievement of achievements; let i = index;" 
-                    class="btn retro-windows-border" 
-                    [class.active]="activeIndex === i" (click)="setActive(i)">
+                    class="btn retro-windows-border p-1.33 px-2.5 border-b-0-important text-sm font-medium" 
+                    [class.btn-tabs-active]="activeIndex === i" (click)="setActive(i)">
                     {{ achievement.tab.text }}
                 </button>
             </div>
-            <div *ngFor="let achievement of achievements; let i = index;" class="achievements-columns retro-windows-border" [class.active]="activeIndex === i">
-                <div class="column flex-center-center column_img">
-                    <img [src]="achievement.img.path" [alt]="achievement.img.path">
+            <div 
+                *ngFor="let achievement of achievements; let i = index;" 
+                class="flex retro-windows-border h-[50vh]" 
+                [class.hidden]="activeIndex !== i">
+
+                <div class="flex-center-center p-6 flex-[1_1_40%]">
+                    <img class="w-[55%]" [src]="achievement.img.path" [alt]="achievement.img.path">
                 </div>
-                <div class="column flex flex-col column_details">
-                    <div class="container-details">
-                        <div *ngFor="let blockDetail of achievement.blockDetails" class="details">
-                            <p>{{ blockDetail.title }}</p>
-                            <ul>
-                                <li *ngFor="let text of blockDetail.list">
+
+                <div class="flex flex-col p-6 column_details flex-[1_1_60%]">
+                    <div class="container-details h-full overflow-y-auto">
+                        <div 
+                            *ngFor="let blockDetail of achievement.blockDetails; let last = last;" 
+                            [class.mb-6]="!last">
+                            <p class="mb-2 text-base">{{ blockDetail.title }}</p>
+                            <ul class="ml-10 list-disc">
+                                <li class="font-medium" *ngFor="let text of blockDetail.list">
                                     <p>{{ text }}</p>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- footer -->
-        <footer class="flex justify-end">
-            <div class="container-btn flex">
-                <button class="btn retro-windows-border-activable" (click)="onClickPrev()">Précédent</button>
-                <button class="btn retro-windows-border-activable" (click)="onClickNext()">Suivant</button>
+        <footer class="flex justify-end p-4">
+            <div class="flex gap-1">
+                <button class="btn retro-windows-border-activable p-2 px-8 text-black font-medium" (click)="onClickPrev()">Précédent</button>
+                <button class="btn retro-windows-border-activable p-2 px-8 text-black font-medium" (click)="onClickNext()">Suivant</button>
             </div>
         </footer>
     </div>
 
     <!-- popins -->
-    <app-popin id="popin-need-help" img="help" titleText="Erreur 34_0201" contentText="L'aide n'est pas disponible pour le moment..."></app-popin>
-    <app-popin id="popin-try-quit" img="error" titleText="Erreur 37_100" contentText="Vous ne pouvez pas faire ça pour le moment..."></app-popin>
+    <app-popin id="popin-need-help" img="help" title="Erreur 34_0201" text="L'aide n'est pas disponible pour le moment..."></app-popin>
+    <app-popin id="popin-try-quit" img="error" title="Erreur 37_100" text="Vous ne pouvez pas faire ça pour le moment..."></app-popin>
 
 </div>

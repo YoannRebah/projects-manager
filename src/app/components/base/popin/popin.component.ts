@@ -18,8 +18,8 @@ export class PopinComponent implements AfterViewInit, OnDestroy {
   @Input() id!: string;
   @Input() position?: string = 'absolute';
   @Input() img?: string; // error | success | mail | help
-  @Input() titleText?: string;
-  @Input() contentText?: string;
+  @Input() title?: string;
+  @Input() text?: string;
 
   constructor(
     private popinService: PopinService
