@@ -330,6 +330,10 @@ export class GameComponent implements OnInit, OnDestroy {
 
   // METEOR
 
+  get randomMeteorImgIndex(): number {
+    return Math.floor(Math.random() * 2) + 1;
+  }
+
   get randomMeteorClassNamesIndex(): number {
     return Math.floor(Math.random() * 5) + 1;
   }
@@ -357,9 +361,10 @@ export class GameComponent implements OnInit, OnDestroy {
     const meteorTimestamp = DatetimeService.timestampNow;
     const gameContainer = this.gameContainer.nativeElement;
     const randomWidth = this.randomMeteorWidth;
+    const randomMeteorImgIndex = this.randomMeteorImgIndex;
 
     const meteor = this.renderer.createElement('img');
-    this.renderer.setAttribute(meteor, 'src', 'assets/images/meteor.png');
+    this.renderer.setAttribute(meteor, 'src', `assets/images/meteor-${randomMeteorImgIndex}.png`);
     this.renderer.setAttribute(meteor, 'data-damage', this.defineMeteorDamages(randomWidth));
     this.renderer.setAttribute(meteor, 'data-timestamp', meteorTimestamp.toString());
     
