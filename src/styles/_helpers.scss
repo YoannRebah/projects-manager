@@ -1,3 +1,26 @@
+.retro-windows-border-activable {
+    border: 2px solid;
+    border-top-color: $white2;
+    border-left-color: $white2;
+    border-right-color: $black2;
+    border-bottom-color: $black2;
+
+    &:active {
+        border-top-color: $black2;
+        border-left-color: $black2;
+        border-right-color: $white2;
+        border-bottom-color: $white2;
+    }
+}
+
+.retro-windows-border {
+    border: 2px solid;
+    border-top-color: $white2;
+    border-left-color: $white2;
+    border-right-color: $black2;
+    border-bottom-color: $black2;
+}
+
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;

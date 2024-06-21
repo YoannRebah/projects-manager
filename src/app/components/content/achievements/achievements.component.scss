@@ -6,23 +6,6 @@
         border: 5px solid $grey;
         box-shadow: 2px 2px 0px 0px $black-transparent;
 
-        button,
-        .achievements-columns {
-            border-top: 2px solid $white2;
-            border-left: 2px solid $white2;
-            border-right: 2px solid $black2;
-            border-bottom: 2px solid $black2;
-        }
-
-        button {
-            &:active {
-                border-top: 2px solid $black2;
-                border-left: 2px solid $black2;
-                border-right: 2px solid $white2;
-                border-bottom: 2px solid $white2;
-            }
-        }
-
         header {
             padding: .33rem;
 
@@ -36,12 +19,6 @@
 
             .container-btn {
                 gap: 0.33rem;
-
-                button {
-                    width: 24px;
-                    height: 24px;
-                    font-size: 1.05rem;
-                }
             }
         }
 
@@ -49,11 +26,12 @@
             margin: 1rem;
 
             .container-btn-tabs {
-                margin-bottom: -2px;
+                margin-bottom: -1px;
 
                 button {
                     padding: .33rem .5rem;
                     border-bottom: none;
+                    font-size: .9rem;
 
                     &.active {
                         border-bottom: 2px solid $grey;
@@ -75,8 +53,6 @@
 
                     &_img {
                         flex: 40;
-                        align-items: center;
-                        justify-content: center;
 
                         img {
                             width: 65%;

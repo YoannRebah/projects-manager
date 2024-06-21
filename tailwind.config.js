@@ -37,7 +37,8 @@ export const theme = {
       "cyan": '0 -40px 100px, 0 0 2px, 0 0 10px hsl(172, 85%, 49%), 0 0 1px hsl(172, 85%, 49%), 0 0 0.1em hsl(172, 85%, 49%), 0 0px 6px hsl(172, 85%, 49%)',
     },
     boxShadow: {
-      "pink": "0px 1px 10px -2px hsl(330, 72%, 69%)",
+      "pink": '0px 1px 10px -2px hsl(330, 72%, 69%)',
+      "black-transparent-dark": '2px 2px 0px 0px hsla(0, 0%, 0%, 0.7)'
     }
   }
 };

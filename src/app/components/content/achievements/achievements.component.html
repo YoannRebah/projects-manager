@@ -1,25 +1,32 @@
 <div class="container relative achievements">
     <div class="achievements-window flex flex-col bg-grey text-grey-dark">
+        <!-- header -->
         <header class="flex items-center justify-between bg-blue-dark">
             <div class="title text-white flex items-center">
                 <i class="fa-solid fa-computer" aria-hidden="true"></i>
                 <p>Propriétés des réalisations notables</p>
             </div>
             <div class="container-btn flex">
-                <button class="btn bg-grey" (click)="showPopin('popin-need-help')">
+                <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="showPopin('popin-need-help')">
                     <i class="fa-solid fa-question"></i>
                 </button>
-                <button class="btn bg-grey" (click)="showPopin('popin-try-quit')">
+                <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="showPopin('popin-try-quit')">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         </header>
+        <!-- content -->
         <div class="content">
             <div class="container-btn-tabs">
-                <button *ngFor="let achievement of achievements; let i = index;" class="btn" [class.active]="activeIndex === i" (click)="setActive(i)">{{ achievement.tab.text }}</button>
+                <button 
+                    *ngFor="let achievement of achievements; let i = index;" 
+                    class="btn retro-windows-border" 
+                    [class.active]="activeIndex === i" (click)="setActive(i)">
+                    {{ achievement.tab.text }}
+                </button>
             </div>
-            <div *ngFor="let achievement of achievements; let i = index;" class="achievements-columns" [class.active]="activeIndex === i">
-                <div class="column flex flex-col column_img">
+            <div *ngFor="let achievement of achievements; let i = index;" class="achievements-columns retro-windows-border" [class.active]="activeIndex === i">
+                <div class="column flex-center-center column_img">
                     <img [src]="achievement.img.path" [alt]="achievement.img.path">
                 </div>
                 <div class="column flex flex-col column_details">
@@ -36,14 +43,17 @@
                 </div>
             </div>
         </div>
+        <!-- footer -->
         <footer class="flex justify-end">
             <div class="container-btn flex">
-                <button class="btn" (click)="onClickPrev()">Précédent</button>
-                <button class="btn" (click)="onClickNext()">Suivant</button>
+                <button class="btn retro-windows-border-activable" (click)="onClickPrev()">Précédent</button>
+                <button class="btn retro-windows-border-activable" (click)="onClickNext()">Suivant</button>
             </div>
         </footer>
     </div>
+
     <!-- popins -->
     <app-popin id="popin-need-help" img="help" titleText="Erreur 34_0201" contentText="L'aide n'est pas disponible pour le moment..."></app-popin>
     <app-popin id="popin-try-quit" img="error" titleText="Erreur 37_100" contentText="Vous ne pouvez pas faire ça pour le moment..."></app-popin>
+
 </div>
