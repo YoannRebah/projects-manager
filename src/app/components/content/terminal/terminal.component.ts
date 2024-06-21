@@ -202,7 +202,12 @@ export class TerminalComponent implements OnInit, OnDestroy {
   commandsLine(command: string): void {
     if(TerminalService.enabledCommands.includes(command)) {
       switch(command) {
-        case 'help': console.log(TerminalService.enabledCommands); this.showModalHelpCommand();
+        case 'help': 
+        case 'show help': {
+          this.showModalHelpCommand();
+        }
+        break;
+        case 'hide help': this.hideModalHelpCommand();
         break;
         case 'show loader': this.loaderService.show();
         break;
@@ -228,6 +233,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
 
   showModalHelpCommand(): void {
     this.modalService.show('modal-terminal-help');
+  }
+
+  hideModalHelpCommand(): void {
+    this.modalService.hide('modal-terminal-help');
   }
 
   updateCommandsHistory(command: string): void {

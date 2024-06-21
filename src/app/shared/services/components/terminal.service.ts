@@ -14,6 +14,8 @@ export class TerminalService {
   public static get enabledCommands(): string[] {
     return [
       'help',
+      'show help',
+      'hide help',
       'show loader',
       'hide loader',
       'toggle loader',
