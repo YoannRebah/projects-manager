@@ -11,6 +11,21 @@ export class TerminalService {
 
   constructor() { }
 
+  public static get enabledCommands(): string[] {
+    return [
+      'help',
+      'show loader',
+      'hide loader',
+      'toggle loader',
+      'show tv',
+      'hide tv',
+      'play tv',
+      'stop tv',
+      'show vhs',
+      'hide vhs'
+    ];
+  }
+
   show(): void {
     this.isVisibleSubject.next(true);
   }

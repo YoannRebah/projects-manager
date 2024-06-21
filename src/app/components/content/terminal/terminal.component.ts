@@ -26,18 +26,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
   terminalHistoryKey: string = LocalStorageService.portfolioPrefixStorageKey + "terminal-history";
   currentCommandIndex: number = -1;
   idToggleVhsEffect: string = 'toggle-vhs-effect';
-  enabledCommands: string[] = [
-    'help',
-    'show loader',
-    'hide loader',
-    'toggle loader',
-    'show tv',
-    'hide tv',
-    'play tv',
-    'stop tv',
-    'show vhs',
-    'hide vhs'
-  ];
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -209,9 +197,9 @@ export class TerminalComponent implements OnInit, OnDestroy {
   }
 
   commandsLine(command: string): void {
-    if(this.enabledCommands.includes(command)) {
+    if(TerminalService.enabledCommands.includes(command)) {
       switch(command) {
-        case 'help': console.log(this.enabledCommands);
+        case 'help': console.log(TerminalService.enabledCommands);
         break;
         case 'show loader': this.loaderService.show();
         break;
