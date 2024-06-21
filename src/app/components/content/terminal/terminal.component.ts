@@ -4,6 +4,8 @@ import { TerminalService } from '../../../shared/services/components/terminal.se
 import { Subscription } from 'rxjs';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
+import { ModalTerminalHelpComponent } from '../modal-terminal-help/modal-terminal-help.component';
+import { ModalService } from '../../../shared/services/components/modal.service';
 // testable services
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
@@ -12,7 +14,7 @@ import { VhsEffectService } from '../../../shared/services/components/vhs-effect
 @Component({
   selector: 'app-terminal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalTerminalHelpComponent],
   templateUrl: './terminal.component.html',
   styleUrl: './terminal.component.scss'
 })
@@ -32,6 +34,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   constructor(
     private terminalService: TerminalService,
     private renderer: Renderer2,
+    private modalService: ModalService,
     private loaderService: LoaderService,
     private tvProgramService: TvProgramService,
     private vhsEffectService: VhsEffectService
@@ -199,7 +202,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   commandsLine(command: string): void {
     if(TerminalService.enabledCommands.includes(command)) {
       switch(command) {
-        case 'help': console.log(TerminalService.enabledCommands);
+        case 'help': console.log(TerminalService.enabledCommands); this.showModalHelpCommand();
         break;
         case 'show loader': this.loaderService.show();
         break;
@@ -221,6 +224,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
         break;
       }
     }
+  }
+
+  showModalHelpCommand(): void {
+    this.modalService.show('modal-terminal-help');
   }
 
   updateCommandsHistory(command: string): void {

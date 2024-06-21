@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { Subscription } from 'rxjs';
@@ -11,21 +11,22 @@ import { Subscription } from 'rxjs';
   styleUrl: './modal.component.scss'
 })
 
-export class ModalComponent implements OnInit, OnDestroy {
-  private isVisibleSubject!: Subscription;
+export class ModalComponent implements AfterViewInit, OnDestroy {
+  private isVisibleSubscription!: Subscription;
   isVisible: boolean = false;
+
+  @Input() id!: string;
+  @Input() position?: string = 'fixed';
+  @Input() title?: string;
 
   constructor(
     private modalService: ModalService
   ) {}
 
-  @Input() id: string = 'default-modal-id';
-  @Input() classNames: string = 'default-modal-class';
-  @Input() position: string = 'fixed';
-  @Input() titleText?: string;
-
-  ngOnInit(): void {
-    this.subscribeIsVisible();
+  ngAfterViewInit(): void {
+    if (this.id) {
+      this.subscribeIsVisible();
+    }
   }
 
   ngOnDestroy(): void {
@@ -33,22 +34,24 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   subscribeIsVisible(): void {
-    this.isVisibleSubject = this.modalService.isVisibleSubject$.subscribe({
+    this.isVisibleSubscription = this.modalService.isVisible$(this.id!).subscribe({
       next: (isVisible) => {
         this.isVisible = isVisible;
       },
       error: (e) => console.error('error subscribeIsVisible', e)
-    })
+    });
   }
 
   unsubscribeIsVisible(): void {
-    if(this.isVisibleSubject) {
-      this.isVisibleSubject.unsubscribe();
+    if (this.isVisibleSubscription) {
+      this.isVisibleSubscription.unsubscribe();
     }
   }
 
   hide(): void {
-    this.modalService.hide();
+    if (this.id) {
+      this.modalService.hide(this.id);
+    }
   }
 
   onClickHide(): void {

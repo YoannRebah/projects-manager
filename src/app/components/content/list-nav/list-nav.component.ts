@@ -10,7 +10,7 @@ import { ModalService } from '../../../shared/services/components/modal.service'
   standalone: true,
   imports: [CommonModule, ModalSettingsComponent],
   templateUrl: './list-nav.component.html',
-  styleUrls: ['./list-nav.component.scss']
+  styleUrl: './list-nav.component.scss'
 })
 
 export class ListNavComponent {
@@ -61,7 +61,7 @@ export class ListNavComponent {
   ) {}
 
   onClickShowSettings(): void {
-    this.modalService.show();
+    this.modalService.show('modal-settings');
   }
 
 }

@@ -1,0 +1,9 @@
+<app-modal id="modal-terminal-help" classNames="modal-terminal-help" title="Help">
+    <div class="custom-content">
+      <ul class="list-none">
+        <li *ngFor="let command of enabledCommands">
+            <p [innerHTML]="command"></p>
+        </li>
+      </ul>
+    </div>
+</app-modal>  
