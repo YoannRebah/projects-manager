@@ -1,19 +1,26 @@
-<div class="container location flex-center-column-s">
-    <div class="block-location">
-      <canvas #earthGlobe class="canvas-earth-globe"></canvas>
+<div class="location flex md:gap-6">
+    <div class="flex-center-center flex-col flex-1">
+      <canvas #earthGlobe class="w-100-important"></canvas>
     </div>
-    <div class="block-location">
-      <div class="container container-location-list">
-        <h3>
-          <i class="fa-solid fa-globe"></i> Recherche en cours...
+    <div class="flex-center-center flex-col flex-1">
+      <div class="w-full">
+        <h3 class="flex items-center text-white text-shadow-retro-computer-green text-2xl mb-4 animation-fade-infinite">
+          <i class="fa-solid fa-globe mr-3"></i> 
+          <span>Recherche en cours...</span>
         </h3>
-        <ul class="location-list">
-          <li *ngFor="let location of locationList">
-            <p>
-              <i [class]="location.iconClassNames" aria-hidden="true"></i>
-              <span class="key">{{ location.key }}&nbsp;:&nbsp;</span>
-              <span #typedElement *ngIf="location.tempRefVar" class="value">{{ location.value }}</span>
-              <span *ngIf="!location.tempRefVar" class="value">{{ location.value }}</span>
+        <ul class="list-none">
+          <li *ngFor="let location of locationList;" class="mb-2">
+            <p class="text-white text-shadow-retro-computer-green text-lg">
+              <i class="mr-3" [class]="location.iconClassNames" aria-hidden="true"></i>
+              <span class="key" [innerHTML]="location.key + '&nbsp;:&nbsp;'"></span>
+              <span class="value" [innerHTML]="location.value"></span>
+            </p>
+          </li>
+          <li>
+            <p class="text-shadow-retro-computer-red text-lg">
+              <i class="fa-solid fa-xmark mr-3" aria-hidden="true"></i>
+              <span class="key">Ville&nbsp;:&nbsp;</span>
+              <span #typedText id="typed-text-value" class="value"></span>
             </p>
           </li>
         </ul>

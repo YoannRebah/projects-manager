@@ -1,52 +1,52 @@
 @import './variables';
 
-.flash-animation-infinite {
-    animation: flash-animation-infinite 1s linear infinite;
-    @keyframes flash-animation-infinite {
+.animation-fade-infinite {
+    animation: animation-fade-infinite .85s linear infinite;
+    @keyframes animation-fade-infinite {
         0% {
-            opacity: 0;
+            opacity: 0.2;
         }
         50% {
-            opacity: 0.5;
+            opacity: 0.7;
         }
         100% {
-            opacity: 0;
+            opacity: 0.2;
         }
     }
 }
 
-.flash-animation-5s {
-    animation: flash-animation-5s 5s linear forwards;
-    @keyframes flash-animation-5s {
+.animation-fade-forwards-5s {
+    animation: animation-fade-forwards-5s 5s linear forwards;
+    @keyframes animation-fade-forwards-5s {
         0% {
-            opacity: 0;
+            opacity: 0.5;
         }
         10% {
-            opacity: 0.5;
+            opacity: 0.1;
         }
         20% {
-            opacity: 0;
+            opacity: 0.5;
         }
         30% {
-            opacity: 0.5;
+            opacity: 0.1;
         }
         40% {
-            opacity: 0;
+            opacity: 0.5;
         }
         50% {
-            opacity: 0.5;
+            opacity: 0.1;
         }
         60% {
-            opacity: 0;
+            opacity: 0.5;
         }
         70% {
-            opacity: 0.5;
+            opacity: 0.1;
         }
         80% {
-            opacity: 0;
+            opacity: 0.5;
         }
         90% {
-            opacity: 0.5;
+            opacity: 0.1;
         }
         100% {
             opacity: 0.5;

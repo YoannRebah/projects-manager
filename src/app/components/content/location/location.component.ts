@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, AfterViewInit, QueryList, ViewChildren, ViewChild } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from './location';
+import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import Typed from 'typed.js';
 import * as THREE from 'three';
 
@@ -9,58 +10,53 @@ import * as THREE from 'three';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss']
+  styleUrl: './location.component.scss'
 })
 
-export class LocationComponent implements OnInit, AfterViewInit {
-  iconCheckClassNames = "fa-solid fa-check";
-  iconUncheckClassNames = "fa-solid fa-xmark";
-  typedStringArray: string[] = ["????", "UNKNOWN_CITY", "NETWORK_FAILED", "ERROR_6005"]; 
+export class LocationComponent implements AfterViewInit {
+  countriesStringArray: string[] = ["????", "UNKNOWN_CITY", "NETWORK_FAILED", "ERROR_6005"]; 
   locationList: Location[] = [
     {
-      iconClassNames: this.iconCheckClassNames,
+      iconClassNames: "fa-solid fa-check",
       key: "Pays",
       value: "France"
     },
     {
-      iconClassNames: this.iconCheckClassNames,
+      iconClassNames: "fa-solid fa-check",
       key: "Région",
       value: "Île-de-France"
     },
     {
-      iconClassNames: this.iconCheckClassNames,
+      iconClassNames: "fa-solid fa-check",
       key: "Département",
       value: "Essonne"
-    },
-    {
-      iconClassNames: this.iconUncheckClassNames,
-      key: "Ville",
-      tempRefVar: "typedElement"
     }
   ];
 
-  @ViewChildren('typedElement') typedElements!: QueryList<ElementRef>;
   @ViewChild('earthGlobe', { static: true }) earthGlobeCanvas!: ElementRef<HTMLCanvasElement>;
 
-  ngOnInit(): void {}
+  constructor(private windowRefService: WindowRefService) {}
 
   ngAfterViewInit(): void {
-    if (typeof document !== 'undefined') {
-      this.typedElements.forEach((element) => {
-        new Typed(
-          element.nativeElement,
-          {
-            strings: this.typedStringArray,
-            typeSpeed: 50,
-            backSpeed: 50,
-            backDelay: 2000,
-            cursorChar: '<i class="fa-solid fa-square"></i>',
-            loop: true
-          }
-        );
+    this.initTypedCountries();
+    this.initEarthGlobe();
+  }
+
+  initTypedCountries(): void {
+    if(this.windowRefService.windowRef) {
+      new Typed(`#typed-text-value`, {
+        strings: this.countriesStringArray,
+        typeSpeed: 50,
+        backSpeed: 50,
+        backDelay: 2000,
+        cursorChar: '<i class="fa-solid fa-square"></i>',
+        loop: true
       });
-    };
-    if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
+    }
+  }
+
+  initEarthGlobe(): void {
+    if(this.windowRefService.windowRef) {
       const earthGlobe = new EarthGlobe(this.earthGlobeCanvas.nativeElement);
       earthGlobe.init();
     }
@@ -98,7 +94,7 @@ class EarthGlobe {
   }
 
   private setSceneBackground() {
-    this.scene.background = new THREE.Color('#03010f');
+    this.scene.background = new THREE.Color('#050218');
   }
 
   private setRendererSize() {
