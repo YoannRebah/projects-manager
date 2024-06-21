@@ -1,14 +1,14 @@
-<div *ngIf="isVisible" class="container tv-program">
-    <video #tvProgramVideo class="container">
+<div *ngIf="isVisible" class="tv-program fixed-backdrop-screen bg-black z-40">
+    <video #tvProgramVideo class="h-full w-full">
         <source src="assets/videos/tv-program.mp4" type="video/mp4">
-        Votre navigateur ne prend pas en charge la balise video.
+        Votre navigateur ne prend pas en charge la balise video. Cliquer pour masquer.
     </video>
-    <button class="btn" (click)="onClickHideVideo()"></button>
-    <div class="message-signal-on hide-5s-animation">
-        <p class="reddit-mono text-shadow-glitch">
+    <button class="btn absolute-full" (click)="onClickHideVideo()"></button>
+    <div class="absolute-full-translate-x-y bg-blue pointer-events-none p-6 px-8 block">
+        <p class="reddit-mono text-white text-shadow-chromatic-glitch-strong text-lg mb-4">
             <i class="fa-solid fa-satellite"></i> Signal faible...
         </p>
-        <p class="reddit-mono text-shadow-glitch">
+        <p class="reddit-mono text-white text-shadow-chromatic-glitch-strong text-lg">
             Reprise du programme TV
         </p>
     </div>
