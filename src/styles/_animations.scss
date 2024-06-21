@@ -54,16 +54,16 @@
     }
 }
 
-.hide-5s-animation {
-    animation: hide-5s-animation 5s linear forwards;
-    @keyframes hide-5s-animation {
+.animation-hidden-forwards-5s {
+    animation: animation-hidden-forwards-5s 5s linear forwards;
+    @keyframes animation-hidden-forwards-5s {
         to {
             display: none;
         }
     }
 }
 
-.chromatic-aberration-animation {
+.animation-chromatic-aberration-infinite {
     position: absolute;
     left: 0;
     width: 100%;
@@ -71,8 +71,8 @@
     background-size: 100% 3px;
     filter: blur(10px);
     pointer-events: none;
-    animation: chromatic-aberration-animation 0.2s linear infinite;
-    @keyframes chromatic-aberration-animation {
+    animation: animation-chromatic-aberration-infinite 0.2s linear infinite;
+    @keyframes animation-chromatic-aberration-infinite {
         0% {
             background: linear-gradient(to right, 
             #0000ff 0%, #0000ff 10%, 
