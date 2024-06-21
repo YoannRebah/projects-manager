@@ -1,0 +1,73 @@
+@import '../../../../styles/variables';
+
+.can-be-hitted {
+    pointer-events: all !important;
+    opacity: 1 !important;
+
+    &>* {
+        pointer-events: all !important;
+    }
+}
+
+.collision-box {
+    width: 50px;
+    height: 70px;
+    left: 11px;
+    opacity: 0.6;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.hitted-animation {
+    animation: hitted-animation 0.35s forwards;
+    @keyframes hitted-animation {
+        0% {
+            background: $red;
+        }
+        100% {
+            background: transparent;
+        }
+    }
+}
+
+.meteor {
+    top: -10%;
+    opacity: 0;
+    animation: meteor-falling-animation;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 5s;
+    @keyframes meteor-falling-animation {
+        0% {
+            top: -10%;
+            opacity: 0;
+        }
+        5% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 1;
+            top: 100%;
+        }
+    }
+    
+    &.meteor-falling-animation-1 {
+        animation-duration: 1s;
+    }
+
+    &.meteor-falling-animation-2 {
+        animation-duration: 1.8s;
+    }
+
+    &.meteor-falling-animation-3 {
+        animation-duration: 2.5s;
+    }
+
+    &.meteor-falling-animation-4 {
+        animation-duration: 2.8s;
+    }
+
+    &.meteor-falling-animation-5 {
+        animation-duration: 3.2s;
+    }
+}
