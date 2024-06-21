@@ -26,6 +26,18 @@ export class TerminalComponent implements OnInit, OnDestroy {
   terminalHistoryKey: string = LocalStorageService.portfolioPrefixStorageKey + "terminal-history";
   currentCommandIndex: number = -1;
   idToggleVhsEffect: string = 'toggle-vhs-effect';
+  enabledCommands: string[] = [
+    'help',
+    'show loader',
+    'hide loader',
+    'toggle loader',
+    'show tv',
+    'hide tv',
+    'play tv',
+    'stop tv',
+    'show vhs',
+    'hide vhs'
+  ];
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -197,31 +209,29 @@ export class TerminalComponent implements OnInit, OnDestroy {
   }
 
   commandsLine(command: string): void {
-    switch(command) {
-      case 'show loader': this.loaderService.show();
-      break;
-      case 'hide loader': this.loaderService.hide();
-      break;
-      case 'toggle loader': this.loaderService.toggle();
-      break;
-      case 'show tv': this.tvProgramService.show();
-      break;
-      case 'hide tv': this.tvProgramService.hide();
-      break;
-      case 'play tv': this.tvProgramService.play();
-      break;
-      case 'stop tv': this.tvProgramService.stop();
-      break;
-      case 'show vhs': {
-        this.vhsEffectService.show();
-        this.vhsEffectService.showFooter();
+    if(this.enabledCommands.includes(command)) {
+      switch(command) {
+        case 'help': console.log(this.enabledCommands);
+        break;
+        case 'show loader': this.loaderService.show();
+        break;
+        case 'hide loader': this.loaderService.hide();
+        break;
+        case 'toggle loader': this.loaderService.toggle();
+        break;
+        case 'show tv': this.tvProgramService.show();
+        break;
+        case 'hide tv': this.tvProgramService.hide();
+        break;
+        case 'play tv': this.tvProgramService.play();
+        break;
+        case 'stop tv': this.tvProgramService.stop();
+        break;
+        case 'show vhs': this.vhsEffectService.show(); this.vhsEffectService.showFooter();
+        break;
+        case 'hide vhs': this.vhsEffectService.hide(); this.vhsEffectService.hideFooter();
+        break;
       }
-      break;
-      case 'hide vhs': {
-        this.vhsEffectService.hide();
-        this.vhsEffectService.hideFooter();
-      }
-      break;
     }
   }
 
