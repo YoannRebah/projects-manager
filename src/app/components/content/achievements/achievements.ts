@@ -4,10 +4,10 @@ import { Button } from "../../../shared/models/button";
 export interface Achievements {
     tab: Button;
     img: Image;
-    blockDetails: BlockDetail[];
+    properties: Properties[];
 }
 
-interface BlockDetail {
+interface Properties {
     title: string;
     list: string[];
 }

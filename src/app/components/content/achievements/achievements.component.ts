@@ -25,7 +25,7 @@ export class AchievementsComponent {
         path: "assets/gif/achievements-1.gif",
         alt: ""
       },
-      blockDetails: [
+      properties: [
         {
           title: "Missions :",
           list: [
@@ -62,7 +62,7 @@ export class AchievementsComponent {
         path: "assets/gif/achievements-4.gif",
         alt: ""
       },
-      blockDetails: [
+      properties: [
         {
           title: "Missions :",
           list: [
@@ -98,7 +98,7 @@ export class AchievementsComponent {
         path: "assets/gif/achievements-3.gif",
         alt: ""
       },
-      blockDetails: [
+      properties: [
         {
           title: "Missions :",
           list: [
@@ -134,7 +134,7 @@ export class AchievementsComponent {
         path: "assets/gif/achievements-5.gif",
         alt: ""
       },
-      blockDetails: [
+      properties: [
         {
           title: "Création de sites :",
           list: [
