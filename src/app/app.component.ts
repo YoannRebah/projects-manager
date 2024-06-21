@@ -1,22 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 // services
 import { LoaderService } from './shared/services/components/loader.service';
-// shared
+// base
 import { LoaderComponent } from './components/base/loader/loader.component';
 import { VhsEffectComponent } from './components/base/vhs-effect/vhs-effect.component';
-import { TvProgramComponent } from './components/content/tv-program/tv-program.component';
-// layout
-import { MainComponent } from './components/layout/main/main.component';
-import { ContentComponent } from './components/layout/content/content.component';
-import { SectionComponent } from './components/layout/section/section.component'; 
-import { HeaderComponent } from './components/layout/header/header.component';
-import { NavComponent } from './components/layout/nav/nav.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
-// text
 import { H1Component } from './components/base/h1/h1.component';
 import { H2Component } from './components/base/h2/h2.component';
-// views
+// content
+import { TvProgramComponent } from './components/content/tv-program/tv-program.component';
 import { EmployeeCardComponent } from './components/content/employee-card/employee-card.component';
 import { SkillsComponent } from './components/content/skills/skills.component';
 import { AchievementsComponent } from './components/content/achievements/achievements.component';
@@ -30,18 +23,24 @@ import { ListFooterComponent } from './components/content/list-footer/list-foote
 import { FormContactComponent } from './components/content/form-contact/form-contact.component';
 import { AdsPosterComponent } from './components/content/ads-poster/ads-poster.component';
 import { BlogComponent } from './components/content/blog/blog.component';
-// components
 import { TerminalComponent } from './components/content/terminal/terminal.component';
+// layout
+import { MainComponent } from './components/layout/main/main.component';
+import { ContentComponent } from './components/layout/content/content.component';
+import { SectionComponent } from './components/layout/section/section.component'; 
+import { HeaderComponent } from './components/layout/header/header.component';
+import { NavComponent } from './components/layout/nav/nav.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    // shared
+    // base
     LoaderComponent,
-    VhsEffectComponent,
-    TvProgramComponent,
+    H1Component,
+    H2Component,
     // layout
     MainComponent,
     ContentComponent,
@@ -49,10 +48,9 @@ import { TerminalComponent } from './components/content/terminal/terminal.compon
     HeaderComponent,
     NavComponent,
     FooterComponent,
-    // text
-    H1Component,
-    H2Component,
-    // views
+    // content
+    VhsEffectComponent,
+    TvProgramComponent,
     EmployeeCardComponent,
     SkillsComponent,
     AchievementsComponent,
@@ -66,7 +64,6 @@ import { TerminalComponent } from './components/content/terminal/terminal.compon
     AdsPosterComponent,
     FormContactComponent,
     BlogComponent,
-    // components
     TerminalComponent,
   ],
   templateUrl: './app.component.html',
