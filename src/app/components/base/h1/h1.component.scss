@@ -2,29 +2,17 @@
 
 .h1 {
     span {
-        &:nth-child(1) {
-            font-size: 22vw;
+        &:nth-child(1),
+        &:nth-child(2) {
             background: linear-gradient($pink3 15%, $pink2 25%, $pink 35%, hsl(100, 70%, 80%) 45%, hsl(60, 100%, 98%) 50%, $white 100%);
             -webkit-text-stroke: 1px $white;
             background-clip: text;
             filter: drop-shadow(1px 3px 0px $white) drop-shadow(1px 3px 0px $cyan) drop-shadow(1px 3px 0px $cyan2) drop-shadow(1px 3px 0px $cyan3) drop-shadow(1px 3px 0px $cyan2) drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.2));
-
-            @include screen('s') {
-                font-size: 10vw;
-            }
         }
 
-        &:nth-child(2) {
-            font-size: 20vw;
-            bottom: -30%;
-            right: 0;
+        &:nth-child(3) {
             transform: rotate(-12deg);
             filter: brightness(120%);
-
-            @include screen('s') {
-                font-size: 9vw;
-                bottom: -50%;
-            }
         }
     }
 }

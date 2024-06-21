@@ -19,7 +19,6 @@ export class ListNavComponent {
       href: '#',
       iconClassNames: 'fa-solid fa-home',
       ariaLabel: 'Accueil',
-      classNames: 'large',
       tooltip: 'Accueil',
     },
     {
@@ -45,14 +44,12 @@ export class ListNavComponent {
       iconClassNames: 'fa-brands fa-github',
       target: '_blank',
       ariaLabel: 'Code source du portfolio',
-      classNames: 'large',
       tooltip: 'Code source du portfolio',
     },
   ];
   navButtons: Button[] = [
     {
       iconClassNames: 'fa-solid fa-gear',
-      classNames: 'large',
       ariaLabel: 'Paramètres',
       tooltip: 'Paramètres',
       onClick: this.onClickShowSettings.bind(this)

@@ -1,28 +1,26 @@
-<ul class="container mx-auto flex items-center list-nav list-none h-full">
+<ul class="list-nav container mx-auto flex items-center list-none h-full">
     <li *ngFor="let anchor of navAnchors" class="flex items-center justify-center h-full flex-1">
       <a 
-          class="btn flex items-center justify-center text-white"
+          class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg"
           [href]="anchor.href" 
           [attr.aria-label]="anchor.ariaLabel" 
-          [class]="anchor.classNames"
           [attr.target]="anchor.target"
           [attr.rel]="anchor.target === '_blank' ? 'noopener noreferrer' : null"
           [title]="anchor.tooltip || ''"
       >
         <i *ngIf="anchor.iconClassNames" [class]="anchor.iconClassNames" aria-label="hidden"></i>
-        <span *ngIf="anchor.text" class="silkscreen-regular hidden-flex-s">{{ anchor.text }}</span>
+        <span *ngIf="anchor.text" class="ml-2 hidden md:flex">{{ anchor.text }}</span>
       </a>
     </li>
     <li *ngFor="let btn of navButtons" class="flex items-center justify-center h-full flex-1">
       <button 
-          class="btn flex items-center justify-center text-white"
+          class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg hover:text-cyan"
           [attr.aria-label]="btn.ariaLabel" 
-          [class]="btn.classNames"
           [title]="btn.tooltip || ''"
           (click)="btn.onClick ? btn.onClick() : null"
       >
         <i *ngIf="btn.iconClassNames" [class]="btn.iconClassNames" aria-label="hidden"></i>
-        <span *ngIf="btn.text" class="silkscreen-regular hidden-flex-s">{{ btn.text }}</span>
+        <span *ngIf="btn.text" class="ml-2 hidden md:flex">{{ btn.text }}</span>
       </button>
     </li>
 </ul>
