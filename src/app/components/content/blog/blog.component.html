@@ -1,4 +1,4 @@
-<div class="container blog flex flex-col gap-10">
+<div class="blog-cards flex flex-col gap-10">
     <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group relative min-h-80 flex justify-center gap-6" [class.hidden]="activeIndex != i">
         <div *ngFor="let card of cardGroup" class="container-card width-calc-33-minus-1-5rem">
             <div 
