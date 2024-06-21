@@ -48,6 +48,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
     this.unsubscribeIsVisible();
   }
 
+  // is visible
   subscribeIsVisible(): void {
     this.subscriptionIsVisible = this.terminalService.isVisibleSubject$.subscribe({
       next: (isVisible) => {
@@ -203,11 +204,9 @@ export class TerminalComponent implements OnInit, OnDestroy {
     if(TerminalService.enabledCommands.includes(command)) {
       switch(command) {
         case 'help': 
-        case 'show help': {
-          this.showModalHelpCommand();
-        }
+        case 'show help': this.modalService.show('modal-terminal-help');
         break;
-        case 'hide help': this.hideModalHelpCommand();
+        case 'hide help': this.modalService.hide('modal-terminal-help');
         break;
         case 'show loader': this.loaderService.show();
         break;
@@ -231,14 +230,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
     }
   }
 
-  showModalHelpCommand(): void {
-    this.modalService.show('modal-terminal-help');
-  }
-
-  hideModalHelpCommand(): void {
-    this.modalService.hide('modal-terminal-help');
-  }
-
   updateCommandsHistory(command: string): void {
     if(!this.commandsHistory.includes(command)) {
       this.commandsHistory.push(command);
@@ -259,7 +250,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
     if (this.commandsHistory.length === 0) {
       return;
     }
-
     if (direction === 'up') {
       if (this.currentCommandIndex === -1) {
         this.currentCommandIndex = this.commandsHistory.length - 1;
