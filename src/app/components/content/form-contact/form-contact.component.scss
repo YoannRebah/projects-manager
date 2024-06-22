@@ -1,137 +1,128 @@
-@import '../../../../styles/base';
+// @import '../../../../styles/base';
 
-.forms {
+// .forms {
 
-    fieldset {
-        padding: 1rem 1.2rem;
-        margin-bottom: 1.75rem;
-        border: 1px dashed $cyan;
+//     fieldset {
+//         padding: 1rem 1.2rem;
+//         margin-bottom: 1.75rem;
+//         border: 1px dashed $cyan;
 
-        @include screen('s') {
-            padding: 1rem 3rem;
-        }
+//         @include screen('s') {
+//             padding: 1rem 3rem;
+//         }
 
-        legend {
-            padding: .5rem;
-            font-size: 1rem;
+//         legend {
+//             padding: .5rem;
+//             font-size: 1rem;
 
-            @include screen('s') {
-                padding: .75rem;
-                font-size: 1.5rem;
-            }
-        }
+//             @include screen('s') {
+//                 padding: .75rem;
+//                 font-size: 1.5rem;
+//             }
+//         }
 
-        .container-form-flex {
-            gap: 0;
+//         .container-form-flex {
+//             gap: 0;
 
-            @include screen('s') {
-                flex-direction: row;
-                gap: 3rem;
-            }
+//             @include screen('s') {
+//                 flex-direction: row;
+//                 gap: 3rem;
+//             }
 
-            .col-flex-1 {
-                flex: 1;
+//             .col-flex-1 {
+//                 flex: 1;
 
-                .col-input {
-                    margin-bottom: 1.3rem;
+//                 .col-input {
+//                     margin-bottom: 1.3rem;
 
-                    label {
-                        position: relative;
-                        font-weight: 500;
-                        font-size: 0.9rem;
-                        margin-bottom: .33rem;
+//                     label {
+//                         font-weight: 500;
+//                         font-size: 0.9rem;
+//                         margin-bottom: .33rem;
+//                     }
             
-                        sup {
-                            position: absolute;
-                        }
-
-                        @include screen('s') {
-                            font-size: 1.1rem;
-                        }
-                    }
+//                     input,
+//                     textarea {
+//                         border: 2px solid $white;
+//                         cursor: text;
+//                     }
             
-                    input,
-                    textarea {
-                        border: 2px solid $white;
-                        cursor: text;
-                    }
+//                     input,
+//                     select,
+//                     textarea {
+//                         width: 100%;
+//                         padding: 0.65rem;
+//                         font-size: 1rem;
+//                         outline: 2px solid transparent;
+
+//                         &:focus {
+//                             outline-color: $cyan;
+//                         }
+
+//                         &.input-error {
+//                             outline-color: $pink;
+//                         }
+//                     }
             
-                    input,
-                    select,
-                    textarea {
-                        width: 100%;
-                        padding: 0.65rem;
-                        font-size: 1rem;
-                        outline: 2px solid transparent;
+//                     textarea {
+//                         resize: none;
+//                         min-height: 10rem;
 
-                        &:focus {
-                            outline-color: $cyan;
-                        }
-
-                        &.input-error {
-                            outline-color: $pink;
-                        }
-                    }
+//                         @include screen('s') {
+//                             min-height: 6rem;
+//                         }
+//                     }
             
-                    textarea {
-                        resize: none;
-                        min-height: 10rem;
+//                     .error-message {
+//                         position: absolute;
+//                         top: 1%;
+//                         right: 1%;
+//                         color: $pink;
+//                         font-weight: 600;
 
-                        @include screen('s') {
-                            min-height: 6rem;
-                        }
-                    }
-            
-                    .error-message {
-                        position: absolute;
-                        top: 1%;
-                        right: 1%;
-                        color: $pink;
-                        font-weight: 600;
+//                         small {
+//                             font-size: .7rem;
 
-                        small {
-                            font-size: .7rem;
+//                             @include screen('s') {
+//                                 font-size: .8rem;
+//                             }
+//                         }
+//                     }
 
-                            @include screen('s') {
-                                font-size: .8rem;
-                            }
-                        }
-                    }
+//                     .img-good-choice {
+//                         position: absolute;
+//                         transform: translate(-50%, -50%);
+//                         width: 42px;
+//                         height: 42px;
+//                         top: 70%;
+//                         left: -4%;
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-                    .img-good-choice {
-                        position: absolute;
-                        transform: translate(-50%, -50%);
-                        width: 42px;
-                        height: 42px;
-                        top: 70%;
-                        left: -4%;
-                    }
-                }
-            }
-        }
-    }
+//     .container-submit {
 
-    .container-submit {
+//         .btn-submit {
+//             margin-top: 1.5rem;
+//             border: 2px solid $cyan;
+//             width: 150px;
+//             height: 45px;
+//             text-decoration: none;
 
-        .btn-submit {
-            margin-top: 1.5rem;
-            border: 2px solid $cyan;
-            width: 150px;
-            height: 45px;
-            text-decoration: none;
+//             &:hover {
+//                 background: $cyan;
 
-            &:hover {
-                background: $cyan;
+//                 span {
+//                     color: $black;
+//                 }
+//             }
 
-                span {
-                    color: $black;
-                }
-            }
-
-            span {
-                color: $white;
-                font-size: 1.25rem;
-            }
-        }
-    }
-}
+//             span {
+//                 color: $white;
+//                 font-size: 1.25rem;
+//             }
+//         }
+//     }
+// }

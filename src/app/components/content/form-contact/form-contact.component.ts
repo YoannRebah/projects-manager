@@ -26,6 +26,8 @@ export class FormContactComponent implements OnInit {
   publicKey: string = 'nAi6Eim9qL5XMDKyr';
   mailSendWithSuccess!: boolean;
   sendIsPending: boolean = false;
+  templateParams = {};
+  showLocationGif: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -35,6 +37,7 @@ export class FormContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.initContactForm();
+    this.subscribeCompagnyLocation();
   }
 
   initContactForm(): void {
@@ -48,32 +51,54 @@ export class FormContactComponent implements OnInit {
       "compagnyLocation": [''],
       "message": ['']
     });
-    this.subscribeCompagnyLocation();
+  }
+
+  subscribeCompagnyLocation(): void {
+    this.contactForm.get('compagnyLocation')!.valueChanges.subscribe({
+      next: (value) => {
+        this.selectedLocation = value;
+        if(this.selectedLocation === "37" || this.selectedLocation === "91") {
+          this.showLocationGif = true;
+        } else {
+          this.showLocationGif = false;
+        }
+      },
+      error: (e) => console.error('error subscribeCompagnyLocation', e)
+    });
   }
 
   onSubmitContactForm(): void {
     if(!this.sendIsPending) {
       if (this.contactForm.invalid) {
         this.contactForm.markAllAsTouched();
-        const contactFormSectionId = this.windowRefService.windowRef.document.querySelector('#contact');
-        if (contactFormSectionId) contactFormSectionId.scrollIntoView({ behavior: 'smooth' });
-        return;
+        this.scrollToContactTop();
       } else {
         this.sendIsPending = true;
-        const contactFormData = this.contactForm.value;
-        const templateParams = {
-          firstName: contactFormData.firstName,
-          lastName: contactFormData.lastName,
-          email: contactFormData.email,
-          tel: contactFormData.tel,
-          compagnyName: contactFormData.compagnyName,
-          compagnyPost: contactFormData.compagnyPost,
-          location: contactFormData.compagnyLocation,
-          message: contactFormData.message
-        };
-        this.sendMail(templateParams);
+        this.completeTemplateParams();
+        this.sendMail(this.templateParams);
       }
     }
+  }
+
+  scrollToContactTop(): void {
+    const contactFormSectionId = this.windowRefService.windowRef.document.querySelector('#contact');
+    if (contactFormSectionId) {
+      contactFormSectionId.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  completeTemplateParams(): void {
+    const contactFormData = this.contactForm.value;
+    this.templateParams = {
+      firstName: contactFormData.firstName,
+      lastName: contactFormData.lastName,
+      email: contactFormData.email,
+      tel: contactFormData.tel,
+      compagnyName: contactFormData.compagnyName,
+      compagnyPost: contactFormData.compagnyPost,
+      location: contactFormData.compagnyLocation,
+      message: contactFormData.message
+    };
   }
 
   sendMail(templateParams: {}): void {
@@ -88,17 +113,6 @@ export class FormContactComponent implements OnInit {
         this.showPopinAfterSubmitForm('popin-form-sent-error');
       }
     );
-  }
-
-  subscribeCompagnyLocation(): void {
-    this.contactForm.get('compagnyLocation')!.valueChanges.subscribe((value) => {
-      this.selectedLocation = value;
-      this.isGoodChoice();
-    });
-  }
-
-  isGoodChoice(): boolean {
-    return this.selectedLocation === "37" || this.selectedLocation === "91";
   }
 
   showPopinAfterSubmitForm(id: string) {

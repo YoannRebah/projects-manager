@@ -1,46 +1,46 @@
 <div class="container">
-    <form class="forms flex flex-col" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
+    <form class="forms relative flex flex-col gap-10" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
         <!-- Identité -->
         <fieldset>
             <legend class="text-shadow-glitch-2">Identité</legend>
-            <div class="container container-form-flex flex flex-col">
-                <div class="col-flex-1">
-                    <div class="col-input relative flex flex-col">
-                        <label for="input-lastName">Nom<sup>*</sup></label>
-                        <input id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
+            <div class="relative flex flex-col">
+                <div class="flex gap-10">
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="input-lastName">Nom<sup>*</sup></label>
+                        <input class="text-black" id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
                         [ngClass]="{'input-error': contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
+                        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="absolute">
                             <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
                         </div>
                     </div>
-                    <div class="col-input relative flex flex-col">
-                        <label for="input-firstName">Prénom<sup>*</sup></label>
-                        <input id="input-firstName" name="firstName" type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="input-firstName">Prénom<sup>*</sup></label>
+                        <input class="text-black" id="input-firstName" name="firstName" type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
                         [ngClass]="{'input-error': contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="error-message">
+                        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="absolute">
                             <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
                         </div>
                     </div>
                 </div>
-                <div class="col-flex-1">
-                    <div class="col-input relative flex flex-col">
-                        <label for="input-email">E-mail<sup>*</sup></label>
-                        <input id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
+                <div class="flex gap-10">
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="input-email">E-mail<sup>*</sup></label>
+                        <input class="text-black" id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
                         [ngClass]="{'input-error': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
+                        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="absolute">
                             <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
                             <small *ngIf="contactForm.get('email')?.errors?.['email']">Le format est invalide</small>
                         </div>
                     </div>
-                    <div class="col-input relative flex flex-col">
-                        <label for="input-tel">Téléphone<sup>*</sup></label>
-                        <input id="input-tel" name="tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="input-tel">Téléphone<sup>*</sup></label>
+                        <input class="text-black" id="input-tel" name="tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
                         [ngClass]="{'input-error': contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="error-message">
+                        <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="absolute">
                             <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
                             <small *ngIf="contactForm.get('tel')?.errors?.['pattern']">Le format est invalide</small>
                         </div>
@@ -51,50 +51,48 @@
         <!-- Entreprise -->
         <fieldset>
             <legend class="text-shadow-glitch-2">Entreprise</legend>
-            <div class="container container-form-flex flex flex-col">
-                <div class="col-flex-1">
-                    <div class="col-input relative flex flex-col">
-                        <label for="input-compagny-name">Dénomination<sup>*</sup></label>
-                        <input id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
+            <div class="relative flex flex-col">
+                <div class="flex gap-10">
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="input-compagny-name">Dénomination<sup>*</sup></label>
+                        <input class="text-black" id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
                         [ngClass]="{'input-error': contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="error-message">
+                        <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="absolute">
                             <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
                         </div>
                     </div>
-                </div>
-                <div class="col-flex-1">
-                    <div class="col-input relative flex flex-col">
-                        <label for="input-compagny-post">Rôle dans l'entreprise</label>
-                        <input id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" tabindex="6" formControlName="compagnyPost">
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="input-compagny-post">Rôle dans l'entreprise</label>
+                        <input class="text-black" id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" tabindex="6" formControlName="compagnyPost">
                     </div>
                 </div>
             </div>
-            <div class="container container-form-flex flex flex-col">
-                <div class="col-flex-1">
-                    <div class="col-input relative flex flex-col">
-                        <label for="dropdown-compagny-location">Localisation</label>
-                        <select id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
+            <div class="relative flex flex-col">
+                <div class="flex gap-10">
+                    <div class="relative flex flex-col flex-1">
+                        <label class="relative" for="dropdown-compagny-location">Localisation</label>
+                        <select class="text-black" id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
                             <ng-container *ngFor="let region of locationsFr | keyvalue">
                               <optgroup [label]="region.key">
                                 <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
                               </optgroup>
                             </ng-container>
                         </select>
-                        <img *ngIf="isGoodChoice()" class="img-good-choice" src="assets/gif/heart-love.gif" alt="Bon choix">
+                        <img *ngIf="showLocationGif" class="img-good-choice" src="assets/gif/heart-love.gif" alt="Bon choix">
                     </div>
+                    <div class="relative flex flex-col flex-1"></div>
                 </div>
-                <div class="col-flex-1"></div>
             </div>
         </fieldset>
         <!-- Message -->
         <fieldset>
             <legend class="text-shadow-glitch-2">Message</legend>
-            <div class="container container-form-flex flex flex-col">
-                <div class="col-flex-1">
-                    <div class="col-input relative flex flex-col">
+            <div class="relative flex flex-col">
+                <div class="flex gap-10">
+                    <div class="relative flex flex-col flex-1">
                         <div class="container row-form flex-column">
-                            <textarea id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." tabindex="8" formControlName="message"></textarea>
+                            <textarea class="text-black" id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." tabindex="8" formControlName="message"></textarea>
                         </div>
                     </div>
                 </div>
