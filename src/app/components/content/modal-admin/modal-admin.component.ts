@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import cryptoRandomString from 'crypto-random-string';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-modal-admin',
@@ -23,10 +24,11 @@ export class ModalAdminComponent {
   serviceId: string = environment.emailjs.serviceId; 
   templateId: string = environment.emailjs.templateId.code;
   publicKey: string = environment.emailjs.publicKey;
-  cookieCodeId: string = 'cookie-code';
+  cookieId: string = environment.admin.cookieId;
   showInputCode: boolean = false;
   adminPassword: string = environment.admin.password;
   code!: string;
+  saltRounds: number = 10;
 
   @ViewChild('inputPasswordElementRef', { static: false }) inputPasswordElementRef!: ElementRef<HTMLInputElement>;
   @ViewChild('inputCodeElementRef', { static: false }) inputCodeElementRef!: ElementRef<HTMLInputElement>;
@@ -60,16 +62,17 @@ export class ModalAdminComponent {
   }
 
   get cookieCode(): string {
-    return this.cookieService.get(this.cookieCodeId);
+    return this.cookieService.get(this.cookieId);
   }
 
   setCookieCode(value: string): void {
-    this.cookieService.set(this.cookieCodeId, value);
+    const hashedValue = bcrypt.hashSync(value, this.saltRounds);
+    this.cookieService.set(this.cookieId, hashedValue);
   }
 
   deleteCookieCode(): void {
     if(this.cookieCode) {
-      this.cookieService.delete(this.cookieCodeId);
+      this.cookieService.delete(this.cookieId);
     }
   }
 
@@ -120,12 +123,15 @@ export class ModalAdminComponent {
 
   checkAdminCode(Event: Event): void {
     const value = (Event.target as HTMLInputElement).value;
-    if(value == this.cookieCode) {
-      this.modalService.hide(this.modalAdminId);
-      this.clearInputCode();
-      this.deleteCookieCode();
-      this.showInputCode = false;
-      console.log("admin is connected");
+    if(value) {
+      const isMatch = bcrypt.compareSync(value, this.cookieCode);
+      if(isMatch) {
+        this.modalService.hide(this.modalAdminId);
+        this.clearInputCode();
+        this.deleteCookieCode();
+        this.showInputCode = false;
+        console.log("admin is connected");
+      }
     }
   }
 

@@ -9,6 +9,7 @@ export const environment = {
         }
     },
     admin: {
-        password: '0201'
+        password: '0201',
+        cookieId: 'schwarzy_movie'
     }
 };
