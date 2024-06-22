@@ -7,5 +7,8 @@ export const environment = {
             contact: 'template_d02jila',
             code: 'template_lb5vklj'
         }
+    },
+    admin: {
+        password: '0201'
     }
 };
