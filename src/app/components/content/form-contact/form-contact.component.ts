@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
+import { environment } from '../../../../environments/environment';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationsFrService } from '../../../shared/services/components/locations-fr.service';
 import { Region } from './locations-fr';
@@ -21,9 +22,9 @@ export class FormContactComponent implements OnInit {
   locationsFr: Region = LocationsFrService.locationsFr;
   selectedLocation!: string;
   contactForm!: FormGroup;
-  serviceId: string = 'service_5ru7fw9';
-  templateId: string = 'template_d02jila';
-  publicKey: string = 'nAi6Eim9qL5XMDKyr';
+  serviceId: string = environment.emailjs.serviceId; 
+  templateId: string = environment.emailjs.templateId;
+  publicKey: string = environment.emailjs.publicKey;
   mailSendWithSuccess!: boolean;
   sendIsPending: boolean = false;
   templateParams = {};
