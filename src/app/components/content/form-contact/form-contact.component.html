@@ -2,45 +2,45 @@
     <form class="forms relative flex flex-col gap-10" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
         <!-- Identité -->
         <fieldset>
-            <legend class="text-shadow-glitch-2">Identité</legend>
-            <div class="relative flex flex-col">
+            <legend class="text-shadow-chromatic-glitch mb-4 text-2xl font-light border-b border-cyan w-full">Identité</legend>
+            <div class="relative flex flex-col gap-4">
                 <div class="flex gap-10">
                     <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="input-lastName">Nom<sup>*</sup></label>
-                        <input class="text-black" id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
+                        <label class="relative mb-1" for="input-lastName">Nom<sup>*</sup></label>
+                        <input class="text-black p-2" id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
                         [ngClass]="{'input-error': contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="absolute">
+                        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="absolute right-0 text-pink">
                             <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
                         </div>
                     </div>
                     <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="input-firstName">Prénom<sup>*</sup></label>
-                        <input class="text-black" id="input-firstName" name="firstName" type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
+                        <label class="relative mb-1" for="input-firstName">Prénom<sup>*</sup></label>
+                        <input class="text-black p-2" id="input-firstName" name="firstName" type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
                         [ngClass]="{'input-error': contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="absolute">
+                        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="absolute right-0 text-pink">
                             <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
                         </div>
                     </div>
                 </div>
                 <div class="flex gap-10">
                     <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="input-email">E-mail<sup>*</sup></label>
-                        <input class="text-black" id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
+                        <label class="relative mb-1" for="input-email">E-mail<sup>*</sup></label>
+                        <input class="text-black p-2" id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
                         [ngClass]="{'input-error': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="absolute">
+                        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="absolute right-0 text-pink">
                             <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
                             <small *ngIf="contactForm.get('email')?.errors?.['email']">Le format est invalide</small>
                         </div>
                     </div>
                     <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="input-tel">Téléphone<sup>*</sup></label>
-                        <input class="text-black" id="input-tel" name="tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
+                        <label class="relative mb-1" for="input-tel">Téléphone<sup>*</sup></label>
+                        <input class="text-black p-2" id="input-tel" name="tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
                         [ngClass]="{'input-error': contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="absolute">
+                        <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="absolute right-0 text-pink">
                             <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
                             <small *ngIf="contactForm.get('tel')?.errors?.['pattern']">Le format est invalide</small>
                         </div>
@@ -50,52 +50,48 @@
         </fieldset>
         <!-- Entreprise -->
         <fieldset>
-            <legend class="text-shadow-glitch-2">Entreprise</legend>
-            <div class="relative flex flex-col">
-                <div class="flex gap-10">
-                    <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="input-compagny-name">Dénomination<sup>*</sup></label>
-                        <input class="text-black" id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
-                        [ngClass]="{'input-error': contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched}"
-                        >
-                        <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="absolute">
-                            <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
+            <legend class="text-shadow-chromatic-glitch mb-4 text-2xl font-light border-b border-cyan w-full">Entreprise</legend>
+                <div class="relative flex flex-col gap-4">
+                    <div class="relative flex flex-col gap-4">
+                        <div class="flex gap-10">
+                            <div class="relative flex flex-col flex-1">
+                                <label class="relative mb-1" for="input-compagny-name">Dénomination<sup>*</sup></label>
+                                <input class="text-black p-2" id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
+                                [ngClass]="{'input-error': contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched}"
+                                >
+                                <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="absolute right-0 text-pink">
+                                    <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
+                                </div>
+                            </div>
+                            <div class="relative flex flex-col flex-1">
+                                <label class="relative mb-1" for="input-compagny-post">Rôle dans l'entreprise</label>
+                                <input class="text-black p-2" id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" tabindex="6" formControlName="compagnyPost">
+                            </div>
                         </div>
                     </div>
-                    <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="input-compagny-post">Rôle dans l'entreprise</label>
-                        <input class="text-black" id="input-compagny-post" name="compagny-post" type="text" autocomplete="off" placeholder="Chargé(e) de recrutement" tabindex="6" formControlName="compagnyPost">
+                    <div class="relative flex flex-col">
+                        <div class="flex gap-10">
+                            <div class="relative flex flex-col flex-1">
+                                <label class="relative mb-1" for="dropdown-compagny-location">Localisation</label>
+                                <select class="text-black p-2" id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
+                                    <ng-container *ngFor="let region of locationsFr | keyvalue">
+                                    <optgroup [label]="region.key">
+                                        <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
+                                    </optgroup>
+                                    </ng-container>
+                                </select>
+                                <img *ngIf="showLocationGif" class="absolute w-[2rem] left-[-5%] bottom-[4%]" src="assets/gif/heart-love.gif" alt="Bon choix">
+                            </div>
+                            <div class="relative flex flex-col flex-1"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="relative flex flex-col">
-                <div class="flex gap-10">
-                    <div class="relative flex flex-col flex-1">
-                        <label class="relative" for="dropdown-compagny-location">Localisation</label>
-                        <select class="text-black" id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
-                            <ng-container *ngFor="let region of locationsFr | keyvalue">
-                              <optgroup [label]="region.key">
-                                <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
-                              </optgroup>
-                            </ng-container>
-                        </select>
-                        <img *ngIf="showLocationGif" class="img-good-choice" src="assets/gif/heart-love.gif" alt="Bon choix">
-                    </div>
-                    <div class="relative flex flex-col flex-1"></div>
-                </div>
-            </div>
         </fieldset>
         <!-- Message -->
         <fieldset>
-            <legend class="text-shadow-glitch-2">Message</legend>
-            <div class="relative flex flex-col">
-                <div class="flex gap-10">
-                    <div class="relative flex flex-col flex-1">
-                        <div class="container row-form flex-column">
-                            <textarea class="text-black" id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." tabindex="8" formControlName="message"></textarea>
-                        </div>
-                    </div>
-                </div>
+            <legend class="text-shadow-chromatic-glitch mb-4 text-2xl font-light border-b border-cyan w-full">Message</legend>
+            <div class="relative flex">
+                <textarea class="text-black p-2 resize-none w-full" id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." tabindex="8" formControlName="message"></textarea>
             </div>
         </fieldset>
         <!-- submit -->
