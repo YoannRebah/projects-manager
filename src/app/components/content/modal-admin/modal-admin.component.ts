@@ -18,7 +18,7 @@ export class ModalAdminComponent {
   isVisible: boolean = false;
   codeIsValid: boolean = false;
   serviceId: string = environment.emailjs.serviceId; 
-  templateId: string = environment.emailjs.templateId;
+  templateId: string = environment.emailjs.templateId.code;
   publicKey: string = environment.emailjs.publicKey;
 
   constructor(private modalService: ModalService) {}

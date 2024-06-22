@@ -23,7 +23,7 @@ export class FormContactComponent implements OnInit {
   selectedLocation!: string;
   contactForm!: FormGroup;
   serviceId: string = environment.emailjs.serviceId; 
-  templateId: string = environment.emailjs.templateId;
+  templateId: string = environment.emailjs.templateId.contact;
   publicKey: string = environment.emailjs.publicKey;
   mailSendWithSuccess!: boolean;
   sendIsPending: boolean = false;
