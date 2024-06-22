@@ -5,6 +5,7 @@ import { ModalService } from '../../../shared/services/components/modal.service'
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import cryptoRandomString from 'crypto-random-string';
 
 @Component({
   selector: 'app-modal-admin',
