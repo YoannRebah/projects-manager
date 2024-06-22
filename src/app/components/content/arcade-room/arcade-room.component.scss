@@ -45,15 +45,6 @@
         img {
             width: 1.8rem;
             margin-right: 0.33rem;
-            animation: img-anim 1.2s linear infinite;
-            @keyframes img-anim {
-                0% {
-                    transform: rotateY(0deg);
-                }
-                100% {
-                    transform: rotateY(360deg);
-                }
-            }
 
             @include screen('s') {
                 width: 2.2rem;
