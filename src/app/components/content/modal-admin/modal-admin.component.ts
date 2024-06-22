@@ -90,13 +90,16 @@ export class ModalAdminComponent {
 
   checkAdminPassword(Event: Event): void {
     const value = (Event.target as HTMLInputElement).value;
-    if(value == this.adminPassword) {
-      this.code = this.randomCode;
-      this.setCookieCode(this.code);
-      this.sendMail({code: this.code});
-      this.clearInputPassword();
-    } else {
-      this.passwordIsWrong = true;
+    if(value.length == this.adminPassword.length) {
+      if(value == this.adminPassword) {
+        this.passwordIsWrong = false;
+        this.code = this.randomCode;
+        this.setCookieCode(this.code);
+        this.sendMail({code: this.code});
+        this.clearInputPassword();
+      } else {
+        this.passwordIsWrong = true;
+      }
     }
   }
 
@@ -118,13 +121,11 @@ export class ModalAdminComponent {
   checkAdminCode(Event: Event): void {
     const value = (Event.target as HTMLInputElement).value;
     if(value == this.cookieCode) {
-      console.log("admin is connected");
       this.modalService.hide(this.modalAdminId);
       this.clearInputCode();
       this.deleteCookieCode();
       this.showInputCode = false;
-    } else {
-      this.passwordIsWrong = true;
+      console.log("admin is connected");
     }
   }
 
