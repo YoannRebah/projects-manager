@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="forms relative flex flex-col gap-10" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
+    <form class="form-contact relative flex flex-col gap-10" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
         <!-- Identité -->
         <fieldset>
             <legend class="text-shadow-chromatic-glitch mb-6 text-2xl font-light border-b-2 border-cyan w-full">Identité</legend>
@@ -102,7 +102,6 @@
             </button>
         </div>
     </form>
-    
     <!-- popins -->
     <app-popin  id="popin-form-sent-success" position="fixed" img="mail" title="Demande de contact" text="Le mail a bien été transmis. Merci !"></app-popin>
     <app-popin id="popin-form-sent-error" position="fixed" img="error" title="Demande de contact" text="Aïe... Il y a eu une erreur lors de l'envoi du mail..."></app-popin>
