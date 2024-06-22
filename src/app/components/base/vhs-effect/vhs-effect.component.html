@@ -1,5 +1,8 @@
-<div class="vhs-effect z-50" [class.hidden]="!isVisible">
-    <div class="vhs-effect-background">
+<div class="vhs-effect fixed-backdrop-full pointer-events-none shadow-inset-white z-50" [class.hidden]="!isVisible">
+    <div 
+        class="vhs-effect-background absolute-full bg-cover bg-center bg-no-repeat opacity-25 bg-pink" 
+        style="background-blend-mode: color; background-image: url(assets/images/tv-no-signal.jpg)"
+    >
         <div class="animation-chromatic-aberration-infinite top"></div>
         <div class="animation-chromatic-aberration-infinite bottom"></div>
         <div class="vhs-lines animation-vhs-lines-infinite" style="height: 1px;animation-delay: 2s;"></div>
@@ -8,11 +11,11 @@
         <div class="vhs-lines animation-vhs-lines-infinite" style="height: 5px;animation-delay: 17s;"></div>
         <div class="vhs-lines animation-vhs-lines-infinite" style="height: 2px;animation-delay: 23s;"></div>
     </div>
-    <div class="footer animation-fade-forwards-5s" [class.hidden]="!footerIsVisible">
+    <footer class="footer absolute-w-full-bottom animation-fade-forwards-5s" [class.hidden]="!footerIsVisible">
          <app-time-counter></app-time-counter>
         <div class="container-play text-shadow-glitch">
             <p class="reddit-mono">Play</p>
             <i class="fa-solid fa-play" aria-hidden="true"></i>
         </div>
-    </div>
+    </footer>
 </div>

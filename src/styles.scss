@@ -26,8 +26,14 @@
     .fixed-backdrop-screen {
         @apply fixed top-0 left-0 w-screen h-screen;
     }
+    .fixed-backdrop-full {
+        @apply fixed top-0 left-0 w-full h-full;
+    }
     .absolute-full {
         @apply absolute top-0 left-0 w-full h-full;
+    }
+    .absolute-w-full-bottom {
+        @apply absolute bottom-0 left-0 w-full;
     }
     .absolute-full-translate-x-y {
         @apply absolute -translate-x-2/4 -translate-y-2/4 top-[50%] left-[50%];
@@ -142,6 +148,6 @@
         }
     }
     .vhs-lines {
-        @apply absolute left-0 top-[0%] w-full opacity-40 bg-white shadow-vhs-lines pointer-events-none;
+        @apply absolute left-0 top-[-5%] w-full opacity-40 bg-white shadow-vhs-lines pointer-events-none;
     }
 }
