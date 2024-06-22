@@ -24,6 +24,7 @@ import { FormContactComponent } from './components/content/form-contact/form-con
 import { AdsPosterComponent } from './components/content/ads-poster/ads-poster.component';
 import { BlogComponent } from './components/content/blog/blog.component';
 import { TerminalComponent } from './components/content/terminal/terminal.component';
+import { ModalAdminComponent } from './components/content/modal-admin/modal-admin.component';
 // layout
 import { MainComponent } from './components/layout/main/main.component';
 import { ContentComponent } from './components/layout/content/content.component';
@@ -65,6 +66,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
     FormContactComponent,
     BlogComponent,
     TerminalComponent,
+    ModalAdminComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

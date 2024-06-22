@@ -1,5 +1,5 @@
 <div class="relative w-full flex-center-between">
-    <label [for]="id" class="text-grey-dark" [innerHTML]="label"></label>
+    <label [for]="id" class="text-grey-dark mr-2" [innerHTML]="label"></label>
     <div class="toggle-switch relative flex items-center border-2 border-grey-dark w-[50px] h-[18px]">
       <input class="absolute w-full h-full opacity-0 z-10" type="checkbox" [checked]="checkboxState" (change)="toggleCheckbox($event)" />
       <div class="slider absolute bg-grey-dark transform center-y"></div>
