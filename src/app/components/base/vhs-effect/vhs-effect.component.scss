@@ -1,33 +1,26 @@
 @import '../../../../styles/base';
 
-.footer {
+footer {
     display: none;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 4%;
-    opacity: 0.5;
 
     @include screen('s') {
         display: flex;
     }
 
-    .timer {
+    
+}
+
+.container-play {
+
+    p, i {
         color: $white;
         font-size: 1.3rem;
     }
 
-    .container-play {
-        display: flex;
-        align-items: center;
-
-        p, i {
-            color: $white;
-            font-size: 1.3rem;
-        }
-
-        p {
-            text-transform: uppercase;
-            margin-right: 0.55rem;
-        }
+    p {
+        text-transform: uppercase;
+        margin-right: 0.55rem;
     }
 }
