@@ -4,6 +4,7 @@ import { ModalComponent } from '../../base/modal/modal.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-modal-admin',
@@ -21,7 +22,10 @@ export class ModalAdminComponent {
   templateId: string = environment.emailjs.templateId.code;
   publicKey: string = environment.emailjs.publicKey;
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private modalService: ModalService,
+    private cookieService: CookieService
+  ) {}
 
   onPressCtrlY(): void {
     if(!this.isVisible) {
