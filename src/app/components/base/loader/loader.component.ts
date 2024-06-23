@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { Subscription } from 'rxjs';
+import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.component';
 
 @Component({
   selector: 'app-loader',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BlockSignalTvComponent],
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })

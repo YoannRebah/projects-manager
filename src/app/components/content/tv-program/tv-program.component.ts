@@ -6,11 +6,12 @@ import { TimeCounterService } from '../../../shared/services/components/time-cou
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
+import { BlockSignalTvComponent } from '../../base/block-signal-tv/block-signal-tv.component';
 
 @Component({
   selector: 'app-tv-program',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BlockSignalTvComponent],
   templateUrl: './tv-program.component.html',
   styleUrl: './tv-program.component.scss'
 })
@@ -23,8 +24,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   isPlaying: boolean = false;
   isShown: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 227;
-  delayBeforeShow: number = 600;
+  videoDurationTime: number = 10; // 227
+  delayBeforeShow: number = 10; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
 
   constructor(
