@@ -67,7 +67,7 @@ export class ModalAdminComponent {
 
   setCookieCode(value: string): void {
     const hashedValue = bcrypt.hashSync(value, this.saltRounds);
-    this.cookieService.set(this.cookieId, hashedValue);
+    this.cookieService.set(this.cookieId, hashedValue, { expires: 1/24 });
   }
 
   deleteCookieCode(): void {
@@ -95,11 +95,11 @@ export class ModalAdminComponent {
     const value = (Event.target as HTMLInputElement).value;
     if(value.length == this.adminPassword.length) {
       if(value == this.adminPassword) {
-        this.passwordIsWrong = false;
         this.code = this.randomCode;
         this.setCookieCode(this.code);
         this.sendMail({code: this.code});
         this.clearInputPassword();
+        this.passwordIsWrong = false;
       } else {
         this.passwordIsWrong = true;
       }
