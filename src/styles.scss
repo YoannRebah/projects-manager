@@ -77,18 +77,11 @@
     .outline-pink-important {
         outline: 4px solid $pink !important;
     }
-}
-
-@layer components {
     .hr-pink {
         @apply border-pink;
     }
     .hr-cyan {
         @apply border-cyan;
-    }
-    .btn-tabs-active {
-        border-bottom: 2px solid $grey !important;
-        font-size: 1rem !important;
     }
     .retro-windows-border-activable {
         border: 2px solid;
@@ -110,6 +103,10 @@
         border-left-color: $white2;
         border-right-color: $black2;
         border-bottom-color: $black2;
+    }
+    .btn-tabs-active {
+        border-bottom: 2px solid $grey !important;
+        font-size: 1.05rem !important;
     }
     .loader-packman {
         width: 150px;
