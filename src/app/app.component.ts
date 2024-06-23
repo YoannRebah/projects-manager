@@ -17,7 +17,7 @@ import { ContentComponent } from './components/layout/content/content.component'
 import { NavComponent } from './components/layout/nav/nav.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 // routes
-import { HomepageComponent } from './components/routes/homepage/homepage.component';
+import { HomepageComponent } from './routes/homepage/homepage.component';
 
 @Component({
   selector: 'app-root',
