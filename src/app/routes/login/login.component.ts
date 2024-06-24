@@ -12,7 +12,7 @@ import { VhsEffectComponent } from '../../components/base/vhs-effect/vhs-effect.
     H1Component, 
     HeaderComponent,
     FormLoginComponent,
-    VhsEffectComponent
+    VhsEffectComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
