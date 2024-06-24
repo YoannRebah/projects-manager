@@ -18,30 +18,35 @@ export class ListNavComponent implements OnInit{
   navAnchors: Anchor[] = [
     {
       href: '#',
+      classNames: 'text-base',
       iconClassNames: 'fa-solid fa-home',
       ariaLabel: 'Accueil',
       tooltip: 'Accueil',
     },
     {
       href: '#skills',
+      classNames: 'text-sm',
       iconClassNames: 'fa-solid fa-briefcase',
       text: 'Compétences',
       ariaLabel: 'Compétences',
     },
     {
       href: '#notable-achievements',
+      classNames: 'text-sm',
       iconClassNames: 'fa-solid fa-diagram-project',
       text: 'Réalisations',
       ariaLabel: 'Réalisations',
     },
     {
       href: '#contact',
+      classNames: 'text-sm',
       iconClassNames: 'fa-solid fa-phone',
       text: 'Contact',
       ariaLabel: 'Contact',
     },
     {
       href: 'https://github.com/YoannRebah/portfolio-angular',
+      classNames: 'text-base',
       iconClassNames: 'fa-brands fa-github',
       target: '_blank',
       ariaLabel: 'Code source du portfolio',
@@ -50,6 +55,7 @@ export class ListNavComponent implements OnInit{
   ];
   navButtons: Button[] = [
     {
+      classNames: 'text-base',
       iconClassNames: 'fa-solid fa-gear',
       ariaLabel: 'Paramètres',
       tooltip: 'Paramètres',
