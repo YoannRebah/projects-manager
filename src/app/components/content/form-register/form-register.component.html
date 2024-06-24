@@ -3,7 +3,7 @@
         <!-- header -->
         <header class="flex-center-start bg-blue-dark p-1">
             <div class="container-title">
-                <p class="ml-2 text-white">Se connecter</p>
+                <p class="ml-2 text-white">Créer un compte</p>
             </div>
         </header>
         <!-- content -->
@@ -11,23 +11,23 @@
             <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
             <div>
                 <div class="flex justify-between gap-4">
-                    <p class="text-sm">Saisissez votre e-mail et votre mot de passe.</p>
+                    <p class="text-sm">Saisissez votre e-mail et un mot de passe.</p>
                     <div class="flex flex-col gap-1">
-                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitLoginForm()">OK</button>
+                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitRegisterForm()">OK</button>
                         <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
                     </div>
                 </div>
                 <div class="flex-center-between">
-                    <form class="form-login relative flex flex-col gap-2" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+                    <form class="form-login relative flex flex-col gap-2" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
                         <div>
                             <label class="text-sm mr-2" for="email"><span class="underline">A</span>dresse mail:</label>
                             <input class="retro-windows-input-border pl-1" id="email" type="text" formControlName="email"
-                            [ngClass]="{'outline-pink-important': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
+                            [ngClass]="{'outline-pink-important': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
                         </div>
                         <div>
                             <label class="text-sm mr-2" for="password"><span class="underline">M</span>ot de passe:</label>
                             <input class="retro-windows-input-border pl-1" id="password" type="password" formControlName="password"
-                            [ngClass]="{'outline-pink-important': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+                            [ngClass]="{'outline-pink-important': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
                         </div>
                     </form>
                 </div>
@@ -39,7 +39,7 @@
                 <span class="text-sm">Se connecter avec</span>
                 <img class="w-[120px]" src="assets/images/logo-google-pixel.png" alt="Google">
             </button>
-            <a href="/register">Créer un compte</a>
+            <a href="/login">Se connecter</a>
         </footer>
     </div>
 </div>
