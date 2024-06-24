@@ -19,6 +19,9 @@
     .flex-center-between {
         @apply flex items-center justify-between;
     }
+    .flex-center-start {
+        @apply flex items-center justify-start;
+    }
     .fixed-backdrop-flex-center {
         @apply fixed top-0 left-0 w-full h-full flex items-center justify-center;
     }
@@ -103,6 +106,13 @@
         border-left-color: $white2;
         border-right-color: $black2;
         border-bottom-color: $black2;
+    }
+    .retro-windows-input-border {
+        border: 2px solid;
+        border-top-color: $grey2;
+        border-left-color: $grey2;
+        border-right-color: $white2;
+        border-bottom-color: $white2;
     }
     .btn-tabs-active {
         border-bottom: 2px solid $grey !important;

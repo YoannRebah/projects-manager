@@ -1,15 +1,33 @@
-<div class="container">
-    <form class="form-login relative flex flex-col gap-10" (ngSubmit)="onSubmitLoginForm()">
-        <div>
-            <h3>Se connecter</h3>
+<div class="container absolute-full-translate-x-y flex justify-center">
+    <div class="container relative w-full max-w-[570px] flex flex-col border-4 border-grey text-grey-dark shadow-black-transparent-dark">
+        <header class="flex-center-start bg-blue-dark p-1">
+            <div class="container-title">
+                <p class="ml-2 text-white">Se connecter</p>
+            </div>
+        </header>
+        <div class="bg-grey p-4 flex justify-between gap-4">
+            <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
+            <div>
+                <div class="flex justify-between gap-4">
+                    <p class="text-sm">Saisissez votre e-mail et votre mot de passe.</p>
+                    <div class="flex flex-col gap-1">
+                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">OK</button>
+                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
+                    </div>
+                </div>
+                <div class="flex-center-between">
+                    <form class="form-login relative flex flex-col gap-2" (ngSubmit)="onSubmitLoginForm()">
+                        <div>
+                            <label class="text-sm mr-2" for="mail"><span class="underline">A</span>dresse mail:</label>
+                            <input class="retro-windows-input-border pl-2" id="mail" type="text">
+                        </div>
+                        <div>
+                            <label class="text-sm mr-2" for="password"><span class="underline">M</span>ot de passe:</label>
+                            <input class="retro-windows-input-border pl-2" id="password" type="password">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="mail">E-mail&nbsp;:</label>
-            <input id="mail" type="text">
-        </div>
-        <div>
-            <label for="password">Mot de passe&nbsp;:</label>
-            <input id="password" type="password">
-        </div>
-    </form>
+    </div>
 </div>
