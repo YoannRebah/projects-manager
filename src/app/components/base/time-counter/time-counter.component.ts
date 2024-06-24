@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, Observable } from 'rxjs';
 import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
@@ -21,12 +21,11 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   time: number = 0;
   timeString: string = '00:00:00';
   isPaused: boolean = false;
+  timeCounterService = inject(TimeCounterService);
+  cdr = inject(ChangeDetectorRef);
+  ngZone = inject(NgZone);
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private ngZone: NgZone,
-    private timeCounterService: TimeCounterService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeTimeCounterService();

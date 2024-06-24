@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild, NgZone } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,14 +9,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './employee-card.component.scss'
 })
 export class EmployeeCardComponent implements AfterViewInit {
-
-  @ViewChild('employeeCard') employeeCard!: ElementRef;
-
   height!: number;
   width!: number;
   animationFrameId: any;
+  renderer = inject(Renderer2);
+  ngZone = inject(NgZone);
 
-  constructor(private renderer: Renderer2, private ngZone: NgZone) {}
+  @ViewChild('employeeCard') employeeCard!: ElementRef;
+
+  constructor() {}
 
   ngAfterViewInit(): void {
     const nativeElement = this.employeeCard.nativeElement;

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TimeCounterComponent } from '../time-counter/time-counter.component';
@@ -18,10 +18,9 @@ export class VhsEffectComponent implements OnInit, OnDestroy {
   isVisible: boolean = true;
   footerIsFlashing: boolean = false;
   footerIsVisible: boolean = false;
+  vhsEffectService = inject(VhsEffectService);
 
-  constructor(
-    private vhsEffectService: VhsEffectService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeIsVisible()

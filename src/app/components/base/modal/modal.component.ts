@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { Subscription } from 'rxjs';
@@ -14,14 +14,13 @@ import { Subscription } from 'rxjs';
 export class ModalComponent implements AfterViewInit, OnDestroy {
   private isVisibleSubscription!: Subscription;
   isVisible: boolean = false;
+  modalService = inject(ModalService);
 
   @Input() id!: string;
   @Input() position?: string = 'fixed';
   @Input() title?: string;
 
-  constructor(
-    private modalService: ModalService
-  ) {}
+  constructor() {}
 
   ngAfterViewInit(): void {
     if (this.id) {

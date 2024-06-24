@@ -14,12 +14,12 @@ import { Router } from '@angular/router';
 })
 
 export class FormLoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  errorLogin: boolean = false;
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService)
-  loginForm!: FormGroup;
-  errorLogin: boolean = false;
 
   constructor() {}
 

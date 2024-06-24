@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 })
 
 export class FormRegisterComponent implements OnInit {
+  registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService)
-  registerForm!: FormGroup;
 
   constructor() {}
 

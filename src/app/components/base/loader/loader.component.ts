@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { Subscription } from 'rxjs';
@@ -15,8 +15,9 @@ import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.compo
 export class LoaderComponent implements OnInit {
   private loaderSubscription!: Subscription;
   isLoading: boolean = false;
+  loaderService = inject(LoaderService);
 
-  constructor(private loaderService: LoaderService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeLoader();

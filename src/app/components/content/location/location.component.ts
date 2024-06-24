@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from './location';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
@@ -32,10 +32,11 @@ export class LocationComponent implements AfterViewInit {
       value: "Essonne"
     }
   ];
+  windowRefService = inject(WindowRefService);
 
   @ViewChild('earthGlobe', { static: true }) earthGlobeCanvas!: ElementRef<HTMLCanvasElement>;
 
-  constructor(private windowRefService: WindowRefService) {}
+  constructor() {}
 
   ngAfterViewInit(): void {
     this.initTypedCountries();

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, Renderer2, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TerminalService } from '../../../shared/services/components/terminal.service';
 import { Subscription } from 'rxjs';
@@ -28,17 +28,16 @@ export class TerminalComponent implements OnInit, OnDestroy {
   terminalHistoryKey: string = LocalStorageService.portfolioPrefixStorageKey + "terminal-history";
   currentCommandIndex: number = -1;
   idToggleVhsEffect: string = 'toggle-vhs-effect';
+  terminalService = inject(TerminalService);
+  renderer = inject(Renderer2);
+  modalService = inject(ModalService);
+  loaderService = inject(LoaderService);
+  tvProgramService = inject(TvProgramService);
+  vhsEffectService = inject(VhsEffectService);
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
-  constructor(
-    private terminalService: TerminalService,
-    private renderer: Renderer2,
-    private modalService: ModalService,
-    private loaderService: LoaderService,
-    private tvProgramService: TvProgramService,
-    private vhsEffectService: VhsEffectService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeIsVisible();

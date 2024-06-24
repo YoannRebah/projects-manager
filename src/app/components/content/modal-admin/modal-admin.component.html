@@ -1,7 +1,0 @@
-<app-modal id="modal-admin" classNames="modal-admin" title="Admin">
-    <div class="custom-content bg-white p-8 flex-center-center flex-col gap-5">
-        <img *ngIf="passwordIsWrong" src="assets/gif/magic-word.gif" alt="Magic Word">
-        <input *ngIf="!showInputCode" #inputPasswordElementRef type="password" class="w-2/4 p-2 text-black text-center text-2xl border-2 border-black" (input)="checkAdminPassword($event)">
-        <input *ngIf="showInputCode" #inputCodeElementRef type="text" class="w-2/4 p-2 text-black text-center text-2xl border-2 border-black outline-cyan" (input)="checkAdminCode($event)">
-    </div>
-</app-modal>

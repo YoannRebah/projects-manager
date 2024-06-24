@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 // services
 import { LoaderService } from '../../shared/services/components/loader.service';
 // layout
@@ -18,7 +18,6 @@ import { TvProgramComponent } from '../../components/content/tv-program/tv-progr
 import { ListNavComponent } from '../../components/content/list-nav/list-nav.component';
 import { ListFooterComponent } from '../../components/content/list-footer/list-footer.component';
 import { TerminalComponent } from '../../components/content/terminal/terminal.component';
-import { ModalAdminComponent } from '../../components/content/modal-admin/modal-admin.component';
 import { EmployeeCardComponent } from '../../components/content/employee-card/employee-card.component';
 import { SkillsComponent } from '../../components/content/skills/skills.component';
 import { AchievementsComponent } from '../../components/content/achievements/achievements.component';
@@ -49,7 +48,6 @@ import { BlogComponent } from '../../components/content/blog/blog.component';
     VhsEffectComponent,
     TvProgramComponent,
     TerminalComponent,
-    ModalAdminComponent,
     // content
     EmployeeCardComponent,
     SkillsComponent,
@@ -70,7 +68,9 @@ import { BlogComponent } from '../../components/content/blog/blog.component';
 })
 
 export class HomepageComponent implements OnInit{ 
-  constructor(private loaderService: LoaderService) {}
+  loaderService = inject(LoaderService);
+
+  constructor() {}
 
   ngOnInit(): void {
     this.loaderService.toggle();

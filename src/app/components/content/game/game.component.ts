@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, ViewChild, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription, timer, Observable } from 'rxjs';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
@@ -53,16 +53,17 @@ export class GameComponent implements OnInit, OnDestroy {
   // meteor
   meteorIntervalSpeedGeneration: number = 1000;
 
+  // services
+  renderer = inject(Renderer2);
+  gameService = inject(GameService);
+  cdr = inject(ChangeDetectorRef);
+  ngZone = inject(NgZone);
+
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
   @ViewChild('collisionBox', { static: true }) collisionBox!: ElementRef;
 
-  constructor(
-    private renderer: Renderer2,
-    private gameService: GameService,
-    private cdr: ChangeDetectorRef,
-    private ngZone: NgZone,
-  ) {}
+  constructor() {}
 
   ngOnInit() {
     this.updatePlayerHighScore();

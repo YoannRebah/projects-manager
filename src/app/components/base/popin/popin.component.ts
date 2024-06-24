@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, Input } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { PopinService } from '../../../shared/services/components/popin.service';
@@ -14,6 +14,7 @@ import { PopinService } from '../../../shared/services/components/popin.service'
 export class PopinComponent implements AfterViewInit, OnDestroy {
   private isVisibleSubscription!: Subscription;
   isVisible: boolean = false;
+  popinService = inject(PopinService);
 
   @Input() id!: string;
   @Input() position?: string = 'absolute';
@@ -21,9 +22,7 @@ export class PopinComponent implements AfterViewInit, OnDestroy {
   @Input() title?: string;
   @Input() text?: string;
 
-  constructor(
-    private popinService: PopinService
-  ) {}
+  constructor() {}
 
   ngAfterViewInit(): void {
     if (this.id) {

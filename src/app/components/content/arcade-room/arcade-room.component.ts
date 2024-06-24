@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameComponent } from '../game/game.component';
 import { GameService } from '../../../shared/services/components/game.service';
@@ -13,8 +13,9 @@ import { GameService } from '../../../shared/services/components/game.service';
 
 export class ArcadeRoomComponent {
   gameIsVisible: boolean = false;
+  gameService = inject(GameService);
 
-  constructor(private gameService: GameService) {
+  constructor() {
     this.gameService.isVisible$.subscribe(isVisible => {
       this.gameIsVisible = isVisible;
     });

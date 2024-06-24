@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../base/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
@@ -20,10 +20,11 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   vhsEffectIsVisible: boolean = true;
   footerIsVisible: boolean = true;
   toggleSwitchVhsEffectId: string = 'toggle-vhs-effect';
+  vhsEffectService = inject(VhsEffectService);
 
   @ViewChild('toggleSwitchVhsEffect') toggleSwitchVhsEffect!: ToggleSwitchComponent;
 
-  constructor(private vhsEffectService: VhsEffectService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeVhsEffectIsVisible();

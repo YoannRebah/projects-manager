@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
@@ -27,13 +27,12 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   videoDurationTime: number = 227; // 227
   delayBeforeShow: number = 600; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
+  tvProgramService = inject(TvProgramService);
+  timeCounterService = inject(TimeCounterService);
+  vhsEffectService = inject(VhsEffectService);
+  loaderService = inject(LoaderService);
 
-  constructor(
-    private tvProgramService: TvProgramService,
-    private timeCounterService: TimeCounterService,
-    private vhsEffectService: VhsEffectService,
-    private loaderService: LoaderService
-  ) {}
+  constructor() {}
 
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
 

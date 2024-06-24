@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Achievements } from './achievements';
 import { PopinComponent } from '../../base/popin/popin.component';
@@ -166,8 +166,9 @@ export class AchievementsComponent {
     }
   ];
   indexMax: number = this.achievements.length - 1;
+  popinService = inject(PopinService);
 
-  constructor(private popinService: PopinService) {}
+  constructor() {}
 
   setActive(index: number): void {
     this.activeIndex = index;

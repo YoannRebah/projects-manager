@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../../environments/environment';
@@ -29,12 +29,11 @@ export class FormContactComponent implements OnInit {
   sendIsPending: boolean = false;
   templateParams = {};
   showLocationGif: boolean = false;
+  formBuilder = inject(FormBuilder);
+  windowRefService = inject(WindowRefService);
+  popinService = inject(PopinService);
 
-  constructor(
-    private formBuilder: FormBuilder, 
-    private windowRefService: WindowRefService,
-    private popinService: PopinService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.initContactFormControl();

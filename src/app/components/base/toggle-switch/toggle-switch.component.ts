@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputService } from '../../../shared/services/base/input.service';
 import { Subscription } from 'rxjs';
@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class ToggleSwitchComponent implements OnInit, OnDestroy {
   private inputStateSubscription!: Subscription;
+  inputService = inject(InputService);
 
   @Input() id!: string;
   @Input() label!: string;
@@ -19,7 +20,7 @@ export class ToggleSwitchComponent implements OnInit, OnDestroy {
 
   checkboxState: boolean = false;
 
-  constructor(private inputService: InputService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeInputState();
