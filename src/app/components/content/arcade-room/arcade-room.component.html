@@ -1,4 +1,4 @@
-<div class="arcade-room mx-auto flex flex-col items-center">
+<div class="arcade-room mx-auto flex flex-col items-center bg-square-pink shadow-inset-white-strong">
     <h3 class="silkscreen-regular flex items-center uppercase text-white">
       <span class="relative" data-text="LAUNCHER">LAUNCHER</span>
       <span class="relative" data-text="2000">2000</span>
@@ -7,9 +7,12 @@
       <img class="animation-rotateY-infinite" src="../../assets/images/coin-video-games.png" alt="Pièce de monnaie">
       <span class="silkscreen-regular text-white">INSERT COINS</span>
     </div>
-    <button class="btn text-white" aria-label="Cliquez pour jouer" (click)="onClickShowGame()">
+    <a href="/launcher-2000" class="btn text-2xl text-white" aria-label="Cliquez pour jouer">
       <span class="silkscreen-regular">PRESS TO PLAY</span>
-    </button>
+    </a>
+    <!-- <button class="btn text-white" aria-label="Cliquez pour jouer" (click)="onClickShowGame()">
+      <span class="silkscreen-regular">PRESS TO PLAY</span>
+    </button> -->
     <!-- GameComponent -->
     <app-game *ngIf="gameIsVisible"></app-game>
 </div>

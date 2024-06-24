@@ -3,10 +3,6 @@
 .arcade-room {
     border-radius: .5rem;
     padding: 2rem;
-    background-size: 32px 32px;
-    background-position: center;
-    background-image: linear-gradient(to right, $pink-light 1px, transparent 1px), linear-gradient(to bottom, $pink2-light 1px, transparent 1px);
-    box-shadow: inset 0px 0px 37px 15px hsla(281, 88%, 76%, 0.22);
 
     @include screen('s') {
         max-width: 760px;

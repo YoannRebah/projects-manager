@@ -159,4 +159,9 @@
     .vhs-lines {
         @apply absolute left-0 top-[-5%] w-full opacity-30 bg-white shadow-vhs-lines pointer-events-none;
     }
+    .bg-square-pink {
+        background-size: 32px 32px;
+        background-position: center;
+        background-image: linear-gradient(to right, $pink-light 1px, transparent 1px), linear-gradient(to bottom, $pink2-light 1px, transparent 1px);
+    }
 }

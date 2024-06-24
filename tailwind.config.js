@@ -43,6 +43,7 @@ export const theme = {
       "black-transparent-dark": '2px 2px 0px 0px hsla(0, 0%, 0%, 0.7)',
       "vhs-lines": '6px -4px 2px rgba(255, 52, 52, 0.6), 8px -6px 2px rgba(52, 255, 120, 0.6)',
       "inset-white": 'inset 1px 0px 100px 0px rgba(255, 255, 255, 0.04)',
+      "inset-white-strong": 'inset 0px 0px 37px 15px hsla(281, 88%, 76%, 0.22)'
     },
     padding: {
       '1.33': '0.33rem',
