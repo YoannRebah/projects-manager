@@ -7,44 +7,47 @@
             </div>
         </header>
         <!-- content -->
-        <div class="p-4 flex justify-between gap-4">
-            <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
-            <div>
-                <div class="flex justify-between gap-4">
+        <div class="p-4">
+            <div class="flex justify-between gap-4">
+                <div>
+                    <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
+                </div>
+                <div>
                     <p class="text-sm">Saisissez votre e-mail et un mot de passe.</p>
-                    <div class="flex flex-col gap-1">
-                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitRegisterForm()">OK</button>
-                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
-                    </div>
                 </div>
-                <div class="flex-center-between">
-                    <form class="form-login relative flex flex-col gap-2" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
-                        <div>
-                            <label class="text-sm mr-2" for="username"><span class="underline">N</span>om utilisateur:</label>
-                            <input class="retro-windows-input-border pl-1" id="username" type="text" formControlName="username"
+                <div class="flex flex-col gap-1">
+                    <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitRegisterForm()">OK</button>
+                    <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <form class="form-register relative" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
+                    <ul>
+                        <li class="flex items-center mb-2">
+                            <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="username"><span class="underline">N</span>om utilisateur:</label>
+                            <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="username" type="text" formControlName="username"
                             [ngClass]="{'outline-pink-important': registerForm.get('username')?.invalid && registerForm.get('username')?.touched}">
-                        </div>
-                        <div>
-                            <label class="text-sm mr-2" for="email"><span class="underline">A</span>dresse mail:</label>
-                            <input class="retro-windows-input-border pl-1" id="email" type="text" formControlName="email"
+                        </li>
+                        <li class="flex items-center mb-2">
+                            <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="email"><span class="underline">A</span>dresse mail:</label>
+                            <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="email" type="text" formControlName="email"
                             [ngClass]="{'outline-pink-important': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
-                        </div>
-                        <div>
-                            <label class="text-sm mr-2" for="password"><span class="underline">M</span>ot de passe:</label>
-                            <input class="retro-windows-input-border pl-1" id="password" type="password" formControlName="password"
+                        </li>
+                        <li class="flex items-center mb-2">
+                            <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="password"><span class="underline">M</span>ot de passe:</label>
+                            <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="password" type="password" formControlName="password"
                             [ngClass]="{'outline-pink-important': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
-                        </div>
-                    </form>
-                </div>
+                        </li>
+                    </ul>
+                </form>
             </div>
         </div>
         <!-- footer -->
         <footer class="p-4 flex-center-center">
             <button class="btn retro-windows-border-activable p-1 px-8 text-sm text-black font-medium flex-center-center flex-col gap-2">
-                <span class="text-sm">Se connecter avec</span>
+                <span class="text-xs">Créer un compte avec</span>
                 <img class="w-[120px]" src="assets/images/logo-google-pixel.png" alt="Google">
             </button>
-            <a routerLink="/login">Se connecter</a>
         </footer>
     </div>
 </div>
