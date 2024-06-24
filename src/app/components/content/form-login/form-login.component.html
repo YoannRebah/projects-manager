@@ -13,19 +13,21 @@
                 <div class="flex justify-between gap-4">
                     <p class="text-sm">Saisissez votre e-mail et votre mot de passe.</p>
                     <div class="flex flex-col gap-1">
-                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">OK</button>
+                        <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitLoginForm()">OK</button>
                         <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
                     </div>
                 </div>
                 <div class="flex-center-between">
-                    <form class="form-login relative flex flex-col gap-2" (ngSubmit)="onSubmitLoginForm()">
+                    <form class="form-login relative flex flex-col gap-2" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
                         <div>
-                            <label class="text-sm mr-2" for="mail"><span class="underline">A</span>dresse mail:</label>
-                            <input class="retro-windows-input-border pl-1" id="mail" type="text">
+                            <label class="text-sm mr-2" for="email"><span class="underline">A</span>dresse mail:</label>
+                            <input class="retro-windows-input-border pl-1" id="email" type="text" formControlName="email"
+                            [ngClass]="{'outline-pink-important': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}">
                         </div>
                         <div>
                             <label class="text-sm mr-2" for="password"><span class="underline">M</span>ot de passe:</label>
-                            <input class="retro-windows-input-border pl-1" id="password" type="password">
+                            <input class="retro-windows-input-border pl-1" id="password" type="password" formControlName="password"
+                            [ngClass]="{'outline-pink-important': contactForm.get('password')?.invalid && contactForm.get('password')?.touched}">
                         </div>
                     </form>
                 </div>

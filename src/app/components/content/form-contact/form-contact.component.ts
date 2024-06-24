@@ -37,11 +37,11 @@ export class FormContactComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initContactForm();
+    this.initContactFormControl();
     this.subscribeCompagnyLocation();
   }
 
-  initContactForm(): void {
+  initContactFormControl(): void {
     this.contactForm = this.formBuilder.group({
       "lastName": ['', Validators.required],
       "firstName": ['', Validators.required],

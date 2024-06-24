@@ -11,15 +11,35 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 })
 
 export class FormLoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  constructor() {}
+  constructor(
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-      
+    this.initLoginFormControl();
+  }
+
+  initLoginFormControl(): void {
+    this.loginForm = this.formBuilder.group({
+      "email": ['', [Validators.required, Validators.email]],
+      "password": ['', Validators.required]
+    });
   }
 
   onSubmitLoginForm(): void {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      console.log('Form is invalid');
+    } else {
+      console.log('Form Submitted!', this.loginForm.value);
+      // Your form submission logic here
+    }
+  }
 
+  onClickSubmitLoginForm(): void {
+    this.onSubmitLoginForm();
   }
 
 }
