@@ -101,10 +101,6 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  // onClickQuitGame(): void {
-  //   this.hide();
-  // }
-
   onClickRetryGame(): void {
     this.gameIsOver = false;
     this.resetGameVariables();

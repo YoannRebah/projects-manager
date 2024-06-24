@@ -1,16 +1,11 @@
 <div class="fixed-backdrop-flex-center bg-square-pink z-10">
-    <div 
-        class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';"
-    >
+    <div class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';">
         <!-- header -->
         <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
             <div class="flex items-center flex-[1_1_20%]">
                 <a href="" class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter">
                     <span class="text-white uppercase jersey-15-regular">Quitter</span>
                 </a>
-                <!-- <button class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter" (click)="onClickQuitGame()">
-                    <span class="text-white uppercase jersey-15-regular">Quitter</span>
-                </button> -->
             </div>
             <div class="flex items-center flex-[1_1_50%]">
                 <div class="container-health-bar flex items-center w-full">
@@ -29,7 +24,6 @@
                 </p>
             </div>
         </header>
-
         <!-- content-game -->
         <div 
             class="relative bg-no-repeat bg-cover bg-center bg-body cursor-none border-2 border-dashed border-orange"
@@ -53,7 +47,6 @@
             </div>
         </div>
     </div>
-    
     <!-- game over background -->
     <div 
         *ngIf="gameIsOver" 
@@ -71,11 +64,7 @@
                 <a href="" class="btn jersey-15-regular text-3xl">
                     <span>Quitter</span>
                 </a>
-                <!-- <button class="btn jersey-15-regular text-3xl" (click)="onClickQuitGame()">
-                    <span>Quitter</span>
-                </button> -->
             </div>
         </div>
     </div>
-
 </div>

@@ -57,14 +57,4 @@
             }
         }
     }
-
-    button {
-        @include screen('s') {
-            font-size: 1.6rem;
-        }
-
-        &:hover {
-            color: $cyan;
-        }
-    }
 }
