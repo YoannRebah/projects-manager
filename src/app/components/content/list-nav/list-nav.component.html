@@ -9,7 +9,7 @@
           [attr.rel]="anchor.target === '_blank' ? 'noopener noreferrer' : null"
           [title]="anchor.tooltip || ''"
       >
-        <i *ngIf="anchor.iconClassNames" [class]="anchor.iconClassNames" aria-label="hidden"></i>
+        <i *ngIf="anchor.iconClassNames" [class]="anchor.iconClassNames" aria-hidden="true"></i>
         <span *ngIf="anchor.text" class="ml-2 hidden md:flex">{{ anchor.text }}</span>
       </a>
     </li>
@@ -20,9 +20,24 @@
           [title]="btn.tooltip || ''"
           (click)="btn.onClick ? btn.onClick() : null"
       >
-        <i *ngIf="btn.iconClassNames" [class]="btn.iconClassNames" aria-label="hidden"></i>
+        <i *ngIf="btn.iconClassNames" [class]="btn.iconClassNames" aria-hidden="true"></i>
         <span *ngIf="btn.text" class="ml-2 hidden md:flex">{{ btn.text }}</span>
       </button>
+    </li>
+    <li *ngIf="userLoggedIn">
+      <button class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan">
+        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+      </button>
+    </li>
+    <li *ngIf="!userLoggedIn">
+      <a routeLink="/login" class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
+        <i class="fa-regular fa-user" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li *ngIf="!userLoggedIn">
+      <a routeLink="/register" class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
+        <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+      </a>
     </li>
   </ul>
   <!-- modal-settings -->

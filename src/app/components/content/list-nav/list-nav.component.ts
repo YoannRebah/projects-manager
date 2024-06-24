@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Anchor } from '../../../shared/models/anchor';
 import { Button } from '../../../shared/models/button';
 import { ModalSettingsComponent } from '../modal-settings/modal-settings.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
+import { AuthService } from '../../../shared/services/base/auth.service';
 
 @Component({
   selector: 'app-list-nav',
@@ -13,7 +14,7 @@ import { ModalService } from '../../../shared/services/components/modal.service'
   styleUrl: './list-nav.component.scss'
 })
 
-export class ListNavComponent {
+export class ListNavComponent implements OnInit{
   navAnchors: Anchor[] = [
     {
       href: '#',
@@ -55,13 +56,26 @@ export class ListNavComponent {
       onClick: this.onClickShowSettings.bind(this)
     }
   ];
+  modalService = inject(ModalService);
+  authService = inject(AuthService);
+  userLoggedIn: boolean = false;
 
-  constructor(
-    private modalService: ModalService
-  ) {}
+  constructor() {}
+
+  ngOnInit(): void {
+    this.checkUserConnectionStatus();
+  }
 
   onClickShowSettings(): void {
     this.modalService.show('modal-settings');
+  }
+
+  checkUserConnectionStatus(): void {
+    if(this.authService.currentUserSignal()) {
+      this.userLoggedIn = true;
+    } else {
+      this.userLoggedIn = false;
+    }
   }
 
 }
