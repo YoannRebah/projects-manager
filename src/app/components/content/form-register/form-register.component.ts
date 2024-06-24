@@ -28,6 +28,7 @@ export class FormRegisterComponent implements OnInit {
 
   initRegisterFormControl(): void {
     this.registerForm = this.formBuilder.group({
+      "username": ['', Validators.required],
       "email": ['', [Validators.required, Validators.email]],
       "password": ['', Validators.required]
     });
@@ -36,7 +37,7 @@ export class FormRegisterComponent implements OnInit {
   onSubmit(): void {
     const rowForm = this.registerForm.getRawValue();
     this.authService
-      .login(rowForm.email, rowForm.password)
+      .register(rowForm.email, rowForm.username, rowForm.password)
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/')

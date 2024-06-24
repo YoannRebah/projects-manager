@@ -20,6 +20,11 @@
                 <div class="flex-center-between">
                     <form class="form-login relative flex flex-col gap-2" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
                         <div>
+                            <label class="text-sm mr-2" for="username"><span class="underline">N</span>om utilisateur:</label>
+                            <input class="retro-windows-input-border pl-1" id="username" type="text" formControlName="username"
+                            [ngClass]="{'outline-pink-important': registerForm.get('username')?.invalid && registerForm.get('username')?.touched}">
+                        </div>
+                        <div>
                             <label class="text-sm mr-2" for="email"><span class="underline">A</span>dresse mail:</label>
                             <input class="retro-windows-input-border pl-1" id="email" type="text" formControlName="email"
                             [ngClass]="{'outline-pink-important': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
