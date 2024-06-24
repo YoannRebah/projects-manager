@@ -71,11 +71,22 @@ export class ListNavComponent implements OnInit{
   }
 
   checkUserConnectionStatus(): void {
-    if(this.authService.currentUserSignal()) {
-      this.userLoggedIn = true;
-    } else {
-      this.userLoggedIn = false;
-    }
+    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
+      if(user) {
+        this.authService.currentUserSignal.set({
+          email: user.email!,
+          username: user.displayName!
+        });
+        this.userLoggedIn = true;
+      } else {
+        this.authService.currentUserSignal.set(null);
+        this.userLoggedIn = false;
+      }
+    });
+  }
+
+  onClickLogout(): void {
+    this.authService.logout();
   }
 
 }

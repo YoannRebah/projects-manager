@@ -1,8 +1,8 @@
-<div class="relative h-full">
-  <ul class="list-nav container mx-auto flex items-center list-none h-full">
-    <li *ngFor="let anchor of navAnchors" class="flex items-center justify-center h-full flex-1">
+<nav class="relative w-full h-full list-nav flex-center-center">
+  <ul class="relative h-full flex items-center flex-[1_1_80%]">
+    <li *ngFor="let anchor of navAnchors" class="flex-center-center h-full flex-1">
       <a 
-          class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch"
+          class="btn flex-center-center text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch"
           [href]="anchor.href" 
           [attr.aria-label]="anchor.ariaLabel" 
           [attr.target]="anchor.target"
@@ -13,9 +13,9 @@
         <span *ngIf="anchor.text" class="ml-2 hidden md:flex">{{ anchor.text }}</span>
       </a>
     </li>
-    <li *ngFor="let btn of navButtons" class="flex items-center justify-center h-full flex-1">
+    <li *ngFor="let btn of navButtons" class="flex-center-center h-full flex-1">
       <button 
-          class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan"
+          class="btn flex-center-center text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan"
           [attr.aria-label]="btn.ariaLabel" 
           [title]="btn.tooltip || ''"
           (click)="btn.onClick ? btn.onClick() : null"
@@ -24,22 +24,28 @@
         <span *ngIf="btn.text" class="ml-2 hidden md:flex">{{ btn.text }}</span>
       </button>
     </li>
-    <li *ngIf="userLoggedIn">
-      <button class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan">
-        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+  </ul>
+  <ul class="relative h-full flex items-center flex-[1_1_20%]">
+    <li *ngIf="userLoggedIn" class="flex-center-center h-full flex-1">
+      <button (click)="onClickLogout()" class="btn flex-center-center flex-col text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan">
+        <i class="fa-solid fa-power-off" aria-hidden="true"></i>
+        <span class="text-xs ml-2 hidden md:flex">Déconnexion</span>
       </button>
     </li>
-    <li *ngIf="!userLoggedIn">
-      <a routeLink="/login" class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
+    <li *ngIf="!userLoggedIn" class="flex-center-center h-full flex-1">
+      <a routeLink="/login" class="btn flex-center-center flex-col text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
         <i class="fa-regular fa-user" aria-hidden="true"></i>
+        <span class="text-xs ml-2 hidden md:flex">Se connecter</span>
       </a>
     </li>
-    <li *ngIf="!userLoggedIn">
-      <a routeLink="/register" class="btn flex items-center justify-center text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
+    <li *ngIf="!userLoggedIn" class="flex-center-center h-full flex-1">
+      <a routeLink="/register" class="btn flex-center-center flex-col text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
         <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+        <span class="text-xs ml-2 hidden md:flex">Créer un compte</span>
       </a>
     </li>
   </ul>
-  <!-- modal-settings -->
-  <app-modal-settings id="modal-settings"></app-modal-settings>
-</div>
+</nav>
+
+<!-- modal-settings -->
+<app-modal-settings id="modal-settings"></app-modal-settings>
