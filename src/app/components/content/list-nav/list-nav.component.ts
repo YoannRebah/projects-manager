@@ -46,19 +46,20 @@ export class ListNavComponent implements OnInit{
     },
     {
       href: 'https://github.com/YoannRebah/portfolio-angular',
-      classNames: 'text-base',
+      classNames: 'text-sm',
       iconClassNames: 'fa-brands fa-github',
+      text: 'Git',
       target: '_blank',
-      ariaLabel: 'Code source du portfolio',
-      tooltip: 'Code source du portfolio',
+      ariaLabel: 'Code source',
+      tooltip: 'Code source',
     },
   ];
   navButtons: Button[] = [
     {
-      classNames: 'text-base',
+      classNames: 'text-sm',
       iconClassNames: 'fa-solid fa-gear',
+      text: 'Paramètres',
       ariaLabel: 'Paramètres',
-      tooltip: 'Paramètres',
       onClick: this.onClickShowSettings.bind(this)
     }
   ];
