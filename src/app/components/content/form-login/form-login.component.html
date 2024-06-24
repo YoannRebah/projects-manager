@@ -7,10 +7,11 @@
             </div>
         </header>
         <!-- content -->
-        <div class="p-4">
+        <div class="p-4 flex flex-col gap-4">
             <div class="flex justify-between gap-4">
                 <div>
-                    <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
+                    <img *ngIf="!errorLogin" class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
+                    <img *ngIf="errorLogin" class="w-[150px]" src="assets/gif/magic-word.gif" alt="Magic Word">
                 </div>
                 <div>
                     <p class="text-sm">Saisissez votre e-mail et votre mot de passe.</p>

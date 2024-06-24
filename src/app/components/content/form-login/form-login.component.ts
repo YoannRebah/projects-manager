@@ -19,6 +19,7 @@ export class FormLoginComponent implements OnInit {
   router = inject(Router);
   authService = inject(AuthService)
   loginForm!: FormGroup;
+  errorLogin: boolean = false;
 
   constructor() {}
 
@@ -39,20 +40,20 @@ export class FormLoginComponent implements OnInit {
       .login(rowForm.email, rowForm.password)
       .subscribe({
         next: () => {
+          this.errorLogin = false;
           this.router.navigateByUrl('/')
         },
-        error: (e) => console.error('error onSubmit : ', e)
+        error: () => {
+          this.errorLogin = true;
+        }
       })
   }
 
   onSubmitLoginForm(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      console.log('Form is invalid');
     } else {
-      console.log('Form Submitted!', this.loginForm.value);
       this.onSubmit();
-      // Your form submission logic here
     }
   }
 
