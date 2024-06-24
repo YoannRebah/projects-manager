@@ -10,6 +10,15 @@ import { Observable, from } from "rxjs";
 export class AuthService {
     firebaseAuth = inject(Auth);
 
+    register(email: string, password: string): Observable<void> {
+        const promise = signInWithEmailAndPassword(
+            this.firebaseAuth,
+            email,
+            password
+        ).then(()=> {});
+        return from(promise);
+    }
+
     login(email: string, password: string): Observable<void> {
         const promise = signInWithEmailAndPassword(
             this.firebaseAuth,
