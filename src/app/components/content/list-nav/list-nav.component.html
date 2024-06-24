@@ -1,8 +1,8 @@
-<nav class="relative w-full h-full list-nav flex-center-center">
-  <ul class="relative h-full flex items-center flex-[1_1_80%]">
+<nav class="container mx-auto h-full flex-center-center">
+  <ul class="list-nav relative w-full h-full flex items-center">
     <li *ngFor="let anchor of navAnchors" class="flex-center-center h-full flex-1">
       <a 
-          class="btn flex-center-center text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch"
+          class="btn flex-center-center gap-0.5 text-sm text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch"
           [href]="anchor.href" 
           [attr.aria-label]="anchor.ariaLabel" 
           [attr.target]="anchor.target"
@@ -15,7 +15,7 @@
     </li>
     <li *ngFor="let btn of navButtons" class="flex-center-center h-full flex-1">
       <button 
-          class="btn flex-center-center text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan"
+          class="btn flex-center-center gap-0.5 text-sm text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan"
           [attr.aria-label]="btn.ariaLabel" 
           [title]="btn.tooltip || ''"
           (click)="btn.onClick ? btn.onClick() : null"
@@ -24,24 +24,22 @@
         <span *ngIf="btn.text" class="ml-2 hidden md:flex">{{ btn.text }}</span>
       </button>
     </li>
-  </ul>
-  <ul class="relative h-full flex items-center flex-[1_1_20%]">
     <li *ngIf="userLoggedIn" class="flex-center-center h-full flex-1">
-      <button (click)="onClickLogout()" class="btn flex-center-center flex-col text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan">
+      <button (click)="onClickLogout()" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch hover:text-cyan">
         <i class="fa-solid fa-power-off" aria-hidden="true"></i>
-        <span class="text-xs ml-2 hidden md:flex">Déconnexion</span>
+        <span class="text-xs hidden md:flex">Déconnexion</span>
       </button>
     </li>
     <li *ngIf="!userLoggedIn" class="flex-center-center h-full flex-1">
-      <a routeLink="/login" class="btn flex-center-center flex-col text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
+      <a routeLink="/login" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
         <i class="fa-regular fa-user" aria-hidden="true"></i>
-        <span class="text-xs ml-2 hidden md:flex">Se connecter</span>
+        <span class="text-xs hidden md:flex">Connexion</span>
       </a>
     </li>
     <li *ngIf="!userLoggedIn" class="flex-center-center h-full flex-1">
-      <a routeLink="/register" class="btn flex-center-center flex-col text-base text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
+      <a routeLink="/register" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-lg text-shadow-chromatic-glitch">
         <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-        <span class="text-xs ml-2 hidden md:flex">Créer un compte</span>
+        <span class="text-xs hidden md:flex">Nouveau</span>
       </a>
     </li>
   </ul>
