@@ -22,12 +22,12 @@
                         <div>
                             <label class="text-sm mr-2" for="email"><span class="underline">A</span>dresse mail:</label>
                             <input class="retro-windows-input-border pl-1" id="email" type="text" formControlName="email"
-                            [ngClass]="{'outline-pink-important': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}">
+                            [ngClass]="{'outline-pink-important': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
                         </div>
                         <div>
                             <label class="text-sm mr-2" for="password"><span class="underline">M</span>ot de passe:</label>
                             <input class="retro-windows-input-border pl-1" id="password" type="password" formControlName="password"
-                            [ngClass]="{'outline-pink-important': contactForm.get('password')?.invalid && contactForm.get('password')?.touched}">
+                            [ngClass]="{'outline-pink-important': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
                         </div>
                     </form>
                 </div>

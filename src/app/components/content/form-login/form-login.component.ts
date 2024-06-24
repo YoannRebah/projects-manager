@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../shared/services/base/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-login',
@@ -11,11 +14,13 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 })
 
 export class FormLoginComponent implements OnInit {
+  formBuilder = inject(FormBuilder);
+  http = inject(HttpClient);
+  router = inject(Router);
+  authService = inject(AuthService)
   loginForm!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.initLoginFormControl();
@@ -28,12 +33,25 @@ export class FormLoginComponent implements OnInit {
     });
   }
 
+  onSubmit(): void {
+    const rowForm = this.loginForm.getRawValue();
+    this.authService
+      .login(rowForm.email, rowForm.password)
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/')
+        },
+        error: (e) => console.error('error onSubmit : ', e)
+      })
+  }
+
   onSubmitLoginForm(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       console.log('Form is invalid');
     } else {
       console.log('Form Submitted!', this.loginForm.value);
+      this.onSubmit();
       // Your form submission logic here
     }
   }
