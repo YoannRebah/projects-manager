@@ -179,7 +179,9 @@ export class GameLauncher2000Component implements OnInit {
     const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
     if(this.gameIsStarted) {
       this.setGameCursorStyles("init");
-      this.renderer.setStyle(gameCursorElement, 'transform', `translateX(${clientX}px)`);
+      if(!this.gameIsPaused) {
+        this.renderer.setStyle(gameCursorElement, 'transform', `translateX(${clientX}px)`);
+      }
     }
   }
 
