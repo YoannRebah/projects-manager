@@ -40,69 +40,6 @@ export class GameLauncher2000Component implements OnInit {
     this.initNewGame();
   }
 
-  get storedScore(): number {
-    return LocalStorageService.getNumberFromLocalStorage('player-score') || 0;
-  }
-
-  get storedHighScore(): number {
-    return LocalStorageService.getNumberFromLocalStorage('player-highscore') || 0;
-  }
-
-  storeScore(): void {
-    LocalStorageService.setInLocalStorage('player-score', this.score);
-  }
-
-  storeHighScore(): void {
-    if(this.score > this.storedHighScore) {
-      LocalStorageService.setInLocalStorage('player-highscore', this.score);
-    }
-  }
-
-  updateScore(): void {
-    if(this.score > this.scoreMin && this.score < this.scoreMax) {
-      this.score += this.stepIncrementScore;
-      this.storeScore();
-    }
-  }
-
-  setHealth(delta: number): void {
-    this.health += delta;
-    if(this.health <= this.healthMin) {
-      this.health = this.healthMin;
-      this.gameOver();
-    }
-    if(this.health >= this.healthMax) {
-      this.health = this.healthMax;
-    }
-  }
-
-  initNewGame(): void {
-    this.score = this.scoreMin;
-    this.health = this.healthMin;
-    this.gameIsOver = false;
-    this.mouseIsInsideGameContainer = null;
-    this.setGameCursorStyles("reset");
-  }
-
-  startGame(): void {
-    this.gameIsStarted = true;
-  }
-
-  pauseGame(): void {
-    this.gameIsPaused = true;
-  }
-
-  stopGame(): void {
-    this.gameIsStarted = false;
-    this.storeHighScore();
-    this.setGameCursorStyles("reset");
-  }
-
-  gameOver(): void {
-    this.gameIsOver = true;
-    this.stopGame();
-  }
-
   onMouseEnterGameContainer(): void {
     this.mouseIsInsideGameContainer = true;
   }
@@ -133,9 +70,78 @@ export class GameLauncher2000Component implements OnInit {
     this.initNewGame();
   }
 
+  // ===========================================================================
+
+  get storedScore(): number {
+    return LocalStorageService.getNumberFromLocalStorage('player-score') || 0;
+  }
+
+  get storedHighScore(): number {
+    return LocalStorageService.getNumberFromLocalStorage('player-highscore') || 0;
+  }
+
+  storeScore(): void {
+    LocalStorageService.setInLocalStorage('player-score', this.score);
+  }
+
+  storeHighScore(): void {
+    if(this.score > this.storedHighScore) {
+      LocalStorageService.setInLocalStorage('player-highscore', this.score);
+    }
+  }
+
+  updateScore(): void {
+    if(this.score > this.scoreMin && this.score < this.scoreMax) {
+      this.score += this.stepIncrementScore;
+      this.storeScore();
+    }
+  }
+
+  // ===========================================================================
+
+  setHealth(delta: number): void {
+    this.health += delta;
+    if(this.health <= this.healthMin) {
+      this.health = this.healthMin;
+      this.gameOver();
+    }
+    if(this.health >= this.healthMax) {
+      this.health = this.healthMax;
+    }
+  }
+
+  // ===========================================================================
+
+  initNewGame(): void {
+    this.score = this.scoreMin;
+    this.health = this.healthMax;
+    this.gameIsOver = false;
+    this.mouseIsInsideGameContainer = null;
+    this.setGameCursorStyles("reset");
+  }
+
+  startGame(): void {
+    this.gameIsStarted = true;
+  }
+
+  pauseGame(): void {
+    this.gameIsPaused = true;
+  }
+
+  stopGame(): void {
+    this.gameIsStarted = false;
+    this.storeHighScore();
+    this.setGameCursorStyles("reset");
+  }
+
+  gameOver(): void {
+    this.gameIsOver = true;
+    this.stopGame();
+  }
+
   gameCursorFollowMouse(clientX: number): void {
     const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
-    if(this.gameIsStarted && !this.gameIsPaused) {
+    if(this.gameIsStarted) {
       this.setGameCursorStyles("init");
       this.renderer.setStyle(gameCursorElement, 'transform', `translateX(${clientX}px)`);
     }
