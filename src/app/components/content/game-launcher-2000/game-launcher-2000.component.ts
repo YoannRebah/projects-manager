@@ -157,11 +157,13 @@ export class GameLauncher2000Component implements OnInit {
   pauseGame(): void {
     this.gameIsPaused = true;
     clearInterval(this.scoreIntervalId);
+    this.pauseAllStellarObjectsAnimation();
   }
 
   resumeGame(): void {
     this.gameIsPaused = false;
     this.updateScore(); 
+    this.resumeAllStellarObjectsAnimation();
   }
 
   stopGame(): void {
@@ -237,11 +239,6 @@ export class GameLauncher2000Component implements OnInit {
     this.renderer.setStyle(stellarObject, 'left', `${this.randomStellarObjectLeftPosition}%`);
     this.renderer.setStyle(stellarObject, 'width', `${randomWidth}px`);
     // this.renderer.setStyle(stellarObject, 'animationDelay', `${this.animationDelayMs}ms`);
-    if(this.gameIsPaused) {
-      this.renderer.setStyle(stellarObject, 'animationPlayState', 'paused');
-    } else {
-      this.renderer.setStyle(stellarObject, 'animationPlayState', 'running');
-    }
   
     this.renderer.appendChild(gameContainer, stellarObject);
 
@@ -282,6 +279,22 @@ export class GameLauncher2000Component implements OnInit {
     const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
     stellarObjects.forEach((elem: HTMLElement)=>{
       elem.remove();
+    });
+  }
+
+  pauseAllStellarObjectsAnimation(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
+    stellarObjects.forEach((elem: HTMLElement)=>{
+      elem.style.animationPlayState = 'paused';
+    });
+  }
+
+  resumeAllStellarObjectsAnimation(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
+    stellarObjects.forEach((elem: HTMLElement)=>{
+      elem.style.animationPlayState = 'running';
     });
   }
 
