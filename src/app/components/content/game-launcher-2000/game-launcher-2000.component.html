@@ -1,15 +1,15 @@
-<div class="fixed-backdrop-flex-center bg-square-pink z-10" (mousemove)="onMouseMoveIntoView($event)">
+<div class="fixed-backdrop-flex-center bg-square-pink z-10 shadow-inset-white" (mousemove)="onMouseMoveIntoView($event)">
     <div class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';">
         <!-- header -->
         <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
             <div class="flex items-center flex-[1_1_25%] gap-3">
-                <a href="" class="btn flex items-center justify-center bg-orange text-xl w-[36px] h-[36px]" aria-label="Retour à la homepage" title="Retour à la homepage">
+                <a href="" class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px]" aria-label="Retour à la homepage" title="Retour à la homepage">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <button class="btn flex items-center justify-center bg-red text-xl w-[36px] h-[36px]" aria-label="Stop" (click)="onClickStopGame()" title="Stop">
+                <button class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px]" aria-label="Stop" (click)="onClickStopGame()" title="Stop">
                     <i class="fa-regular fa-circle-stop"></i>
                 </button>
-                <button class="btn flex items-center justify-center bg-red text-xl w-[36px] h-[36px]" aria-label="Pause" (click)="onClickPauseGame()" title="Pause">
+                <button class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px]" aria-label="Pause" (click)="onClickPauseGame()" title="Pause">
                     <i class="fa-regular fa-circle-pause"></i>
                 </button>
             </div>
