@@ -36,10 +36,7 @@
             style="background-image: url(assets/images/space-background.jpeg); grid-area: content-game;"
         >
             <!-- gameContainer -->
-            <div #gameContainer class="relative w-full h-full overflow-hidden" 
-                (mouseenter)="onMouseEnterGameContainer()" 
-                (mouseleave)="onMouseLeaveGameContainer()"
-            >
+            <div #gameContainer class="relative w-full h-full overflow-hidden" (mouseenter)="onMouseEnterGameContainer()" (mouseleave)="onMouseLeaveGameContainer()">
                 <button *ngIf="!gameIsStarted" (click)="onClickStartGame()" class="absolute-full-flex-center uppercase jersey-15-regular z-10 animation-fade-infinite">
                     <span class="mr-2 text-3xl">Cliquez pour jouer</span>
                     <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
