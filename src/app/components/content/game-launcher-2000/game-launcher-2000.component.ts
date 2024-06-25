@@ -20,6 +20,7 @@ export class GameLauncher2000Component implements OnInit {
   scoreMax: number = 99999;
   stepIncrementScore: number = 50;
   scoreIntervalId!: number; 
+  timeDelayUpdateScoreMs: number = 1000;
   // health
   health: number = 0;
   healthMin: number = 0;
@@ -31,8 +32,12 @@ export class GameLauncher2000Component implements OnInit {
   mouseIsInsideGameContainer!: boolean | null;
   mouseClientX!: number;
   animationDelayMs: number = 5000;
-  animationDelayMsStepDecrement: number = 50;
-  animationDelayMsMin: number = 100;
+  animationDelayStepDecrementMs: number = 50;
+  animationDelayMinMs: number = 500;
+  timeDelayStellarObjectCreationMs: number = 1000;
+  timeDelayStellarObjectCreationMinMs: number = 100;
+  timeDelayStellarObjectCreationStepDecrementMs: number = 100;
+  stellarObjectIntervalId!: number; 
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
@@ -124,7 +129,7 @@ export class GameLauncher2000Component implements OnInit {
           this.storeScore();
           this.createRandomStellarObject();
         }
-      }, 1000);
+      }, this.timeDelayUpdateScoreMs);
     }
   }
 
@@ -232,6 +237,10 @@ export class GameLauncher2000Component implements OnInit {
     const randomWidth = this.randomObjectWidth;
     const randomStellarObjectImgIndex = this.randomStellarObjectImgIndex;
 
+    if(this.animationDelayMs > this.animationDelayMinMs) {
+      this.animationDelayMs -= this.animationDelayStepDecrementMs;
+    }
+
     const stellarObject = this.renderer.createElement('img');
     this.renderer.addClass(stellarObject, 'stellar-object');
     this.renderer.addClass(stellarObject, 'absolute');
@@ -241,12 +250,7 @@ export class GameLauncher2000Component implements OnInit {
    
     this.renderer.setStyle(stellarObject, 'left', `${this.randomStellarObjectLeftPosition}%`);
     this.renderer.setStyle(stellarObject, 'width', `${randomWidth}px`);
-
-    if(this.animationDelayMs > this.animationDelayMsMin) {
-      this.animationDelayMs -= this.animationDelayMsStepDecrement;
-      this.renderer.setStyle(stellarObject, 'animationDuration', `${this.animationDelayMs}ms`);
-      console.log(this.animationDelayMs)
-    }
+    this.renderer.setStyle(stellarObject, 'animationDuration', `${this.animationDelayMs}ms`);
   
     this.renderer.appendChild(gameContainer, stellarObject);
 
