@@ -6,13 +6,9 @@
                 <a href="" class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] hover:text-white" aria-label="Retour à la homepage" title="Retour à la homepage">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <button class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] active:bg-red" aria-label="Stop" (click)="onClickStopGame()" title="Stop">
-                    <i class="fa-regular fa-circle-stop"></i>
+                <button class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] active:bg-red" aria-label="Stopper et réinitialiser" (click)="onClickStopGame()" title="Stopper et réinitialiser">
+                    <i class="fa-regular fa-circle-stop" aria-hidden="true"></i>
                 </button>
-                <div class="flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px]" [class.bg-red]="gameIsPaused">
-                    <i *ngIf="!gameIsPaused" class="fa-regular fa-circle-pause"></i>
-                    <i *ngIf="gameIsPaused" class="fa-regular fa-circle-play"></i>
-                </div>
             </div>
             <div class="flex items-center flex-[1_1_45%]">
                 <div class="container-health-bar flex items-center w-full">
@@ -42,6 +38,12 @@
                     <span class="mr-2 text-3xl">Cliquez pour jouer</span>
                     <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
                 </button>
+                <div *ngIf="gameIsPaused" class="absolute-full-flex-center bg-black-transparent-light uppercase jersey-15-regular z-10">
+                    <div class="flex-center-center animation-fade-infinite">
+                        <span class="mr-2 text-3xl">En Pause</span>
+                        <i class="fa-regular fa-circle-pause text-2xl" aria-hidden="true"></i>
+                    </div>
+                </div>
                 <!-- game-cursor -->
                 <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-no-repeat bg-contain bg-bottom" 
                     style="background-image: url(assets/gif/rocket-spaceship.gif);"
