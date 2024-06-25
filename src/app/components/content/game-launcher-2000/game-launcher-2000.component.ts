@@ -87,17 +87,12 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   stopGame(): void {
-    this.gameIsOver = true;
     this.gameIsStarted = false;
     this.storeHighScore();
   }
 
-  onClickQuitGame(): void {
-    this.stopGame();
-  }
-
-  onClickRetryGame(): void {
-    this.initNewGame();
+  gameOver(): void {
+    this.gameIsOver = true;
   }
 
   onMouseEnterGameContainer(): void {
@@ -116,6 +111,14 @@ export class GameLauncher2000Component implements OnInit {
   onClickStartGame(): void {
     this.initNewGame();
     this.startGame();
+  }
+
+  onClickStopGame(): void {
+    this.stopGame();
+  }
+
+  onClickRetryGame(): void {
+    this.initNewGame();
   }
 
   gameCursorFollowMouse(clientX: number): void {
