@@ -22,6 +22,7 @@ export class GameLauncher2000Component implements OnInit {
   healthMin: number = 0;
   healthMax: number = 100;
   // gameplay
+  gameIsPaused: boolean = false;
   gameIsStarted: boolean = false;
   gameIsOver: boolean = false;
   mouseIsInsideGameContainer!: boolean | null;
@@ -68,7 +69,7 @@ export class GameLauncher2000Component implements OnInit {
     this.health += delta;
     if(this.health <= this.healthMin) {
       this.health = this.healthMin;
-      this.stopGame();
+      this.gameOver();
     }
     if(this.health >= this.healthMax) {
       this.health = this.healthMax;
@@ -80,24 +81,26 @@ export class GameLauncher2000Component implements OnInit {
     this.health = this.healthMin;
     this.gameIsOver = false;
     this.mouseIsInsideGameContainer = null;
+    this.setGameCursorStyles("reset");
   }
 
   startGame(): void {
     this.gameIsStarted = true;
   }
 
+  pauseGame(): void {
+    this.gameIsPaused = true;
+  }
+
   stopGame(): void {
-    const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
-    this.renderer.addClass(gameCursorElement, '-translate-x-2/4');
-    this.renderer.addClass(gameCursorElement, 'left-[50%]');
-    this.renderer.removeClass(gameCursorElement, 'left-[-37.5%]');
-    this.renderer.setStyle(gameCursorElement, 'transform', `inherit`);
     this.gameIsStarted = false;
     this.storeHighScore();
+    this.setGameCursorStyles("reset");
   }
 
   gameOver(): void {
     this.gameIsOver = true;
+    this.stopGame();
   }
 
   onMouseEnterGameContainer(): void {
@@ -118,6 +121,10 @@ export class GameLauncher2000Component implements OnInit {
     this.startGame();
   }
 
+  onClickPauseGame(): void {
+    this.pauseGame();
+  }
+
   onClickStopGame(): void {
     this.stopGame();
   }
@@ -128,11 +135,24 @@ export class GameLauncher2000Component implements OnInit {
 
   gameCursorFollowMouse(clientX: number): void {
     const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
-    if(this.gameIsStarted) {
+    if(this.gameIsStarted && !this.gameIsPaused) {
+      this.setGameCursorStyles("init");
+      this.renderer.setStyle(gameCursorElement, 'transform', `translateX(${clientX}px)`);
+    }
+  }
+
+  setGameCursorStyles(state: string): void {
+    const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
+    if(state === "init") {
       this.renderer.removeClass(gameCursorElement, '-translate-x-2/4');
       this.renderer.removeClass(gameCursorElement, 'left-[50%]');
       this.renderer.addClass(gameCursorElement, 'left-[-37.5%]');
-      this.renderer.setStyle(gameCursorElement, 'transform', `translateX(${clientX}px)`);
+    }
+    if(state === "reset") {
+      this.renderer.addClass(gameCursorElement, '-translate-x-2/4');
+      this.renderer.addClass(gameCursorElement, 'left-[50%]');
+      this.renderer.removeClass(gameCursorElement, 'left-[-37.5%]');
+      this.renderer.setStyle(gameCursorElement, 'transform', `translateX(-36px)`);
     }
   }
 
