@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, inject, ElementRef, Renderer2 } from '@an
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../../shared/services/components/game.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
+import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 
 @Component({
   selector: 'app-game-launcher-2000',
@@ -17,6 +18,7 @@ export class GameLauncher2000Component implements OnInit {
   scoreMin: number = 0;
   scoreMax: number = 99999;
   stepIncrementScore: number = 50;
+  scoreIntervalId!: number; 
   // health
   health: number = 0;
   healthMin: number = 0;
@@ -30,6 +32,10 @@ export class GameLauncher2000Component implements OnInit {
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
+  windowRefService = inject(WindowRefService);
+  // storage
+  keyScore: string = 'player-score';
+  keyHighScore: string = 'player-high-score';
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
@@ -58,8 +64,12 @@ export class GameLauncher2000Component implements OnInit {
     this.startGame();
   }
 
-  onClickPauseGame(): void {
-    this.pauseGame();
+  onClickPauseResumeGame(): void {
+    if(!this.gameIsPaused) {
+      this.pauseGame();
+    } else {
+      this.resumeGame();
+    }
   }
 
   onClickStopGame(): void {
@@ -73,27 +83,45 @@ export class GameLauncher2000Component implements OnInit {
   // ===========================================================================
 
   get storedScore(): number {
-    return LocalStorageService.getNumberFromLocalStorage('player-score') || 0;
+    if (LocalStorageService.testIsAvailable()) {
+      return parseInt(localStorage.getItem(this.keyScore)!, 10);
+    }
+    return 0;
   }
 
   get storedHighScore(): number {
-    return LocalStorageService.getNumberFromLocalStorage('player-highscore') || 0;
+    if (LocalStorageService.testIsAvailable()) {
+      if(localStorage.getItem(this.keyHighScore)) {
+        return parseInt(localStorage.getItem(this.keyHighScore)!, 10);
+      } else {
+        return 0;
+      }
+    }
+    return 0;
   }
 
   storeScore(): void {
-    LocalStorageService.setInLocalStorage('player-score', this.score);
+    if (LocalStorageService.testIsAvailable()) {
+      localStorage.setItem(this.keyScore, JSON.stringify(this.score));
+    }
   }
 
   storeHighScore(): void {
-    if(this.score > this.storedHighScore) {
-      LocalStorageService.setInLocalStorage('player-highscore', this.score);
+    if (LocalStorageService.testIsAvailable()) {
+      if(this.score > this.storedHighScore) {
+        localStorage.setItem(this.keyHighScore, JSON.stringify(this.score));
+      }
     }
   }
 
   updateScore(): void {
-    if(this.score > this.scoreMin && this.score < this.scoreMax) {
-      this.score += this.stepIncrementScore;
-      this.storeScore();
+    if (this.score < this.scoreMax) {
+      this.scoreIntervalId = this.windowRefService.windowRef.setInterval(() => {
+        if (!this.gameIsPaused) {
+          this.score += this.stepIncrementScore;
+          this.storeScore();
+        }
+      }, 1000);
     }
   }
 
@@ -117,21 +145,31 @@ export class GameLauncher2000Component implements OnInit {
     this.health = this.healthMax;
     this.gameIsOver = false;
     this.mouseIsInsideGameContainer = null;
+    this.gameIsPaused = false;
     this.setGameCursorStyles("reset");
   }
 
   startGame(): void {
     this.gameIsStarted = true;
+    this.updateScore();
   }
 
   pauseGame(): void {
     this.gameIsPaused = true;
+    clearInterval(this.scoreIntervalId);
+  }
+
+  resumeGame(): void {
+    this.gameIsPaused = false;
+    this.updateScore(); 
   }
 
   stopGame(): void {
     this.gameIsStarted = false;
+    this.gameIsPaused = false;
     this.storeHighScore();
     this.setGameCursorStyles("reset");
+    clearInterval(this.scoreIntervalId);
   }
 
   gameOver(): void {
