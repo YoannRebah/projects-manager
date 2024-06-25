@@ -23,4 +23,26 @@ export class LocalStorageService {
     }
   }
 
+  public static getNumberFromLocalStorage(key: string): number | null {
+    if (LocalStorageService.testIsAvailable()) {
+      const value = localStorage.getItem(key);
+      if (value !== null) {
+        const parsedValue = Number(value);
+        if (!isNaN(parsedValue)) {
+          return parsedValue;
+        }
+      }
+    }
+    return null;
+  }
+
+  public static setInLocalStorage(key: string, value: any): void {
+    if (LocalStorageService.testIsAvailable()) {
+      const serializedValue = JSON.stringify(value);
+      localStorage.setItem(key, serializedValue);
+    } else {
+      console.warn('LocalStorage n\'est pas disponible.');
+    }
+  }
+
 }

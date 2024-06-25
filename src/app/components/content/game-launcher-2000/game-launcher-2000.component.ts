@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, inject, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../../shared/services/components/game.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
@@ -11,52 +11,57 @@ import { LocalStorageService } from '../../../shared/services/utilities/local-st
   styleUrl: './game-launcher-2000.component.scss'
 })
 
-export class GameLauncher2000Component {
-  gameIsOver: boolean = false;
+export class GameLauncher2000Component implements OnInit {
+  // score
   score: number = 0;
   scoreMin: number = 0;
   scoreMax: number = 99999;
-  highScore!: number;
   stepIncrementScore: number = 50;
+  // health
   health: number = 0;
   healthMin: number = 0;
   healthMax: number = 100;
-  mouseIsInsideGameContainer: boolean = false;
-  mouseClientX: number | null = null;
-
+  // gameplay
+  gameIsStarted: boolean = false;
+  gameIsOver: boolean = false;
+  mouseIsInsideGameContainer!: boolean | null;
+  mouseEnterInGameContainerOnce: boolean = false;
+  mouseClientX!: number;
+  // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
 
-  get storedScore(): void {
-    if(LocalStorageService.testIsAvailable()) {
-      return JSON.parse(localStorage.getItem('player-score') || '0');
-    }
+  constructor() {}
+
+  ngOnInit(): void {
+    this.initNewGame();
+  }
+
+  get storedScore(): number {
+    return LocalStorageService.getNumberFromLocalStorage('player-score') || 0;
+  }
+
+  get storedHighScore(): number {
+    return LocalStorageService.getNumberFromLocalStorage('player-highscore') || 0;
   }
 
   storeScore(): void {
-    if(LocalStorageService.testIsAvailable()) {
-      localStorage.setItem('player-score', JSON.stringify(this.score));
-    }
-  }
-
-  get storedHighScore(): void {
-    if(LocalStorageService.testIsAvailable()) {
-      return JSON.parse(localStorage.getItem('player-high-score') || '0');
-    }
+    LocalStorageService.setInLocalStorage('player-score', this.score);
   }
 
   storeHighScore(): void {
-    if(LocalStorageService.testIsAvailable()) {
-      localStorage.setItem('player-high-score', JSON.stringify(this.highScore));
+    if(this.score > this.storedHighScore) {
+      LocalStorageService.setInLocalStorage('player-highscore', this.score);
     }
   }
 
   updateScore(): void {
     if(this.score > this.scoreMin && this.score < this.scoreMax) {
       this.score += this.stepIncrementScore;
+      this.storeScore();
     }
   }
 
@@ -71,28 +76,37 @@ export class GameLauncher2000Component {
     }
   }
 
-  startNewGame(): void {
+  initNewGame(): void {
     this.score = this.scoreMin;
     this.health = this.healthMin;
     this.gameIsOver = false;
+    this.mouseIsInsideGameContainer = null;
+  }
+
+  startGame(): void {
+    this.gameIsStarted = true;
   }
 
   stopGame(): void {
     this.gameIsOver = true;
-    this.storeScore();
+    this.gameIsStarted = false;
     this.storeHighScore();
   }
 
   onClickQuitGame(): void {
-    
+    this.stopGame();
   }
 
   onClickRetryGame(): void {
-
+    this.initNewGame();
   }
 
   onMouseEnterGameContainer(): void {
     this.mouseIsInsideGameContainer = true;
+    this.mouseEnterInGameContainerOnce = true;
+    if(this.mouseEnterInGameContainerOnce) {
+      this.startGame();
+    }
   }
 
   onMouseLeaveGameContainer(): void {
@@ -101,8 +115,9 @@ export class GameLauncher2000Component {
 
   onMouseMoveIntoView(event: MouseEvent): void {
     const clientX = event.clientX;
-    console.log(this.mouseIsInsideGameContainer)
     this.gameCursorFollowMouse(clientX);
+    console.log('mouseIsInsideGameContainer', this.mouseIsInsideGameContainer)
+    console.log('mouseEnterInGameContainerOnce', this.mouseEnterInGameContainerOnce)
   }
 
   gameCursorFollowMouse(clientX: number): void {
@@ -110,7 +125,7 @@ export class GameLauncher2000Component {
       const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
       this.renderer.removeClass(gameCursorElement, '-translate-x-2/4');
       this.renderer.removeClass(gameCursorElement, 'left-[50%]');
-      this.renderer.addClass(gameCursorElement, 'left-[-36%]');
+      this.renderer.addClass(gameCursorElement, 'left-[-37.5%]');
       this.renderer.setStyle(gameCursorElement, 'transform', `translateX(${clientX}px)`);
     }
   }

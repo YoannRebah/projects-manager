@@ -3,9 +3,9 @@
         <!-- header -->
         <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
             <div class="flex items-center flex-[1_1_20%]">
-                <a href="" class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter">
+                <button class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter" (click)="onClickQuitGame()">
                     <span class="text-white uppercase jersey-15-regular">Quitter</span>
-                </a>
+                </button>
             </div>
             <div class="flex items-center flex-[1_1_50%]">
                 <div class="container-health-bar flex items-center w-full">
@@ -34,7 +34,7 @@
                 (mouseenter)="onMouseEnterGameContainer()" 
                 (mouseleave)="onMouseLeaveGameContainer()"
             >
-                <p class="flex absolute translate-x-y top-1/2 left-1/2 items-center uppercase jersey-15-regular animation-fade-infinite">
+                <p *ngIf="!gameIsStarted" class="flex absolute translate-x-y top-1/2 left-1/2 items-center uppercase jersey-15-regular animation-fade-infinite">
                     <span class="mr-2 text-3xl">Déplacez la souris</span>
                     <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
                 </p>
