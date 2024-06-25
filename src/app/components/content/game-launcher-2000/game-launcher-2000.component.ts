@@ -32,8 +32,8 @@ export class GameLauncher2000Component implements OnInit {
   mouseIsInsideGameContainer!: boolean | null;
   mouseClientX!: number;
   animationDelayMs: number = 8000;
-  animationDelayStepDecrementMs: number = 100;
-  animationDelayMinMs: number = 100;
+  animationDelayStepDecrementMs: number = 500;
+  animationDelayMinMs: number = 500;
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
