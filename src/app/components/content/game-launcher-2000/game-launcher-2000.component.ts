@@ -31,9 +31,12 @@ export class GameLauncher2000Component implements OnInit {
   gameIsOver: boolean = false;
   mouseIsInsideGameContainer!: boolean | null;
   mouseClientX!: number;
-  animationDelayMs: number = 6000;
-  animationDelayStepDecrementMs: number = 100;
-  animationDelayMinMs: number = 700;
+  animationDelayMs: number = 8000;
+  animationDelayStepDecrementMs: number = 30;
+  animationDelayMinMs: number = 500;
+  // stellar objects
+  stellarObjectsIntervalId!: number; 
+  timeDelayUpdateStellarObjectsMs: number = 400;
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
@@ -123,7 +126,6 @@ export class GameLauncher2000Component implements OnInit {
         if (!this.gameIsPaused) {
           this.score += this.stepIncrementScore;
           this.storeScore();
-          this.createRandomStellarObject();
         }
       }, this.timeDelayUpdateScoreMs);
     }
@@ -156,17 +158,20 @@ export class GameLauncher2000Component implements OnInit {
   startGame(): void {
     this.gameIsStarted = true;
     this.updateScore();
+    this.updateCreateRandomStellarObject();
   }
 
   pauseGame(): void {
     this.gameIsPaused = true;
     clearInterval(this.scoreIntervalId);
     this.pauseAllStellarObjectsAnimation();
+    clearInterval(this.stellarObjectsIntervalId);
   }
 
   resumeGame(): void {
     this.gameIsPaused = false;
     this.updateScore(); 
+    this.updateCreateRandomStellarObject();
     this.resumeAllStellarObjectsAnimation();
   }
 
@@ -176,6 +181,7 @@ export class GameLauncher2000Component implements OnInit {
     this.storeHighScore();
     this.setGameCursorStyles("reset");
     clearInterval(this.scoreIntervalId);
+    clearInterval(this.stellarObjectsIntervalId);
     this.removeAllStellarObjects();
   }
 
@@ -224,7 +230,7 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   get randomObjectWidth(): number {
-    return Math.floor(Math.random() * 81) + 40;
+    return Math.floor(Math.random() * 71) + 70;
   }
 
   createRandomStellarObject(): void {
@@ -236,6 +242,8 @@ export class GameLauncher2000Component implements OnInit {
     if(this.animationDelayMs > this.animationDelayMinMs) {
       this.animationDelayMs -= this.animationDelayStepDecrementMs;
     }
+
+    console.log(this.animationDelayMs)
 
     const stellarObject = this.renderer.createElement('img');
     this.renderer.addClass(stellarObject, 'stellar-object');
@@ -253,6 +261,22 @@ export class GameLauncher2000Component implements OnInit {
     this.removeOldStellarObject();
   }
 
+  updateCreateRandomStellarObject(): void {
+    this.stellarObjectsIntervalId = this.windowRefService.windowRef.setInterval(() => {
+      if (!this.gameIsPaused) {
+        this.createRandomStellarObject();
+      }
+    }, this.timeDelayUpdateStellarObjectsMs);
+    // if (this.timeDelayUpdateStellarObjectsMs > this.timeDelayUpdateStellarObjectsMinMs) {
+    //   this.timeDelayUpdateStellarObjectsMs -= this.timeDelayUpdateStellarObjectsStepMs;
+    //   this.stellarObjectsIntervalId = this.windowRefService.windowRef.setInterval(() => {
+    //     if (!this.gameIsPaused) {
+    //       this.createRandomStellarObject();
+    //     }
+    //   }, this.timeDelayUpdateStellarObjectsMs);
+    // }
+  }
+
   defineStellarObjectDamages(width: number): string {
     let damage: string = "0";
     if(width > 0 && width < 20) damage = "5";
@@ -266,7 +290,7 @@ export class GameLauncher2000Component implements OnInit {
     const now: number = new Date().getTime();
     const meteorTimestamp: number = new Date(timestamp).getTime();
     const difference = now - meteorTimestamp;
-    return difference >= 10000;
+    return difference >= 30000;
   }
 
   removeOldStellarObject(): void {
