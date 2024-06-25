@@ -1,0 +1,63 @@
+<div class="fixed-backdrop-flex-center bg-square-pink z-10" (mousemove)="onMouseMoveIntoView($event)">
+    <div class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';">
+        <!-- header -->
+        <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
+            <div class="flex items-center flex-[1_1_20%]">
+                <a href="" class="btn flex items-center justify-center bg-orange text-2xl px-3" aria-label="Quitter">
+                    <span class="text-white uppercase jersey-15-regular">Quitter</span>
+                </a>
+            </div>
+            <div class="flex items-center flex-[1_1_50%]">
+                <div class="container-health-bar flex items-center w-full">
+                    <p class="text-lg mr-2">PV</p>
+                    <div class="health-bar w-full bg-pink h-4">
+                        <div class="health h-full bg-cyan" [style.width]="health + '%'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col items-end flex-[1_1_30%]">
+                <p class="uppercase text-lg">Score&nbsp;: 
+                    <span class="score w-[60px] inline-block">{{ score }}</span>
+                </p>
+                <p class="uppercase text-base">High&nbsp;Score&nbsp;: 
+                    <span class="high-score w-[60px] inline-block">{{ storedHighScore }}</span>
+                </p>
+            </div>
+        </header>
+        <!-- content-game -->
+        <div 
+            class="relative bg-no-repeat bg-cover bg-center bg-body border-2 border-dashed border-orange"
+            style="background-image: url(assets/images/space-background.jpeg); grid-area: content-game;"
+        >
+            <!-- gameContainer -->
+            <div #gameContainer class="relative w-full h-full overflow-hidden" 
+                (mouseenter)="onMouseEnterGameContainer()" 
+                (mouseleave)="onMouseLeaveGameContainer()"
+            >
+                <p class="flex absolute translate-x-y top-1/2 left-1/2 items-center uppercase jersey-15-regular animation-fade-infinite">
+                    <span class="mr-2 text-3xl">Déplacez la souris</span>
+                    <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
+                </p>
+                <!-- game-cursor -->
+                <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-no-repeat bg-contain bg-center" 
+                    style="background-image: url(assets/gif/rocket-spaceship.gif);"
+                >
+                    <div #collisionBox class="collision-box relative"></div>
+                </div>
+            </div>
+            <!-- game over -->
+            <div *ngIf="gameIsOver" class="absolute-full-flex-center z-10">
+                <div class="flex flex-col items-center z-10">
+                    <h3 class="jersey-15-regular text-8xl">Game Over</h3>
+                    <p class="jersey-15-regular text-6xl">Score&nbsp;: <span>{{ storedScore }}</span></p>
+                    <div class="flex flex-col">
+                        <button class="btn jersey-15-regular text-3xl" (click)="onClickRetryGame()">
+                            <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                            <span>Recommencer</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
