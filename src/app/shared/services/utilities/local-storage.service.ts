@@ -8,7 +8,7 @@ export class LocalStorageService {
   
   constructor() { }
 
-  public static get portfolioPrefixStorageKey(): string {
+  public static get commonPrefixKey(): string {
     return 'lsPortfolioYR_';
   }
 

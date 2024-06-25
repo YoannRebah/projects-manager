@@ -25,7 +25,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   inputCommandValue!: string;
   inputCommandIsFocused: boolean = false;
   commandsHistory: string[] = [];
-  terminalHistoryKey: string = LocalStorageService.portfolioPrefixStorageKey + "terminal-history";
+  terminalHistoryKey: string = LocalStorageService.commonPrefixKey + "terminal-history";
   currentCommandIndex: number = -1;
   idToggleVhsEffect: string = 'toggle-vhs-effect';
   terminalService = inject(TerminalService);

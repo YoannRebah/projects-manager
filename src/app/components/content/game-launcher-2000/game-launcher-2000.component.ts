@@ -31,16 +31,16 @@ export class GameLauncher2000Component implements OnInit {
   gameIsOver: boolean = false;
   mouseIsInsideGameContainer!: boolean | null;
   mouseClientX!: number;
-  animationDelayMs: number = 8000;
-  animationDelayStepDecrementMs: number = 500;
-  animationDelayMinMs: number = 500;
+  animationDelayMs: number = 6000;
+  animationDelayStepDecrementMs: number = 100;
+  animationDelayMinMs: number = 700;
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
   windowRefService = inject(WindowRefService);
   // storage
-  keyScore: string = 'player-score';
-  keyHighScore: string = 'player-high-score';
+  keyScore: string = LocalStorageService.commonPrefixKey + 'player-score';
+  keyHighScore: string = LocalStorageService.commonPrefixKey + 'player-high-score';
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
@@ -220,11 +220,11 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   get randomStellarObjectLeftPosition(): number {
-    return Math.floor(Math.random() * 101);
+    return Math.floor(Math.random() * 91);
   }
 
   get randomObjectWidth(): number {
-    return Math.floor(Math.random() * 121) + 80;
+    return Math.floor(Math.random() * 81) + 40;
   }
 
   createRandomStellarObject(): void {
