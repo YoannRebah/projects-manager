@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GameService } from '../../../shared/services/components/game.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
+import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
 
 @Component({
   selector: 'app-game-launcher-2000',
@@ -118,6 +119,7 @@ export class GameLauncher2000Component implements OnInit {
         if (!this.gameIsPaused) {
           this.score += this.stepIncrementScore;
           this.storeScore();
+          this.createRandomStellarObject();
         }
       }, 1000);
     }
@@ -168,6 +170,7 @@ export class GameLauncher2000Component implements OnInit {
     this.storeHighScore();
     this.setGameCursorStyles("reset");
     clearInterval(this.scoreIntervalId);
+    this.removeAllStellarObjects();
   }
 
   gameOver(): void {
@@ -198,6 +201,82 @@ export class GameLauncher2000Component implements OnInit {
       this.renderer.removeClass(gameCursorElement, 'left-[-37.5%]');
       this.renderer.setStyle(gameCursorElement, 'transform', `translateX(-36px)`);
     }
+  }
+
+  // ====================================================================
+
+  get randomStellarObjectImgIndex(): number {
+    return Math.floor(Math.random() * 2) + 1;
+  }
+
+  get randomStellarObjectClassNamesIndex(): number {
+    return Math.floor(Math.random() * 5) + 1;
+  }
+
+  get randomStellarObjectLeftPosition(): number {
+    return Math.floor(Math.random() * 101);
+  }
+
+  get randomObjectWidth(): number {
+    return Math.floor(Math.random() * 61) + 20;
+  }
+
+  createRandomStellarObject(): void {
+    const meteorTimestamp = DatetimeService.timestampNow;
+    const gameContainer = this.gameContainer.nativeElement;
+    const randomWidth = this.randomObjectWidth;
+    const randomStellarObjectImgIndex = this.randomStellarObjectImgIndex;
+
+    const stellarObject = this.renderer.createElement('img');
+    this.renderer.addClass(stellarObject, 'stellar-object');
+    this.renderer.addClass(stellarObject, 'absolute');
+    this.renderer.setAttribute(stellarObject, 'src', `assets/images/stellar-object-${randomStellarObjectImgIndex}.png`);
+    this.renderer.setAttribute(stellarObject, 'data-damage', this.defineStellarObjectDamages(randomWidth));
+    this.renderer.setAttribute(stellarObject, 'data-timestamp', meteorTimestamp.toString());
+   
+    this.renderer.setStyle(stellarObject, 'left', `${this.randomStellarObjectLeftPosition}%`);
+    this.renderer.setStyle(stellarObject, 'width', `${randomWidth}px`);
+  
+    this.renderer.appendChild(gameContainer, stellarObject);
+
+    this.removeOldStellarObject();
+  }
+
+  defineStellarObjectDamages(width: number): string {
+    let damage: string = "0";
+    if(width > 0 && width < 20) damage = "5";
+    if(width >= 20 && width <= 40) damage = "10";
+    if(width >= 40 && width <= 60) damage = "15";
+    if(width > 60) damage = "20";
+    return damage;
+  }
+
+  stellarObjectIsExpired(timestamp: number): boolean {
+    const now: number = new Date().getTime();
+    const meteorTimestamp: number = new Date(timestamp).getTime();
+    const difference = now - meteorTimestamp;
+    return difference >= 10000;
+  }
+
+  removeOldStellarObject(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
+
+    for (let i = stellarObjects.length - 1; i >= 0; i--) {
+        const stellarObject = stellarObjects[i] as HTMLElement;
+        const timestamp = parseInt(stellarObject.getAttribute('data-timestamp') || '0', 10);
+        if (this.stellarObjectIsExpired(timestamp)) {
+            this.renderer.removeChild(gameContainer, stellarObject);
+        }
+    }
+  }
+
+  removeAllStellarObjects(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
+    stellarObjects.forEach((elem: HTMLElement)=>{
+      elem.remove();
+    });
   }
 
 }
