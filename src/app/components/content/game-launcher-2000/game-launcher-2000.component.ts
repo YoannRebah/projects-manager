@@ -218,7 +218,14 @@ export class GameLauncher2000Component implements OnInit {
   // ====================================================================
 
   get randomStellarObjectImgIndex(): number {
-    return Math.floor(Math.random() * 2) + 1;
+    const rand = Math.random();
+    if (rand < 0.90) {
+        return 1;  // 90% de chance
+    } else if (rand < 0.98) {
+        return 2;  // 8%
+    } else {
+        return 3;  // 2%
+    }
   }
 
   get randomStellarObjectClassNamesIndex(): number {
