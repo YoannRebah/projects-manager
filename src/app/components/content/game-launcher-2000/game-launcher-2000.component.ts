@@ -87,6 +87,11 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   stopGame(): void {
+    const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
+    this.renderer.addClass(gameCursorElement, '-translate-x-2/4');
+    this.renderer.addClass(gameCursorElement, 'left-[50%]');
+    this.renderer.removeClass(gameCursorElement, 'left-[-37.5%]');
+    this.renderer.setStyle(gameCursorElement, 'transform', `inherit`);
     this.gameIsStarted = false;
     this.storeHighScore();
   }
@@ -122,8 +127,8 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   gameCursorFollowMouse(clientX: number): void {
+    const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
     if(this.gameIsStarted) {
-      const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
       this.renderer.removeClass(gameCursorElement, '-translate-x-2/4');
       this.renderer.removeClass(gameCursorElement, 'left-[50%]');
       this.renderer.addClass(gameCursorElement, 'left-[-37.5%]');
