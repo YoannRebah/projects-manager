@@ -25,7 +25,6 @@ export class GameLauncher2000Component implements OnInit {
   gameIsStarted: boolean = false;
   gameIsOver: boolean = false;
   mouseIsInsideGameContainer!: boolean | null;
-  mouseEnterInGameContainerOnce: boolean = false;
   mouseClientX!: number;
   // services
   renderer = inject(Renderer2);
@@ -103,10 +102,6 @@ export class GameLauncher2000Component implements OnInit {
 
   onMouseEnterGameContainer(): void {
     this.mouseIsInsideGameContainer = true;
-    this.mouseEnterInGameContainerOnce = true;
-    if(this.mouseEnterInGameContainerOnce) {
-      this.startGame();
-    }
   }
 
   onMouseLeaveGameContainer(): void {
@@ -116,12 +111,15 @@ export class GameLauncher2000Component implements OnInit {
   onMouseMoveIntoView(event: MouseEvent): void {
     const clientX = event.clientX;
     this.gameCursorFollowMouse(clientX);
-    console.log('mouseIsInsideGameContainer', this.mouseIsInsideGameContainer)
-    console.log('mouseEnterInGameContainerOnce', this.mouseEnterInGameContainerOnce)
+  }
+
+  onClickStartGame(): void {
+    this.initNewGame();
+    this.startGame();
   }
 
   gameCursorFollowMouse(clientX: number): void {
-    if(this.mouseIsInsideGameContainer) {
+    if(this.gameIsStarted) {
       const gameCursorElement = this.gameCursor.nativeElement as HTMLElement;
       this.renderer.removeClass(gameCursorElement, '-translate-x-2/4');
       this.renderer.removeClass(gameCursorElement, 'left-[50%]');
