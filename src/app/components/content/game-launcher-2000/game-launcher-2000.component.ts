@@ -250,8 +250,6 @@ export class GameLauncher2000Component implements OnInit {
       this.animationDelayMs -= this.animationDelayStepDecrementMs;
     }
 
-    console.log(this.animationDelayMs)
-
     const stellarObject = this.renderer.createElement('img');
     this.renderer.addClass(stellarObject, 'stellar-object');
     this.renderer.addClass(stellarObject, 'absolute');
@@ -274,14 +272,6 @@ export class GameLauncher2000Component implements OnInit {
         this.createRandomStellarObject();
       }
     }, this.timeDelayUpdateStellarObjectsMs);
-    // if (this.timeDelayUpdateStellarObjectsMs > this.timeDelayUpdateStellarObjectsMinMs) {
-    //   this.timeDelayUpdateStellarObjectsMs -= this.timeDelayUpdateStellarObjectsStepMs;
-    //   this.stellarObjectsIntervalId = this.windowRefService.windowRef.setInterval(() => {
-    //     if (!this.gameIsPaused) {
-    //       this.createRandomStellarObject();
-    //     }
-    //   }, this.timeDelayUpdateStellarObjectsMs);
-    // }
   }
 
   defineStellarObjectDamages(width: number): string {
@@ -308,7 +298,7 @@ export class GameLauncher2000Component implements OnInit {
         const stellarObject = stellarObjects[i] as HTMLElement;
         const timestamp = parseInt(stellarObject.getAttribute('data-timestamp') || '0', 10);
         if (this.stellarObjectIsExpired(timestamp)) {
-            this.renderer.removeChild(gameContainer, stellarObject);
+          this.renderer.removeChild(gameContainer, stellarObject);
         }
     }
   }
