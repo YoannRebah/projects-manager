@@ -31,13 +31,9 @@ export class GameLauncher2000Component implements OnInit {
   gameIsOver: boolean = false;
   mouseIsInsideGameContainer!: boolean | null;
   mouseClientX!: number;
-  animationDelayMs: number = 5000;
-  animationDelayStepDecrementMs: number = 50;
-  animationDelayMinMs: number = 500;
-  timeDelayStellarObjectCreationMs: number = 1000;
-  timeDelayStellarObjectCreationMinMs: number = 100;
-  timeDelayStellarObjectCreationStepDecrementMs: number = 100;
-  stellarObjectIntervalId!: number; 
+  animationDelayMs: number = 8000;
+  animationDelayStepDecrementMs: number = 100;
+  animationDelayMinMs: number = 100;
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
@@ -228,7 +224,7 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   get randomObjectWidth(): number {
-    return Math.floor(Math.random() * 61) + 20;
+    return Math.floor(Math.random() * 121) + 80;
   }
 
   createRandomStellarObject(): void {
