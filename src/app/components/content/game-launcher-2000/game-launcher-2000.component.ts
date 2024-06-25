@@ -30,6 +30,9 @@ export class GameLauncher2000Component implements OnInit {
   gameIsOver: boolean = false;
   mouseIsInsideGameContainer!: boolean | null;
   mouseClientX!: number;
+  animationDelayMs: number = 5000;
+  animationDelayMsStepDecrement: number = 50;
+  animationDelayMsMin: number = 100;
   // services
   renderer = inject(Renderer2);
   gameService = inject(GameService);
@@ -238,7 +241,12 @@ export class GameLauncher2000Component implements OnInit {
    
     this.renderer.setStyle(stellarObject, 'left', `${this.randomStellarObjectLeftPosition}%`);
     this.renderer.setStyle(stellarObject, 'width', `${randomWidth}px`);
-    // this.renderer.setStyle(stellarObject, 'animationDelay', `${this.animationDelayMs}ms`);
+
+    if(this.animationDelayMs > this.animationDelayMsMin) {
+      this.animationDelayMs -= this.animationDelayMsStepDecrement;
+      this.renderer.setStyle(stellarObject, 'animationDuration', `${this.animationDelayMs}ms`);
+      console.log(this.animationDelayMs)
+    }
   
     this.renderer.appendChild(gameContainer, stellarObject);
 

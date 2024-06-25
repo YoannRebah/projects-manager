@@ -10,7 +10,7 @@
 .stellar-object {
     top: -10%;
     opacity: 0;
-    animation: animation-stellar-object-forwards 5s linear forwards;
+    animation: animation-stellar-object-forwards 5000ms linear forwards;
     @keyframes animation-stellar-object-forwards {
         0% {
             top: -10%;
