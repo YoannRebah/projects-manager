@@ -9,14 +9,10 @@
                 <button class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] active:bg-red" aria-label="Stop" (click)="onClickStopGame()" title="Stop">
                     <i class="fa-regular fa-circle-stop"></i>
                 </button>
-                <button 
-                    class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px]" 
-                    [class.bg-red]="gameIsPaused" aria-label="Pause" (click)="onClickPauseResumeGame()" title="Pause / Reprendre"
-                    [disabled]="!gameIsStarted"
-                >
+                <div class="flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px]" [class.bg-red]="gameIsPaused">
                     <i *ngIf="!gameIsPaused" class="fa-regular fa-circle-pause"></i>
                     <i *ngIf="gameIsPaused" class="fa-regular fa-circle-play"></i>
-                </button>
+                </div>
             </div>
             <div class="flex items-center flex-[1_1_45%]">
                 <div class="container-health-bar flex items-center w-full">

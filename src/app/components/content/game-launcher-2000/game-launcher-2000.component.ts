@@ -48,10 +48,16 @@ export class GameLauncher2000Component implements OnInit {
 
   onMouseEnterGameContainer(): void {
     this.mouseIsInsideGameContainer = true;
+    if(this.gameIsStarted && this.gameIsPaused) {
+      this.resumeGame();
+    }
   }
 
   onMouseLeaveGameContainer(): void {
     this.mouseIsInsideGameContainer = false;
+    if(this.gameIsStarted && !this.gameIsPaused) {
+      this.pauseGame();
+    }
   }
 
   onMouseMoveIntoView(event: MouseEvent): void {
@@ -62,14 +68,6 @@ export class GameLauncher2000Component implements OnInit {
   onClickStartGame(): void {
     this.initNewGame();
     this.startGame();
-  }
-
-  onClickPauseResumeGame(): void {
-    if(!this.gameIsPaused) {
-      this.pauseGame();
-    } else {
-      this.resumeGame();
-    }
   }
 
   onClickStopGame(): void {
