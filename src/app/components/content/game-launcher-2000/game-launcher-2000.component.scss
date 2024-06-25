@@ -6,3 +6,22 @@
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
 }
+
+.stellar-object {
+    top: -10%;
+    opacity: 0;
+    animation: animation-stellar-object-forwards 5s linear forwards;
+    @keyframes animation-stellar-object-forwards {
+        0% {
+            top: -10%;
+            opacity: 0;
+        }
+        5% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 1;
+            top: 100%;
+        }
+    }
+}

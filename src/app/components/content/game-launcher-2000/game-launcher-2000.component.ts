@@ -236,6 +236,7 @@ export class GameLauncher2000Component implements OnInit {
    
     this.renderer.setStyle(stellarObject, 'left', `${this.randomStellarObjectLeftPosition}%`);
     this.renderer.setStyle(stellarObject, 'width', `${randomWidth}px`);
+    // this.renderer.setStyle(stellarObject, 'animationDelay', `${this.animationDelayMs}ms`);
   
     this.renderer.appendChild(gameContainer, stellarObject);
 
