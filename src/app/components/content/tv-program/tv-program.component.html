@@ -1,8 +1,10 @@
-<div *ngIf="isVisible" class="tv-program fixed-backdrop-screen bg-black z-40">
-    <video #tvProgramVideo class="h-full w-full">
-        <source src="assets/videos/tv-program.mp4" type="video/mp4">
-        Votre navigateur ne prend pas en charge la balise video. Cliquer pour masquer.
-    </video>
-    <button class="btn absolute-full" (click)="onClickHideVideo()"></button>
-    <app-block-signal-tv iconClassNames="fa-solid fa-satellite" title="Signal faible..." subtitle="Reprise du programme TV"></app-block-signal-tv>
-</div>
+@if (isVisible) {
+    <div class="tv-program fixed-backdrop-screen bg-black z-40">
+        <video #tvProgramVideo class="h-full w-full">
+            <source src="assets/videos/tv-program.mp4" type="video/mp4">
+            Votre navigateur ne prend pas en charge la balise video. Cliquer pour masquer.
+        </video>
+        <button class="btn absolute-full" (click)="onClickHideVideo()"></button>
+        <app-block-signal-tv iconClassNames="fa-solid fa-satellite" title="Signal faible..." subtitle="Reprise du programme TV"></app-block-signal-tv>
+    </div>
+}

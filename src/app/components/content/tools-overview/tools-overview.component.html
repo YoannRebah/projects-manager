@@ -1,9 +1,9 @@
 <div class="tools-overview flex flex-wrap gap-3">
-    <div *ngFor="let tool of tools" class="tool relative flex-1 h-[140px] border-8 border-black outline-4 outline-black-light">
-        <div [id]="tool.id" class="screen relative w-full h-full bg-no-repeat bg-contain bg-center" [style.backgroundImage]="'url(' + tool.bgImage + ')'">
-            <p class="absolute w-full bottom-3 left-3 text-white text-xl text-shadow-chromatic-glitch-strong">
-                {{ tool.text }}
-            </p>
+    @for (tool of tools; track $index) {
+        <div class="tool relative flex-1 h-[140px] border-8 border-black outline-4 outline-black-light">
+            <div [id]="tool.id" class="screen relative w-full h-full bg-no-repeat bg-contain bg-center" [style.backgroundImage]="'url(' + tool.bgImage + ')'">
+                <p class="absolute w-full bottom-3 left-3 text-white text-xl text-shadow-chromatic-glitch-strong" [innerHTML]="tool.text"></p>
+            </div>
         </div>
-    </div>
+    }
 </div>

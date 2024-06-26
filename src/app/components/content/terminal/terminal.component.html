@@ -1,5 +1,7 @@
-<div *ngIf="isVisible" class="terminal fixed bottom-0 left-0 w-full bg-black p-8 px-20 z-40">
-    <ul #terminalList class="container mx-auto hide-scrollbar list-none h-[170px] overflow-y-auto"></ul>
-</div>
-
-<app-modal-terminal-help id="modal-terminal-help"></app-modal-terminal-help>
+@if (isVisible) {
+    <div class="terminal fixed bottom-0 left-0 w-full bg-black p-8 px-20 z-40">
+        <ul #terminalList class="container mx-auto hide-scrollbar list-none h-[170px] overflow-y-auto"></ul>
+    </div>
+    <!-- modal help -->
+    <app-modal-terminal-help id="modal-terminal-help"></app-modal-terminal-help>
+}
