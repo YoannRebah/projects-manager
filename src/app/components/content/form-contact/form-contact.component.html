@@ -10,18 +10,26 @@
                         <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
                         [ngClass]="{'outline-pink-important': contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="absolute right-0 text-pink">
-                            <small *ngIf="contactForm.get('lastName')?.errors?.['required']">Information requise</small>
-                        </div>
+                        @if(contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched) {
+                            <div class="absolute right-0 text-pink">
+                                @if(contactForm.get('lastName')?.errors?.['required']) {
+                                    <small *ngIf="">Information requise</small>
+                                }
+                            </div>
+                        }
                     </div>
                     <div class="relative flex flex-col flex-1">
                         <label class="relative mb-1 font-medium" for="input-firstName">Prénom<sup>*</sup></label>
                         <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-firstName" name="firstName" type="text" autocomplete="off" placeholder="Julie" tabindex="2" formControlName="firstName"
                         [ngClass]="{'outline-pink-important': contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="absolute right-0 text-pink">
-                            <small *ngIf="contactForm.get('firstName')?.errors?.['required']">Information requise</small>
-                        </div>
+                        @if(contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched) {
+                            <div class="absolute right-0 text-pink">
+                                @if(contactForm.get('firstName')?.errors?.['required']) {
+                                    <small>Information requise</small>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="flex flex-col gap-10 md:flex-row">
@@ -30,20 +38,32 @@
                         <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
                         [ngClass]="{'outline-pink-important': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="absolute right-0 text-pink">
-                            <small *ngIf="contactForm.get('email')?.errors?.['required']">Information requise</small>
-                            <small *ngIf="contactForm.get('email')?.errors?.['email']">Le format est invalide</small>
-                        </div>
+                        @if(contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                            <div class="absolute right-0 text-pink">
+                                @if(contactForm.get('email')?.errors?.['required']) {
+                                    <small>Information requise</small>
+                                }
+                                @if(contactForm.get('email')?.errors?.['email']) {
+                                    <small>Le format est invalide</small>
+                                }
+                            </div>
+                        }
                     </div>
                     <div class="relative flex flex-col flex-1">
                         <label class="relative mb-1 font-medium" for="input-tel">Téléphone<sup>*</sup></label>
                         <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-tel" name="tel" type="tel" autocomplete="off" placeholder="06 01 02 03 04" tabindex="4" formControlName="tel"
                         [ngClass]="{'outline-pink-important': contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched}"
                         >
-                        <div *ngIf="contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched" class="absolute right-0 text-pink">
-                            <small *ngIf="contactForm.get('tel')?.errors?.['required']">Information requise</small>
-                            <small *ngIf="contactForm.get('tel')?.errors?.['pattern']">Le format est invalide</small>
-                        </div>
+                        @if(contactForm.get('tel')?.invalid && contactForm.get('tel')?.touched) {
+                            <div class="absolute right-0 text-pink">
+                                @if(contactForm.get('tel')?.errors?.['required']) {
+                                    <small>Information requise</small>
+                                }
+                                @if(contactForm.get('tel')?.errors?.['pattern']) {
+                                    <small>Le format est invalide</small>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -59,9 +79,13 @@
                                 <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
                                 [ngClass]="{'outline-pink-important': contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched}"
                                 >
-                                <div *ngIf="contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched" class="absolute right-0 text-pink">
-                                    <small *ngIf="contactForm.get('compagnyName')?.errors?.['required']">Information requise</small>
-                                </div>
+                                @if(contactForm.get('compagnyName')?.invalid && contactForm.get('compagnyName')?.touched) {
+                                    <div class="absolute right-0 text-pink">
+                                        @if(contactForm.get('compagnyName')?.errors?.['required']) {
+                                            <small>Information requise</small>
+                                        }
+                                    </div>
+                                }
                             </div>
                             <div class="relative flex flex-col flex-1">
                                 <label class="relative mb-1 font-medium" for="input-compagny-post">Rôle dans l'entreprise</label>
@@ -76,11 +100,15 @@
                                 <select class="text-black p-2 outline-4 focus:outline-cyan" id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
                                     <ng-container *ngFor="let region of locationsFr | keyvalue">
                                     <optgroup [label]="region.key">
-                                        <option *ngFor="let department of region.value" [value]="department.code">{{ department.nom }}</option>
+                                        @for (department of region.value; track $index) {
+                                            <option [value]="department.code">{{ department.nom }}</option>
+                                        }
                                     </optgroup>
                                     </ng-container>
                                 </select>
-                                <img *ngIf="showLocationGif" class="absolute w-[2rem] left-[-5%] bottom-[4%]" src="assets/gif/heart-love.gif" alt="Bon choix">
+                                @if(showLocationGif) {
+                                    <img class="absolute w-[2rem] left-[-5%] bottom-[4%]" src="assets/gif/heart-love.gif" alt="Bon choix">
+                                }
                             </div>
                             <div class="relative flex flex-col flex-1"></div>
                         </div>
@@ -97,8 +125,12 @@
         <!-- submit -->
         <div class="container-submit flex-center-center mt-6">
             <button class="btn btn-submit flex-center-center w-[150px] p-2 border-2 border-cyan" tabindex="9" type="submit">
-                <div *ngIf="sendIsPending" class="loader-packman"></div>
-                <span *ngIf="!sendIsPending">Envoyer</span>
+                @if(sendIsPending) {
+                    <span class="loader-packman"></span>
+                }
+                @if(!sendIsPending) {
+                    <span>Envoyer</span>
+                }
             </button>
         </div>
     </form>
