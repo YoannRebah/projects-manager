@@ -1,12 +1,16 @@
 <div class="marquee-interests relative flex overflow-hidden bg-black">
     <ul class="relative flex min-w-[100%] h-[220px] list-none">
-        <li *ngFor="let img of imgArray" class="relative flex">
-            <img [src]="img.path" [alt]="img.alt">
-        </li>
+        @for (img of imgArray; track $index) {
+            <li class="relative flex">
+                <img [src]="img.path" [alt]="img.alt">
+            </li>
+        }
     </ul>
     <ul class="relative flex min-w-[100%] h-[220px] list-none" aria-hidden="true">
-        <li *ngFor="let img of imgArray" class="relative flex">
-            <img [src]="img.path" [alt]="img.alt">
-        </li>
+        @for (img of imgArray; track $index) {
+            <li class="relative flex">
+                <img [src]="img.path" [alt]="img.alt">
+            </li>
+        }
     </ul>
 </div>
