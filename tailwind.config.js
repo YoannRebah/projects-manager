@@ -8,6 +8,7 @@ export const theme = {
     colors: {
       "black-light": 'hsl(0, 0%, 21%)',
       "black": 'hsl(0, 0%, 13%)',
+      "black-transparent-darker": 'hsla(0, 0%, 0%, 0.9)',
       "black-transparent-dark": 'hsla(0, 0%, 0%, 0.7)',
       "black-transparent-light": 'hsla(0, 0%, 0%, 0.4)',
       "blue": 'hsl(234, 100%, 50%)',
