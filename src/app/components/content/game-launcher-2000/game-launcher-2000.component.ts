@@ -36,6 +36,7 @@ export class GameLauncher2000Component implements OnInit {
   animationDelayStepDecrementMs: number = 30;
   animationDelayMinMs: number = 500;
   collisionBoxIsHitted: boolean = false;
+  collisionToleranceInPixels: number = 8;
   // stellar objects
   stellarObjectsIntervalId!: number; 
   timeDelayUpdateStellarObjectsMs: number = 400;
@@ -266,12 +267,12 @@ export class GameLauncher2000Component implements OnInit {
   
     this.renderer.appendChild(gameContainer, stellarObject);
 
-    this.removeOldStellarObject();
-
     const collisionBoxElement = this.collisionBox.nativeElement as HTMLElement;
     if (this.detectCollision(stellarObject, collisionBoxElement)) {
       this.handleCollision(stellarObject);
     }
+
+    this.removeOldStellarObject();
   }
 
   updateCreateRandomStellarObject(): void {
@@ -285,10 +286,10 @@ export class GameLauncher2000Component implements OnInit {
 
   defineStellarObjectDamages(width: number): string {
     let damage: string = "0";
-    if(width > 0 && width < 80) damage = "5";
-    if(width >= 80 && width < 100) damage = "15";
-    if(width >= 100 && width < 120) damage = "25";
-    if(width > 120) damage = "35";
+    if(width < 80) damage = "5";
+    if(width >= 80 && width < 100) damage = "10";
+    if(width >= 100 && width < 115) damage = "20";
+    if(width > 115) damage = "30";
     return damage;
   }
 
@@ -296,7 +297,7 @@ export class GameLauncher2000Component implements OnInit {
     const now: number = new Date().getTime();
     const meteorTimestamp: number = new Date(timestamp).getTime();
     const difference = now - meteorTimestamp;
-    return difference >= 30000;
+    return difference >= 10000;
   }
 
   removeOldStellarObject(): void {
@@ -342,10 +343,10 @@ export class GameLauncher2000Component implements OnInit {
     const stellarObjectRect = stellarObject.getBoundingClientRect();
     const collisionBoxRect = collisionBox.getBoundingClientRect();
     return (
-      stellarObjectRect.left < collisionBoxRect.right &&
-      stellarObjectRect.right > collisionBoxRect.left &&
-      stellarObjectRect.top < collisionBoxRect.bottom &&
-      stellarObjectRect.bottom > collisionBoxRect.top
+      stellarObjectRect.left < collisionBoxRect.right - this.collisionToleranceInPixels &&
+      stellarObjectRect.right > collisionBoxRect.left + this.collisionToleranceInPixels &&
+      stellarObjectRect.top < collisionBoxRect.bottom - this.collisionToleranceInPixels &&
+      stellarObjectRect.bottom > collisionBoxRect.top + this.collisionToleranceInPixels
     );
   }
 
