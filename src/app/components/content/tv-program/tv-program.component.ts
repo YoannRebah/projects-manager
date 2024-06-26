@@ -24,8 +24,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   isPlaying: boolean = false;
   isShown: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 10; // 227
-  delayBeforeShow: number = 10; // 600
+  videoDurationTime: number = 227; // 227
+  delayBeforeShow: number = 600; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
   tvProgramService = inject(TvProgramService);
   timeCounterService = inject(TimeCounterService);
