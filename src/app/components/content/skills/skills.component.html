@@ -8,10 +8,10 @@
                 </div>
                 <ul class="list-none flex flex-col flex-[1_1_80%]">
                     <li *ngFor="let detail of skill.details; let last = last;" class="flex-center-center flex-col md:flex-row" [class.mb-3]="!last">
-                        <div class="flex-col flex-[1_1_25%] mr-2">
-                            <p class="text-right text-sm md:text-base" [innerHTML]="detail.text + '&nbsp;:'"></p>
+                        <div class="flex-col flex-[1_1_30%] mr-2">
+                            <p class="text-right text-xs md:text-sm" [innerHTML]="detail.text + '&nbsp;:'"></p>
                         </div>
-                        <div class="relative h-4 flex-[1_1_75%]" [class]="skill.bgColorDark">
+                        <div class="relative h-4 flex-[1_1_70%]" [class]="skill.bgColorDark">
                             <div class="relative h-full" [class]="skill.bgColor" [style.width]="detail.percent + '%'"></div>
                         </div>
                     </li>
