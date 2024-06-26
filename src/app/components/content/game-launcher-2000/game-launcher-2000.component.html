@@ -35,17 +35,21 @@
             <!-- gameContainer -->
             <div #gameContainer class="relative w-full h-full overflow-hidden" (mouseenter)="onMouseEnterGameContainer()" (mouseleave)="onMouseLeaveGameContainer()">
                 <!-- Cliquez pour jouer -->
-                <button *ngIf="!gameIsStarted" (click)="onClickStartGame()" class="absolute-full-flex-center uppercase jersey-15-regular z-10 animation-fade-infinite">
-                    <span class="mr-2 text-3xl">Cliquez pour jouer</span>
-                    <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
-                </button>
+                 @if(!gameIsStarted) {
+                    <button (click)="onClickStartGame()" class="absolute-full-flex-center uppercase jersey-15-regular z-10 animation-fade-infinite">
+                        <span class="mr-2 text-3xl">Cliquez pour jouer</span>
+                        <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
+                    </button>
+                 }
                 <!-- En Pause -->
-                <div *ngIf="gameIsPaused" class="absolute-full-flex-center bg-black-transparent-light uppercase jersey-15-regular z-10">
-                    <div class="flex-center-center animation-fade-infinite">
-                        <span class="mr-2 text-3xl">En Pause</span>
-                        <i class="fa-regular fa-circle-pause text-2xl" aria-hidden="true"></i>
+                 @if(gameIsPaused) {
+                    <div class="absolute-full-flex-center bg-black-transparent-light uppercase jersey-15-regular z-10">
+                        <div class="flex-center-center animation-fade-infinite">
+                            <span class="mr-2 text-3xl">En Pause</span>
+                            <i class="fa-regular fa-circle-pause text-2xl" aria-hidden="true"></i>
+                        </div>
                     </div>
-                </div>
+                 }
                 <!-- game-cursor -->
                 <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-no-repeat bg-contain bg-bottom" 
                     style="background-image: url(assets/gif/rocket-spaceship.gif);"
@@ -54,18 +58,20 @@
                 </div>
             </div>
             <!-- game over -->
-            <div *ngIf="gameIsOver" class="absolute-full-flex-center z-10">
-                <div class="flex flex-col items-center z-10">
-                    <h3 class="jersey-15-regular text-8xl">Game Over</h3>
-                    <p class="jersey-15-regular text-6xl">Score&nbsp;: <span>{{ storedScore }}</span></p>
-                    <div class="flex flex-col">
-                        <button class="btn jersey-15-regular text-3xl" (click)="onClickRetryGame()">
-                            <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
-                            <span>Recommencer</span>
-                        </button>
+            @if(gameIsOver) {
+                <div *ngIf="gameIsOver" class="absolute-full-flex-center z-10">
+                    <div class="flex flex-col items-center z-10">
+                        <h3 class="jersey-15-regular text-8xl">Game Over</h3>
+                        <p class="jersey-15-regular text-6xl">Score&nbsp;: <span>{{ storedScore }}</span></p>
+                        <div class="flex flex-col">
+                            <button class="btn jersey-15-regular text-3xl" (click)="onClickRetryGame()">
+                                <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                                <span>Recommencer</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>
