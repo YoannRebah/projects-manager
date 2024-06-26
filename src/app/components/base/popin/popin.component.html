@@ -1,23 +1,25 @@
-<div *ngIf="isVisible" [id]="id" class="fixed-backdrop-flex-center bg-black-transparent-light" [style.position]="position">
-    <div class="container relative w-full max-w-[370px] flex flex-col border-4 border-grey bg-grey text-grey-dark shadow-black-transparent-dark">
-        <header class="flex-center-between bg-blue-dark p-1">
-            <div class="container-title">
-                <p class="ml-2 text-white" [innerHTML]="title"></p>
-            </div>
-            <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="onClickHide()">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
-        </header>
-        <div class="content flex p-4">
-            <div class="flex-center-center flex-[1_1_30%]">
-                <img *ngIf="img === 'error'" class="w-[60px]" src="assets/images/icon-error.png" alt="Erreur">
-                <img *ngIf="img === 'success'" class="w-[60px]" src="assets/images/icon-check.png" alt="Valide">
-                <img *ngIf="img === 'mail'" class="w-[60px]" src="assets/images/icon-mail.png" alt="Formulaire transmis">
-                <img *ngIf="img === 'help'" class="w-[60px]" src="assets/images/icon-paperclip.png" alt="Aide">
-            </div>
-            <div class="flex-center-center flex-[1_1_70%]">
-                <p [innerHTML]="text"></p>
+@if(isVisible) {
+    <div [id]="id" class="fixed-backdrop-flex-center bg-black-transparent-light" [style.position]="position">
+        <div class="container relative w-full max-w-[370px] flex flex-col border-4 border-grey bg-grey text-grey-dark shadow-black-transparent-dark">
+            <header class="flex-center-between bg-blue-dark p-1">
+                <div class="container-title">
+                    <p class="ml-2 text-white" [innerHTML]="title"></p>
+                </div>
+                <button class="btn bg-grey w-[24px] h-[24px] retro-windows-border-activable" (click)="onClickHide()">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+            <div class="content flex p-4">
+                <div class="flex-center-center flex-[1_1_30%]">
+                    <img *ngIf="img === 'error'" class="w-[60px]" src="assets/images/icon-error.png" alt="Erreur">
+                    <img *ngIf="img === 'success'" class="w-[60px]" src="assets/images/icon-check.png" alt="Valide">
+                    <img *ngIf="img === 'mail'" class="w-[60px]" src="assets/images/icon-mail.png" alt="Formulaire transmis">
+                    <img *ngIf="img === 'help'" class="w-[60px]" src="assets/images/icon-paperclip.png" alt="Aide">
+                </div>
+                <div class="flex-center-center flex-[1_1_70%]">
+                    <p [innerHTML]="text"></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

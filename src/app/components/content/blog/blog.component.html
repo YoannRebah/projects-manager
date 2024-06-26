@@ -1,22 +1,26 @@
 <div class="blog-cards flex flex-col gap-10">
-    <div *ngFor="let cardGroup of cardGroups; let i = index;" class="card-group relative min-h-80 flex justify-center gap-6" [class.hidden]="activeIndex != i">
-        <div *ngFor="let card of cardGroup" class="container-card width-calc-33-minus-1-5rem">
-            <div 
-                class="card relative h-full p-8 grid gap-10 grid-cols-1 grid-rows-[1fr_1.5fr_0.5fr] grid-flow-row border-2 border-pink shadow-pink" 
-                style="grid-template-areas: 'title' 'text' 'cta';"
-            >
-                <div style="grid-area: title;">
-                    <h2 class="megrim-regular text-2xl line-clamp-2 text-cyan text-shadow-cyan">{{ card.title }}</h2>
+    @for (cardGroup of cardGroups; track $index) {
+        <div class="card-group relative min-h-80 flex justify-center gap-6" [class.hidden]="activeIndex != $index">
+            @for (card of cardGroup; track $index) {
+                <div class="container-card width-calc-33-minus-1-5rem">
+                    <div 
+                        class="card relative h-full p-8 grid gap-10 grid-cols-1 grid-rows-[1fr_1.5fr_0.5fr] grid-flow-row border-2 border-pink shadow-pink" 
+                        style="grid-template-areas: 'title' 'text' 'cta';"
+                    >
+                        <div style="grid-area: title;">
+                            <h2 class="megrim-regular text-2xl line-clamp-2 text-cyan text-shadow-cyan">{{ card.title }}</h2>
+                        </div>
+                        <div style="grid-area: text;">
+                            <p class="text-base webkit-box line-clamp-5 text-white font-normal">{{ card.text }}</p>
+                        </div>
+                        <div style="grid-area: cta;">
+                            <a [href]="card.cta.href" [attr.aria-label]="card.cta.ariaLabel" class="btn text-lg">En savoir plus</a>
+                        </div>
+                    </div>
                 </div>
-                <div style="grid-area: text;">
-                    <p class="text-base webkit-box line-clamp-5 text-white font-normal">{{ card.text }}</p>
-                </div>
-                <div style="grid-area: cta;">
-                    <a [href]="card.cta.href" [attr.aria-label]="card.cta.ariaLabel" class="btn text-lg">En savoir plus</a>
-                </div>
-            </div>
+            }
         </div>
-    </div>
+    }
     <div class="container-pagination flex justify-center">
         <nav class="flex">
             <ul class="list-none flex gap-2">
@@ -25,14 +29,16 @@
                         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                     </button>
                 </li>
-                <li *ngFor="let cardGroup of cardGroups; let i = index;">
-                    <button 
-                        class="btn w-11 h-11 text-lg border-2 border-pink shadow-pink text-shadow-cyan text-cyan"
-                        [class.active]="activeIndex == i" (click)="setActive(i)"
-                    >
-                        {{ i + 1 }}
-                    </button>
-                </li>
+                    @for (cardGroup of cardGroups; track $index) {
+                        <li>
+                            <button 
+                                class="btn w-11 h-11 text-lg border-2 border-pink shadow-pink text-shadow-cyan text-cyan"
+                                [class.active]="activeIndex == $index" (click)="setActive($index)"
+                            >
+                                {{ $index + 1 }}
+                            </button>
+                        </li>
+                    }
                 <li class="ml-4">
                     <button class="btn w-11 h-11 text-lg border-2 border-pink shadow-pink text-shadow-cyan text-cyan" (click)="onClickNext()">
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>

@@ -19,38 +19,35 @@
         <div class="m-5 text-black">
             <div class="mb-[-1px]">
                 <!-- btn tabs -->
-                <button 
-                    *ngFor="let achievement of achievements; let i = index;" 
-                    class="btn retro-windows-border p-1.33 px-2.5 border-b-0-important text-sm font-medium" 
-                    [class.btn-tabs-active]="activeIndex === i" (click)="setActive(i)">
-                    {{ achievement.tab.text }}
-                </button>
+                @for (achievement of achievements; track $index) {
+                    <button 
+                        class="btn retro-windows-border p-1.33 px-2.5 border-b-0-important text-sm font-medium" 
+                        [class.btn-tabs-active]="activeIndex === $index" (click)="setActive($index)">
+                        {{ achievement.tab.text }}
+                    </button>
+                }
             </div>
-            <div 
-                *ngFor="let achievement of achievements; let i = index;" 
-                class="flex retro-windows-border h-[50vh]" 
-                [class.hidden]="activeIndex !== i">
-
-                <div class="flex-center-center p-6 flex-[1_1_40%]">
-                    <img class="w-[55%]" [src]="achievement.img.path" [alt]="achievement.img.path">
-                </div>
-
-                <div class="flex flex-col p-6 column_details flex-[1_1_60%]">
-                    <div class="container-details h-full overflow-y-auto">
-                        <div 
-                            *ngFor="let blockDetail of achievement.properties; let last = last;" 
-                            [class.mb-6]="!last">
-                            <p class="mb-2 text-base">{{ blockDetail.title }}</p>
-                            <ul class="ml-10 list-disc">
-                                <li class="font-medium" *ngFor="let text of blockDetail.list">
-                                    <p>{{ text }}</p>
-                                </li>
-                            </ul>
+            @for (achievement of achievements; track $index) {
+                <div class="flex retro-windows-border h-[50vh]" [class.hidden]="activeIndex !== $index">
+                    <div class="flex-center-center p-6 flex-[1_1_40%]">
+                        <img class="w-[55%]" [src]="achievement.img.path" [alt]="achievement.img.path">
+                    </div>
+                    <div class="flex flex-col p-6 column_details flex-[1_1_60%]">
+                        <div class="container-details h-full overflow-y-auto">
+                            <div 
+                                *ngFor="let blockDetail of achievement.properties; let last = last;" 
+                                [class.mb-6]="!last">
+                                <p class="mb-2 text-base">{{ blockDetail.title }}</p>
+                                <ul class="ml-10 list-disc">
+                                    <li class="font-medium" *ngFor="let text of blockDetail.list">
+                                        <p>{{ text }}</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
+            }
         </div>
         <!-- footer -->
         <footer class="flex justify-end p-4">
