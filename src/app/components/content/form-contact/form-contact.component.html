@@ -13,7 +13,7 @@
                         @if(contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched) {
                             <div class="absolute right-0 text-pink">
                                 @if(contactForm.get('lastName')?.errors?.['required']) {
-                                    <small *ngIf="">Information requise</small>
+                                    <small>Information requise</small>
                                 }
                             </div>
                         }
