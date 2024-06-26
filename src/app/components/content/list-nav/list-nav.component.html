@@ -1,49 +1,65 @@
 <nav class="container mx-auto h-full flex-center-center">
   <ul class="list-nav relative w-full h-full flex items-center">
-    <li *ngFor="let anchor of navAnchors" class="flex-center-center h-full flex-1">
-      <a 
-          class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch"
-          [class]="anchor.classNames"
-          [href]="anchor.href" 
-          [attr.aria-label]="anchor.ariaLabel" 
-          [attr.target]="anchor.target"
-          [attr.rel]="anchor.target === '_blank' ? 'noopener noreferrer' : null"
-          [title]="anchor.tooltip || ''"
-      >
-        <i *ngIf="anchor.iconClassNames" [class]="anchor.iconClassNames" aria-hidden="true"></i>
-        <span *ngIf="anchor.text" class="ml-2 hidden md:flex">{{ anchor.text }}</span>
-      </a>
-    </li>
-    <li *ngFor="let btn of navButtons" class="flex-center-center h-full flex-1">
-      <button 
-          class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan"
-          [class]="btn.classNames"
-          [attr.aria-label]="btn.ariaLabel" 
-          [title]="btn.tooltip || ''"
-          (click)="btn.onClick ? btn.onClick() : null"
-      >
-        <i *ngIf="btn.iconClassNames" [class]="btn.iconClassNames" aria-hidden="true"></i>
-        <span *ngIf="btn.text" class="ml-2 hidden md:flex">{{ btn.text }}</span>
-      </button>
-    </li>
-    <li *ngIf="userLoggedIn" class="flex-center-center h-full flex-1">
-      <button (click)="onClickLogout()" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan">
-        <i class="fa-solid fa-power-off" aria-hidden="true"></i>
-        <span class="text-xs hidden md:flex">Déconnexion</span>
-      </button>
-    </li>
-    <li *ngIf="!userLoggedIn" class="flex-center-center h-full flex-1">
-      <a href="/login" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch">
-        <i class="fa-regular fa-user" aria-hidden="true"></i>
-        <span class="text-xs hidden md:flex">Connexion</span>
-      </a>
-    </li>
-    <li *ngIf="!userLoggedIn" class="flex-center-center h-full flex-1">
-      <a href="/register" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch">
-        <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-        <span class="text-xs hidden md:flex">Nouveau</span>
-      </a>
-    </li>
+    @for (anchor of navAnchors; track $index) {
+      <li class="flex-center-center h-full flex-1">
+        <a 
+            class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch"
+            [class]="anchor.classNames"
+            [href]="anchor.href" 
+            [attr.aria-label]="anchor.ariaLabel" 
+            [attr.target]="anchor.target"
+            [attr.rel]="anchor.target === '_blank' ? 'noopener noreferrer' : null"
+            [title]="anchor.tooltip || ''"
+        >
+          @if (anchor.iconClassNames) {
+            <i [class]="anchor.iconClassNames" aria-hidden="true"></i>
+          }
+          @if (anchor.text) {
+            <span class="ml-2 hidden md:flex" [innerHTML]="anchor.text"></span>
+          }
+        </a>
+      </li>
+    }
+    @for (btn of navButtons; track $index) {
+      <li class="flex-center-center h-full flex-1">
+        <button 
+            class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan"
+            [class]="btn.classNames"
+            [attr.aria-label]="btn.ariaLabel" 
+            [title]="btn.tooltip || ''"
+            (click)="btn.onClick ? btn.onClick() : null"
+        >
+          @if (btn.iconClassNames) {
+            <i [class]="btn.iconClassNames" aria-hidden="true"></i>
+          }
+          @if (btn.text) {
+            <span class="ml-2 hidden md:flex" [innerHTML]="btn.text"></span>
+          }
+        </button>
+      </li>
+    }
+    @if (userLoggedIn) {
+      <li class="flex-center-center h-full flex-1">
+        <button (click)="onClickLogout()" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan">
+          <i class="fa-solid fa-power-off" aria-hidden="true"></i>
+          <span class="text-xs hidden md:flex">Déconnexion</span>
+        </button>
+      </li>
+    }
+    @if (!userLoggedIn) {
+      <li class="flex-center-center h-full flex-1">
+        <a href="/login" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch">
+          <i class="fa-regular fa-user" aria-hidden="true"></i>
+          <span class="text-xs hidden md:flex">Connexion</span>
+        </a>
+      </li>
+      <li class="flex-center-center h-full flex-1">
+        <a href="/register" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch">
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+          <span class="text-xs hidden md:flex">Nouveau</span>
+        </a>
+      </li>
+    }
   </ul>
 </nav>
 
