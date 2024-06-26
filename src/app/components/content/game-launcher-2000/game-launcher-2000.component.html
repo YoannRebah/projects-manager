@@ -54,7 +54,7 @@
                 <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-no-repeat bg-contain bg-bottom" 
                     style="background-image: url(assets/gif/rocket-spaceship.gif);"
                 >
-                    <div #collisionBox class="collision-box relative"></div>
+                    <div #collisionBox class="collision-box relative top-[14px] w-[50px] h-[70px] left-[11px] opacity-60" [class.bg-red]="collisionBoxIsHitted"></div>
                 </div>
             </div>
             <!-- game over -->

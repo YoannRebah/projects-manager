@@ -4,6 +4,7 @@ import { GameService } from '../../../shared/services/components/game.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-game-launcher-2000',
@@ -34,6 +35,7 @@ export class GameLauncher2000Component implements OnInit {
   animationDelayMs: number = 8000;
   animationDelayStepDecrementMs: number = 30;
   animationDelayMinMs: number = 500;
+  collisionBoxIsHitted: boolean = false;
   // stellar objects
   stellarObjectsIntervalId!: number; 
   timeDelayUpdateStellarObjectsMs: number = 400;
@@ -47,6 +49,7 @@ export class GameLauncher2000Component implements OnInit {
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
+  @ViewChild('collisionBox', { static: true }) collisionBox!: ElementRef;
 
   constructor() {}
 
@@ -237,7 +240,7 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   get randomObjectWidth(): number {
-    return Math.floor(Math.random() * 71) + 70;
+    return Math.floor(Math.random() * 71) + 60; // [60, 130]
   }
 
   createRandomStellarObject(): void {
@@ -264,22 +267,28 @@ export class GameLauncher2000Component implements OnInit {
     this.renderer.appendChild(gameContainer, stellarObject);
 
     this.removeOldStellarObject();
+
+    const collisionBoxElement = this.collisionBox.nativeElement as HTMLElement;
+    if (this.detectCollision(stellarObject, collisionBoxElement)) {
+      this.handleCollision(stellarObject);
+    }
   }
 
   updateCreateRandomStellarObject(): void {
     this.stellarObjectsIntervalId = this.windowRefService.windowRef.setInterval(() => {
       if (!this.gameIsPaused) {
         this.createRandomStellarObject();
+        this.checkCollision();
       }
     }, this.timeDelayUpdateStellarObjectsMs);
   }
 
   defineStellarObjectDamages(width: number): string {
     let damage: string = "0";
-    if(width > 0 && width < 20) damage = "5";
-    if(width >= 20 && width <= 40) damage = "10";
-    if(width >= 40 && width <= 60) damage = "15";
-    if(width > 60) damage = "20";
+    if(width > 0 && width < 80) damage = "5";
+    if(width >= 80 && width < 100) damage = "15";
+    if(width >= 100 && width < 120) damage = "25";
+    if(width > 120) damage = "35";
     return damage;
   }
 
@@ -324,6 +333,42 @@ export class GameLauncher2000Component implements OnInit {
     const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
     stellarObjects.forEach((elem: HTMLElement)=>{
       elem.style.animationPlayState = 'running';
+    });
+  }
+
+  // ========================================================
+
+  detectCollision(stellarObject: HTMLElement, collisionBox: HTMLElement): boolean {
+    const stellarObjectRect = stellarObject.getBoundingClientRect();
+    const collisionBoxRect = collisionBox.getBoundingClientRect();
+    return (
+      stellarObjectRect.left < collisionBoxRect.right &&
+      stellarObjectRect.right > collisionBoxRect.left &&
+      stellarObjectRect.top < collisionBoxRect.bottom &&
+      stellarObjectRect.bottom > collisionBoxRect.top
+    );
+  }
+
+  handleCollision(stellarObject: HTMLElement): void {
+    const damage = parseInt(stellarObject.getAttribute('data-damage') || '0', 10);
+    this.setHealth(-damage);
+    const gameContainer = this.gameContainer.nativeElement;
+    this.renderer.removeChild(gameContainer, stellarObject);
+    this.collisionBoxIsHitted = true;
+    TimeoutService.setTimeout(()=>{
+      this.collisionBoxIsHitted = false;
+    }, 100);
+  }
+
+  checkCollision(): void {
+    const gameContainer = this.gameContainer.nativeElement;
+    const stellarObjects = gameContainer.querySelectorAll('.stellar-object');
+    const collisionBoxElement = this.collisionBox.nativeElement as HTMLElement;
+
+    stellarObjects.forEach((stellarObject: HTMLElement) => {
+      if (this.detectCollision(stellarObject, collisionBoxElement)) {
+        this.handleCollision(stellarObject);
+      }
     });
   }
 
