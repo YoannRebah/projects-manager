@@ -3,17 +3,21 @@
         <img src="assets/gif/footer.gif" alt="">
     </div>
     <div class="list-footer-group flex items-center gap-24">
-        <ul *ngFor="let footerLink of footerLinks" class="list-none">
-            <li *ngFor="let linkGroup of footerLink" class="mb-5">
-                <a 
-                    [href]="linkGroup.href" 
-                    [attr.aria-label]="linkGroup.ariaLabel" 
-                    [attr.target]="linkGroup.target"
-                    [attr.rel]="linkGroup.target === '_blank' ? 'noopener noreferrer' : null"
-                >
-                    {{ linkGroup.text }}
-                </a>
-            </li>
-        </ul>
+        @for (footerLink of footerLinks; track $index) {
+            <ul class="list-none">
+                @for (linkGroup of footerLink; track $index) {
+                    <li class="mb-5">
+                        <a 
+                            [href]="linkGroup.href" 
+                            [attr.aria-label]="linkGroup.ariaLabel" 
+                            [attr.target]="linkGroup.target"
+                            [attr.rel]="linkGroup.target === '_blank' ? 'noopener noreferrer' : null"
+                        >
+                            {{ linkGroup.text }}
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
     </div>
 </div>
