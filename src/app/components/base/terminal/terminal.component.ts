@@ -4,7 +4,7 @@ import { TerminalService } from '../../../shared/services/components/terminal.se
 import { Subscription } from 'rxjs';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
-import { ModalTerminalHelpComponent } from '../modal-terminal-help/modal-terminal-help.component';
+import { ModalTerminalHelpComponent } from '../../content/modal-terminal-help/modal-terminal-help.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 // testable services
 import { LoaderService } from '../../../shared/services/components/loader.service';

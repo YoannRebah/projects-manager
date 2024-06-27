@@ -6,7 +6,7 @@ import { TimeCounterService } from '../../../shared/services/components/time-cou
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
-import { BlockSignalTvComponent } from '../../base/block-signal-tv/block-signal-tv.component';
+import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.component';
 
 @Component({
   selector: 'app-tv-program',
