@@ -1,7 +1,11 @@
-<app-modal id="modal-user-account" classNames="modal-user-account" title="<i class='fa-regular fa-user'></i> Compte utilisateur">
+<app-modal id="modal-user-account" classNames="modal-user-account" headerTitle="<i class='fa-regular fa-user'></i> Compte utilisateur">
     <div class="custom-content bg-grey p-8">
       <ul class="list-none">
-        <li></li>
+        <li class="flex justify-center">
+          <button (click)="onClickLogout()" aria-label="Déconnexion" class="btn retro-windows-border-activable p-2 px-8 text-black font-medium" title="Se déconnecter du compte">
+            Déconnexion
+          </button>
+        </li>
       </ul>
     </div>
 </app-modal>  

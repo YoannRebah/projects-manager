@@ -18,7 +18,7 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
 
   @Input() id!: string;
   @Input() position?: string = 'fixed';
-  @Input() title?: string;
+  @Input() headerTitle?: string;
 
   constructor() {}
 

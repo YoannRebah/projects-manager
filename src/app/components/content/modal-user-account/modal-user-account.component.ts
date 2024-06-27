@@ -2,6 +2,7 @@ import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../base/modal/modal.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
+import { AuthService } from '../../../shared/services/base/auth.service';
 
 @Component({
   selector: 'app-modal-user-account',
@@ -14,6 +15,7 @@ export class ModalUserAccountComponent {
   isVisible: boolean = false;
   modalId: string = 'modal-user-account';
   modalService = inject(ModalService);
+  authService = inject(AuthService);
 
   constructor() {}
 
@@ -32,5 +34,10 @@ export class ModalUserAccountComponent {
       event.preventDefault();
       this.onPressKeyCtrlY();
     }
+  }
+
+  onClickLogout(): void {
+    this.authService.logout();
+    this.modalService.hide(this.modalId);
   }
 }
