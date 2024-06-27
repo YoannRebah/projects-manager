@@ -5,12 +5,12 @@ import { LocalStorageService } from '../../../shared/services/utilities/local-st
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
-import { LoaderHourglassComponent } from '../../base/loader-hourglass/loader-hourglass.component';
+import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 
 @Component({
   selector: 'app-game-launcher-2000',
   standalone: true,
-  imports: [CommonModule, LoaderHourglassComponent],
+  imports: [CommonModule],
   templateUrl: './game-launcher-2000.component.html',
   styleUrl: './game-launcher-2000.component.scss'
 })
@@ -46,6 +46,7 @@ export class GameLauncher2000Component implements OnInit {
   renderer = inject(Renderer2);
   gameService = inject(GameService);
   windowRefService = inject(WindowRefService);
+  loaderHourglassService = inject(LoaderHourglassService);
   // storage
   keyScore: string = LocalStorageService.commonPrefixKey + 'player-score';
   keyHighScore: string = LocalStorageService.commonPrefixKey + 'player-high-score';
@@ -92,8 +93,8 @@ export class GameLauncher2000Component implements OnInit {
     this.initNewGame();
   }
 
-  onClickShowLoaderQuit(): void {
-    this.showLoaderQuit = true;
+  onClickBackHomepage(): void {
+    this.loaderHourglassService.show();
   }
 
   // ===========================================================================

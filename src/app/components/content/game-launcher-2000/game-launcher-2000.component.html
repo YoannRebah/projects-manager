@@ -3,7 +3,12 @@
         <!-- header -->
         <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
             <div class="flex items-center flex-[1_1_25%] gap-3">
-                <a href="" (click)="onClickShowLoaderQuit()" class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] hover:text-white" aria-label="Retour à la page d'accueil" title="Retour à la homepage">
+                <a 
+                    href="" 
+                    (click)="onClickBackHomepage()" class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] hover:text-white" 
+                    aria-label="Retour à la page d'accueil" 
+                    title="Retour à la page d'accueil"
+                >
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <button class="btn flex items-center justify-center bg-pink-dark text-xl w-[34px] h-[34px] active:bg-red" aria-label="Stopper et réinitialiser" (click)="onClickStopGame()" title="Stopper et réinitialiser">
@@ -75,7 +80,3 @@
         </div>
     </div>
 </div>
-
-@if(showLoaderQuit) {
-    <app-loader-hourglass></app-loader-hourglass>
-}
