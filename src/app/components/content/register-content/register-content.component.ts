@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/base/auth.service';
@@ -49,16 +49,21 @@ export class RegisterContentComponent implements OnInit {
   onSubmitRegisterForm(): void {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      console.log('Form is invalid');
     } else {
-      console.log('Form Submitted!', this.registerForm.value);
       this.onSubmit();
-      // Your form submission logic here
     }
   }
 
   onClickSubmitRegisterForm(): void {
     this.onSubmitRegisterForm();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDownTerminal(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onSubmitRegisterForm();
+    }
   }
 
 }

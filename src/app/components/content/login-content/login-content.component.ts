@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/base/auth.service';
@@ -59,6 +59,14 @@ export class LoginContentComponent implements OnInit {
 
   onClickSubmitLoginForm(): void {
     this.onSubmitLoginForm();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDownTerminal(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onSubmitLoginForm();
+    }
   }
 
 }
