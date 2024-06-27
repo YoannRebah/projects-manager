@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-arcade-room',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './arcade-room.component.html',
   styleUrl: './arcade-room.component.scss'
 })

@@ -34,16 +34,18 @@
                     </div>
                     <div class="flex flex-col p-6 column_details flex-[1_1_60%]">
                         <div class="container-details h-full overflow-y-auto">
-                            <div 
-                                *ngFor="let blockDetail of achievement.properties; let last = last;" 
-                                [class.mb-6]="!last">
+                            @for (blockDetail of achievement.properties; track $index; let last = $last;) {
+                                <div [class.mb-6]="!$last">
                                 <p class="mb-2 text-base">{{ blockDetail.title }}</p>
                                 <ul class="ml-10 list-disc">
-                                    <li class="font-medium" *ngFor="let text of blockDetail.list">
-                                        <p>{{ text }}</p>
-                                    </li>
+                                    @for (text of blockDetail.list; track $index;) {
+                                        <li class="font-medium">
+                                            <p>{{ text }}</p>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -57,9 +59,9 @@
             </div>
         </footer>
     </div>
-
+    
     <!-- popins -->
-    <app-popin id="popin-need-help" img="help" title="Erreur 34_0201" text="L'aide n'est pas disponible pour le moment..."></app-popin>
-    <app-popin id="popin-try-quit" img="error" title="Erreur 37_100" text="Vous ne pouvez pas faire ça pour le moment..."></app-popin>
+    <app-popin id="popin-need-help" img="help" headerTitle="Erreur 34_0201" text="L'aide n'est pas disponible pour le moment..."></app-popin>
+    <app-popin id="popin-try-quit" img="error" headerTitle="Erreur 37_100" text="Vous ne pouvez pas faire ça pour le moment..."></app-popin>
 
 </div>
