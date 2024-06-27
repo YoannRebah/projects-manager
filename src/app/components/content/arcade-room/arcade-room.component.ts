@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 
 @Component({
   selector: 'app-arcade-room',
@@ -9,5 +10,11 @@ import { Component } from '@angular/core';
 })
 
 export class ArcadeRoomComponent {
+  loaderHourglassService = inject(LoaderHourglassService);
+
   constructor() {}
+
+  onClickPressPlay(): void {
+    this.loaderHourglassService.show();
+  }
 }
