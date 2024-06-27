@@ -2,8 +2,9 @@
     <div class="container relative w-full max-w-[570px] flex flex-col bg-grey border-4 border-grey text-grey-dark shadow-black-transparent-dark">
         <!-- header -->
         <header class="flex-center-start bg-blue-dark p-1">
-            <div class="container-title">
-                <p class="ml-2 text-white">Se connecter</p>
+            <div class="flex items-center pl-1">
+                <i class="fa-solid fa-arrow-right-from-bracket text-white mr-2" aria-hidden="true"></i>
+                <p class="text-white">Se connecter</p>
             </div>
         </header>
         <!-- content -->
@@ -22,7 +23,7 @@
                 </div>
                 <div class="flex flex-col gap-1">
                     <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitLoginForm()">OK</button>
-                    <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
+                    <a href="" class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium hover:text-black" title="Retour à la page d'accueil">Annuler</a>
                 </div>
             </div>
             <div class="flex justify-center">
