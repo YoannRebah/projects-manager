@@ -40,21 +40,20 @@
     }
     @if (userLoggedIn) {
       <li class="flex-center-center h-full flex-1">
-        <button (click)="onClickLogout()" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan">
-          <i class="fa-solid fa-power-off" aria-hidden="true"></i>
-          <span class="text-xs hidden md:flex">Déconnexion</span>
+        <button (click)="onClickShowUserAccount()" class="btn w-[32px] h-[32px] uppercase text-lg bg-pink text-white text-shadow-chromatic-glitch hover:text-cyan">
+          <span [innerHTML]="userNameFirstLetter"></span>
         </button>
       </li>
     }
     @if (!userLoggedIn) {
       <li class="flex-center-center h-full flex-1">
-        <a href="/login" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch">
+        <a href="/login" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 w-fit text-shadow-chromatic-glitch">
           <i class="fa-regular fa-user" aria-hidden="true"></i>
           <span class="text-xs hidden md:flex">Connexion</span>
         </a>
       </li>
       <li class="flex-center-center h-full flex-1">
-        <a href="/register" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 no-underline w-fit text-shadow-chromatic-glitch">
+        <a href="/register" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 w-fit text-shadow-chromatic-glitch">
           <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
           <span class="text-xs hidden md:flex">Nouveau</span>
         </a>
@@ -65,3 +64,6 @@
 
 <!-- modal-settings -->
 <app-modal-settings id="modal-settings"></app-modal-settings>
+
+<!-- modal-user-account -->
+<app-modal-user-account id="modal-user-account"></app-modal-user-account>

@@ -5,11 +5,12 @@ import { Button } from '../../../shared/models/button';
 import { ModalSettingsComponent } from '../modal-settings/modal-settings.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { AuthService } from '../../../shared/services/base/auth.service';
+import { ModalUserAccountComponent } from '../modal-user-account/modal-user-account.component';
 
 @Component({
   selector: 'app-nav-content',
   standalone: true,
-  imports: [CommonModule, ModalSettingsComponent],
+  imports: [CommonModule, ModalSettingsComponent, ModalUserAccountComponent],
   templateUrl: './nav-content.component.html',
   styleUrl: './nav-content.component.scss'
 })
@@ -66,6 +67,8 @@ export class NavContentComponent implements OnInit{
   modalService = inject(ModalService);
   authService = inject(AuthService);
   userLoggedIn: boolean = false;
+  userName!: string | undefined;
+  userNameFirstLetter!: string | undefined;
 
   constructor() {}
 
@@ -85,6 +88,8 @@ export class NavContentComponent implements OnInit{
           username: user.displayName!
         });
         this.userLoggedIn = true;
+        this.userName = this.authService.currentUserSignal()?.username;
+        this.setUserNameFirstLetter(this.userName);
       } else {
         this.authService.currentUserSignal.set(null);
         this.userLoggedIn = false;
@@ -92,8 +97,15 @@ export class NavContentComponent implements OnInit{
     });
   }
 
-  onClickLogout(): void {
-    this.authService.logout();
+  setUserNameFirstLetter(username: string | undefined): void {
+    if(username) {
+      this.userNameFirstLetter = username.substring(0, 1);
+    }
+  }
+
+  onClickShowUserAccount(): void {
+    this.modalService.show('modal-user-account');
+    // this.authService.logout();
   }
 
 }
