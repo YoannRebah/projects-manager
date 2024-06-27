@@ -16,7 +16,6 @@ import { LoaderHourglassService } from '../../../shared/services/components/load
 })
 
 export class GameLauncher2000Component implements OnInit {
-  showLoaderQuit: boolean = false;
   // score
   score: number = 0;
   scoreMin: number = 0;
