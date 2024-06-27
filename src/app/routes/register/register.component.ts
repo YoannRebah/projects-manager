@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { H1Component } from '../../components/base/h1/h1.component';
 import { HeaderComponent } from '../../components/layout/header/header.component';
-import { FormRegisterComponent } from '../../components/content/form-register/form-register.component';
+import { RegisterContentComponent } from '../../components/content/register-content/register-content.component';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +9,7 @@ import { FormRegisterComponent } from '../../components/content/form-register/fo
   imports: [
     H1Component, 
     HeaderComponent,
-    FormRegisterComponent,
+    RegisterContentComponent,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'

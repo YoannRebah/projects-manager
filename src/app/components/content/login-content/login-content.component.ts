@@ -6,14 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form-login',
+  selector: 'app-login-content',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './form-login.component.html',
-  styleUrl: './form-login.component.scss'
+  templateUrl: './login-content.component.html',
+  styleUrl: './login-content.component.scss'
 })
 
-export class FormLoginComponent implements OnInit {
+export class LoginContentComponent implements OnInit {
   loginForm!: FormGroup;
   errorLogin: boolean = false;
   formBuilder = inject(FormBuilder);

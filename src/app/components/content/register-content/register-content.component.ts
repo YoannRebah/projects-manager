@@ -6,14 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form-register',
+  selector: 'app-register-content',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './form-register.component.html',
-  styleUrl: './form-register.component.scss'
+  templateUrl: './register-content.component.html',
+  styleUrl: './register-content.component.scss'
 })
 
-export class FormRegisterComponent implements OnInit {
+export class RegisterContentComponent implements OnInit {
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient);

@@ -3,40 +3,40 @@
         <!-- header -->
         <header class="flex-center-start bg-blue-dark p-1">
             <div class="container-title">
-                <p class="ml-2 text-white">Créer un compte</p>
+                <p class="ml-2 text-white">Se connecter</p>
             </div>
         </header>
         <!-- content -->
-        <div class="p-4">
+        <div class="p-4 flex flex-col gap-4">
             <div class="flex justify-between gap-4">
                 <div>
-                    <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
+                    @if(!errorLogin) {
+                        <img class="w-[65px] h-[65px]" src="assets/images/icon-login.png" alt="Connexion">
+                    }
+                    @if(errorLogin) {
+                        <img class="w-[150px]" src="assets/gif/magic-word.gif" alt="Magic Word">   
+                    }
                 </div>
                 <div class="flex items-center">
-                    <p class="text-xs">Saisissez votre e-mail et un mot de passe.</p>
+                    <p class="text-xs">Saisissez votre e-mail et votre mot de passe.</p>
                 </div>
                 <div class="flex flex-col gap-1">
-                    <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitRegisterForm()">OK</button>
+                    <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitLoginForm()">OK</button>
                     <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium">Annuler</button>
                 </div>
             </div>
             <div class="flex justify-center">
-                <form class="form-register relative" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisterForm()">
+                <form class="relative" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
                     <ul>
-                        <li class="flex items-center mb-2">
-                            <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="username"><span class="underline">N</span>om utilisateur:</label>
-                            <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="username" type="text" formControlName="username"
-                            [ngClass]="{'outline-pink-important': registerForm.get('username')?.invalid && registerForm.get('username')?.touched}">
-                        </li>
                         <li class="flex items-center mb-2">
                             <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="email"><span class="underline">A</span>dresse mail:</label>
                             <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="email" type="text" formControlName="email"
-                            [ngClass]="{'outline-pink-important': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
+                            [ngClass]="{'outline-pink-important': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
                         </li>
                         <li class="flex items-center mb-2">
                             <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="password"><span class="underline">M</span>ot de passe:</label>
                             <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="password" type="password" formControlName="password"
-                            [ngClass]="{'outline-pink-important': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
+                            [ngClass]="{'outline-pink-important': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
                         </li>
                     </ul>
                 </form>
@@ -45,7 +45,7 @@
         <!-- footer -->
         <footer class="p-4 flex-center-center">
             <button class="btn retro-windows-border-activable p-1 px-8 text-sm text-black font-medium flex-center-center flex-col gap-2">
-                <span class="text-xs">Créer un compte avec</span>
+                <span class="text-xs">Se connecter avec</span>
                 <img class="w-[100px]" src="assets/images/logo-google-pixel.png" alt="Google">
             </button>
         </footer>
