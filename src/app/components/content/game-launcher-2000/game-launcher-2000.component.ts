@@ -5,16 +5,18 @@ import { LocalStorageService } from '../../../shared/services/utilities/local-st
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
+import { LoaderHourglassComponent } from '../../base/loader-hourglass/loader-hourglass.component';
 
 @Component({
   selector: 'app-game-launcher-2000',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoaderHourglassComponent],
   templateUrl: './game-launcher-2000.component.html',
   styleUrl: './game-launcher-2000.component.scss'
 })
 
 export class GameLauncher2000Component implements OnInit {
+  showLoaderQuit: boolean = false;
   // score
   score: number = 0;
   scoreMin: number = 0;
@@ -88,6 +90,10 @@ export class GameLauncher2000Component implements OnInit {
 
   onClickRetryGame(): void {
     this.initNewGame();
+  }
+
+  onClickShowLoaderQuit(): void {
+    this.showLoaderQuit = true;
   }
 
   // ===========================================================================
