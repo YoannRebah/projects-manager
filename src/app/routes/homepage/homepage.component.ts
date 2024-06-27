@@ -15,8 +15,8 @@ import { H1Component } from '../../components/base/h1/h1.component';
 import { H2Component } from '../../components/base/h2/h2.component';
 // content
 import { TvProgramComponent } from '../../components/content/tv-program/tv-program.component';
-import { ListNavComponent } from '../../components/content/list-nav/list-nav.component';
-import { ListFooterComponent } from '../../components/content/list-footer/list-footer.component';
+import { NavContentComponent } from '../../components/content/nav-content/nav-content.component';
+import { FooterContentComponent } from '../../components/content/footer-content/footer-content.component';
 import { TerminalComponent } from '../../components/content/terminal/terminal.component';
 import { EmployeeCardComponent } from '../../components/content/employee-card/employee-card.component';
 import { SkillsComponent } from '../../components/content/skills/skills.component';
@@ -57,8 +57,8 @@ import { BlogComponent } from '../../components/content/blog/blog.component';
     LocationComponent,
     ArcadeRoomComponent,
     IntroductionComponent,
-    ListNavComponent,
-    ListFooterComponent,
+    NavContentComponent,
+    FooterContentComponent,
     FormContactComponent,
     AdsPosterComponent,
     BlogComponent,

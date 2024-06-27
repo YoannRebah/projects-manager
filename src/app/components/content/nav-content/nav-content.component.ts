@@ -7,14 +7,14 @@ import { ModalService } from '../../../shared/services/components/modal.service'
 import { AuthService } from '../../../shared/services/base/auth.service';
 
 @Component({
-  selector: 'app-list-nav',
+  selector: 'app-nav-content',
   standalone: true,
   imports: [CommonModule, ModalSettingsComponent],
-  templateUrl: './list-nav.component.html',
-  styleUrl: './list-nav.component.scss'
+  templateUrl: './nav-content.component.html',
+  styleUrl: './nav-content.component.scss'
 })
 
-export class ListNavComponent implements OnInit{
+export class NavContentComponent implements OnInit{
   navAnchors: Anchor[] = [
     {
       href: '#',

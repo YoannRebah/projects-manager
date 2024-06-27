@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Anchor } from '../../../shared/models/anchor';
 
 @Component({
-  selector: 'app-list-footer',
+  selector: 'app-footer-content',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './list-footer.component.html',
-  styleUrl: './list-footer.component.scss'
+  templateUrl: './footer-content.component.html',
+  styleUrl: './footer-content.component.scss'
 })
 
-export class ListFooterComponent {
+export class FooterContentComponent {
   footerLinks: Anchor[][] = [
     [
       {
