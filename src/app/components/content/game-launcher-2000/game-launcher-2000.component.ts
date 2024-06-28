@@ -36,7 +36,7 @@ export class GameLauncher2000Component implements OnInit {
   animationDelayStepDecrementMs: number = 30;
   animationDelayMinMs: number = 500;
   collisionBoxIsHitted: boolean = false;
-  collisionToleranceInPixels: number = 8;
+  collisionToleranceInPixels: number = 2;
   // stellar objects
   stellarObjectsIntervalId!: number; 
   timeDelayUpdateStellarObjectsMs: number = 400;
