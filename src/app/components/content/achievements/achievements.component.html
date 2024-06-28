@@ -7,17 +7,17 @@
                 <p>Propriétés des réalisations notables</p>
             </div>
             <div class="flex gap-1">
-                <button class="btn bg-grey w-[24px] h-[24px] text-grey-dark retro-windows-border-activable" (click)="showPopin('popin-need-help')">
-                    <i class="fa-solid fa-question"></i>
+                <button class="btn bg-grey w-[24px] h-[24px] text-grey-dark retro-windows-border-activable leading-4" (click)="showPopin('popin-need-help')">
+                    <i class="fa-solid fa-question" aria-hidden="true"></i>
                 </button>
-                <button class="btn bg-grey w-[24px] h-[24px] text-grey-dark retro-windows-border-activable" (click)="showPopin('popin-try-quit')">
-                    <i class="fa-solid fa-xmark"></i>
+                <button class="btn bg-grey w-[24px] h-[24px] text-grey-dark retro-windows-border-activable leading-4" (click)="showPopin('popin-try-quit')">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </div>
         </header>
         <!-- content -->
         <div class="m-5 text-black">
-            <div class="mb-[-1px]">
+            <div class="mb-[-3px]">
                 <!-- btn tabs -->
                 @for (achievement of achievements; track $index) {
                     <button 
