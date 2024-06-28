@@ -9,11 +9,12 @@ import { ValidatorsService } from '../../../shared/services/utilities/validators
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { PopinComponent } from '../../base/popin/popin.component';
 import { PopinService } from '../../../shared/services/components/popin.service';
+import { LoaderPackmanComponent } from '../../base/loader-packman/loader-packman.component';
 
 @Component({
   selector: 'app-form-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, PopinComponent],
+  imports: [CommonModule, ReactiveFormsModule, PopinComponent, LoaderPackmanComponent],
   templateUrl: './form-contact.component.html',
   styleUrl: './form-contact.component.scss'
 })

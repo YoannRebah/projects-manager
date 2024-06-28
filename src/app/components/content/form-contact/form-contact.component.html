@@ -126,7 +126,7 @@
         <div class="container-submit flex-center-center mt-6">
             <button class="btn btn-submit flex-center-center w-[150px] p-2 border-2 border-cyan" tabindex="9" type="submit">
                 @if(sendIsPending) {
-                    <span class="loader-packman"></span>
+                    <app-loader-packman></app-loader-packman>
                 }
                 @if(!sendIsPending) {
                     <span>Envoyer</span>
