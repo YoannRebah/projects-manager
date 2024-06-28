@@ -40,19 +40,31 @@
     }
     @if (userLoggedIn) {
       <li class="flex-center-center h-full flex-1">
-        <button (click)="onClickShowUserAccount()" class="btn w-[28px] h-[28px] uppercase text-lg bg-pink-dark border border-pink text-white text-shadow-chromatic-glitch hover:bg-pink">
+        <button 
+          (click)="onClickShowUserAccount()" 
+          class="btn w-[28px] h-[28px] uppercase text-lg bg-pink-dark border border-pink text-white text-shadow-chromatic-glitch hover:bg-pink"
+          title="Compte utilisateur"
+        >
           <span [innerHTML]="userNameFirstLetter"></span>
         </button>
       </li>
     }
     @if (!userLoggedIn) {
       <li class="flex-center-center h-full flex-1 gap-2">
-        <a href="/login" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 w-fit text-shadow-chromatic-glitch">
+        <a 
+          href="/login" 
+          class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 w-fit text-shadow-chromatic-glitch"
+          title="Se connecter"
+        >
           <i class="fa-regular fa-user" aria-hidden="true"></i>
           <span class="text-xs hidden md:flex">Connexion</span>
         </a>
         <div>|</div>
-        <a href="/register" class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 w-fit text-shadow-chromatic-glitch">
+        <a 
+          href="/register" 
+          class="btn flex-center-center gap-0.5 flex-col text-sm text-white p-2 w-fit text-shadow-chromatic-glitch"
+          title="Créer un compte"
+        >
           <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
           <span class="text-xs hidden md:flex">Nouveau</span>
         </a>
