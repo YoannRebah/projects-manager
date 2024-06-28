@@ -87,12 +87,12 @@
         border: 2.5px solid;
         border-top-color: $white2;
         border-left-color: $white2;
-        border-right-color: $black2;
-        border-bottom-color: $black2;
+        border-right-color: $grey2;
+        border-bottom-color: $grey2;
     
         &:active {
-            border-top-color: $black2;
-            border-left-color: $black2;
+            border-top-color: $grey2;
+            border-left-color: $grey2;
             border-right-color: $white2;
             border-bottom-color: $white2;
         }
@@ -101,8 +101,8 @@
         border: 2.5px solid;
         border-top-color: $white2;
         border-left-color: $white2;
-        border-right-color: $black2;
-        border-bottom-color: $black2;
+        border-right-color: $grey2;
+        border-bottom-color: $grey2;
     }
     .retro-windows-input-border {
         border: 2px solid;
