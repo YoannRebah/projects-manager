@@ -1,60 +1,11 @@
-@import '../../../../styles/base';
+@import '../../../../styles/variables';
 
-.arcade-room {
-    border-radius: .5rem;
-    padding: 2rem;
-
-    @include screen('s') {
-        max-width: 760px;
-        padding: 6rem;
-        border-radius: 1.5rem;
-    }
-
-    h3 {
-        font-weight: 900;
-        font-size: 1.7rem;
-        text-shadow: 3px 1px 1px $cyan, 2px 2px 1px $cyan2, 4px 2px 1px $cyan, 3px 3px 1px $cyan2, 5px 3px 1px $cyan, 4px 4px 1px $cyan2, 6px 4px 1px $cyan, 5px 5px 1px $cyan2, 7px 5px 1px $cyan, 6px 6px 1px $cyan2, 8px 6px 1px $cyan, 7px 7px 1px $cyan2, 9px 7px 1px $cyan;
-      
-        @include screen('s') {
-            font-size: 2.5rem;
-        }
-
-        span {
-            display: block;
-            letter-spacing: -5px;
-
-            &:first-child {
-                margin-right: .75rem;
-            }
-      
-            &:before {
-                content: attr(data-text);
-                position: absolute;
-                text-shadow: 2px 2px 1px $pink, -1px -1px 1px $pink, -2px 2px 1px $pink, 1px -1px 1px $pink2;
-            }
-        }
-    }
-
-    .insert-coins {
-        margin: 2.5rem 0;
-
-        img {
-            width: 1.8rem;
-            margin-right: 0.33rem;
-
-            @include screen('s') {
-                width: 2.2rem;
-            }
-        }
-
-        span {
-            font-size: 1.2rem;
-            margin-right: 0.2rem;
-            letter-spacing: -0.15rem;
-
-            @include screen('s') {
-                font-size: 1.5rem;
-            }
+h3 {
+    span {
+        &:before {
+            content: attr(data-text);
+            position: absolute;
+            text-shadow: 2px 2px 1px $pink, -1px -1px 1px $pink, -2px 2px 1px $pink, 1px -1px 1px $pink2;
         }
     }
 }

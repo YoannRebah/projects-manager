@@ -38,6 +38,7 @@ export const theme = {
       "cyan": '0 -40px 100px, 0 0 2px, 0 0 10px hsl(172, 85%, 49%), 0 0 1px hsl(172, 85%, 49%), 0 0 0.1em hsl(172, 85%, 49%), 0 0px 6px hsl(172, 85%, 49%)',
       "retro-computer-green": '0 0 3px #80ffc0, 0 0 10px #00ff66, 0 0 20px #00ff66, 0 0 30px #00ff66',
       "retro-computer-red": '0 0 3px #ff8080, 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000',
+      "pixel-title": '3px 1px 1px hsl(172, 85%, 49%), 2px 2px 1px hsl(170, 79%, 33%), 4px 2px 1px hsl(172, 85%, 49%), 3px 3px 1px hsl(170, 79%, 33%), 5px 3px 1px hsl(172, 85%, 49%), 4px 4px 1px hsl(170, 79%, 33%), 6px 4px 1px hsl(172, 85%, 49%), 5px 5px 1px hsl(170, 79%, 33%), 7px 5px 1px hsl(172, 85%, 49%), 6px 6px 1px hsl(170, 79%, 33%), 8px 6px 1px hsl(172, 85%, 49%), 7px 7px 1px hsl(170, 79%, 33%), 9px 7px 1px hsl(172, 85%, 49%)',
     },
     boxShadow: {
       "pink": '0px 1px 10px -2px hsl(330, 72%, 69%)',
