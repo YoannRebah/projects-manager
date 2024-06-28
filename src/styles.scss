@@ -83,12 +83,6 @@
     .outline-pink-important {
         outline: 4px solid $pink !important;
     }
-    .hr-pink {
-        @apply border-pink;
-    }
-    .hr-cyan {
-        @apply border-cyan;
-    }
     .retro-windows-border-activable {
         border: 2px solid;
         border-top-color: $white2;
@@ -116,13 +110,6 @@
         border-left-color: $grey2;
         border-right-color: $white2;
         border-bottom-color: $white2;
-    }
-    .btn-tabs-active {
-        border-bottom: 2px solid $grey !important;
-        font-size: 1rem !important;
-    }
-    .vhs-lines {
-        @apply absolute left-0 top-[-5%] w-full opacity-30 bg-white shadow-vhs-lines pointer-events-none;
     }
     .bg-square-pink {
         background-size: 32px 32px;
