@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { InputService } from '../../../shared/services/base/input.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-toggle-switch',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './toggle-switch.component.html',
   styleUrl: './toggle-switch.component.scss'
 })

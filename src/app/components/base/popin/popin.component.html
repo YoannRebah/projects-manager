@@ -11,10 +11,20 @@
             </header>
             <div class="content flex p-4">
                 <div class="flex-center-center flex-[1_1_30%]">
-                    <img *ngIf="img === 'error'" class="w-[60px]" src="assets/images/icon-error.png" alt="Erreur">
-                    <img *ngIf="img === 'success'" class="w-[60px]" src="assets/images/icon-check.png" alt="Valide">
-                    <img *ngIf="img === 'mail'" class="w-[60px]" src="assets/images/icon-mail.png" alt="Formulaire transmis">
-                    <img *ngIf="img === 'help'" class="w-[60px]" src="assets/images/icon-paperclip.png" alt="Aide">
+                    @switch (img) {
+                        @case('error') {
+                            <img class="w-[60px]" src="assets/images/icon-error.png" alt="Erreur">
+                        }
+                        @case('success') {
+                            <img class="w-[60px]" src="assets/images/icon-check.png" alt="Valide">
+                        }
+                        @case('mail') {
+                            <img class="w-[60px]" src="assets/images/icon-mail.png" alt="Formulaire transmis">
+                        }
+                        @case('help') {
+                            <img class="w-[60px]" src="assets/images/icon-paperclip.png" alt="Aide">
+                        }
+                    }
                 </div>
                 <div class="flex-center-center flex-[1_1_70%]">
                     <p [innerHTML]="text"></p>

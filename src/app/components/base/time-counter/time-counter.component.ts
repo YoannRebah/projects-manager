@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { interval, Subscription, Observable } from 'rxjs';
 import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
 import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
@@ -8,7 +7,7 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 @Component({
   selector: 'app-time-counter',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './time-counter.component.html',
   styleUrls: ['./time-counter.component.scss']
 })

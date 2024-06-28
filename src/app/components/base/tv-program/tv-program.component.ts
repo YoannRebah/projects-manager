@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
 import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
@@ -11,7 +10,7 @@ import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.compo
 @Component({
   selector: 'app-tv-program',
   standalone: true,
-  imports: [CommonModule, BlockSignalTvComponent],
+  imports: [BlockSignalTvComponent],
   templateUrl: './tv-program.component.html',
   styleUrl: './tv-program.component.scss'
 })

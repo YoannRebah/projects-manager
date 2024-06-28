@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { TimeCounterComponent } from '../time-counter/time-counter.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
@@ -7,7 +6,7 @@ import { VhsEffectService } from '../../../shared/services/components/vhs-effect
 @Component({
   selector: 'app-vhs-effect',
   standalone: true,
-  imports: [CommonModule, TimeCounterComponent],
+  imports: [TimeCounterComponent],
   templateUrl: './vhs-effect.component.html',
   styleUrl: './vhs-effect.component.scss'
 })

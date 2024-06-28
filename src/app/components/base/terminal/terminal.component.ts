@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, Renderer2, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TerminalService } from '../../../shared/services/components/terminal.service';
 import { Subscription } from 'rxjs';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
-import { ModalTerminalHelpComponent } from '../../content/modal-terminal-help/modal-terminal-help.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 // testable services
 import { LoaderService } from '../../../shared/services/components/loader.service';
@@ -14,7 +12,7 @@ import { VhsEffectService } from '../../../shared/services/components/vhs-effect
 @Component({
   selector: 'app-terminal',
   standalone: true,
-  imports: [CommonModule, ModalTerminalHelpComponent],
+  imports: [],
   templateUrl: './terminal.component.html',
   styleUrl: './terminal.component.scss'
 })

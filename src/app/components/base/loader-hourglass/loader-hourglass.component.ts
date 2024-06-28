@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loader-hourglass',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './loader-hourglass.component.html',
   styleUrl: './loader-hourglass.component.scss'
 })

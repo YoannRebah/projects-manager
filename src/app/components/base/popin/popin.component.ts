@@ -1,12 +1,11 @@
 import { Component, AfterViewInit, OnDestroy, Input, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { PopinService } from '../../../shared/services/components/popin.service';
 
 @Component({
   selector: 'app-popin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './popin.component.html',
   styleUrl: './popin.component.scss'
 })
