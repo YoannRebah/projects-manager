@@ -186,12 +186,12 @@ export class GameLauncher2000Component implements OnInit {
 
   stopGame(): void {
     this.gameIsStarted = false;
-    this.gameIsPaused = false;
     this.storeHighScore();
     this.setGameCursorStyles("reset");
     clearInterval(this.scoreIntervalId);
     clearInterval(this.stellarObjectsIntervalId);
     this.removeAllStellarObjects();
+    this.initNewGame();
   }
 
   gameOver(): void {

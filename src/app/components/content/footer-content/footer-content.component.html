@@ -1,12 +1,17 @@
 <div class="container flex justify-center gap-20">
-    <div class="flex items-center">
-        <img src="assets/gif/footer.gif" alt="">
-    </div>
+    @defer (on viewport) {
+        <div class="flex items-center">
+            <img class="w-[300px]" src="assets/gif/footer.gif" alt="">
+        </div>
+    }
+    @placeholder {
+        <div class="flex items-center"></div>
+    }
     <div class="list-footer-group flex items-center gap-24">
         @for (footerLink of footerLinks; track $index) {
             <ul class="list-none">
                 @for (linkGroup of footerLink; track $index) {
-                    <li class="mb-5">
+                    <li class="mb-4">
                         <a 
                             [href]="linkGroup.href" 
                             [attr.aria-label]="linkGroup.ariaLabel" 
