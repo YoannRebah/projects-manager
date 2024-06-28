@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { AuthService } from '../../../shared/services/base/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 
 @Component({
   selector: 'app-login-content',
@@ -18,7 +19,8 @@ export class LoginContentComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
-  authService = inject(AuthService)
+  authService = inject(AuthService);
+  loaderHourglassService = inject(LoaderHourglassService);
 
   constructor() {}
 
@@ -66,6 +68,10 @@ export class LoginContentComponent implements OnInit {
       event.preventDefault();
       this.onSubmitLoginForm();
     }
+  }
+
+  onClickCancel(): void {
+    this.loaderHourglassService.show();
   }
 
 }

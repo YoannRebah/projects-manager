@@ -23,7 +23,14 @@
                 </div>
                 <div class="flex flex-col gap-1">
                     <button class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium" (click)="onClickSubmitLoginForm()">OK</button>
-                    <a href="" class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium hover:text-black" title="Retour à la page d'accueil">Annuler</a>
+                    <a 
+                        href="" 
+                        class="btn retro-windows-border-activable p-1 px-4 text-sm text-black font-medium hover:text-black" 
+                        title="Retour à la page d'accueil"
+                        (click)="onClickCancel()"
+                    >
+                        Annuler
+                    </a>
                 </div>
             </div>
             <div class="flex justify-center">
