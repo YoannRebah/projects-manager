@@ -1,31 +1,18 @@
 @import '../../../../styles/base';
 
 .h2 {
-    font-weight: 700 !important;
-    font-size: 1.75rem;
-    padding-top: 6rem;
-    margin-bottom: 2.5rem;
-    letter-spacing: 0.1rem;
-
-    @include screen('s') {
-        font-size: 3.5rem;
-        margin-bottom: 5rem;
-    }
-
     &::before {
         content: "-";
         display: flex;
         width: 1.5rem;
         height: 0.2rem;
         background: $cyan;
-        color: $cyan;
         margin-right: .75rem;
 
         @include screen('s') {
             width: 3rem;
         }
     }
-
     &::after {
         content: "";
         display: flex;
