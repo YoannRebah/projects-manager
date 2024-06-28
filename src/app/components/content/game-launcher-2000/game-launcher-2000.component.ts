@@ -186,12 +186,12 @@ export class GameLauncher2000Component implements OnInit {
 
   stopGame(): void {
     this.gameIsStarted = false;
+    this.gameIsPaused = false;
     this.storeHighScore();
     this.setGameCursorStyles("reset");
     clearInterval(this.scoreIntervalId);
     clearInterval(this.stellarObjectsIntervalId);
     this.removeAllStellarObjects();
-    this.initNewGame();
   }
 
   gameOver(): void {
@@ -299,10 +299,8 @@ export class GameLauncher2000Component implements OnInit {
   }
 
   stellarObjectIsExpired(timestamp: number): boolean {
-    const now: number = new Date().getTime();
-    const meteorTimestamp: number = new Date(timestamp).getTime();
-    const difference = now - meteorTimestamp;
-    return difference >= 10000;
+    const maxTime: number = 30000;
+    return DatetimeService.calculateDiffTimestamp(timestamp) > maxTime;
   }
 
   removeOldStellarObject(): void {
