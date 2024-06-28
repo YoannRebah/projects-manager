@@ -1,14 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Anchor } from '../../../shared/models/anchor';
-import { Button } from '../../../shared/models/button';
+import { Anchor } from '../../../shared/models/anchor.interface';
+import { Button } from '../../../shared/models/button.interface';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { AuthService } from '../../../shared/services/base/auth.service';
 
 @Component({
   selector: 'app-nav-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './nav-content.component.html',
   styleUrl: './nav-content.component.scss'
 })

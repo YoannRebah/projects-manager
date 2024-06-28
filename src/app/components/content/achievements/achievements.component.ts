@@ -1,13 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Achievements } from './achievements';
+import { Achievements } from './achievements.interface';
 import { PopinComponent } from '../../base/popin/popin.component';
 import { PopinService } from '../../../shared/services/components/popin.service';
 
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  imports: [CommonModule, PopinComponent],
+  imports: [PopinComponent],
   templateUrl: './achievements.component.html',
   styleUrl: './achievements.component.scss'
 })

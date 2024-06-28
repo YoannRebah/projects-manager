@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 import { environment } from '../../../../environments/environment';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationsFrService } from '../../../shared/services/components/locations-fr.service';
-import { Region } from './locations-fr';
+import { Region } from './locations-fr.interface';
 import { ValidatorsService } from '../../../shared/services/utilities/validators.service';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { PopinComponent } from '../../base/popin/popin.component';

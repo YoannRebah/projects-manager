@@ -1,13 +1,13 @@
 import { Component, ElementRef, AfterViewInit, Renderer2, ViewChild, NgZone, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './employee-card.component.html',
   styleUrl: './employee-card.component.scss'
 })
+
 export class EmployeeCardComponent implements AfterViewInit {
   height!: number;
   width!: number;

@@ -32,12 +32,12 @@
                         <li class="flex items-center mb-2">
                             <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="email"><span class="underline">A</span>dresse mail:</label>
                             <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="email" type="text" formControlName="email"
-                            [ngClass]="{'outline-pink-important': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
+                            [class.outline-pink-important]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                         </li>
                         <li class="flex items-center mb-2">
                             <label class="text-sm mr-1 flex-[1_1_40%] text-right" for="password"><span class="underline">M</span>ot de passe:</label>
                             <input class="retro-windows-input-border pl-1 flex-[1_1_60%] mr-3" id="password" type="password" formControlName="password"
-                            [ngClass]="{'outline-pink-important': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+                            [class.outline-pink-important]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                         </li>
                     </ul>
                 </form>

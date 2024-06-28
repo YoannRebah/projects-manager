@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Image } from '../../../shared/models/image';
+import { Image } from '../../../shared/models/image.interface';
 
 @Component({
   selector: 'app-marquee-interests',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './marquee-interests.component.html',
   styleUrl: './marquee-interests.component.scss'
 })

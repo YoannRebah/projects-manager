@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../base/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { Subscription } from 'rxjs';
@@ -9,7 +8,7 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 @Component({
   selector: 'app-modal-settings',
   standalone: true,
-  imports: [CommonModule, ModalComponent, ToggleSwitchComponent],
+  imports: [ModalComponent, ToggleSwitchComponent],
   templateUrl: './modal-settings.component.html',
   styleUrl: './modal-settings.component.scss'
 })

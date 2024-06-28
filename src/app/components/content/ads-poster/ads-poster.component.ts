@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ads-poster',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './ads-poster.component.html',
   styleUrl: './ads-poster.component.scss'
 })

@@ -1,5 +1,4 @@
 import { Component, HostListener, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../base/modal/modal.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { AuthService } from '../../../shared/services/base/auth.service';
@@ -7,7 +6,7 @@ import { AuthService } from '../../../shared/services/base/auth.service';
 @Component({
   selector: 'app-modal-user-account',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [ModalComponent],
   templateUrl: './modal-user-account.component.html',
   styleUrl: './modal-user-account.component.scss'
 })

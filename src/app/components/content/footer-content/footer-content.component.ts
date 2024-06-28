@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Anchor } from '../../../shared/models/anchor';
+import { Anchor } from '../../../shared/models/anchor.interface';
 
 @Component({
   selector: 'app-footer-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './footer-content.component.html',
   styleUrl: './footer-content.component.scss'
 })

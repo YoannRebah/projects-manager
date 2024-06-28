@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, inject, ElementRef, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { GameService } from '../../../shared/services/components/game.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
@@ -10,7 +9,7 @@ import { LoaderHourglassService } from '../../../shared/services/components/load
 @Component({
   selector: 'app-game-launcher-2000',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './game-launcher-2000.component.html',
   styleUrl: './game-launcher-2000.component.scss'
 })

@@ -1,6 +1,5 @@
 import { Component, ElementRef, AfterViewInit, ViewChild, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Location } from './location';
+import { Location } from './location.interface';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import Typed from 'typed.js';
 import * as THREE from 'three';
@@ -8,7 +7,7 @@ import * as THREE from 'three';
 @Component({
   selector: 'app-location',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss'
 })

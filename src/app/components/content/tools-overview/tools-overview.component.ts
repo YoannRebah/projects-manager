@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Tools } from './tools-overview';
+import { Tools } from './tools-overview.interface';
 
 @Component({
   selector: 'app-tools-overview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './tools-overview.component.html',
   styleUrls: ['./tools-overview.component.scss'],
 })

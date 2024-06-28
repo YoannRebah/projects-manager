@@ -1,5 +1,5 @@
-import { Image } from "../../../shared/models/image";
-import { Button } from "../../../shared/models/button";
+import { Image } from "../../../shared/models/image.interface";
+import { Button } from "../../../shared/models/button.interface";
 
 export interface Achievements {
     tab: Button;

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BlogCard } from './blog';
+import { BlogCard } from './blog.interface';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss'
 })
