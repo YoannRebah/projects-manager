@@ -10,6 +10,12 @@ import { Component, Input } from '@angular/core';
 
 export class BlockSignalTvComponent {
   @Input() iconClassNames: string = 'fa-solid fa-satellite';
-  @Input() title: string = 'Signal faible...';
+  @Input() headerTitle: string = 'Signal faible...';
   @Input() subtitle: string = 'Reprise du programme TV';
+  @Input() linkHref!: string;
+  @Input() linkText!: string;
+
+  linkIsDisplayed(): boolean {
+    return this.linkHref != null && this.linkText != null;
+  }
 }
