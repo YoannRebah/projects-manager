@@ -53,15 +53,6 @@ export class NavContentComponent implements OnInit{
       tooltip: 'Code source',
     },
   ];
-  navButtons: Button[] = [
-    {
-      classNames: 'text-sm',
-      iconClassNames: 'fa-solid fa-gear',
-      text: 'Paramètres',
-      ariaLabel: 'Paramètres',
-      onClick: this.onClickShowSettings.bind(this)
-    }
-  ];
   userLoggedIn: boolean = false;
   userName!: string | undefined;
   userNameFirstLetter!: string | undefined;

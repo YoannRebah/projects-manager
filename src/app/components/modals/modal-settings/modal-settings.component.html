@@ -1,12 +1,20 @@
 <app-modal id="modal-settings" classNames="modal-settings" headerTitle="Paramètres">
     <div class="custom-content bg-grey p-8">
       <ul class="list-none">
-        <li>
+        <li class="mb-3">
             <app-toggle-switch #toggleSwitchVhsEffect 
                 [id]="toggleSwitchVhsEffectId" 
                 label="Afficher l'effet VHS&nbsp;:" 
                 (stateChanged)="onStateChanged($event, toggleSwitchVhsEffectId)">
             </app-toggle-switch>
+        </li>
+        <li class="flex-center-between mb-3">
+          <p>Terminal&nbsp;:</p>
+          <p>Ctrl + Q</p>
+        </li>
+        <li class="flex-center-between">
+          <p>Compte utilisateur&nbsp;:</p>
+          <p>Ctrl + Y</p>
         </li>
       </ul>
     </div>
