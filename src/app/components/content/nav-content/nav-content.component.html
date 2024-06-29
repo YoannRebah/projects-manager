@@ -1,5 +1,14 @@
-<nav class="container mx-auto h-full flex-center-center">
-  <ul class="relative w-full h-full flex items-center">
+<nav class="relative h-full flex">
+  <!-- menu -->
+  <ul class="flex items-center h-full flex-[1_1_15%]">
+    <li class="flex-center-center h-full flex-1">
+      <button class="btn flex-center-center text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan text-sm" title="Menu" aria-label="Menu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </li>
+  </ul>
+  <!-- nav links -->
+  <ul class="flex items-center h-full flex-[1_1_70%]">
     @for (anchor of navAnchors; track $index) {
       <li class="flex-center-center h-full flex-1">
         <a 
@@ -20,24 +29,15 @@
         </a>
       </li>
     }
-    @for (btn of navButtons; track $index) {
-      <li class="flex-center-center h-full flex-1">
-        <button 
-            class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan"
-            [class]="btn.classNames"
-            [attr.aria-label]="btn.ariaLabel" 
-            [title]="btn.tooltip || ''"
-            (click)="btn.onClick ? btn.onClick() : null"
-        >
-          @if (btn.iconClassNames) {
-            <i [class]="btn.iconClassNames" aria-hidden="true"></i>
-          }
-          @if (btn.text) {
-            <span class="ml-2 hidden md:flex" [innerHTML]="btn.text"></span>
-          }
-        </button>
-      </li>
-    }
+    <li class="flex-center-center h-full flex-1">
+      <button class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan text-sm" title="Paramètres" aria-label="Paramètres">
+        <i aria-hidden="true" class="fa-gear fa-solid"></i>
+        <span class="ml-2 hidden md:flex">Paramètres</span>
+      </button>
+    </li>
+  </ul>
+  <!-- login / register -->
+  <ul class="flex items-center h-full flex-[1_1_15%]">
     @if (userLoggedIn) {
       <li class="flex-center-center h-full flex-1">
         <button 
@@ -57,8 +57,8 @@
           title="Se connecter"
           (click)="onClickLoginRegister()"
         >
-          <i class="fa-regular fa-user text-xs" aria-hidden="true"></i>
-          <span class="text-xs text-[0.68rem] hidden md:flex">Connexion</span>
+          <i class="fa-regular fa-user text-[0.7rem]" aria-hidden="true"></i>
+          <span class="text-[0.65rem] hidden md:flex">Connexion</span>
         </a>
         <div>|</div>
         <a 
@@ -67,8 +67,8 @@
           title="Créer un compte"
           (click)="onClickLoginRegister()"
         >
-          <i class="fa-solid fa-user-plus text-xs" aria-hidden="true"></i>
-          <span class="text-xs text-[0.68rem] hidden md:flex">Nouveau</span>
+          <i class="fa-solid fa-user-plus text-[0.7rem]" aria-hidden="true"></i>
+          <span class="text-[0.65rem] hidden md:flex">Nouveau</span>
         </a>
       </li>
     }
