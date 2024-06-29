@@ -161,6 +161,7 @@ export class GameLauncher2000Component implements OnInit {
     this.gameIsOver = false;
     this.mouseIsInsideGameContainer = null;
     this.gameIsPaused = false;
+    this.animationDelayMs = 8000;
     this.setGameCursorStyles("reset");
   }
 
