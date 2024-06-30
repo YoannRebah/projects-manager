@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './routes/page-not-found//page-not-found.c
 
 export const routes: Routes = [
     { path: '', component: HomepageComponent },
+    { path: 'home', component: HomepageComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'launcher-2000', component: Launcher2000Component },

@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Anchor } from '../../../shared/models/anchor.interface';
-import { Button } from '../../../shared/models/button.interface';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { AuthService } from '../../../shared/services/base/auth.service';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
@@ -20,7 +19,7 @@ export class NavContentComponent implements OnInit{
       classNames: 'text-base',
       iconClassNames: 'fa-solid fa-home',
       ariaLabel: 'Accueil',
-      tooltip: 'Accueil',
+      text: 'Accueil',
     },
     {
       href: '#skills',

@@ -4,6 +4,7 @@ import { AuthService } from '../../../shared/services/base/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-login-content',
@@ -15,7 +16,7 @@ import { LoaderHourglassService } from '../../../shared/services/components/load
 
 export class LoginContentComponent implements OnInit {
   loginForm!: FormGroup;
-  errorLogin: boolean = false;
+  errorLogin!: boolean;
   formBuilder = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
@@ -42,7 +43,7 @@ export class LoginContentComponent implements OnInit {
       .subscribe({
         next: () => {
           this.errorLogin = false;
-          this.router.navigateByUrl('/')
+          this.router.navigateByUrl('/home')
         },
         error: () => {
           this.errorLogin = true;
