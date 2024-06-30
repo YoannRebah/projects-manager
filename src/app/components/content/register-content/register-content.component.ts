@@ -24,7 +24,24 @@ export class RegisterContentComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.checkUserConnectionStatus();
     this.initRegisterFormControl();
+  }
+
+  onClickSubmitRegisterForm(): void {
+    this.onSubmitRegisterForm();
+  }
+
+  onClickCancel(): void {
+    this.loaderHourglassService.show();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDownTerminal(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onSubmitRegisterForm();
+    }
   }
 
   initRegisterFormControl(): void {
@@ -55,20 +72,14 @@ export class RegisterContentComponent implements OnInit {
     }
   }
 
-  onClickSubmitRegisterForm(): void {
-    this.onSubmitRegisterForm();
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  handleKeyDownTerminal(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      this.onSubmitRegisterForm();
-    }
-  }
-
-  onClickCancel(): void {
-    this.loaderHourglassService.show();
+  checkUserConnectionStatus(): void {
+    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
+      if(user) {
+        if(user.email && user.displayName) {
+          this.router.navigateByUrl('/home');
+        }
+      }
+    });
   }
 
 }
