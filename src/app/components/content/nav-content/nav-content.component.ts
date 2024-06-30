@@ -69,6 +69,14 @@ export class NavContentComponent implements OnInit{
     this.modalService.show('modal-settings');
   }
 
+  onClickShowUserAccount(): void {
+    this.modalService.show('modal-user-account');
+  }
+
+  onClickLoginRegister(): void {
+    this.loaderHourglassService.show();
+  }
+
   checkUserConnectionStatus(): void {
     this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
       if(user) {
@@ -76,28 +84,16 @@ export class NavContentComponent implements OnInit{
           email: user.email!,
           username: user.displayName!
         });
-        this.userLoggedIn = true;
         this.userName = this.authService.currentUserSignal()?.username;
-        this.setUserNameFirstLetter(this.userName);
+        if(this.userName) {
+          this.userNameFirstLetter = this.userName.substring(0, 1);
+        }
+        this.userLoggedIn = true;
       } else {
         this.authService.currentUserSignal.set(null);
         this.userLoggedIn = false;
       }
     });
-  }
-
-  setUserNameFirstLetter(username: string | undefined): void {
-    if(username) {
-      this.userNameFirstLetter = username.substring(0, 1);
-    }
-  }
-
-  onClickShowUserAccount(): void {
-    this.modalService.show('modal-user-account');
-  }
-
-  onClickLoginRegister(): void {
-    this.loaderHourglassService.show();
   }
 
 }
