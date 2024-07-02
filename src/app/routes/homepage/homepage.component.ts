@@ -29,6 +29,7 @@ import { IntroductionComponent } from '../../components/content/introduction/int
 import { FormContactComponent } from '../../components/content/form-contact/form-contact.component';
 import { AdsPosterComponent } from '../../components/content/ads-poster/ads-poster.component';
 import { BlogComponent } from '../../components/content/blog/blog.component';
+import { MenuComponent } from '../../components/content/menu/menu.component';
 
 @Component({
   selector: 'app-homepage',
@@ -62,6 +63,7 @@ import { BlogComponent } from '../../components/content/blog/blog.component';
     FormContactComponent,
     AdsPosterComponent,
     BlogComponent,
+    MenuComponent,
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'

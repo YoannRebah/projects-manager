@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-block-signal-tv',
@@ -8,14 +8,17 @@ import { Component, Input } from '@angular/core';
   styleUrl: './block-signal-tv.component.scss'
 })
 
-export class BlockSignalTvComponent {
+export class BlockSignalTvComponent implements OnInit {
   @Input() iconClassNames: string = 'fa-solid fa-satellite';
   @Input() headerTitle: string = 'Signal faible...';
   @Input() subtitle: string = 'Reprise du programme TV';
   @Input() linkHref!: string;
   @Input() linkText!: string;
+  linkIsDisplayed: boolean = false;
 
-  linkIsDisplayed(): boolean {
-    return this.linkHref != null && this.linkText != null;
+  ngOnInit(): void {
+    if(this.linkHref != null && this.linkText != null) {
+      this.linkIsDisplayed = true;
+    }
   }
 }
