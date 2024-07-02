@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { ModalComponent } from '../../base/modal/modal.component';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { AuthService } from '../../../shared/services/base/auth.service';
@@ -10,13 +10,19 @@ import { AuthService } from '../../../shared/services/base/auth.service';
   templateUrl: './modal-user-account.component.html',
   styleUrl: './modal-user-account.component.scss'
 })
-export class ModalUserAccountComponent {
+
+export class ModalUserAccountComponent implements OnInit {
   isVisible: boolean = false;
+  userName!: string | undefined;
   modalId: string = 'modal-user-account';
   modalService = inject(ModalService);
   authService = inject(AuthService);
 
   constructor() {}
+
+  ngOnInit(): void {
+    this.setUserConnectedInfos();
+  }
 
   onPressKeyCtrlY(): void {
     this.isVisible = !this.isVisible;
@@ -38,5 +44,17 @@ export class ModalUserAccountComponent {
   onClickLogout(): void {
     this.authService.logout();
     this.modalService.hide(this.modalId);
+  }
+
+  setUserConnectedInfos(): void {
+    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
+      if(user) {
+        if(user.displayName) {
+          this.userName = user.displayName;
+        }
+      } else {
+        console.error('error setUserConnectedInfos');
+      }
+    });
   }
 }

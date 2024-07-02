@@ -79,3 +79,7 @@
     }
   </ul>
 </nav>
+
+@if (userLoggedIn) {
+  <app-modal-user-account id="modal-user-account"></app-modal-user-account>
+}

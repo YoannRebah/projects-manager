@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Anchor } from '../../../shared/models/anchor.interface';
 import { ModalService } from '../../../shared/services/components/modal.service';
+import { ModalUserAccountComponent } from '../../modals/modal-user-account/modal-user-account.component';
 import { AuthService } from '../../../shared/services/base/auth.service';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 import { MenuService } from '../../../shared/services/components/menu.service';
@@ -8,7 +9,7 @@ import { MenuService } from '../../../shared/services/components/menu.service';
 @Component({
   selector: 'app-nav-content',
   standalone: true,
-  imports: [],
+  imports: [ModalUserAccountComponent],
   templateUrl: './nav-content.component.html',
   styleUrl: './nav-content.component.scss'
 })
@@ -64,7 +65,7 @@ export class NavContentComponent implements OnInit{
   constructor() {}
 
   ngOnInit(): void {
-    this.checkUserConnectionStatus();
+    this.setUserConnectedInfos();
   }
 
   onClickShowMenu(): void {
@@ -83,7 +84,7 @@ export class NavContentComponent implements OnInit{
     this.loaderHourglassService.show();
   }
 
-  checkUserConnectionStatus(): void {
+  setUserConnectedInfos(): void {
     this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
       if(user) {
         if(user.displayName) {
