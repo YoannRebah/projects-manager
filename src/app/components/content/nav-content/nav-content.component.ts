@@ -3,6 +3,7 @@ import { Anchor } from '../../../shared/models/anchor.interface';
 import { ModalService } from '../../../shared/services/components/modal.service';
 import { AuthService } from '../../../shared/services/base/auth.service';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
+import { MenuService } from '../../../shared/services/components/menu.service';
 
 @Component({
   selector: 'app-nav-content',
@@ -58,11 +59,16 @@ export class NavContentComponent implements OnInit{
   modalService = inject(ModalService);
   authService = inject(AuthService);
   loaderHourglassService = inject(LoaderHourglassService);
+  menuService = inject(MenuService);
 
   constructor() {}
 
   ngOnInit(): void {
     this.checkUserConnectionStatus();
+  }
+
+  onClickShowMenu(): void {
+    this.menuService.show();
   }
 
   onClickShowSettings(): void {
@@ -80,17 +86,12 @@ export class NavContentComponent implements OnInit{
   checkUserConnectionStatus(): void {
     this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
       if(user) {
-        this.authService.currentUserSignal.set({
-          email: user.email!,
-          username: user.displayName!
-        });
-        this.userName = this.authService.currentUserSignal()?.username;
-        if(this.userName) {
-          this.userNameFirstLetter = this.userName.substring(0, 1);
+        if(user.displayName) {
+          this.userName = user.displayName;
+          this.userNameFirstLetter = user.displayName.substring(0, 1);
         }
         this.userLoggedIn = true;
       } else {
-        this.authService.currentUserSignal.set(null);
         this.userLoggedIn = false;
       }
     });

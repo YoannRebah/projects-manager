@@ -2,7 +2,12 @@
   <!-- menu -->
   <ul class="flex items-center h-full flex-[1_1_15%]">
     <li class="flex-center-center h-full flex-1">
-      <button class="btn flex-center-center text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan text-sm" title="Menu" aria-label="Menu">
+      <button 
+        class="btn flex-center-center text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan text-sm" 
+        title="Menu" 
+        aria-label="Menu"
+        (click)="onClickShowMenu()"
+      >
         <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>
     </li>
@@ -43,7 +48,7 @@
         <button 
           (click)="onClickShowUserAccount()" 
           class="btn w-[28px] h-[28px] uppercase text-lg bg-pink-dark border border-pink text-white text-shadow-chromatic-glitch hover:bg-pink"
-          title="Compte utilisateur"
+          title="Compte utilisateur de {{ userName }}"
         >
           <span [innerHTML]="userNameFirstLetter"></span>
         </button>
