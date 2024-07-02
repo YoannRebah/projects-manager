@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { TimeoutService } from '../utilities/timeout.service';
 
 @Injectable({
   providedIn: 'root'

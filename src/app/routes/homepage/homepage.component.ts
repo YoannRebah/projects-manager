@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 // services
 import { LoaderService } from '../../shared/services/components/loader.service';
+import { VhsTimeCounterService } from '../../shared/services/components/vhs-time-counter.service';
 // layout
 import { MainComponent } from '../../components/layout/main/main.component';
 import { ContentComponent } from '../../components/layout/content/content.component';
@@ -13,6 +14,7 @@ import { LoaderComponent } from '../../components/base/loader/loader.component';
 import { VhsEffectComponent } from '../../components/base/vhs-effect/vhs-effect.component';
 import { H1Component } from '../../components/base/h1/h1.component';
 import { H2Component } from '../../components/base/h2/h2.component';
+import { VhsTimeCounterComponent } from '../../components/base/vhs-time-counter/vhs-time-counter.component';
 // content
 import { TvProgramComponent } from '../../components/base/tv-program/tv-program.component';
 import { NavContentComponent } from '../../components/content/nav-content/nav-content.component';
@@ -30,6 +32,7 @@ import { FormContactComponent } from '../../components/content/form-contact/form
 import { AdsPosterComponent } from '../../components/content/ads-poster/ads-poster.component';
 import { BlogComponent } from '../../components/content/blog/blog.component';
 import { MenuComponent } from '../../components/content/menu/menu.component';
+import { TimeoutService } from '../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-homepage',
@@ -49,6 +52,7 @@ import { MenuComponent } from '../../components/content/menu/menu.component';
     VhsEffectComponent,
     TvProgramComponent,
     TerminalComponent,
+    VhsTimeCounterComponent,
     // content
     EmployeeCardComponent,
     SkillsComponent,
@@ -71,10 +75,24 @@ import { MenuComponent } from '../../components/content/menu/menu.component';
 
 export class HomepageComponent implements OnInit{ 
   loaderService = inject(LoaderService);
+  vhsTimeCounterService = inject(VhsTimeCounterService);
 
   constructor() {}
 
   ngOnInit(): void {
     this.loaderService.toggle();
+    TimeoutService.setTimeout(()=>{
+      this.vhsTimeCounterService.show();
+      this.vhsTimeCounterService.start();
+    });
+    TimeoutService.setTimeout(()=>{
+      this.vhsTimeCounterService.pause();
+    }, 10000);
+    TimeoutService.setTimeout(()=>{
+      this.vhsTimeCounterService.resume();
+    }, 15000);
+    TimeoutService.setTimeout(()=>{
+      this.vhsTimeCounterService.stop();
+    }, 20000);
   }
 }

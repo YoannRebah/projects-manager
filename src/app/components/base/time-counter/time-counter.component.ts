@@ -9,7 +9,7 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
   standalone: true,
   imports: [],
   templateUrl: './time-counter.component.html',
-  styleUrls: ['./time-counter.component.scss']
+  styleUrl: './time-counter.component.scss'
 })
 
 export class TimeCounterComponent implements OnInit, OnDestroy {

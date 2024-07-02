@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, inject, ElementRef, Renderer2 } from '@angular/core';
-import { GameService } from '../../../shared/services/components/game.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
@@ -42,7 +41,6 @@ export class GameLauncher2000Component implements OnInit {
   timeDelayUpdateStellarObjectsMs: number = 400;
   // services
   renderer = inject(Renderer2);
-  gameService = inject(GameService);
   windowRefService = inject(WindowRefService);
   loaderHourglassService = inject(LoaderHourglassService);
   // storage
