@@ -13,23 +13,23 @@ import { VhsEffectService } from '../../../shared/services/components/vhs-effect
 
 export class VhsEffectComponent implements OnInit, OnDestroy {
   private isVisibleSubscription!: Subscription;
-  private footerIsVisibleSubscription!: Subscription;
+  // private footerIsVisibleSubscription!: Subscription;
   isVisible: boolean = true;
-  footerIsFlashing: boolean = false;
-  footerIsVisible: boolean = false;
+  // footerIsFlashing: boolean = false;
+  // footerIsVisible: boolean = false;
   vhsEffectService = inject(VhsEffectService);
 
   constructor() {}
 
   ngOnInit(): void {
     this.subscribeIsVisible()
-    this.subscribeFooterIsVisible();
-    this.showFooter();
+    // this.subscribeFooterIsVisible();
+    // this.showFooter();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeIsVisible();
-    this.unsubscribeFooterIsVisible();
+    // this.unsubscribeFooterIsVisible();
   }
 
   // is visible
@@ -49,27 +49,27 @@ export class VhsEffectComponent implements OnInit, OnDestroy {
   }
 
   // footer is visible
-  subscribeFooterIsVisible(): void {
-    this.footerIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
-      next: (footerIsVisible) => {
-        this.footerIsVisible = footerIsVisible;
-      },
-      error: (e) => console.error('error subscribeFooterIsVisible', e)
-    })
-  }
+  // subscribeFooterIsVisible(): void {
+  //   this.footerIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
+  //     next: (footerIsVisible) => {
+  //       this.footerIsVisible = footerIsVisible;
+  //     },
+  //     error: (e) => console.error('error subscribeFooterIsVisible', e)
+  //   })
+  // }
 
-  unsubscribeFooterIsVisible(): void {
-    if(this.footerIsVisibleSubscription) {
-      this.footerIsVisibleSubscription.unsubscribe();
-    }
-  }
+  // unsubscribeFooterIsVisible(): void {
+  //   if(this.footerIsVisibleSubscription) {
+  //     this.footerIsVisibleSubscription.unsubscribe();
+  //   }
+  // }
 
-  showFooter(): void {
-    this.vhsEffectService.showFooter();
-  }
+  // showFooter(): void {
+  //   this.vhsEffectService.showFooter();
+  // }
 
-  hideFooter(): void {
-    this.vhsEffectService.hideFooter();
-  }
+  // hideFooter(): void {
+  //   this.vhsEffectService.hideFooter();
+  // }
 
 }

@@ -36,7 +36,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
 
   ngOnInit(): void {
-    this.vhsEffectService.showFooter();
+    // this.vhsEffectService.showFooter();
     this.subscribeTvProgramIsVisible();
     this.subscribeTvProgramIsPlaying();
     this.subscribeTimeCounterService();
@@ -111,7 +111,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.tvProgramService.show();
     TimeoutService.setTimeout(()=>{
       this.playVideo();
-      this.vhsEffectService.hideFooter();
+      // this.vhsEffectService.hideFooter();
       this.isShown = true;
     }, 500);
   }
@@ -120,7 +120,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     this.tvProgramService.hide();
     this.stopVideo();
     this.loaderService.toggle();
-    this.vhsEffectService.showFooter();
+    // this.vhsEffectService.showFooter();
     this.toggleTimeCounterIsPaused();
     this.unsubscribeTimeCounterService();
   }

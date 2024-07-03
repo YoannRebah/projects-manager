@@ -1,1 +1,7 @@
-<p>vhs-footer works!</p>
+<footer class="absolute-w-full-bottom p-4 px-[4%] opacity-50 flex-center-between animation-fade-forwards-5s z-50" [class.hidden-important]="!isVisible">
+    <app-vhs-time-counter></app-vhs-time-counter>
+    <div class="flex items-center">
+        <p class="text-shadow-chromatic-glitch-strong text-white text-xl mr-2">PLAY</p>
+        <i class="fa-solid fa-play text-shadow-chromatic-glitch-strong text-white text-xl" aria-hidden="true"></i>
+    </div>
+</footer>

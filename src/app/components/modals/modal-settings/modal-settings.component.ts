@@ -27,7 +27,7 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeVhsEffectIsVisible();
-    this.subscribeFooterIsVisible();
+    // this.subscribeFooterIsVisible();
     TimeoutService.setTimeout(()=>{
       this.setToggleSwitchVhsEffectState(this.vhsEffectIsVisible);
     });
@@ -35,7 +35,7 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeVhsEffectIsVisible();
-    this.unsubscribeFooterIsVisible();
+    // this.unsubscribeFooterIsVisible();
   }
 
   // Subscribe methods
@@ -55,30 +55,30 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  subscribeFooterIsVisible(): void {
-    this.footerVhsEffectIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
-      next: (footerIsVisible) => {
-        this.footerIsVisible = footerIsVisible;
-      },
-      error: (e) => console.error('error subscribeFooterIsVisible', e)
-    });
-  }
+  // subscribeFooterIsVisible(): void {
+  //   this.footerVhsEffectIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
+  //     next: (footerIsVisible) => {
+  //       this.footerIsVisible = footerIsVisible;
+  //     },
+  //     error: (e) => console.error('error subscribeFooterIsVisible', e)
+  //   });
+  // }
 
-  unsubscribeFooterIsVisible(): void {
-    if (this.footerVhsEffectIsVisibleSubscription) {
-      this.footerVhsEffectIsVisibleSubscription.unsubscribe();
-    }
-  }
+  // unsubscribeFooterIsVisible(): void {
+  //   if (this.footerVhsEffectIsVisibleSubscription) {
+  //     this.footerVhsEffectIsVisibleSubscription.unsubscribe();
+  //   }
+  // }
 
   // toggle switch components
   onStateChanged(newState: boolean, id: string): void {
     if(id === this.toggleSwitchVhsEffectId) {
       if(newState) {
         this.vhsEffectService.show();
-        this.vhsEffectService.showFooter();
+        // this.vhsEffectService.showFooter();
       } else {
         this.vhsEffectService.hide();
-        this.vhsEffectService.hideFooter();
+        // this.vhsEffectService.hideFooter();
       }
     }
   }

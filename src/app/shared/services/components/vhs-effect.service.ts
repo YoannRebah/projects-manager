@@ -9,8 +9,8 @@ export class VhsEffectService {
   private isVisibleSubject = new BehaviorSubject<boolean>(true);
   isVisible$ = this.isVisibleSubject.asObservable();
 
-  private footerIsVisibleSubject = new BehaviorSubject<boolean>(false);
-  footerIsVisible$ = this.footerIsVisibleSubject.asObservable();
+  // private footerIsVisibleSubject = new BehaviorSubject<boolean>(false);
+  // footerIsVisible$ = this.footerIsVisibleSubject.asObservable();
 
   constructor() { }
 
@@ -22,12 +22,12 @@ export class VhsEffectService {
     this.isVisibleSubject.next(false);
   }
 
-  showFooter(): void {
-    this.footerIsVisibleSubject.next(true);
-  }
+  // showFooter(): void {
+  //   this.footerIsVisibleSubject.next(true);
+  // }
 
-  hideFooter(): void {
-    this.footerIsVisibleSubject.next(false);
-  }
+  // hideFooter(): void {
+  //   this.footerIsVisibleSubject.next(false);
+  // }
 
 }

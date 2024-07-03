@@ -1,8 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { GameLauncher2000Component } from '../../components/content/game-launcher-2000/game-launcher-2000.component';
 import { VhsEffectComponent } from '../../components/base/vhs-effect/vhs-effect.component';
-import { VhsEffectService } from '../../shared/services/components/vhs-effect.service';
-import { TimeoutService } from '../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-launcher-2000',
@@ -12,15 +10,6 @@ import { TimeoutService } from '../../shared/services/utilities/timeout.service'
   styleUrl: './launcher-2000.component.scss'
 })
 
-export class Launcher2000Component implements OnInit {
-  vhsEffectService = inject(VhsEffectService);
-
+export class Launcher2000Component {
   constructor() {}
-
-  ngOnInit(): void {
-    TimeoutService.setTimeout(()=>{
-      this.vhsEffectService.hideFooter();
-    },50);
-  }
-
 }

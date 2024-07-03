@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 // services
 import { LoaderService } from '../../shared/services/components/loader.service';
+import { VhsFooterService } from '../../shared/services/components/vhs-footer.service';
 import { VhsTimeCounterService } from '../../shared/services/components/vhs-time-counter.service';
 // layout
 import { MainComponent } from '../../components/layout/main/main.component';
@@ -14,7 +15,7 @@ import { LoaderComponent } from '../../components/base/loader/loader.component';
 import { VhsEffectComponent } from '../../components/base/vhs-effect/vhs-effect.component';
 import { H1Component } from '../../components/base/h1/h1.component';
 import { H2Component } from '../../components/base/h2/h2.component';
-import { VhsTimeCounterComponent } from '../../components/base/vhs-time-counter/vhs-time-counter.component';
+import { VhsFooterComponent } from '../../components/base/vhs-footer/vhs-footer.component';
 // content
 import { TvProgramComponent } from '../../components/base/tv-program/tv-program.component';
 import { NavContentComponent } from '../../components/content/nav-content/nav-content.component';
@@ -52,7 +53,7 @@ import { TimeoutService } from '../../shared/services/utilities/timeout.service'
     VhsEffectComponent,
     TvProgramComponent,
     TerminalComponent,
-    VhsTimeCounterComponent,
+    VhsFooterComponent,
     // content
     EmployeeCardComponent,
     SkillsComponent,
@@ -75,23 +76,18 @@ import { TimeoutService } from '../../shared/services/utilities/timeout.service'
 
 export class HomepageComponent implements OnInit{ 
   loaderService = inject(LoaderService);
+  vhsFooterService = inject(VhsFooterService);
   vhsTimeCounterService = inject(VhsTimeCounterService);
 
   constructor() {}
 
   ngOnInit(): void {
-    this.loaderService.toggle();
+    this.loaderService.show();
+    this.vhsFooterService.show();
     TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.show();
+      this.loaderService.hide();
+      this.vhsTimeCounterService.start();
     });
-    TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.start();
-    }, 10000);
-    TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.stop();
-    }, 15000);
-    TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.start();
-    }, 20000);
   }
+
 }
