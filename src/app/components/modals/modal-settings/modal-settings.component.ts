@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
 import { ModalComponent } from '../../base/modal/modal.component';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
+import { VhsFooterService } from '../../../shared/services/components/vhs-footer.service';
 import { Subscription } from 'rxjs';
 import { ToggleSwitchComponent } from '../../base/toggle-switch/toggle-switch.component';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
@@ -15,11 +16,11 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 
 export class ModalSettingsComponent implements OnInit, OnDestroy {
   private vhsEffectIsVisibleSubscription!: Subscription;
-  private footerVhsEffectIsVisibleSubscription!: Subscription;
   vhsEffectIsVisible: boolean = true;
   footerIsVisible: boolean = true;
   toggleSwitchVhsEffectId: string = 'toggle-vhs-effect';
   vhsEffectService = inject(VhsEffectService);
+  vhsFooterService = inject(VhsFooterService);
 
   @ViewChild('toggleSwitchVhsEffect') toggleSwitchVhsEffect!: ToggleSwitchComponent;
 
@@ -27,7 +28,6 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeVhsEffectIsVisible();
-    // this.subscribeFooterIsVisible();
     TimeoutService.setTimeout(()=>{
       this.setToggleSwitchVhsEffectState(this.vhsEffectIsVisible);
     });
@@ -35,7 +35,6 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeVhsEffectIsVisible();
-    // this.unsubscribeFooterIsVisible();
   }
 
   // Subscribe methods
@@ -55,30 +54,15 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // subscribeFooterIsVisible(): void {
-  //   this.footerVhsEffectIsVisibleSubscription = this.vhsEffectService.footerIsVisible$.subscribe({
-  //     next: (footerIsVisible) => {
-  //       this.footerIsVisible = footerIsVisible;
-  //     },
-  //     error: (e) => console.error('error subscribeFooterIsVisible', e)
-  //   });
-  // }
-
-  // unsubscribeFooterIsVisible(): void {
-  //   if (this.footerVhsEffectIsVisibleSubscription) {
-  //     this.footerVhsEffectIsVisibleSubscription.unsubscribe();
-  //   }
-  // }
-
   // toggle switch components
   onStateChanged(newState: boolean, id: string): void {
     if(id === this.toggleSwitchVhsEffectId) {
       if(newState) {
         this.vhsEffectService.show();
-        // this.vhsEffectService.showFooter();
+        this.vhsFooterService.show();
       } else {
         this.vhsEffectService.hide();
-        // this.vhsEffectService.hideFooter();
+        this.vhsFooterService.hide();
       }
     }
   }
