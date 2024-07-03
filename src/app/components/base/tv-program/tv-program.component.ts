@@ -3,9 +3,12 @@ import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
+import { VhsFooterService } from '../../../shared/services/components/vhs-footer.service';
+import { VhsTimeCounterService } from '../../../shared/services/components/vhs-time-counter.service';
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.component';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
+import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -21,7 +24,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   isPlaying: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 227; // 227
+  videoDurationTime: number = 10; // 227
   delayBeforeShow: number = 10; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
   keyTime: string = LocalStorageService.commonPrefixKey + 'time';
@@ -30,7 +33,9 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   vhsEffectService = inject(VhsEffectService);
   loaderService = inject(LoaderService);
   LocalStorageService = inject(LocalStorageService);
-  windowRefService = inject(WindowRefService)
+  windowRefService = inject(WindowRefService);
+  vhsFooterService = inject(VhsFooterService);
+  vhsTimeCounterService = inject(VhsTimeCounterService);
 
   constructor() {}
 
@@ -97,8 +102,24 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClickHideVideo(): void {
+  showVideo(): void {
+    this.tvProgramService.show();
+    this.vhsFooterService.hide();
+  }
+
+  hideVideo(): void {
     this.tvProgramService.hide();
+    this.vhsFooterService.show();
+    this.vhsTimeCounterService.stop();
+    this.loaderService.show();
+    TimeoutService.setTimeout(()=>{
+      this.loaderService.hide();
+      this.vhsTimeCounterService.start();
+    });
+  }
+
+  onClickHideVideo(): void {
+    this.hideVideo();
   }
 
   get storedTime(): number {
@@ -113,8 +134,11 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     if (windowRef) {
       this.timeIntervalId = windowRef.setInterval(() => {
         if(this.storedTime == this.delayBeforeShow) {
-          this.tvProgramService.show();
-          console.log('test video')
+          this.showVideo();
+        }
+        if(this.storedTime == this.timeBeforeHide) {
+          this.hideVideo();
+          clearInterval(this.timeIntervalId);
         }
       }, 1000);
     }

@@ -21,7 +21,7 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
   isReset!: boolean;
   time: number = 0;
   timeMin: number = 0;
-  timeMax: number = 9999;
+  timeMax: number = 3600;
   timeString: string = '00:00:00';
   timeIntervalId!: number;
   keyTime: string = LocalStorageService.commonPrefixKey + 'time';
@@ -101,11 +101,15 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
 
   updateTime(): void {
     const windowRef = this.windowRefService.windowRef;
-    if (windowRef && this.time < this.timeMax) {
+    if (windowRef) {
       this.timeIntervalId = windowRef.setInterval(() => {
-        this.time++;
-        this.storeTime();
-        this.updateTimeString();
+        if(this.time < this.timeMax) {
+          this.time++;
+          this.storeTime();
+          this.updateTimeString();
+        } else {
+          this.time = this.timeMin - 1;
+        }
       }, 1000);
     }
   }
