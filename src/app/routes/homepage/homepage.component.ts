@@ -83,16 +83,15 @@ export class HomepageComponent implements OnInit{
     this.loaderService.toggle();
     TimeoutService.setTimeout(()=>{
       this.vhsTimeCounterService.show();
-      this.vhsTimeCounterService.start();
     });
     TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.pause();
+      this.vhsTimeCounterService.start();
     }, 10000);
     TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.resume();
+      this.vhsTimeCounterService.stop();
     }, 15000);
     TimeoutService.setTimeout(()=>{
-      this.vhsTimeCounterService.stop();
+      this.vhsTimeCounterService.start();
     }, 20000);
   }
 }

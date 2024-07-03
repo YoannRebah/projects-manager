@@ -4,7 +4,6 @@ import { DatetimeService } from '../../../shared/services/utilities/datetime.ser
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { VhsTimeCounterService } from '../../../shared/services/components/vhs-time-counter.service';
 import { Subscription } from 'rxjs';
-import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 
 @Component({
   selector: 'app-vhs-time-counter',
@@ -17,11 +16,9 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 export class VhsTimeCounterComponent implements OnInit, OnDestroy {
   private isVisibleSubscription!: Subscription;
   private isRunningSubscription!: Subscription;
-  private isPausedSubscription!: Subscription;
-  // private setTimeSubscription!: Subscription;
-  isVisible: boolean = false;
-  isPaused: boolean = false;
-  isRunning: boolean = false;
+  isVisible!: boolean;
+  isRunning!: boolean;
+  isReset!: boolean;
   time: number = 0;
   timeMin: number = 0;
   timeMax: number = 9999;
@@ -36,15 +33,13 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeIsVisible();
     this.subscribeIsRunning();
-    this.subscribeIsPaused();
-    // this.subscribeSetTime();
+    this.setInitialTime();
+    this.updateTimeString();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeIsVisible();
     this.unsubscribeIsRunning();
-    this.unsubscribeIsPaused();
-    // this.unsubscribeSetTime();
   }
 
   // is visible
@@ -67,10 +62,11 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
     this.isRunningSubscription = this.vhsTimeCounterService.isRunning$.subscribe({
       next: (isRunning) => {
         this.isRunning = isRunning;
-        if(isRunning) {
-          this.start();
+        if(this.isRunning) {
+          this.updateTime();
         } else {
-          this.stop();
+          clearInterval(this.timeIntervalId);
+          this.updateTimeString();
         }
       }
     })
@@ -80,61 +76,6 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
     if(this.isRunningSubscription) {
       this.isRunningSubscription.unsubscribe();
     }
-  }
-
-  // is paused
-  subscribeIsPaused(): void {
-    this.isPausedSubscription = this.vhsTimeCounterService.isPaused$.subscribe({
-      next: (isPaused) => {
-        this.isPaused = isPaused;
-        if(isPaused) {
-          this.pause();
-        } else {
-          this.resume();
-        }
-      }
-    })
-  }
-
-  unsubscribeIsPaused(): void {
-    if(this.isPausedSubscription) {
-      this.isPausedSubscription.unsubscribe();
-    }
-  }
-
-  // set time
-  // subscribeSetTime(): void {
-  //   this.setTimeSubscription = this.vhsTimeCounterService.time$.subscribe({
-  //     next: (time) => {
-  //       this.time = time;
-  //     }
-  //   })
-  // }
-
-  // unsubscribeSetTime(): void {
-  //   if(this.setTimeSubscription) {
-  //     this.setTimeSubscription.unsubscribe();
-  //   }
-  // }
-
-  start(): void {
-    this.updateTime();
-  }
-
-  stop(): void {
-    clearInterval(this.timeIntervalId);
-    this.time = this.timeMin;
-    if (LocalStorageService.testIsAvailable()) {
-      localStorage.setItem(this.keyTime, JSON.stringify(this.time));
-    }
-  }
-
-  pause(): void {
-    clearInterval(this.timeIntervalId);
-  }
-
-  resume(): void {
-    this.updateTime();
   }
 
   get storedTime(): number {
@@ -159,15 +100,12 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
   }
 
   updateTime(): void {
-    this.setInitialTime();
     const windowRef = this.windowRefService.windowRef;
     if (windowRef && this.time < this.timeMax) {
       this.timeIntervalId = windowRef.setInterval(() => {
-        if (!this.isPaused) {
-          this.time++;
-          this.updateTimeString();
-          this.storeTime();
-        }
+        this.time++;
+        this.storeTime();
+        this.updateTimeString();
       }, 1000);
     }
   }

@@ -12,12 +12,6 @@ export class VhsTimeCounterService {
   private isRunningSubject = new BehaviorSubject<boolean>(false);
   isRunning$ = this.isRunningSubject.asObservable();
 
-  private isPausedSubject = new BehaviorSubject<boolean>(false);
-  isPaused$ = this.isPausedSubject.asObservable();
-
-  // private setTimeSubject = new BehaviorSubject<number>(0);
-  // time$ = this.setTimeSubject.asObservable();
-
   constructor() { }
 
   show(): void {
@@ -35,17 +29,5 @@ export class VhsTimeCounterService {
   stop(): void {
     this.isRunningSubject.next(false);
   }
-
-  pause(): void {
-    this.isPausedSubject.next(true);
-  }
-
-  resume(): void {
-    this.isPausedSubject.next(false);
-  }
-
-  // setTime(time: number): void {
-  //   this.setTimeSubject.next(time);
-  // }
 
 }
