@@ -8,6 +8,7 @@ import { ModalService } from '../../../shared/services/components/modal.service'
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
+import { VhsTimeCounterService } from '../../../shared/services/components/vhs-time-counter.service';
 
 @Component({
   selector: 'app-terminal',
@@ -32,6 +33,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   loaderService = inject(LoaderService);
   tvProgramService = inject(TvProgramService);
   vhsEffectService = inject(VhsEffectService);
+  vhsTimeCounterService = inject(VhsTimeCounterService);
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -217,10 +219,14 @@ export class TerminalComponent implements OnInit, OnDestroy {
         break;
         case 'play tv': this.tvProgramService.play();
         break;
-        // case 'show vhs': this.vhsEffectService.show(); this.vhsEffectService.showFooter();
-        // break;
-        // case 'hide vhs': this.vhsEffectService.hide(); this.vhsEffectService.hideFooter();
-        // break;
+        case 'show vhs': this.vhsEffectService.show();
+        break;
+        case 'hide vhs': this.vhsEffectService.hide();
+        break;
+        case 'start timer': this.vhsTimeCounterService.start();
+        break;
+        case 'stop timer': this.vhsTimeCounterService.stop();
+        break;
       }
     }
   }

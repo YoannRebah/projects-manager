@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { TimeoutService } from '../utilities/timeout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,14 @@ export class TvProgramService {
 
   show(): void {
     this.isVisibleSubject.next(true);
+    TimeoutService.setTimeout(()=>{
+      this.play();
+    }, 100);
   }
 
   hide(): void {
     this.isVisibleSubject.next(false);
+    this.stop();
   }
 
   play(): void {

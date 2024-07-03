@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
-import { TimeCounterService } from '../../../shared/services/components/time-counter.service';
+import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { LoaderService } from '../../../shared/services/components/loader.service';
-import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.component';
+import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 
 @Component({
   selector: 'app-tv-program',
@@ -16,113 +16,72 @@ import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.compo
 })
 
 export class TvProgramComponent implements OnInit, OnDestroy {
-  private tvProgramIsVisibleSubscription!: Subscription;
-  private tvProgramIsPlayingSubscription!: Subscription;
-  private timeCounterSubscription!: Subscription;
+  private isVisibleSubscription!: Subscription;
+  private isPlayingSubscription!: Subscription;
   isVisible: boolean = false;
   isPlaying: boolean = false;
-  isShown: boolean = false;
   timeTimeCounter: number = 0;
   videoDurationTime: number = 227; // 227
-  delayBeforeShow: number = 600; // 600
+  delayBeforeShow: number = 10; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
+  keyTime: string = LocalStorageService.commonPrefixKey + 'time';
+  timeIntervalId!: number;
   tvProgramService = inject(TvProgramService);
-  timeCounterService = inject(TimeCounterService);
   vhsEffectService = inject(VhsEffectService);
   loaderService = inject(LoaderService);
+  LocalStorageService = inject(LocalStorageService);
+  windowRefService = inject(WindowRefService)
 
   constructor() {}
 
   @ViewChild('tvProgramVideo') tvProgramVideo!: ElementRef<HTMLVideoElement>;
 
   ngOnInit(): void {
-    // this.vhsEffectService.showFooter();
-    this.subscribeTvProgramIsVisible();
+    this.subscribeIsVisible();
     this.subscribeTvProgramIsPlaying();
-    this.subscribeTimeCounterService();
+    this.checkIsTimeToShow();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeTvProgramIsVisible();
-    this.unsubscribeTvProgramIsPlaying();
-    this.unsubscribeTimeCounterService();
+    this.unsubscribeIsVisible();
+    this.unsubscribeIsPlaying();
+  }
+
+  // tv program is visible
+  subscribeIsVisible(): void {
+    this.isVisibleSubscription = this.tvProgramService.isVisible$.subscribe({
+      next: (isVisible) => {
+        this.isVisible = isVisible;
+      },
+      error: (e) => console.error('error subscribeIsVisible : ', e)
+    });
+  }
+
+  unsubscribeIsVisible(): void {
+    if (this.isVisibleSubscription) {
+      this.isVisibleSubscription.unsubscribe();
+    }
   }
 
   // tv program is playing
   subscribeTvProgramIsPlaying(): void {
-    this.tvProgramIsPlayingSubscription = this.tvProgramService.isPlaying$.subscribe({
+    this.isPlayingSubscription = this.tvProgramService.isPlaying$.subscribe({
       next: (isPlaying) => {
         this.isPlaying = isPlaying;
-        if(this.isVisible && isPlaying) {
+        if(isPlaying) {
           this.playVideo();
+        } else {
+          this.stopVideo();
         }
       },
       error: (e) => console.error('error subscribeTvProgramIsPlaying : ', e)
     })
   }
 
-  unsubscribeTvProgramIsPlaying(): void {
-    if(this.tvProgramIsPlayingSubscription) {
-      this.tvProgramIsPlayingSubscription.unsubscribe();
+  unsubscribeIsPlaying(): void {
+    if(this.isPlayingSubscription) {
+      this.isPlayingSubscription.unsubscribe();
     }
-  }
-
-  // tv program is visible
-  subscribeTvProgramIsVisible(): void {
-    this.tvProgramIsVisibleSubscription = this.tvProgramService.isVisible$.subscribe({
-      next: (isVisible) => {
-        this.isVisible = isVisible;
-      },
-      error: (e) => console.error('error subscribeTvProgramIsVisible : ', e)
-    });
-  }
-
-  unsubscribeTvProgramIsVisible(): void {
-    if (this.tvProgramIsVisibleSubscription) {
-      this.tvProgramIsVisibleSubscription.unsubscribe();
-    }
-  }
-
-  // time counter service
-  subscribeTimeCounterService(): void {
-    this.timeCounterSubscription = this.timeCounterService.time$.subscribe({
-      next: (time) => {
-        this.timeTimeCounter = time;
-        if (this.timeTimeCounter >= this.delayBeforeShow && this.timeTimeCounter <= this.timeBeforeHide) {
-          if (!this.isShown) {
-            this.show();
-          }
-        }
-        if (this.timeTimeCounter > this.timeBeforeHide) {
-          this.hide();
-        }
-      },
-      error: (e) => console.error('error subscribeTimeCounterService : ', e)
-    });
-  }
-
-  unsubscribeTimeCounterService(): void {
-    if (this.timeCounterSubscription) {
-      this.timeCounterSubscription.unsubscribe();
-    }
-  }
-
-  show(): void {
-    this.tvProgramService.show();
-    TimeoutService.setTimeout(()=>{
-      this.playVideo();
-      // this.vhsEffectService.hideFooter();
-      this.isShown = true;
-    }, 500);
-  }
-
-  hide(): void {
-    this.tvProgramService.hide();
-    this.stopVideo();
-    this.loaderService.toggle();
-    // this.vhsEffectService.showFooter();
-    this.toggleTimeCounterIsPaused();
-    this.unsubscribeTimeCounterService();
   }
 
   playVideo(): void {
@@ -138,15 +97,27 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleTimeCounterIsPaused(): void {
-    this.timeCounterService.togglePause(true);
-    TimeoutService.setTimeout(()=>{
-      this.timeCounterService.togglePause(false);
-    });
+  onClickHideVideo(): void {
+    this.tvProgramService.hide();
   }
 
-  onClickHideVideo(): void {
-    this.hide();
+  get storedTime(): number {
+    if (LocalStorageService.testIsAvailable()) {
+      return parseInt(localStorage.getItem(this.keyTime)!, 10);
+    }
+    return 0;
+  }
+
+  checkIsTimeToShow(): void {
+    const windowRef = this.windowRefService.windowRef;
+    if (windowRef) {
+      this.timeIntervalId = windowRef.setInterval(() => {
+        if(this.storedTime == this.delayBeforeShow) {
+          this.tvProgramService.show();
+          console.log('test video')
+        }
+      }, 1000);
+    }
   }
 
 }
