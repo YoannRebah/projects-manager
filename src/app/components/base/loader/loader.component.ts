@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { LoaderService } from '../../../shared/services/components/loader.service';
 import { Subscription } from 'rxjs';
-import { BlockSignalTvComponent } from '../block-signal-tv/block-signal-tv.component';
+import { BlockSignalTvComponent } from '../../content/block-signal-tv/block-signal-tv.component';
 
 @Component({
   selector: 'app-loader',

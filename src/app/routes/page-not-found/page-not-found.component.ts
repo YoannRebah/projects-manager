@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BlockSignalTvComponent } from '../../components/base/block-signal-tv/block-signal-tv.component';
+import { BlockSignalTvComponent } from '../../components/content/block-signal-tv/block-signal-tv.component';
 
 @Component({
   selector: 'app-page-not-found',
