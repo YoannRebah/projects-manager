@@ -31,7 +31,6 @@ import { ArcadeRoomComponent } from '../../components/content/arcade-room/arcade
 import { IntroductionComponent } from '../../components/content/introduction/introduction.component';
 import { FormContactComponent } from '../../components/content/form-contact/form-contact.component';
 import { AdsPosterComponent } from '../../components/content/ads-poster/ads-poster.component';
-import { BlogComponent } from '../../components/content/blog/blog.component';
 import { MenuComponent } from '../../components/content/menu/menu.component';
 import { TimeoutService } from '../../shared/services/utilities/timeout.service';
 
@@ -67,7 +66,6 @@ import { TimeoutService } from '../../shared/services/utilities/timeout.service'
     FooterContentComponent,
     FormContactComponent,
     AdsPosterComponent,
-    BlogComponent,
     MenuComponent,
   ],
   templateUrl: './homepage.component.html',

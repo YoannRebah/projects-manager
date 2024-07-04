@@ -69,11 +69,6 @@ export class MenuComponent implements OnInit, OnDestroy {
       ariaLabel: 'Formulaire de Contact',
     },
     {
-      text: 'Les articles du blog',
-      href: '#blog',
-      ariaLabel: 'Les articles du blog',
-    },
-    {
       text: '<i class="fa-brands fa-github" aria-hidden="true"></i> Code source',
       href: 'https://github.com/YoannRebah/portfolio-angular',
       target: '_blank',

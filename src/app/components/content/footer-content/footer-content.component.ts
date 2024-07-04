@@ -67,11 +67,6 @@ export class FooterContentComponent {
         ariaLabel: 'Contact',
       },
       {
-        href: '#blog',
-        text: 'Articles du blog',
-        ariaLabel: 'Articles du blog',
-      },
-      {
         href: 'https://github.com/YoannRebah/portfolio-angular',
         text: 'Code Source (Git)',
         ariaLabel: 'Code Source (Git)',
