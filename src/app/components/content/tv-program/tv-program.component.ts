@@ -24,8 +24,8 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   isVisible: boolean = false;
   isPlaying: boolean = false;
   timeTimeCounter: number = 0;
-  videoDurationTime: number = 227; // 227
-  delayBeforeShow: number = 600; // 600
+  videoDurationTime: number = 10; // 227
+  delayBeforeShow: number = 25; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
   keyTime: string = LocalStorageService.commonPrefixKey + 'time';
   timeIntervalId!: number;
@@ -108,6 +108,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   }
 
   hideVideo(): void {
+    clearInterval(this.timeIntervalId);
     this.tvProgramService.hide();
     this.vhsFooterService.show();
     this.vhsTimeCounterService.stop();
@@ -138,7 +139,6 @@ export class TvProgramComponent implements OnInit, OnDestroy {
         }
         if(this.storedTime == this.timeBeforeHide) {
           this.hideVideo();
-          clearInterval(this.timeIntervalId);
         }
       }, 1000);
     }
