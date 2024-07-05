@@ -15,7 +15,7 @@
   <!-- nav links -->
   <ul class="flex items-center h-full flex-[1_1_70%]">
     @for (anchor of navAnchors; track $index) {
-      <li class="flex-center-center h-full flex-1">
+      <li class="hidden h-full flex-1 md:flex-center-center">
         <a 
             class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch"
             [class]="anchor.classNames"
@@ -29,15 +29,15 @@
             <i [class]="anchor.iconClassNames" aria-hidden="true"></i>
           }
           @if (anchor.text) {
-            <span class="ml-2 hidden md:flex" [innerHTML]="anchor.text"></span>
+            <span class="ml-2 hidden lg:flex" [innerHTML]="anchor.text"></span>
           }
         </a>
       </li>
     }
-    <li class="flex-center-center h-full flex-1">
+    <li class="hidden h-full flex-1 md:flex-center-center">
       <button (click)="onClickShowSettings()" class="btn flex-center-center gap-0.5 text-white p-2 no-underline w-fit text-shadow-chromatic-glitch hover:text-cyan text-sm" title="Paramètres" aria-label="Paramètres">
         <i aria-hidden="true" class="fa-gear fa-solid"></i>
-        <span class="ml-2 hidden md:flex">Paramètres</span>
+        <span class="ml-2 hidden lg:flex">Paramètres</span>
       </button>
     </li>
   </ul>
