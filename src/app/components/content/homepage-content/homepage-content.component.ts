@@ -3,10 +3,13 @@ import { Component } from '@angular/core';
 import { H1Component } from '../../base/h1/h1.component';
 import { H2Component } from '../../base/h2/h2.component';
 // layout
+import { ContentComponent } from '../../layout/content/content.component';
+import { NavComponent } from '../../layout/nav/nav.component';
 import { HeaderComponent } from '../../layout/header/header.component';
 import { SectionComponent } from '../../layout/section/section.component';
 import { FooterComponent } from '../../layout/footer/footer.component';
 // content
+import { NavContentComponent } from '../nav-content/nav-content.component';
 import { IntroductionComponent } from '../introduction/introduction.component';
 import { SkillsComponent } from '../skills/skills.component';
 import { AdsPosterComponent } from '../ads-poster/ads-poster.component';
@@ -33,10 +36,13 @@ import { ModalTerminalHelpComponent } from '../../modals/modal-terminal-help/mod
     H1Component,
     H2Component,
     // layout
+    ContentComponent,
+    NavComponent,
     HeaderComponent,
     SectionComponent,
     FooterComponent,
     // content
+    NavContentComponent,
     IntroductionComponent,
     SkillsComponent,
     AdsPosterComponent,

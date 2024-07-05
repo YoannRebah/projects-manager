@@ -5,9 +5,7 @@
 }
 
 html, body {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
+    scroll-behavior: smooth;
 }
 
 a, button, input[type="checkbox"] {
