@@ -34,7 +34,7 @@
         </header>
         <!-- content-game -->
         <div 
-            class="relative w-full bg-no-repeat bg-cover bg-center bg-body shadow-inset-white-strong"
+            class="relative w-full bg-img-cover-center bg-body shadow-inset-white-strong"
             style="background-image: url(assets/images/space-background.jpeg); grid-area: content-game;"
         >
             <!-- gameContainer -->
@@ -56,7 +56,7 @@
                     </div>
                  }
                 <!-- game-cursor -->
-                <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-no-repeat bg-contain bg-bottom" 
+                <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-img-contain-bottom" 
                     style="background-image: url(assets/gif/rocket-spaceship.gif);"
                 >
                     <div #collisionBox class="collision-box relative top-[18px] w-[45px] h-[65px] left-[14px] opacity-60" [class.bg-red]="collisionBoxIsHitted"></div>
