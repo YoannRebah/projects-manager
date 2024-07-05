@@ -43,6 +43,9 @@
     .bg-img-contain-bottom{
         @apply bg-no-repeat bg-contain bg-bottom;
     }
+    .bg-img-contain-center-fixed{
+        @apply bg-no-repeat bg-contain bg-center bg-fixed;
+    }
     .bg-img-cover-center{
         @apply bg-no-repeat bg-cover bg-center;
     }

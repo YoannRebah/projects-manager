@@ -1,6 +1,23 @@
+<app-loader></app-loader>
 <app-loader-hourglass></app-loader-hourglass>
 
-<app-modal-settings id="modal-settings"></app-modal-settings>
-<app-modal-terminal-help id="modal-terminal-help"></app-modal-terminal-help>
+<app-vhs-effect></app-vhs-effect>
+<app-vhs-footer></app-vhs-footer>
 
-<router-outlet />
+<!-- main -->
+<app-main>
+
+    <!-- nav -->
+    <app-nav>
+        <app-nav-content></app-nav-content>
+    </app-nav>
+    
+    <!-- content -->
+    <app-content>
+  
+        <!-- router -->
+        <router-outlet />
+  
+    </app-content>
+  
+</app-main>

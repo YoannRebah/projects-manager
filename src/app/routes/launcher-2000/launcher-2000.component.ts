@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { GameLauncher2000Component } from '../../components/content/game-launcher-2000/game-launcher-2000.component';
-import { VhsEffectComponent } from '../../components/content/vhs-effect/vhs-effect.component';
+// content
+import { Launcher2000ContentComponent } from '../../components/content/launcher-2000-content/launcher-2000-content.component';
 
 @Component({
   selector: 'app-launcher-2000',
   standalone: true,
-  imports: [GameLauncher2000Component, VhsEffectComponent],
+  imports: [
+    Launcher2000ContentComponent
+  ],
   templateUrl: './launcher-2000.component.html',
   styleUrl: './launcher-2000.component.scss'
 })

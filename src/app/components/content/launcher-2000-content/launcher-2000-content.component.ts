@@ -6,14 +6,14 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 
 @Component({
-  selector: 'app-game-launcher-2000',
+  selector: 'app-launcher-2000-content',
   standalone: true,
   imports: [],
-  templateUrl: './game-launcher-2000.component.html',
-  styleUrl: './game-launcher-2000.component.scss'
+  templateUrl: './launcher-2000-content.component.html',
+  styleUrl: './launcher-2000-content.component.scss'
 })
 
-export class GameLauncher2000Component implements OnInit {
+export class Launcher2000ContentComponent implements OnInit {
   // score
   score: number = 0;
   scoreMin: number = 0;

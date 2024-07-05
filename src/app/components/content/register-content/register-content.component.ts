@@ -1,8 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/base/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
 
 @Component({

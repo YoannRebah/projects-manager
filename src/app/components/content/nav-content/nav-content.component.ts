@@ -18,7 +18,7 @@ export class NavContentComponent implements OnInit{
   navAnchors: Anchor[] = [
     {
       href: '#',
-      classNames: 'text-base',
+      classNames: 'text-sm',
       iconClassNames: 'fa-solid fa-home',
       ariaLabel: 'Accueil',
       text: 'Accueil',
