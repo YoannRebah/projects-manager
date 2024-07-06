@@ -1,5 +1,5 @@
 <app-modal id="modal-terminal-help" classNames="modal-terminal-help" flexAlign="start" headerTitle="Help">
-    <div class="custom-content bg-grey p-8">
+    <div class="custom-content bg-grey p-8 max-h-[50vh] overflow-auto">
       <ul class="list-none">
         @for (command of enabledCommands; track $index) {
           <li>
