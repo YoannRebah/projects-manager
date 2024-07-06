@@ -3,11 +3,11 @@
     [class.pointer-events-none]="!linkIsDisplayed" 
     [class.animation-hidden-forwards-5s]="!linkIsDisplayed"
 >
-    <p class="reddit-mono text-white text-shadow-chromatic-glitch-strong text-lg">
+    <p class="reddit-mono text-white text-shadow-chromatic-glitch-strong texte-base md:text-lg">
         <i [class]="iconClassNames" class="mr-2"></i>
         <span [innerHTML]="headerTitle"></span>
     </p>
-    <p class="reddit-mono text-white text-shadow-chromatic-glitch-strong text-lg">
+    <p class="reddit-mono text-white text-shadow-chromatic-glitch-strong texte-base md:text-lg">
         <span [innerHTML]="subtitle"></span>
     </p>
     @if(linkHref || linkText) {
