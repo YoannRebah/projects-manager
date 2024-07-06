@@ -25,6 +25,10 @@ export class TerminalService {
       'hide vhs',
       'start timer',
       'stop timer',
+      'show settings',
+      'hide settings',
+      'show menu',
+      'hide menu',
     ];
   }
 

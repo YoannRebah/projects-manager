@@ -9,6 +9,8 @@ import { LoaderService } from '../../../shared/services/components/loader.servic
 import { TvProgramService } from '../../../shared/services/components/tv-program.service';
 import { VhsEffectService } from '../../../shared/services/components/vhs-effect.service';
 import { VhsTimeCounterService } from '../../../shared/services/components/vhs-time-counter.service';
+import { VhsFooterService } from '../../../shared/services/components/vhs-footer.service';
+import { MenuService } from '../../../shared/services/components/menu.service';
 
 @Component({
   selector: 'app-terminal',
@@ -34,6 +36,8 @@ export class TerminalComponent implements OnInit, OnDestroy {
   tvProgramService = inject(TvProgramService);
   vhsEffectService = inject(VhsEffectService);
   vhsTimeCounterService = inject(VhsTimeCounterService);
+  vhsFooterService = inject(VhsFooterService);
+  menuService = inject(MenuService);
 
   @ViewChild('terminalList', { static: false }) terminalList!: ElementRef;
 
@@ -217,13 +221,21 @@ export class TerminalComponent implements OnInit, OnDestroy {
         break;
         case 'hide tv': this.tvProgramService.hide();
         break;
-        case 'show vhs': this.vhsEffectService.show();
+        case 'show vhs': this.vhsEffectService.show(); this.vhsTimeCounterService.start(); this.vhsFooterService.show();
         break;
-        case 'hide vhs': this.vhsEffectService.hide();
+        case 'hide vhs': this.vhsEffectService.hide(); this.vhsTimeCounterService.stop(); this.vhsFooterService.hide();
         break;
         case 'start timer': this.vhsTimeCounterService.start();
         break;
         case 'stop timer': this.vhsTimeCounterService.stop();
+        break;
+        case 'show settings': this.modalService.show('modal-settings');
+        break;
+        case 'hide settings': this.modalService.hide('modal-settings');
+        break;
+        case 'show menu': this.menuService.show();
+        break;
+        case 'hide menu': this.menuService.hide();
         break;
       }
     }

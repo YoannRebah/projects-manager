@@ -5,6 +5,7 @@ import { VhsFooterService } from '../../../shared/services/components/vhs-footer
 import { Subscription } from 'rxjs';
 import { ToggleSwitchComponent } from '../../base/toggle-switch/toggle-switch.component';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
+import { VhsTimeCounterService } from '../../../shared/services/components/vhs-time-counter.service';
 
 @Component({
   selector: 'app-modal-settings',
@@ -21,6 +22,7 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
   toggleSwitchVhsEffectId: string = 'toggle-vhs-effect';
   vhsEffectService = inject(VhsEffectService);
   vhsFooterService = inject(VhsFooterService);
+  vhsTimeCounterService = inject(VhsTimeCounterService);
 
   @ViewChild('toggleSwitchVhsEffect') toggleSwitchVhsEffect!: ToggleSwitchComponent;
 
@@ -60,9 +62,11 @@ export class ModalSettingsComponent implements OnInit, OnDestroy {
       if(newState) {
         this.vhsEffectService.show();
         this.vhsFooterService.show();
+        this.vhsTimeCounterService.start();
       } else {
         this.vhsEffectService.hide();
         this.vhsFooterService.hide();
+        this.vhsTimeCounterService.stop();
       }
     }
   }
