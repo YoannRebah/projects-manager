@@ -13,7 +13,9 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 @Component({
   selector: 'app-tv-program',
   standalone: true,
-  imports: [BlockSignalTvComponent],
+  imports: [
+    BlockSignalTvComponent
+  ],
   templateUrl: './tv-program.component.html',
   styleUrl: './tv-program.component.scss'
 })
@@ -27,8 +29,9 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   videoDurationTime: number = 227; // 227
   delayBeforeShow: number = 600; // 600
   timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
-  keyTime: string = LocalStorageService.commonPrefixKey + 'time';
+  lsKeyTime: string = LocalStorageService.commonPrefixKey + 'time';
   timeIntervalId!: number;
+  videoWasForcedHidden: boolean = false;
   tvProgramService = inject(TvProgramService);
   vhsEffectService = inject(VhsEffectService);
   loaderService = inject(LoaderService);
@@ -121,11 +124,12 @@ export class TvProgramComponent implements OnInit, OnDestroy {
 
   onClickHideVideo(): void {
     this.hideVideo();
+    this.videoWasForcedHidden = true;
   }
 
   get storedTime(): number {
     if (LocalStorageService.testIsAvailable()) {
-      return parseInt(localStorage.getItem(this.keyTime)!, 10);
+      return parseInt(localStorage.getItem(this.lsKeyTime)!, 10);
     }
     return 0;
   }
@@ -137,7 +141,7 @@ export class TvProgramComponent implements OnInit, OnDestroy {
         if(this.storedTime == this.delayBeforeShow) {
           this.showVideo();
         }
-        if(this.storedTime == this.timeBeforeHide) {
+        if(this.storedTime == this.timeBeforeHide && !this.videoWasForcedHidden) {
           this.hideVideo();
         }
       }, 1000);

@@ -21,7 +21,7 @@ export class VhsTimeCounterComponent implements OnInit, OnDestroy {
   isReset!: boolean;
   time: number = 0;
   timeMin: number = 0;
-  timeMax: number = 3600;
+  timeMax: number = 9999;
   timeString: string = '00:00:00';
   timeIntervalId!: number;
   keyTime: string = LocalStorageService.commonPrefixKey + 'time';
