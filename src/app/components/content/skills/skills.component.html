@@ -1,26 +1,28 @@
-<div class="relative w-full">
-    <ul class="list-none relative w-full">
-        @for (skill of skills; track $index; let last = $last;) {
-            <li [class.mb-12]="!$last">
-                <div class="flex-center-center flex-col w-full md:flex-row">
-                    <div class="flex-center-center flex-col flex-[1_1_20%]" [class]="skill.textColor">
+<ul class="relative w-full">
+    @for (skill of skills; track $index; let last = $last;) {
+        <li [class.mb-12]="!$last">
+            <div class="flex items-center flex-col gap-4 w-full lg:flex-row">
+                <div class="flex-[1_1_20%]" [class]="skill.textColor">
+                    <div class="flex-center-center flex-col">
                         <p class="text-center text-base" [innerHTML]="skill.language"></p>
                         <i class="text-7xl md:text-8xl" [class]="skill.iconClassName" aria-hidden="true"></i>
                     </div>
-                    <ul class="list-none flex flex-col flex-[1_1_80%]">
+                </div>
+                <div class="w-full md:flex-[1_1_80%]">
+                    <ul class="relative w-full">
                         @for (detail of skill.details; track $index; let last = $last;) {
-                            <li class="flex-center-center flex-col md:flex-row" [class.mb-3]="!$last">
-                                <div class="flex-col flex-[1_1_30%] mr-2">
-                                    <p class="text-right text-xs md:text-sm" [innerHTML]="detail.text + '&nbsp;:'"></p>
+                            <li class="flex items-center flex-col gap-2 md:flex-row" [class.mb-3]="!$last">
+                                <div class="w-full md:flex-[1_1_30%]">
+                                    <p class="text-left text-xs md:text-sm md:text-right" [innerHTML]="detail.text + '&nbsp;:'"></p>
                                 </div>
-                                <div class="relative h-4 flex-[1_1_70%]" [class]="skill.bgColorDark">
-                                    <div class="relative h-full" [class]="skill.bgColor" [style.width]="detail.percent + '%'"></div>
+                                <div class="relative h-4 w-full md:flex-[1_1_70%]" [class]="skill.bgColorDark">
+                                    <div class="relative h-4 md:h-full" [class]="skill.bgColor" [style.width]="detail.percent + '%'"></div>
                                 </div>
                             </li>
                         }
                     </ul>
                 </div>
-            </li>
-        }
-    </ul>
-</div>
+            </div>
+        </li>
+    }
+</ul>
