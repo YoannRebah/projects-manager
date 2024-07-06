@@ -25,6 +25,9 @@
     .fixed-backdrop-flex-center {
         @apply fixed top-0 left-0 w-full h-full flex items-center justify-center;
     }
+    .fixed-backdrop-screen-flex-center {
+        @apply fixed top-0 left-0 w-screen h-screen flex items-center justify-center;
+    }
     .fixed-backdrop-screen {
         @apply fixed top-0 left-0 w-screen h-screen;
     }

@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container mx-auto sm:px-6 md:px-16 lg:px-20 xl:px-24 2xl:px-32">
     <form class="form-contact relative flex flex-col gap-10" [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()">
         <!-- Identité -->
         <fieldset>
-            <legend class="text-shadow-chromatic-glitch mb-6 text-2xl font-light border-b-2 border-cyan w-full">Identité</legend>
+            <legend class="text-shadow-chromatic-glitch mb-6 font-light border-b-2 border-cyan w-full text-base sm:text-lg md:text-xl lg:text-2xl">Identité</legend>
             <div class="relative flex flex-col gap-4">
-                <div class="flex flex-col gap-10 md:flex-row">
+                <div class="flex flex-col gap-4 md:flex-row md:gap-10">
                     <div class="relative flex flex-col flex-1">
                         <label class="relative mb-1 font-medium" for="input-lastName">Nom<sup>*</sup></label>
                         <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-lastName" name="lastName" type="text" autocomplete="off" placeholder="Martin" tabindex="1" formControlName="lastName"
@@ -30,7 +30,7 @@
                         }
                     </div>
                 </div>
-                <div class="flex flex-col gap-10 md:flex-row">
+                <div class="flex flex-col gap-4 md:flex-row md:gap-10">
                     <div class="relative flex flex-col flex-1">
                         <label class="relative mb-1 font-medium" for="input-email">E-mail<sup>*</sup></label>
                         <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-email" name="email" type="mail" autocomplete="off" placeholder="julie.martin@gmail.com" tabindex="3" formControlName="email"
@@ -66,10 +66,10 @@
         </fieldset>
         <!-- Entreprise -->
         <fieldset>
-            <legend class="text-shadow-chromatic-glitch mb-6 text-2xl font-light border-b border-cyan w-full">Entreprise</legend>
+            <legend class="text-shadow-chromatic-glitch mb-6 font-light border-b border-cyan w-full text-base sm:text-lg md:text-xl lg:text-2xl">Entreprise</legend>
                 <div class="relative flex flex-col gap-4">
                     <div class="relative flex flex-col gap-4">
-                        <div class="flex flex-col gap-10 md:flex-row">
+                        <div class="flex flex-col gap-4 md:flex-row md:gap-10">
                             <div class="relative flex flex-col flex-1">
                                 <label class="relative mb-1 font-medium" for="input-compagny-name">Dénomination<sup>*</sup></label>
                                 <input class="text-black p-2 outline-4 focus:outline-cyan" id="input-compagny-name" name="compagny-name" type="text" autocomplete="off" placeholder="Carrefour" tabindex="5" formControlName="compagnyName"
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="relative flex flex-col">
-                        <div class="flex flex-col gap-10 md:flex-row">
+                        <div class="flex flex-col gap-4 md:flex-row md:gap-10">
                             <div class="relative flex flex-col flex-1">
                                 <label class="relative mb-1 font-medium" for="dropdown-compagny-location">Localisation</label>
                                 <select class="text-black p-2 outline-4 focus:outline-cyan" id="dropdown-compagny-location" name="compagny-location" tabindex="7" formControlName="compagnyLocation">
@@ -112,7 +112,7 @@
         </fieldset>
         <!-- Message -->
         <fieldset>
-            <legend class="text-shadow-chromatic-glitch mb-6 text-2xl font-light border-b border-cyan w-full">Message</legend>
+            <legend class="text-shadow-chromatic-glitch mb-6 font-light border-b border-cyan w-full text-base sm:text-lg md:text-xl lg:text-2xl">Message</legend>
             <div class="relative flex">
                 <textarea class="text-black p-2 resize-none w-full focus:outline-cyan" id="textarea-message" name="contact-message" placeholder="Bonjour, pouvez-vous me recontacter..." tabindex="8" formControlName="message"></textarea>
             </div>
@@ -129,9 +129,8 @@
             </button>
         </div>
     </form>
-
-    <!-- popins -->
-    <app-popin  id="popin-form-sent-success" position="fixed" img="mail" headerTitle="Demande de contact" text="Le mail a bien été transmis. Merci !"></app-popin>
-    <app-popin id="popin-form-sent-error" position="fixed" img="error" headerTitle="Demande de contact" text="Aïe... Il y a eu une erreur lors de l'envoi du mail..."></app-popin>
-
 </div>
+
+<!-- popins -->
+<app-popin  id="popin-form-sent-success" position="fixed" img="mail" headerTitle="Demande de contact" text="Le mail a bien été transmis. Merci !"></app-popin>
+<app-popin id="popin-form-sent-error" position="fixed" img="error" headerTitle="Demande de contact" text="Aïe... Il y a eu une erreur lors de l'envoi du mail..."></app-popin>

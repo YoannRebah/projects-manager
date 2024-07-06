@@ -21,7 +21,6 @@ export class TerminalService {
       'toggle loader',
       'show tv',
       'hide tv',
-      'play tv',
       'show vhs',
       'hide vhs',
       'start timer',
