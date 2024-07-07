@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, fromEvent } from 'rxjs';
+import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { WindowRefService } from '../utilities/window-ref.service';
 
@@ -8,10 +8,10 @@ import { WindowRefService } from '../utilities/window-ref.service';
 })
 export class ScreenSizeService {
   private screenWidthSubject: BehaviorSubject<number>;
-  screenWidth$;
+  screenWidth$!: Observable<number>;
   
   private screenHeightSubject: BehaviorSubject<number>;
-  screenHeight$;
+  screenHeight$!: Observable<number>;
 
   constructor(private windowRefService: WindowRefService) {
     const initialWidth = this.windowRefService.windowRef ? this.windowRefService.windowRef.innerWidth : 0;

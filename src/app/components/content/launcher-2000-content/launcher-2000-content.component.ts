@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class Launcher2000ContentComponent implements OnInit, OnDestroy {
-  screenIsAvailableToPlay!: boolean;
+  screenIsAvailableToPlay: boolean = true;
   screenWidth!: number;
   // storage
   keyScore: string = LocalStorageService.commonPrefixKey + 'player-score';
@@ -62,9 +62,7 @@ export class Launcher2000ContentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeScreenSize();
-    if(this.screenIsAvailableToPlay) {
-      this.initNewGame();
-    }
+    this.initNewGame();
   }
 
   ngOnDestroy(): void {

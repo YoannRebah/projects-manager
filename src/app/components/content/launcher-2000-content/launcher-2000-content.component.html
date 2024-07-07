@@ -1,97 +1,94 @@
 <div class="fixed-backdrop-flex-center bg-square-pink z-10 shadow-inset-white" (mousemove)="onMouseMoveIntoView($event)">
-    @if(screenIsAvailableToPlay) {
-        <div class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';">
-            <!-- header -->
-            <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
-                <div class="flex items-center flex-[1_1_20%] gap-3">
-                    <a 
-                        href="/home" 
-                        (click)="onClickBackHomepage()" class="btn flex-center-center bg-pink-dark text-base w-[26px] h-[26px] lg:text-xl lg:w-[34px] lg:h-[34px] active:bg-red hover:text-white" 
-                        aria-label="Retour à la page d'accueil" 
-                        title="Retour à la page d'accueil"
-                    >
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </a>
-                    <button class="btn flex-center-center bg-pink-dark text-base w-[26px] h-[26px] lg:text-xl lg:w-[34px] lg:h-[34px] active:bg-red" aria-label="Stopper et réinitialiser" (click)="onClickStopGame()" title="Stopper et réinitialiser">
-                        <i class="fa-regular fa-circle-stop" aria-hidden="true"></i>
+    <div [class.hidden-important]="!screenIsAvailableToPlay" class="h-[90%] w-[60%] grid grid-cols-1 grid-rows-[0.3fr_1.7fr] gap-0 grid-flow-row" style="grid-template-areas: 'header-game' 'content-game';">
+        <!-- header -->
+        <header class="relative flex items-center justify-between gap-4" style="grid-area: header-game;">
+            <div class="flex items-center flex-[1_1_20%] gap-3">
+                <a 
+                    href="/home" 
+                    (click)="onClickBackHomepage()" class="btn flex-center-center bg-pink-dark text-base w-[26px] h-[26px] lg:text-xl lg:w-[34px] lg:h-[34px] active:bg-red hover:text-white" 
+                    aria-label="Retour à la page d'accueil" 
+                    title="Retour à la page d'accueil"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <button class="btn flex-center-center bg-pink-dark text-base w-[26px] h-[26px] lg:text-xl lg:w-[34px] lg:h-[34px] active:bg-red" aria-label="Stopper et réinitialiser" (click)="onClickStopGame()" title="Stopper et réinitialiser">
+                    <i class="fa-regular fa-circle-stop" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="flex items-center flex-[1_1_40%]">
+                <div class="container-health-bar flex items-center w-full">
+                    <p class="text-sm lg:text-lg mr-2">PV</p>
+                    <div class="health-bar w-full bg-pink h-2 lg:h-4">
+                        <div class="health h-full bg-cyan" [style.width]="health + '%'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col items-end flex-[1_1_40%]">
+                <p class="uppercase text-sm lg:text-lg">Score&nbsp;: 
+                    <span class="score w-[60px] inline-block">{{ score }}</span>
+                </p>
+                <p class="uppercase text-xs lg:text-base">High&nbsp;Score&nbsp;: 
+                    <span class="high-score w-[60px] inline-block">{{ storedHighScore }}</span>
+                </p>
+            </div>
+        </header>
+        <!-- content-game -->
+        <div 
+            class="relative w-full bg-img-cover-center bg-body shadow-inset-white-strong"
+            style="background-image: url(assets/images/space-background.jpeg); grid-area: content-game;"
+        >
+            <!-- gameContainer -->
+            <div #gameContainer class="relative w-full h-full overflow-hidden" (mouseenter)="onMouseEnterGameContainer()" (mouseleave)="onMouseLeaveGameContainer()">
+                <!-- Cliquez pour jouer -->
+                @if(!gameIsStarted) {
+                    <button (click)="onClickStartGame()" class="absolute-full-flex-center uppercase jersey-15-regular z-10 animation-fade-infinite">
+                        <!-- desktop -->
+                        <span class="mr-2 text-3xl">Cliquez pour jouer</span>
+                        <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
                     </button>
-                </div>
-                <div class="flex items-center flex-[1_1_40%]">
-                    <div class="container-health-bar flex items-center w-full">
-                        <p class="text-sm lg:text-lg mr-2">PV</p>
-                        <div class="health-bar w-full bg-pink h-2 lg:h-4">
-                            <div class="health h-full bg-cyan" [style.width]="health + '%'"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col items-end flex-[1_1_40%]">
-                    <p class="uppercase text-sm lg:text-lg">Score&nbsp;: 
-                        <span class="score w-[60px] inline-block">{{ score }}</span>
-                    </p>
-                    <p class="uppercase text-xs lg:text-base">High&nbsp;Score&nbsp;: 
-                        <span class="high-score w-[60px] inline-block">{{ storedHighScore }}</span>
-                    </p>
-                </div>
-            </header>
-            <!-- content-game -->
-            <div 
-                class="relative w-full bg-img-cover-center bg-body shadow-inset-white-strong"
-                style="background-image: url(assets/images/space-background.jpeg); grid-area: content-game;"
-            >
-                <!-- gameContainer -->
-                <div #gameContainer class="relative w-full h-full overflow-hidden" (mouseenter)="onMouseEnterGameContainer()" (mouseleave)="onMouseLeaveGameContainer()">
-                    <!-- Cliquez pour jouer -->
-                    @if(!gameIsStarted) {
-                        <button (click)="onClickStartGame()" class="absolute-full-flex-center uppercase jersey-15-regular z-10 animation-fade-infinite">
-                            <!-- desktop -->
-                            <span class="mr-2 text-3xl">Cliquez pour jouer</span>
-                            <i class="fa-solid fa-computer-mouse text-2xl" aria-hidden="true"></i>
-                        </button>
-                    }
-                    <!-- En Pause -->
-                    @if(gameIsPaused) {
-                        <div class="absolute-full-flex-center bg-black-transparent-light uppercase jersey-15-regular z-10">
-                            <div class="flex-center-center animation-fade-infinite">
-                                <span class="mr-2 text-xl lg:text-3xl">En Pause</span>
-                                <i class="fa-regular fa-circle-pause text-xl lg:text-2xl" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    }
-                    <!-- game-cursor -->
-                    <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-img-contain-bottom" 
-                        style="background-image: url(assets/gif/rocket-spaceship.gif);"
-                    >
-                        <div #collisionBox class="collision-box relative top-[18px] w-[45px] h-[65px] left-[14px] opacity-60" [class.bg-red]="collisionBoxIsHitted"></div>
-                    </div>
-                </div>
-                <!-- game over -->
-                @if(gameIsOver) {
-                    <div class="absolute-full-flex-center bg-black-transparent-darker z-10">
-                        <div class="flex flex-col items-center">
-                            <h3 class="jersey-15-regular text-8xl">Game Over</h3>
-                            <p class="jersey-15-regular text-5xl">Score&nbsp;: <span>{{ storedScore }}</span></p>
-                            <div class="flex flex-col mt-6">
-                                <button class="btn jersey-15-regular text-2xl" (click)="onClickRetryGame()">
-                                    <i class="fa-solid fa-rotate-right mr-2" aria-hidden="true"></i>
-                                    <span class="text-3xl">Recommencer</span>
-                                </button>
-                            </div>
+                }
+                <!-- En Pause -->
+                @if(gameIsPaused) {
+                    <div class="absolute-full-flex-center bg-black-transparent-light uppercase jersey-15-regular z-10">
+                        <div class="flex-center-center animation-fade-infinite">
+                            <span class="mr-2 text-xl lg:text-3xl">En Pause</span>
+                            <i class="fa-regular fa-circle-pause text-xl lg:text-2xl" aria-hidden="true"></i>
                         </div>
                     </div>
                 }
+                <!-- game-cursor -->
+                <div #gameCursor class="absolute -translate-x-2/4 left-[50%] bottom-0 w-[75px] h-[125px] bg-img-contain-bottom" 
+                    style="background-image: url(assets/gif/rocket-spaceship.gif);"
+                >
+                    <div #collisionBox class="collision-box relative top-[18px] w-[45px] h-[65px] left-[14px] opacity-60" [class.bg-red]="collisionBoxIsHitted"></div>
+                </div>
             </div>
+            <!-- game over -->
+            @if(gameIsOver) {
+                <div class="absolute-full-flex-center bg-black-transparent-darker z-10">
+                    <div class="flex flex-col items-center">
+                        <h3 class="jersey-15-regular text-8xl">Game Over</h3>
+                        <p class="jersey-15-regular text-5xl">Score&nbsp;: <span>{{ storedScore }}</span></p>
+                        <div class="flex flex-col mt-6">
+                            <button class="btn jersey-15-regular text-2xl" (click)="onClickRetryGame()">
+                                <i class="fa-solid fa-rotate-right mr-2" aria-hidden="true"></i>
+                                <span class="text-3xl">Recommencer</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-    } @else {
-        <div class="flex-center-center flex-col gap-6">
-            <p class="px-6 text-center">Désolé le jeu n'est pas disponible sur cet appareil <i class="fa-regular fa-face-grin-beam-sweat" aria-hidden="true"></i></p>
-            <a 
-                href="/home" 
-                (click)="onClickBackHomepage()" class="btn w-fit p-1 px-4 bg-pink-dark text-base" 
-                aria-label="Retour à la page d'accueil" 
-                title="Retour à la page d'accueil"
-            >
-                <span>Retour à la page d'accueil</span>
-            </a>
-        </div>
-    }
+    </div>
+    <div [class.hidden-important]="screenIsAvailableToPlay" class="flex-center-center flex-col gap-6">
+        <p class="px-6 text-center">Désolé le jeu n'est pas disponible sur cet appareil <i class="fa-regular fa-face-grin-beam-sweat" aria-hidden="true"></i></p>
+        <a 
+            href="/home" 
+            (click)="onClickBackHomepage()" class="btn w-fit p-1 px-4 bg-pink-dark text-base" 
+            aria-label="Retour à la page d'accueil" 
+            title="Retour à la page d'accueil"
+        >
+            <span>Retour à la page d'accueil</span>
+        </a>
+    </div>
 </div>
