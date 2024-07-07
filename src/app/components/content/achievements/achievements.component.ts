@@ -18,7 +18,13 @@ export class AchievementsComponent {
   [
     {
       tab: {
-        text: "BNP Paribas"
+        button: {
+          text: "BNP Paribas"
+        },
+        img: {
+          path: "assets/images/logo-bnp.png",
+          alt: "BNP Paribas"
+        }
       },
       img: {
         path: "assets/gif/achievements-1.gif",
@@ -55,7 +61,13 @@ export class AchievementsComponent {
     },
     {
       tab: {
-        text: "Hello bank!"
+        button: {
+          text: "Hello bank!"
+        },
+        img: {
+          path: "assets/images/logo-hb.png",
+          alt: "Hello bank!"
+        }
       },
       img: {
         path: "assets/gif/achievements-4.gif",
@@ -91,7 +103,13 @@ export class AchievementsComponent {
     },
     {
       tab: {
-        text: "Hello bank! pro"
+        button: {
+          text: "Hello bank! pro"
+        },
+        img: {
+          path: "assets/images/logo-hb-pro.png",
+          alt: "Hello bank! pro"
+        }
       },
       img: {
         path: "assets/gif/achievements-3.gif",
@@ -127,7 +145,13 @@ export class AchievementsComponent {
     },
     {
       tab: {
-        text: "Projets Perso"
+        button: {
+          text: "Projets perso"
+        },
+        img: {
+          path: "assets/images/logo-plus.png",
+          alt: "Projets perso"
+        }
       },
       img: {
         path: "assets/gif/achievements-5.gif",
