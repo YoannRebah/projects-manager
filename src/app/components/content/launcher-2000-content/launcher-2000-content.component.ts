@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, inject, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, inject, ElementRef, Renderer2 } from '@angular/core';
 import { LocalStorageService } from '../../../shared/services/utilities/local-storage.service';
 import { WindowRefService } from '../../../shared/services/utilities/window-ref.service';
 import { DatetimeService } from '../../../shared/services/utilities/datetime.service';
 import { TimeoutService } from '../../../shared/services/utilities/timeout.service';
 import { LoaderHourglassService } from '../../../shared/services/components/loader-hourglass.service';
+import { ScreenSizeService } from '../../../shared/services/base/screen.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-launcher-2000-content',
@@ -13,7 +15,12 @@ import { LoaderHourglassService } from '../../../shared/services/components/load
   styleUrl: './launcher-2000-content.component.scss'
 })
 
-export class Launcher2000ContentComponent implements OnInit {
+export class Launcher2000ContentComponent implements OnInit, OnDestroy {
+  screenIsAvailableToPlay!: boolean;
+  screenWidth!: number;
+  // storage
+  keyScore: string = LocalStorageService.commonPrefixKey + 'player-score';
+  keyHighScore: string = LocalStorageService.commonPrefixKey + 'player-high-score';
   // score
   score: number = 0;
   scoreMin: number = 0;
@@ -40,12 +47,12 @@ export class Launcher2000ContentComponent implements OnInit {
   stellarObjectsIntervalId!: number; 
   timeDelayUpdateStellarObjectsMs: number = 400;
   // services
+  screenSizeService = inject(ScreenSizeService); 
   renderer = inject(Renderer2);
   windowRefService = inject(WindowRefService);
   loaderHourglassService = inject(LoaderHourglassService);
-  // storage
-  keyScore: string = LocalStorageService.commonPrefixKey + 'player-score';
-  keyHighScore: string = LocalStorageService.commonPrefixKey + 'player-high-score';
+
+  screenSizeSubscription!: Subscription;
 
   @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
   @ViewChild('gameCursor', { static: true }) gameCursor!: ElementRef;
@@ -54,7 +61,34 @@ export class Launcher2000ContentComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.initNewGame();
+    this.subscribeScreenSize();
+    if(this.screenIsAvailableToPlay) {
+      this.initNewGame();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeScreenSize();
+  }
+
+  subscribeScreenSize(): void {
+    this.screenSizeSubscription = this.screenSizeService.screenWidth$.subscribe({
+      next: (screenWidth) => {
+        this.screenWidth = screenWidth;
+        if(screenWidth >= 768) {
+          this.screenIsAvailableToPlay = true;
+        } else {
+          this.screenIsAvailableToPlay = false;
+        }
+      },
+      error: (e) => console.error('error subscribeScreenSize : ', e)
+    })
+  }
+
+  unsubscribeScreenSize(): void {
+    if(this.screenSizeSubscription) {
+      this.screenSizeSubscription.unsubscribe();
+    }
   }
 
   onMouseEnterGameContainer(): void {
