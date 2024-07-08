@@ -34,18 +34,6 @@ export class LoginContentComponent implements OnInit {
     this.onSubmitLoginForm();
   }
 
-  onClickCancel(): void {
-    this.loaderHourglassService.show();
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  handleKeyDownTerminal(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      this.onSubmitLoginForm();
-    }
-  }
-
   initLoginFormControl(): void {
     this.loginForm = this.formBuilder.group({
       "email": ['', [Validators.required, Validators.email]],
@@ -76,6 +64,10 @@ export class LoginContentComponent implements OnInit {
     }
   }
 
+  onClickLoginWithGoogle() {
+    this.authService.loginWithGoogle();
+  }
+
   checkUserConnectionStatus(): void {
     this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
       if(user) {
@@ -84,6 +76,18 @@ export class LoginContentComponent implements OnInit {
         }
       }
     });
+  }
+
+  onClickCancel(): void {
+    this.loaderHourglassService.show();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDownEnter(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onSubmitLoginForm();
+    }
   }
 
 }

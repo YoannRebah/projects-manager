@@ -37,7 +37,7 @@ export class RegisterContentComponent implements OnInit {
   }
 
   @HostListener('window:keydown', ['$event'])
-  handleKeyDownTerminal(event: KeyboardEvent) {
+  handleKeyDownEnter(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       event.preventDefault();
       this.onSubmitRegisterForm();
@@ -70,6 +70,15 @@ export class RegisterContentComponent implements OnInit {
     } else {
       this.onSubmit();
     }
+  }
+
+  onClickRegisterWithGoogle(): void {
+    this.authService.registerWithGoogle().subscribe({
+      next: () => {
+        this.router.navigateByUrl('/home');
+      },
+      error: (e) => console.error('error onClickRegisterWithGoogle : ', e)
+    });
   }
 
   checkUserConnectionStatus(): void {
