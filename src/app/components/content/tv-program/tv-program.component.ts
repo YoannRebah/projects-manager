@@ -21,17 +21,16 @@ import { TimeoutService } from '../../../shared/services/utilities/timeout.servi
 })
 
 export class TvProgramComponent implements OnInit, OnDestroy {
-  private isVisibleSubscription!: Subscription;
-  private isPlayingSubscription!: Subscription;
+  isVisibleSubscription!: Subscription;
+  isPlayingSubscription!: Subscription;
   isVisible: boolean = false;
   isPlaying: boolean = false;
-  timeTimeCounter: number = 0;
-  videoDurationTime: number = 227; // 227
-  delayBeforeShow: number = 600; // 600
-  timeBeforeHide: number = this.delayBeforeShow + this.videoDurationTime;
+  videoWasShown: boolean = false;
+  videoDurationTime: number = 227; // 227 s (3min 47s)
+  timeDelayBeforeShowVideo: number = 600; // 600 s (10min)
+  timeToHideVideo: number = this.timeDelayBeforeShowVideo + this.videoDurationTime;
   lsKeyTime: string = LocalStorageService.commonPrefixKey + 'time';
   timeIntervalId!: number;
-  videoWasForcedHidden: boolean = false;
   tvProgramService = inject(TvProgramService);
   vhsEffectService = inject(VhsEffectService);
   loaderService = inject(LoaderService);
@@ -106,25 +105,30 @@ export class TvProgramComponent implements OnInit, OnDestroy {
   }
 
   showVideo(): void {
+    this.videoWasShown = true;
     this.tvProgramService.show();
     this.vhsFooterService.hide();
   }
 
   hideVideo(): void {
-    clearInterval(this.timeIntervalId);
-    this.tvProgramService.hide();
-    this.vhsFooterService.show();
-    this.vhsTimeCounterService.stop();
-    this.loaderService.show();
-    TimeoutService.setTimeout(()=>{
-      this.loaderService.hide();
-      this.vhsTimeCounterService.start();
-    });
+    if(this.videoWasShown) {
+      this.videoWasShown = false;
+      this.tvProgramService.hide();
+      this.vhsFooterService.show();
+      this.vhsTimeCounterService.stop();
+      this.loaderService.show();
+      clearInterval(this.timeIntervalId);
+
+      TimeoutService.setTimeout(()=>{
+        this.loaderService.hide();
+        this.vhsTimeCounterService.start();
+      });
+    }
   }
 
   onClickHideVideo(): void {
+    this.videoWasShown = true;
     this.hideVideo();
-    this.videoWasForcedHidden = true;
   }
 
   get storedTime(): number {
@@ -138,10 +142,10 @@ export class TvProgramComponent implements OnInit, OnDestroy {
     const windowRef = this.windowRefService.windowRef;
     if (windowRef) {
       this.timeIntervalId = windowRef.setInterval(() => {
-        if(this.storedTime == this.delayBeforeShow) {
+        if(this.storedTime === this.timeDelayBeforeShowVideo) {
           this.showVideo();
         }
-        if(this.storedTime == this.timeBeforeHide && !this.videoWasForcedHidden) {
+        if(this.storedTime === this.timeToHideVideo) {
           this.hideVideo();
         }
       }, 1000);
