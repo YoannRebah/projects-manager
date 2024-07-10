@@ -10,7 +10,6 @@ export class ScrollDownFilterDirective {
   windowTopPosition: number = 0;
   grayscaleValue: number = 0;
   opacityValue: number = 0;
-
   elementRef = inject(ElementRef);
   renderer = inject(Renderer2);
   windowRefService = inject(WindowRefService);
@@ -21,7 +20,7 @@ export class ScrollDownFilterDirective {
   onWindowScroll() {
     this.windowTopPosition = this.windowRefService.windowTopPosition;
     this.grayscaleValue = Math.min(this.windowTopPosition / 300, 1);
-    this.opacityValue = parseFloat((1 - (this.windowTopPosition / 500)).toFixed(3));
+    this.opacityValue = parseFloat((1 - (this.windowTopPosition / 400)).toFixed(3));
 
     if (this.grayscaleValue <= 1) {
       this.renderer.setStyle(this.elementRef.nativeElement, 'filter', `grayscale(${this.grayscaleValue})`);

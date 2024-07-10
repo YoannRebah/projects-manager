@@ -4,7 +4,9 @@ import { ScrollDownFilterDirective } from '../../../shared/directives/scroll-dow
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ScrollDownFilterDirective],
+  imports: [
+    ScrollDownFilterDirective
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
