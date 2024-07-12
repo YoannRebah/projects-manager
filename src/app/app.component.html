@@ -1,12 +1,15 @@
 <app-loader></app-loader>
-<app-loader-hourglass></app-loader-hourglass>
-<app-vhs-effect></app-vhs-effect>
-<app-vhs-footer></app-vhs-footer>
 
-<!-- main -->
-<app-main>
+<nav class="relative w-full flex justify-center bg-black">
+    <ul class="flex items-center gap-6 text-white">
+        <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Accueil</a></li>
+        <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+        <li><a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a></li>
+        <li><a routerLink="/logout" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a></li>
+        <li><a routerLink="/forgot-password" routerLinkActive="active" ariaCurrentWhenActive="page">Forgot Password</a></li>
+        <li><a routerLink="/gui" routerLinkActive="active" ariaCurrentWhenActive="page">GUI</a></li>
+        <li><a routerLink="/pipi" routerLinkActive="active" ariaCurrentWhenActive="page">404</a></li>
+    </ul>
+</nav>
 
-    <!-- router -->
-    <router-outlet />
-
-</app-main>
+<router-outlet />

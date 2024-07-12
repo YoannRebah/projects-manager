@@ -1,0 +1,28 @@
+@if(isVisible) {
+    <div 
+        [id]="id" 
+        class="p-4" 
+        [style.position]="position"
+        [style.align-items]="flexAlign"
+    >
+        <div class="relative w-full flex flex-col md:max-w-[420px]">
+            <!-- header -->
+            <header>
+                <div>
+                    <p [innerHTML]="headerTitle"></p>
+                </div>
+                <button (click)="onClickHide()">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+            <!-- content -->
+            <div>
+                <ng-content select=".modal-content"></ng-content>
+            </div>
+            <!-- footer -->
+            <footer>
+                <ng-content select=".modal-footer"></ng-content>
+            </footer>
+        </div>
+    </div>
+}

@@ -1,0 +1,7 @@
+<div class="relative w-full max-w-[320px] flex items-center justify-between">
+    <label [for]="id" class="text-black mr-2" [innerHTML]="label"></label>
+    <div class="toggle-switch relative flex items-center border-2 border-black w-[50px] h-[18px]">
+      <input [id]="id" class="absolute w-full h-full opacity-0 z-10" type="checkbox" [checked]="checkboxState" (change)="toggleCheckbox($event)" />
+      <div class="slider absolute bg-black transform center-y"></div>
+    </div>
+</div>  

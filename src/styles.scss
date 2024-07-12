@@ -1,140 +1,42 @@
-// base
-@import './styles/variables';
-@import './styles/mixins';
-
-// partials
-@import './styles/typography';
-@import './styles/presets';
-@import './styles/animations';
-
-// tailwind css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    scroll-behavior: smooth;
+}
+
+a, button, .btn {
+    cursor: pointer;
+
+    &>* {
+        pointer-events: none;
+    }
+}
+
+ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+}
+
 @layer utilities {
-    .flex-center-center {
-        @apply flex items-center justify-center;
-    }
-    .flex-center-between {
-        @apply flex items-center justify-between;
-    }
-    .flex-center-start {
-        @apply flex items-center justify-start;
-    }
-    .fixed-backdrop-flex-center {
-        @apply fixed top-0 left-0 w-full h-full flex items-center justify-center;
-    }
-    .fixed-backdrop-screen-flex-center {
-        @apply fixed top-0 left-0 w-screen h-screen flex items-center justify-center;
-    }
-    .fixed-backdrop-screen {
-        @apply fixed top-0 left-0 w-screen h-screen;
-    }
-    .fixed-backdrop-full {
+    .backdrop-full-fixed {
         @apply fixed top-0 left-0 w-full h-full;
     }
-    .fixed-w-full-bottom {
-        @apply fixed bottom-0 left-0 w-full;
+    .backdrop-full-screen-fixed {
+        @apply fixed top-0 left-0 w-screen h-screen;
     }
-    .hidden-important {
-        display: none !important
-    }
-    .bg-img-contain-center{
-        @apply bg-no-repeat bg-contain bg-center;
-    }
-    .bg-img-contain-bottom{
-        @apply bg-no-repeat bg-contain bg-bottom;
-    }
-    .bg-img-contain-center-fixed{
-        @apply bg-no-repeat bg-contain bg-center bg-fixed;
-    }
-    .bg-img-cover-center-fixed{
-        @apply bg-no-repeat bg-cover bg-center bg-fixed;
-    }
-    .bg-img-cover-center{
-        @apply bg-no-repeat bg-cover bg-center;
-    }
-    .absolute-full {
+    .backdrop-full-absolute {
         @apply absolute top-0 left-0 w-full h-full;
     }
-    .absolute-full-flex-center {
-        @apply absolute top-0 left-0 w-full h-full flex items-center justify-center;
-    }
-    .absolute-w-full-bottom {
-        @apply absolute bottom-0 left-0 w-full;
-    }
-    .absolute-full-translate-x-y {
-        @apply absolute -translate-x-2/4 -translate-y-2/4 top-[50%] left-[50%];
-    }
-    .translate-x-y {
-        @apply -translate-x-2/4 -translate-y-2/4;
-    }
-    .border-b-0-important {
-        border-bottom: none !important;
-    }
-    .width-calc-33-minus-1-5rem {
-        width: calc(33% - 1.5rem);
-    }
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    
-        &::-webkit-scrollbar { 
-            display: none;
-        }
-    }
-    .cursor-none {
-        &>* {
-            cursor: none;
-        }
-    }
-    .overflow-x-auto-s {
-        margin: -4rem 0;
-        padding: 5rem 0;
-        overflow-x: auto;
-    
-        @include screen('s') {
-            overflow: hidden;
-        }
-    }
-    .w-100-important {
-        width: 100% !important;
-    }
-    .outline-pink-important {
-        outline: 4px solid $pink !important;
-    }
-    .retro-windows-border-activable {
-        border: 2.5px solid;
-        border-top-color: $white2;
-        border-left-color: $white2;
-        border-right-color: $grey2;
-        border-bottom-color: $grey2;
-    
-        &:active {
-            border-top-color: $grey2;
-            border-left-color: $grey2;
-            border-right-color: $white2;
-            border-bottom-color: $white2;
-        }
-    }
-    .retro-windows-border {
-        border: 2.5px solid;
-        border-top-color: $white2;
-        border-left-color: $white2;
-        border-right-color: $grey2;
-        border-bottom-color: $grey2;
-    }
-    .retro-windows-input-border {
-        border: 2px solid;
-        border-top-color: $grey2;
-        border-left-color: $grey2;
-        border-right-color: $white2;
-        border-bottom-color: $white2;
-    }
-    .bg-square-pink {
-        background-size: 32px 32px;
-        background-position: center;
-        background-image: linear-gradient(to right, $pink-light 1px, transparent 1px), linear-gradient(to bottom, $pink2-light 1px, transparent 1px);
+    .backdrop-full-screen-absolute {
+        @apply absolute top-0 left-0 w-screen h-screen;
     }
 }

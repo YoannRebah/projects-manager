@@ -1,0 +1,37 @@
+<div clas="flex items-center justify-center">
+    <div class="flex flex-col">
+        <header>
+            <p>Se connecter</p>
+        </header>
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+            <ul>
+                <li class="flex flex-col">
+                    <label for="email">E-mail&nbsp;:</label>
+                    <input id="email" type="text" formControlName="email"
+                    [class.border-red]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                </li>
+                <li class="flex flex-col">
+                    <label for="password">Mot de passe&nbsp;:</label>
+                    <input id="password" type="password" formControlName="password"
+                    [class.border-red]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                </li>
+                <li>
+                    <button type="submit">Valider</button>
+                </li>
+            </ul>
+        </form>
+        <footer>
+            <ul>
+                <li>
+                    <a routerLink="/forgot-password" routerLinkActive="active" ariaCurrentWhenActive="page">Mot de passe oublié&nbsp;?</a>
+                </li>
+                <li>
+                    <button (click)="onClickLoginWithGoogle()">Se connecter avec Google</button>
+                </li>
+                <li>
+                    <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Créer un compte</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</div>

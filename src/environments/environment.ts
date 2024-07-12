@@ -1,9 +1,5 @@
 export const environment = {
     production: false,
-    admin: {
-        password: "0201",
-        cookieId: "schwarzy_movie",
-    },
     emailjs: {
         serviceId: "service_5ru7fw9",
         publicKey: "nAi6Eim9qL5XMDKyr",
@@ -13,12 +9,11 @@ export const environment = {
         }
     },
     firebaseConfig: {
-        apiKey: "AIzaSyBga1KOllEQ09yGv9_Gvku7mjNVGZvQfyI",
-        authDomain: "portfolio-cf8c6.firebaseapp.com",
-        projectId: "portfolio-cf8c6",
-        storageBucket: "portfolio-cf8c6.appspot.com",
-        messagingSenderId: "728589171041",
-        appId: "1:728589171041:web:2387838ea31aedcfbe6d20",
-        measurementId: "G-M6QG9LCDVE",
+        apiKey: "AIzaSyDR5pWFcxITGItq01B6xAUBMSmacFRjxuc",
+        authDomain: "project-manager-d7636.firebaseapp.com",
+        projectId: "project-manager-d7636",
+        storageBucket: "project-manager-d7636.appspot.com",
+        messagingSenderId: "622928082309",
+        appId: "1:622928082309:web:094c1b86f5337e2b56c0ec"
     }
 };
