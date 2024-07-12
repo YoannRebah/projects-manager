@@ -32,6 +32,16 @@ export class LoginComponent implements OnInit {
     this.initFormControl();
   }
 
+  checkUserConnectionStatus(): void {
+    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
+      if(user) {
+        if(user.email && user.displayName) {
+          this.router.navigateByUrl('/home');
+        }
+      }
+    });
+  }
+
   initFormControl(): void {
     this.loginForm = this.formBuilder.group({
       "email": ['', [Validators.required, Validators.email]],
@@ -68,16 +78,6 @@ export class LoginComponent implements OnInit {
 
   onClickLoginWithGoogle() {
     this.authService.loginWithGoogle();
-  }
-
-  checkUserConnectionStatus(): void {
-    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
-      if(user) {
-        if(user.email && user.displayName) {
-          this.router.navigateByUrl('/home');
-        }
-      }
-    });
   }
 
 }
