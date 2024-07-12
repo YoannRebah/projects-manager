@@ -14,6 +14,8 @@ export const theme = {
       "black-transparent-2": 'hsla(0, 0%, 0%, 0.5)',
       "black-transparent-3": 'hsla(0, 0%, 0%, 0.75)',
       "red": 'hsl(358, 75%, 55%)',
+      "blue": '#00a1ff',
+      "gray": "#9f9f9f"
     },
   },
 };

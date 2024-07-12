@@ -1,37 +1,41 @@
-<div clas="flex items-center justify-center">
-    <div class="flex flex-col">
-        <header>
+<div class="relative h-screen flex items-center justify-center">
+    <div class="relative w-full max-w-[280px] flex flex-col gap-6">
+        <header class="flex flex-col items-center">
+            <i class="fa-regular fa-address-card text-xl mb-2" aria-hidden="true"></i>
             <p>Créer un compte</p>
         </header>
         <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
             <ul>
-                <li class="flex flex-col">
-                    <label for="username">Nom d'utilisateur&nbsp;:</label>
-                    <input id="username" type="text" formControlName="username"
+                <li class="flex flex-col mb-2">
+                    <label class="text-sm" for="username">Nom d'utilisateur&nbsp;:</label>
+                    <input id="username" class="border border-black p-1" type="text" formControlName="username"
                     [class.border-red]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
                 </li>
-                <li class="flex flex-col">
-                    <label for="email">E-mail&nbsp;:</label>
-                    <input id="email" type="text" formControlName="email"
+                <li class="flex flex-col mb-2">
+                    <label class="text-sm" for="email">E-mail&nbsp;:</label>
+                    <input id="email" class="border border-black p-1" type="text" formControlName="email"
                     [class.border-red]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
                 </li>
                 <li class="flex flex-col">
-                    <label for="password">Mot de passe&nbsp;:</label>
-                    <input id="password" type="password" formControlName="password"
+                    <label class="text-sm" for="password">Mot de passe&nbsp;:</label>
+                    <input id="password" class="border border-black p-1" type="password" formControlName="password"
                     [class.border-red]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
                 </li>
-                <li>
-                    <button type="submit">Valider</button>
+                <li class="flex justify-center mt-6">
+                    <button class="btn-primary" type="submit">Valider</button>
                 </li>
             </ul>
         </form>
         <footer>
             <ul>
-                <li>
-                    <button (click)="onClickRegisterWithGoogle()">Créer un compte avec Google</button>
+                <li class="flex justify-center mb-6">
+                    <button class="btn-google" (click)="onClickRegisterWithGoogle()">
+                        <img class="w-6" src="assets/images/logo-google.png" alt="Google">
+                        <span>Créer un compte avec Google</span>
+                    </button>
                 </li>
-                <li>
-                    <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Se connecter</a>
+                <li class="flex justify-center">
+                    <a class="text-blue underline" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Se connecter</a>
                 </li>
             </ul>
         </footer>

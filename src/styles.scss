@@ -40,3 +40,18 @@ ul {
         @apply absolute top-0 left-0 w-screen h-screen;
     }
 }
+
+@layer components {
+    .btn-primary {
+        @apply py-1 text-white bg-black w-full uppercase;
+    }
+    .btn-secondary {
+        @apply py-1 text-black bg-white w-full uppercase border border-black;
+    }
+    .btn-tertiary {
+        @apply py-1 text-red bg-white w-full uppercase border border-red;
+    }
+    .btn-google {
+        @apply flex items-center justify-center gap-2 py-1 w-full text-black border border-gray;
+    }
+  }

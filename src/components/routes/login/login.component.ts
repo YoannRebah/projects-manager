@@ -1,7 +1,6 @@
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -18,28 +17,14 @@ import { AuthService } from '../../../services/auth.service';
 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  errorLogin!: boolean;
-  userAlreadyLogged!: boolean;
   formBuilder = inject(FormBuilder);
-  http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
 
   constructor() {}
 
   ngOnInit(): void {
-    this.checkUserConnectionStatus();
     this.initFormControl();
-  }
-
-  checkUserConnectionStatus(): void {
-    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
-      if(user) {
-        if(user.email && user.displayName) {
-          this.router.navigateByUrl('/home');
-        }
-      }
-    });
   }
 
   initFormControl(): void {
@@ -58,11 +43,10 @@ export class LoginComponent implements OnInit {
         .login(rowForm.email, rowForm.password)
         .subscribe({
           next: () => {
-            this.errorLogin = false;
             this.router.navigateByUrl('/home');
           },
-          error: () => {
-            this.errorLogin = true;
+          error: (e) => {
+            console.error('error submitForm login : ', e)
           }
         })
     }

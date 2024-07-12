@@ -1,7 +1,6 @@
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -19,25 +18,13 @@ import { AuthService } from '../../../services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   formBuilder = inject(FormBuilder);
-  http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
 
   constructor() {}
 
   ngOnInit(): void {
-    this.checkUserConnectionStatus();
     this.initFormControl();
-  }
-
-  checkUserConnectionStatus(): void {
-    this.authService.user$.subscribe((user: { email: string; displayName: string; }) => {
-      if(user) {
-        if(user.email && user.displayName) {
-          this.router.navigateByUrl('/home');
-        }
-      }
-    });
   }
 
   initFormControl(): void {
@@ -59,7 +46,7 @@ export class RegisterComponent implements OnInit {
           next: () => {
             this.router.navigateByUrl('/home')
           },
-          error: (e) => console.error('error onSubmit : ', e)
+          error: (e) => console.error('error submitForm register : ', e)
         })
     }
   }

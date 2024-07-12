@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 
-<nav class="relative w-full flex justify-center bg-black">
+<nav class="fixed top-0 left-0 w-full flex justify-center bg-black z-40">
     <ul class="flex items-center gap-6 text-white">
         <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Accueil</a></li>
         <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
@@ -12,4 +12,8 @@
     </ul>
 </nav>
 
-<router-outlet />
+<main class="relative container mx-auto">
+
+    <router-outlet />
+
+</main>

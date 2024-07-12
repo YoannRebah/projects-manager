@@ -1,35 +1,39 @@
-<div clas="flex items-center justify-center">
-    <div class="flex flex-col">
-        <header>
+<div class="relative h-screen flex items-center justify-center">
+    <div class="relative w-full max-w-[280px] flex flex-col gap-6">
+        <header class="flex flex-col items-center">
+            <i class="fa-solid fa-arrow-right-to-bracket text-xl mb-2" aria-hidden="true"></i>
             <p>Se connecter</p>
         </header>
         <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
             <ul>
-                <li class="flex flex-col">
-                    <label for="email">E-mail&nbsp;:</label>
-                    <input id="email" type="text" formControlName="email"
+                <li class="flex flex-col mb-2">
+                    <label class="text-sm" for="email">E-mail&nbsp;:</label>
+                    <input id="email" class="border border-black p-1" type="text" formControlName="email"
                     [class.border-red]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                 </li>
-                <li class="flex flex-col">
-                    <label for="password">Mot de passe&nbsp;:</label>
-                    <input id="password" type="password" formControlName="password"
+                <li class="flex flex-col mb-2">
+                    <label class="text-sm" for="password">Mot de passe&nbsp;:</label>
+                    <input id="password" class="border border-black p-1" type="password" formControlName="password"
                     [class.border-red]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                 </li>
-                <li>
-                    <button type="submit">Valider</button>
+                <li class="flex justify-end">
+                    <a class="text-sm text-blue underline" routerLink="/forgot-password" routerLinkActive="active" ariaCurrentWhenActive="page">Mot de passe oublié&nbsp;?</a>
+                </li>
+                <li class="flex justify-center mt-6">
+                    <button class="btn-primary" type="submit">Valider</button>
                 </li>
             </ul>
         </form>
         <footer>
             <ul>
-                <li>
-                    <a routerLink="/forgot-password" routerLinkActive="active" ariaCurrentWhenActive="page">Mot de passe oublié&nbsp;?</a>
+                <li class="flex justify-center mb-6">
+                    <button class="btn-google" (click)="onClickLoginWithGoogle()">
+                        <img class="w-6" src="assets/images/logo-google.png" alt="Google">
+                        <span>Se connecter avec Google</span>
+                    </button>
                 </li>
-                <li>
-                    <button (click)="onClickLoginWithGoogle()">Se connecter avec Google</button>
-                </li>
-                <li>
-                    <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Créer un compte</a>
+                <li class="flex justify-center">
+                    <a class="text-blue underline" routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Créer un compte</a>
                 </li>
             </ul>
         </footer>
