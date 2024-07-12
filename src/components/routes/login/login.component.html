@@ -8,12 +8,12 @@
             <ul>
                 <li class="flex flex-col mb-2">
                     <label class="text-sm" for="email">E-mail&nbsp;:</label>
-                    <input id="email" class="border border-black p-1" type="text" formControlName="email"
+                    <input id="email" class="border border-gray p-2" type="text" formControlName="email"
                     [class.border-red]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                 </li>
                 <li class="flex flex-col mb-2">
                     <label class="text-sm" for="password">Mot de passe&nbsp;:</label>
-                    <input id="password" class="border border-black p-1" type="password" formControlName="password"
+                    <input id="password" class="border border-gray p-2" type="password" formControlName="password"
                     [class.border-red]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                 </li>
                 <li class="flex justify-end">

@@ -8,17 +8,17 @@
             <ul>
                 <li class="flex flex-col mb-2">
                     <label class="text-sm" for="username">Nom d'utilisateur&nbsp;:</label>
-                    <input id="username" class="border border-black p-1" type="text" formControlName="username"
+                    <input id="username" class="border border-gray p-2" type="text" formControlName="username"
                     [class.border-red]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
                 </li>
                 <li class="flex flex-col mb-2">
                     <label class="text-sm" for="email">E-mail&nbsp;:</label>
-                    <input id="email" class="border border-black p-1" type="text" formControlName="email"
+                    <input id="email" class="border border-gray p-2" type="text" formControlName="email"
                     [class.border-red]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
                 </li>
                 <li class="flex flex-col">
                     <label class="text-sm" for="password">Mot de passe&nbsp;:</label>
-                    <input id="password" class="border border-black p-1" type="password" formControlName="password"
+                    <input id="password" class="border border-gray p-2" type="password" formControlName="password"
                     [class.border-red]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
                 </li>
                 <li class="flex justify-center mt-6">

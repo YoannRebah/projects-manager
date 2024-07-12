@@ -43,15 +43,15 @@ ul {
 
 @layer components {
     .btn-primary {
-        @apply py-1 text-white bg-black w-full uppercase;
+        @apply py-2 text-white bg-black w-full uppercase;
     }
     .btn-secondary {
-        @apply py-1 text-black bg-white w-full uppercase border border-black;
+        @apply py-2 text-black bg-white w-full uppercase border border-black;
     }
     .btn-tertiary {
-        @apply py-1 text-red bg-white w-full uppercase border border-red;
+        @apply py-2 text-red bg-white w-full uppercase border border-red;
     }
     .btn-google {
-        @apply flex items-center justify-center gap-2 py-1 w-full text-black border border-gray;
+        @apply flex items-center justify-center gap-2 py-2 w-full text-black border border-gray;
     }
   }
