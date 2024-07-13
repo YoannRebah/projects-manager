@@ -2,7 +2,7 @@ export interface Anchor {
     index?: number;
     id?: string;
     classNames?: string;
-    href: string;
+    href?: string;
     iconClassNames?: string;
     text?: string;
     ariaLabel?: string;
