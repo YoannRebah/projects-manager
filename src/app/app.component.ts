@@ -31,9 +31,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     TimeoutService.setTimeout(()=>{
-      this.loaderService.hide();
       this.userIsAuthenticated();
-    });
+      this.loaderService.hide();
+    }, 2000);
   }
 
   userIsAuthenticated(): void {
