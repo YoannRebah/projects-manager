@@ -46,17 +46,23 @@ export class RegisterComponent implements OnInit {
           next: () => {
             this.router.navigateByUrl('/home')
           },
-          error: (e) => console.error('error submitForm register : ', e)
-        })
+          error: (e) => {
+            console.error('error submitForm register : ', e); 
+            throw(e);
+          }
+        });
     }
   }
 
-  onClickRegisterWithGoogle(): void {
-    this.authService.registerWithGoogle().subscribe({
+  onClickLoginWithGoogle(): void {
+    this.authService.loginWithGoogle().subscribe({
       next: () => {
         this.router.navigateByUrl('/home');
       },
-      error: (e) => console.error('error onClickRegisterWithGoogle : ', e)
+      error: (e) => {
+        console.error('error onClickLoginWithGoogle : ', e);
+        throw(e);
+      }
     });
   }
 

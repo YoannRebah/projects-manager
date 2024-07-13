@@ -1,6 +1,11 @@
-<h1 class="text-2xl text-red mt-8">404</h1>
-@if(isAuthenticated) {
-    <a class="text-blue underline" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Retour à l'accueil</a>
-} @else {
-    <a class="text-blue underline" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Page de connexion</a>
-}
+<div class="container mt-8">
+
+    <h1 class="text-2xl text-red mt-8">404</h1>
+    
+    @if(isAuthenticated) {
+        <a class="text-blue underline" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Retour à l'accueil</a>
+    } @else {
+        <a class="text-blue underline" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Page de connexion</a>
+    }
+
+</div>

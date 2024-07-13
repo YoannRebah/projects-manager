@@ -16,10 +16,11 @@ import { AuthService } from '../../../services/auth.service';
 })
 
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+
   formBuilder = inject(FormBuilder);
   router = inject(Router);
   authService = inject(AuthService);
+  loginForm!: FormGroup;
 
   constructor() {}
 
@@ -46,10 +47,23 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/home');
           },
           error: (e) => {
-            console.error('error submitForm login : ', e)
+            console.error('error submitForm login : ', e);
+            throw(e);
           }
-        })
+        });
     }
+  }
+
+  onClickLoginWithGoogle(): void {
+    this.authService.loginWithGoogle().subscribe({
+      next: () => {
+        this.router.navigateByUrl('/home');
+      },
+      error: (e) => {
+        console.error('error onClickLoginWithGoogle : ', e);
+        throw(e);
+      }
+    });
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -58,10 +72,6 @@ export class LoginComponent implements OnInit {
       event.preventDefault();
       this.submitForm();
     }
-  }
-
-  onClickLoginWithGoogle() {
-    this.authService.loginWithGoogle();
   }
 
 }

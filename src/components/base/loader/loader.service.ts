@@ -1,6 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { TimeoutService } from '../../../services/timeout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +16,7 @@ export class LoaderService {
   }
 
   hide(): void {
-    TimeoutService.setTimeout(()=>{
-      this.loadingSubject.next(false);
-    }, 2000);
+    this.loadingSubject.next(false);
   }
 
 }

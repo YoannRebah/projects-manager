@@ -9,7 +9,7 @@ import { GuiRouteComponent } from '../routes/gui-route/gui-route.component';
 import { PageNotFoundRouteComponent } from '../routes/page-not-found-route/page-not-found-route.component';
 
 export const routes: Routes = [
-    { path: '', component: PageNotFoundRouteComponent },
+    { path: '', component: HomepageRouteComponent, canActivate: [authGuard] },
     { path: 'home', component: HomepageRouteComponent, canActivate: [authGuard] },
     { path: 'login', component: LoginRouteComponent },
     { path: 'register', component: RegisterRouteComponent },

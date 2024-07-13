@@ -4,6 +4,7 @@ import { LoaderComponent } from '../components/base/loader/loader.component';
 import { LoaderService } from '../components/base/loader/loader.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../interfaces/user.interface';
+import { TimeoutService } from '../services/timeout.service';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +30,10 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.loaderService.hide();
-    this.userIsAuthenticated();
+    TimeoutService.setTimeout(()=>{
+      this.loaderService.hide();
+      this.userIsAuthenticated();
+    });
   }
 
   userIsAuthenticated(): void {
@@ -39,6 +42,9 @@ export class AppComponent implements OnInit {
       if(user) {
         this.isAuthenticated = !!user;
         this.userName = user.username;
+        this.router.navigateByUrl('/home');
+      } else {
+        this.router.navigateByUrl('/login');
       }
     });
   }
